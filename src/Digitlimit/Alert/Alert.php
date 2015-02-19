@@ -102,4 +102,25 @@ class Alert {
 
         return $this->flash();
     }
+
+
+    //Helpers
+    public function has($alert_message_type){
+        switch($alert_message_type){
+            case 'modal':
+                return $this->session->has('alert_modal_message');
+                break;
+
+            case 'form':
+                return $this->session->has('alert_form_message');
+                break;
+
+            case 'notify':
+                return $this->session->has('alert_form_message');
+                break;
+
+        }
+    }
+
+
 }
