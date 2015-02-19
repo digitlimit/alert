@@ -1,0 +1,24 @@
+{
+    "name": "digitlimit/alert",
+    "description": "An easy way of flashing messages in Laravel Application ",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mbah Emeka",
+            "email": "info@digitlimit.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~5.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Digitlimit\\Alert": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
