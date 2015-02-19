@@ -20,7 +20,7 @@ class AlertServiceProvider extends ServiceProvider
     public function register()
     {
 
-        $this->app->bindShared('alert', function($app)
+        $this->app['alert'] = $this->app->share(function($app)
         {
             return new Alert($app['session.store']);
         });
