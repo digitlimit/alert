@@ -46,8 +46,9 @@ class UserController extends Controller
 {
   public function postRegister(UserRegisterRequest $request)
   {
-      Alert::form('You account was successfully created. Kindly check yourmail','Congratulations')->success()->closable()->showIcon();
-        return redirect()->route('users.getRegister');
-    }
+      Alert::form('Your account was successfully created','Congratulations')->success()->closable()->showIcon();
+        
+      return redirect()->route('users.getRegister');
+   }
 }
 ```
