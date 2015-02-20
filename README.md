@@ -13,6 +13,10 @@ Add alert in your composer.json file:
 }
 ```
 
+Then run 
+```command
+composer update
+```
 
 In Laravel 5 include Alert Service Provider within config/app.php or  app/config/app.php in Laravel 4
 
