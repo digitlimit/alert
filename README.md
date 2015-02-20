@@ -119,73 +119,9 @@ Some where in the view layout:
 @include('alert::modal')
 ```
 
+[More Examples]#
 
 
 
 
-[More Examples]
 
-
-
-.
-
-Then just before </body>
-
-```script
-<script>
-    $('#flash-overlay-modal').modal();
-</script>
-```
-
-## Options and Chainable methods
-show alert:
-```php
-Alert::form('Opps! Something went  wrong. Please try later.')->error();
-Alert::notify('Thank you for applying','With Title')->success();
-Alert::modal('Thank you for applying','With Title')->info();
-```
-
-Add a close button to alert:
-```php
-Alert::notify('Opps! Something went  wrong. Please try later.','Error')->error()->closable();
-```
-
-show icon in the alert:
-```php
-Alert::notify('Opps! Something went  wrong. Please try later.','Error')->error()->showIcon();
-```
-
-More chaining:
-```php
-Alert::notify('Opps! Something went  wrong. Please try later.','Error')->error()->showIcon()->closable;
-```
-
-## Other Options
-
-If you don't wish to include alert view with @include('alert::form) or @include('alert::notify')
-
-You can paste this in your view an customize as you wish
-
-```php
-@if (Session::has('alert_form_message'))
-
-    <div class="alert alert-{{Session::get('alert_message_status')}}" style="display: block;">
-
-        @if(Session::get('alert_message_closable'))
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        @endif
-
-        @if(Session::get('alert_message_title'))
-            <strong>
-                @if(Session::get('alert_message_icon')) <i class="{{Session::get('alert_message_icon')}}"></i> @endif
-
-                {{Session::get('alert_message_title')}}
-            </strong>
-        @endif
-
-        {{Session::get('alert_message')}}
-
-    </div>
-
-@endif
-```
