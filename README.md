@@ -23,7 +23,7 @@ In Laravel 5 include Alert Service Provider within config/app.php or  app/config
 ```
 
 
-You can also include alert facade in aliases array in same file above
+You can also include alert facade in aliases array in same file above i.e config/app.php or  app/config/app.php in Laravel 4
 
 ```php
 'aliases' => [
