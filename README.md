@@ -2,7 +2,6 @@
 Alert is designed to make flashing messages in Laravel Applications a breeze. 
 Tested and works in Laravel 5 or less
 
-
 ## Installation
 
 Add alert in your composer.json file:
@@ -25,7 +24,6 @@ In Laravel 5 include Alert Service Provider within config/app.php or  app/config
     'Digitlimit\Alert\AlertServiceProvider'
 ];
 ```
-
 
 You can also include alert facade in aliases array in same file above i.e config/app.php or  app/config/app.php in Laravel 4
 
@@ -65,26 +63,20 @@ Then in your view your can include the flash message to your view like so:
     @include('alert::form')
     
     <form method="POST" action="{{URL::route('users.postRegister')}}" novalidate>
-
             <div class="form-group">
                 <label for="name">First Name</label>
                 <input type="text" id="first_name" class="form-control" name="first_name" placeholder="First Name">
             </div>
-
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" class="form-control" name="email" placeholder="Email Address">
             </div>
-
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" class="form-control" name="password">
             </div>
-
             <button type="submit" class="btn btn-success">Register</button>
-
         </form>
-    
 </div>
 ```   
 
@@ -131,7 +123,11 @@ Some where in the view layout:
 
 
 
+[More Examples]
 
+
+
+.
 
 Then just before </body>
 
