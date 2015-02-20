@@ -55,6 +55,7 @@ class UserController extends Controller
 
 ##### Then in your view your can include the flash message to your view like so:
 
+```html
 <div class"registration_form">
 
     @include('alert::form')
@@ -81,4 +82,4 @@ class UserController extends Controller
         </form>
     
 </div>
-      
+```   
