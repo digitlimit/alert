@@ -91,7 +91,7 @@ Then in your view your can include the flash message to your view like so:
 ## Features
 There are basically three types of alert messages you can flash
 
-1. Form - used mostly to display message in the header of your form
+1. ##### Form - used mostly to display message in the header of your form
   
 Some where in the controller: 
 ```pph
@@ -103,7 +103,7 @@ Some where in the view:
 @include('alert::form')
 ```
 
-2. Notify - used mostly on the header of your page
+2. ##### Notify - used mostly on the header of your page
 
 Some where in the controller: 
 ```pph
@@ -115,7 +115,7 @@ Some where in the view layout:
 @include('alert::notify')
 ```
 
-3. Modal
+3. Modal - used mostly to display an overlay message
 
 Some where in the controller: 
 ```php
