@@ -13,7 +13,7 @@ Add alert in your composer.json file:
 }
 ```
 
-#### Service Provider
+
 In Laravel 5 include service the provider within config/app.php or  app/config/app.php in Laravel 4
 
 ```php
@@ -22,7 +22,7 @@ In Laravel 5 include service the provider within config/app.php or  app/config/a
 ];
 ```
 
-#### Facade
+
 You can also include alert facade in aliases array in same file above
 
 ```php
@@ -33,7 +33,7 @@ You can also include alert facade in aliases array in same file above
 
 ## Usage
 
-##### In your controller simply set your alert before redirection like so:
+In your controller simply set your alert before redirection like so:
 
 In laravel 5 controller for example:
 
@@ -53,7 +53,7 @@ class UserController extends Controller
 }
 ```
 
-##### Then in your view your can include the flash message to your view like so:
+Then in your view your can include the flash message to your view like so:
 
 ```html
 <div class"registration_form">
@@ -83,3 +83,103 @@ class UserController extends Controller
     
 </div>
 ```   
+
+## Features
+There are basically three types of alert messages you can flash
+
+1. Form - used mostly to display message in the header of your form
+  
+Some where in the controller: 
+```pph
+   //This simply displays a success message
+   Alert::form('Your account was successfully created','Congratulations')->success();
+```
+Some where in the view:
+```html
+@include('alert::form')
+```
+
+2. Notify - used mostly on the header of your page
+
+Some where in the controller: 
+```pph
+   //This simply displays a success message
+   Alert::notify('Your account is going to expire today.','Info')->info();
+```
+Some where in the view layout:
+```html
+@include('alert::notify')
+```
+
+3. Modal
+
+Some where in the controller: 
+```php
+   //This simply displays a success message
+   Alert::modal('Thanks for joining us.','Title')->info();
+```
+Some where in the view layout:
+```html
+@include('alert::modal')
+```
+
+Then just before </body>
+
+```script
+<script>
+    $('#flash-overlay-modal').modal();
+</script>
+```
+
+## Options and Chainable methods
+show alert:
+```php
+Alert::form('Opps! Something went  wrong. Please try later.')->error();
+Alert::notify('Thank you for applying','With Title')->success();
+Alert::modal('Thank you for applying','With Title')->info();
+```
+
+Add a close button to alert:
+```php
+Alert::notify('Opps! Something went  wrong. Please try later.','Error')->error()->closable();
+```
+
+show icon in the alert:
+```php
+Alert::notify('Opps! Something went  wrong. Please try later.','Error')->error()->showIcon();
+```
+
+More chaining:
+```php
+Alert::notify('Opps! Something went  wrong. Please try later.','Error')->error()->showIcon()->closable;
+```
+
+## Other Options
+
+If you don't wish to include alert view with @include('alert::form) or @include('alert::notify')
+
+You can paste this in your view an customize as you wish
+
+```php
+@if (Session::has('alert_form_message'))
+
+    <div class="alert alert-{{Session::get('alert_message_status')}}" style="display: block;">
+
+        @if(Session::get('alert_message_closable'))
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        @endif
+
+        @if(Session::get('alert_message_title'))
+            <strong>
+                @if(Session::get('alert_message_icon')) <i class="{{Session::get('alert_message_icon')}}"></i> @endif
+
+                {{Session::get('alert_message_title')}}
+            </strong>
+        @endif
+
+        {{Session::get('alert_message')}}
+
+    </div>
+
+@endif
+```
