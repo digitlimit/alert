@@ -119,7 +119,7 @@ Some where in the view layout:
 @include('alert::modal')
 ```
 
-[More Examples]#
+[More Examples](#)
 
 
 
