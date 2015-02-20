@@ -1,9 +1,9 @@
-### Alert
+# Alert
 Alert is designed to make flashing messages in Laravel Applications a breeze. 
 Tested and works in Laravel 5 or less
 
 
-# Installation
+## Installation
 
 Add alert in your composer.json file:
 
@@ -13,7 +13,7 @@ Add alert in your composer.json file:
 }
 ```
 
-# Service Provider
+### Service Provider
 In Laravel 5 include service the provider within config/app.php or  app/config/app.php in Laravel 4
 
 ```php
@@ -22,7 +22,7 @@ In Laravel 5 include service the provider within config/app.php or  app/config/a
 ];
 ```
 
-# Facade
+### Facade
 You can also include alert facade in aliases array in same file above
 
 ```php
@@ -31,9 +31,9 @@ You can also include alert facade in aliases array in same file above
 ];
 ```
 
-# Usage
+## Usage
 
-# In your controller simply set your alert before redirection like so:
+### In your controller simply set your alert before redirection like so:
 
 In laravel 5 controller for example:
 
