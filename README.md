@@ -127,6 +127,12 @@ Some where in the view layout:
 @include('alert::modal')
 ```
 
+
+
+
+
+
+
 Then just before </body>
 
 ```script
