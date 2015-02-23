@@ -8,8 +8,18 @@ class Alert {
     protected $alert_message_title;
     protected $alert_message;
     protected $alert_message_status = 'success'; //default
+    protected $alert_message_icon;
     protected $alert_message_closable  = false; //default
     protected $alert_message_self_destroy  = false; //default
+
+    protected $alert_message_modal_size  = '';
+    protected $alert_message_modal_view  = '';
+
+    protected $alert_message_action_button_label; //default
+    protected $alert_message_action_button_url; //default
+
+    protected $alert_message_close_button_label; //default
+    protected $alert_message_close_button_url; //default
 
 
 
@@ -22,8 +32,18 @@ class Alert {
         $this->session->flash('alert_message_title', $this->alert_message_title);
         $this->session->flash('alert_message', $this->alert_message);
         $this->session->flash('alert_message_status', $this->alert_message_status);
+        $this->session->flash('alert_message_icon', $this->alert_message_icon);
         $this->session->flash('alert_message_closable', $this->alert_message_closable);
         $this->session->flash('alert_message_self_destroy', $this->alert_message_self_destroy);
+        $this->session->flash('alert_message_modal_size', $this->alert_message_modal_size);
+        $this->session->flash('alert_message_modal_view', $this->alert_message_modal_view);
+
+        $this->session->flash('alert_message_action_button_label', $this->alert_message_action_button_label);
+        $this->session->flash('alert_message_action_button_url', $this->alert_message_action_button_url);
+
+        $this->session->flash('alert_message_close_button_label', $this->alert_message_close_button_label);
+        $this->session->flash('alert_message_close_button_url', $this->alert_message_close_button_url);
+
 
         return $this;
     }
@@ -40,36 +60,70 @@ class Alert {
         return $this->flash();
     }
 
+    public function icon($icon=''){
+        $this->alert_message_icon = $icon;
+        return $this->flash();
+    }
+
+    public function actionButton($label='',$url=''){
+        $this->alert_message_action_button_label = $label;
+        $this->alert_message_action_button_url = $url;
+        return $this->flash();
+    }
+
+    public function closeButton($label='',$url=''){
+        $this->alert_message_close_button_label = $label;
+        $this->alert_message_close_button_url = $url;
+        return $this->flash();
+    }
+
+
+    public function large(){
+        $this->alert_message_modal_size = 'modal-lg';
+        return $this->flash();
+    }
+
+    public function small(){
+        $this->alert_message_modal_size = 'modal-sm';
+        return $this->flash();
+    }
+
 
 
     //Alert status
     public function success(){
         $this->alert_message_status = 'success';
+        $this->alert_message_icon = 'fa fa-check-circle';
         return $this->flash();
     }
 
     public function info(){
         $this->alert_message_status = 'info';
+        $this->alert_message_icon = 'fa fa-info';
         return $this->flash();
     }
 
     public function warning(){
         $this->alert_message_status = 'warning';
+        $this->alert_message_icon = 'fa fa-warning';
         return $this->flash();
     }
 
     public function error(){
         $this->alert_message_status = 'danger';
+        $this->alert_message_icon = 'fa fa-times-circle';
         return $this->flash();
     }
 
     public function royal(){
         $this->alert_message_status = 'royal';
+        $this->alert_message_icon = 'fa fa-bullhorn';
         return $this->flash();
     }
 
     public function primary(){
         $this->alert_message_status = 'primary';
+        $this->alert_message_icon = 'fa fa-comments-o';
         return $this->flash();
     }
 
@@ -77,10 +131,11 @@ class Alert {
 
 
     //Alert Types
-    public function modal($message, $title=''){
-        $this->alert_message_type    = 'alert_modal_message';
-        $this->alert_message_title   = $title;
-        $this->alert_message         = $message;
+    public function modal($message, $title='',$view=''){
+        $this->alert_message_type       = 'alert_modal_message';
+        $this->alert_message_title      = $title;
+        $this->alert_message            = $message;
+        $this->alert_message_modal_view = $view;
 
         return $this->flash();
     }
