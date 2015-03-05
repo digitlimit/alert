@@ -4,22 +4,30 @@ use Illuminate\Session\Store;
 
 class Alert {
 
-    protected $alert_message_type;
-    protected $alert_message_title;
-    protected $alert_message;
-    protected $alert_message_status = 'success'; //default
-    protected $alert_message_icon;
-    protected $alert_message_closable  = false; //default
-    protected $alert_message_self_destroy  = false; //default
+    protected $alert;
+    protected $type;
+    protected $title;
+    protected $message;
+    protected $status       = 'success'; //default
+    protected $icon;
+    protected $closable     = true; //default
+    protected $un_closable  = false; //default
+    protected $un_closable_strict  = false; //default
+    protected $self_destroy  = false; //default
 
-    protected $alert_message_modal_size  = '';
-    protected $alert_message_modal_view  = '';
+    protected $persist  = false; //default
 
-    protected $alert_message_action_button_label; //default
-    protected $alert_message_action_button_url; //default
+    protected $sticky_title; //type of alert but cannot be overridden
+    protected $sticky_message; //type of alert but cannot be overridden
 
-    protected $alert_message_close_button_label; //default
-    protected $alert_message_close_button_url; //default
+    protected $modal_size  = '';
+    protected $modal_view  = '';
+
+    protected $action_button_label; //default
+    protected $action_button_url; //default
+
+    protected $close_button_label; //default
+    protected $close_button_url; //default
 
 
 
@@ -27,103 +35,153 @@ class Alert {
         $this->session = $session;
     }
 
-    protected function flash(){
-        $this->session->flash($this->alert_message_type, true);
-        $this->session->flash('alert_message_title', $this->alert_message_title);
-        $this->session->flash('alert_message', $this->alert_message);
-        $this->session->flash('alert_message_status', $this->alert_message_status);
-        $this->session->flash('alert_message_icon', $this->alert_message_icon);
-        $this->session->flash('alert_message_closable', $this->alert_message_closable);
-        $this->session->flash('alert_message_self_destroy', $this->alert_message_self_destroy);
-        $this->session->flash('alert_message_modal_size', $this->alert_message_modal_size);
-        $this->session->flash('alert_message_modal_view', $this->alert_message_modal_view);
+    protected function flash($type='flash'){
 
-        $this->session->flash('alert_message_action_button_label', $this->alert_message_action_button_label);
-        $this->session->flash('alert_message_action_button_url', $this->alert_message_action_button_url);
+        $this->alert = array(
+            $this->type              => true,
+            'type'                   => $this->type,
+            'title'                  => $this->title,
+            'message'                => $this->message,
+            'status'                 => $this->status,
+            'icon'                   => $this->icon,
 
-        $this->session->flash('alert_message_close_button_label', $this->alert_message_close_button_label);
-        $this->session->flash('alert_message_close_button_url', $this->alert_message_close_button_url);
+            'closable'               => $this->closable,
+            'un_closable'            => $this->un_closable,
+            'un_closable_strict'     => $this->un_closable_strict,
+            'self_destroy'           => $this->self_destroy,
+            'persist'                => $this->persist,
 
+            'sticky_title'           => $this->sticky_title,
+            'sticky_message'         => $this->sticky_message,
+
+            'modal_size'             => $this->modal_size,
+            'modal_view'             => $this->modal_view,
+
+            'action_button_label'    => $this->action_button_label,
+            'action_button_url'      => $this->action_button_url,
+            'close_button_label'     => $this->close_button_label,
+            'close_button_url'       => $this->close_button_url
+        );
+
+        $this->session->$type('alert_message', $this->alert);
 
         return $this;
     }
 
 
+    protected function alert(){
+        return $this->session->get('alert_message');
+    }
+
+
+    public function __call($method,$param){
+        $alert = $this->alert();
+        if(is_array($alert) && property_exists($this,$method) && isset($alert[$method])) return $alert[$method];
+    }
+
+
+//    public function __get($property){
+//        $alert = $this->alert();
+//        if(is_array($alert) && isset($alert[$property])) return $alert[$property];
+//    }
+
+
+
     //Actions
-    public function closable(){
-        $this->alert_message_closable = true;
+    public function persist(){
+        return $this->flash($type='put');
+    }
+
+    public function destroy(){
+        return $this->flash($type='pull'); //retrieve an item and forget it
+    }
+
+//    public function closable(){
+//        $this->un_closable = true;
+//        return $this->flash();
+//    }
+
+    public function unClosable(){
+        $this->closable       = false;
+        $this->un_closable    = true;
+        return $this->flash();
+    }
+
+    public function unClosableStrict(){
+        $this->closable       = false;
+        $this->un_closable    = true;
+        $this->un_closable_strict = true;
         return $this->flash();
     }
 
     public function selfDestroy(){
-        $this->alert_message_self_destroy = true;
+        $this->self_destroy = true;
         return $this->flash();
     }
 
-    public function icon($icon=''){
-        $this->alert_message_icon = $icon;
+    public function setIcon($icon=''){
+        $this->icon = $icon;
         return $this->flash();
     }
 
-    public function actionButton($label='',$url=''){
-        $this->alert_message_action_button_label = $label;
-        $this->alert_message_action_button_url = $url;
+    public function setActionButton($label='',$url=''){
+        $this->action_button_label  = $label;
+        $this->action_button_url    = $url;
         return $this->flash();
     }
 
-    public function closeButton($label='',$url=''){
-        $this->alert_message_close_button_label = $label;
-        $this->alert_message_close_button_url = $url;
+    public function setCloseButton($label='',$url=''){
+        $this->close_button_label  = $label;
+        $this->close_button_url    = $url;
         return $this->flash();
     }
 
 
     public function large(){
-        $this->alert_message_modal_size = 'modal-lg';
+        $this->modal_size = 'modal-lg';
         return $this->flash();
     }
 
     public function small(){
-        $this->alert_message_modal_size = 'modal-sm';
+        $this->modal_size = 'modal-sm';
         return $this->flash();
     }
-
 
 
     //Alert status
     public function success(){
-        $this->alert_message_status = 'success';
-        $this->alert_message_icon = 'fa fa-check-circle';
+        $this->status  = 'success';
+        $this->icon    = 'fa fa-check-circle';
         return $this->flash();
     }
 
     public function info(){
-        $this->alert_message_status = 'info';
-        $this->alert_message_icon = 'fa fa-info';
+        $this->status  = 'info';
+        $this->icon    = 'fa fa-info';
         return $this->flash();
     }
 
     public function warning(){
-        $this->alert_message_status = 'warning';
-        $this->alert_message_icon = 'fa fa-warning';
+        $this->status  = 'warning';
+        $this->icon    = 'fa fa-warning';
         return $this->flash();
     }
 
     public function error(){
-        $this->alert_message_status = 'danger';
-        $this->alert_message_icon = 'fa fa-times-circle';
+        $this->status  = 'danger';
+        $this->icon    = 'fa fa-times-circle';
         return $this->flash();
     }
 
     public function royal(){
-        $this->alert_message_status = 'royal';
-        $this->alert_message_icon = 'fa fa-bullhorn';
+        $this->status  = 'royal';
+        $this->icon    = 'fa fa-bullhorn';
         return $this->flash();
     }
 
     public function primary(){
-        $this->alert_message_status = 'primary';
-        $this->alert_message_icon = 'fa fa-comments-o';
+        $this->status  = 'primary';
+        $this->icon    = 'fa fa-comments-o';
         return $this->flash();
     }
 
@@ -132,49 +190,46 @@ class Alert {
 
     //Alert Types
     public function modal($message, $title='',$view=''){
-        $this->alert_message_type       = 'alert_modal_message';
-        $this->alert_message_title      = $title;
-        $this->alert_message            = $message;
-        $this->alert_message_modal_view = $view;
+        $this->type                 = 'alert_modal_message';
+        $this->title                = $title;
+        $this->message              = $message;
+        $this->modal_view           = $view;
 
         return $this->flash();
     }
 
     public function form($message, $title=''){
-
-        $this->alert_message_type    = 'alert_form_message';
-        $this->alert_message_title   = $title;
-        $this->alert_message = $message;
+        $this->type                = 'alert_form_message';
+        $this->title               = $title;
+        $this->message             = $message;
 
         return $this->flash();
     }
 
     public function notify($message, $title=''){
+        $this->type                 = 'alert_notify_message';
+        $this->title                = $title;
+        $this->message              = $message;
 
-        $this->alert_message_type    = 'alert_notify_message';
-        $this->alert_message_title   = $title;
-        $this->alert_message = $message;
+        return $this->flash();
+    }
+
+    public function sticky($message, $title=''){
+        $this->type                 = 'alert_sticky_message';
+        $this->sticky_title         = $title;
+        $this->sticky_message       = $message;
 
         return $this->flash();
     }
 
 
     //Helpers
-    public function has($alert_message_type){
-        switch($alert_message_type){
-            case 'modal':
-                return $this->session->has('alert_modal_message');
-                break;
+    public function has($alert_type){
 
-            case 'form':
-                return $this->session->has('alert_form_message');
-                break;
+        $alert = $this->alert();
 
-            case 'notify':
-                return $this->session->has('alert_form_message');
-                break;
-
-        }
+        $alert_type = "alert_{$alert_type}_message";
+        return is_array($alert) ? isset($alert[$alert_type]) : false;
     }
 
 

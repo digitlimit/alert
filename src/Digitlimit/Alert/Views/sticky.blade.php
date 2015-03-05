@@ -1,6 +1,5 @@
-@if (Alert::has('form'))
-
-    <div class="alert alert-{{Alert::status()}}" style="display: block;">
+@if (Alert::has('sticky'))
+    <div class="alert alert-{{Alert::status()}}" style="display: block; margin-bottom:0; border: 0; padding-top: 5px; padding-bottom: 5px;">
 
         @if(Alert::closable())
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -13,8 +12,7 @@
             </strong>
         @endif
 
-        {!!Alert::message()!!}
+        {!!Alert::sticky_message()!!}
 
     </div>
-
 @endif
