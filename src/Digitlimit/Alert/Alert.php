@@ -28,6 +28,7 @@ class Alert {
 
     protected $close_button_label; //default
     protected $close_button_url; //default
+    protected $close_button_attributes; //default
 
 
 
@@ -38,29 +39,30 @@ class Alert {
     protected function flash($type='flash'){
 
         $this->alert = array(
-            $this->type              => true,
-            'type'                   => $this->type,
-            'title'                  => $this->title,
-            'message'                => $this->message,
-            'status'                 => $this->status,
-            'icon'                   => $this->icon,
+            $this->type                 => true,
+            'type'                      => $this->type,
+            'title'                     => $this->title,
+            'message'                   => $this->message,
+            'status'                    => $this->status,
+            'icon'                      => $this->icon,
 
-            'closable'               => $this->closable,
-            'un_closable'            => $this->un_closable,
-            'un_closable_strict'     => $this->un_closable_strict,
-            'self_destroy'           => $this->self_destroy,
-            'persist'                => $this->persist,
+            'closable'                  => $this->closable,
+            'un_closable'               => $this->un_closable,
+            'un_closable_strict'        => $this->un_closable_strict,
+            'self_destroy'              => $this->self_destroy,
+            'persist'                   => $this->persist,
 
-            'sticky_title'           => $this->sticky_title,
-            'sticky_message'         => $this->sticky_message,
+            'sticky_title'              => $this->sticky_title,
+            'sticky_message'            => $this->sticky_message,
 
-            'modal_size'             => $this->modal_size,
-            'modal_view'             => $this->modal_view,
+            'modal_size'                => $this->modal_size,
+            'modal_view'                => $this->modal_view,
 
-            'action_button_label'    => $this->action_button_label,
-            'action_button_url'      => $this->action_button_url,
-            'close_button_label'     => $this->close_button_label,
-            'close_button_url'       => $this->close_button_url
+            'action_button_label'       => $this->action_button_label,
+            'action_button_url'         => $this->action_button_url,
+            'close_button_label'        => $this->close_button_label,
+            'close_button_url'          => $this->close_button_url,
+            'close_button_attributes'   => $this->close_button_attributes
         );
 
         $this->session->$type('alert_message', $this->alert);
@@ -130,9 +132,10 @@ class Alert {
         return $this->flash();
     }
 
-    public function setCloseButton($label='',$url=''){
+    public function setCloseButton($label='',$url='',$attributes=array()){
         $this->close_button_label  = $label;
         $this->close_button_url    = $url;
+        $this->close_button_attributes = $attributes;
         return $this->flash();
     }
 

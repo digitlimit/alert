@@ -9,7 +9,9 @@
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         @endif
 
-                        @if(Alert::title())
+                        @if(!Alert::title()  && Alert::icon())
+                                <i class="{{Alert::icon()}}"></i>
+                        @elseif(Alert::title())
                             <strong>
                                 @if(Alert::icon())<i class="{{Alert::icon()}}"></i>@endif
                                 {{Alert::title()}}

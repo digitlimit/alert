@@ -29,7 +29,7 @@
 
                     @if(Alert::close_button_label())
                         @if(Alert::close_button_url())
-                            <a href="{{Alert::close_button_url()}}" type="button" class="btn btn-ar btn-default" data-dismiss="modal">
+                            <a href="{{Alert::close_button_url()}}" type="button" class="btn btn-ar btn-default" data-dismiss="modal" @if(is_array(Alert::close_button_attributes())) {{implode(" ",Alert::close_button_attributes())}} @endif >
                                 {{Alert::close_button_label()}}
                             </a>
                         @else
