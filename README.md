@@ -2,6 +2,8 @@
 Alert is designed to make flashing messages in Laravel Applications a breeze. 
 Tested and works in Laravel 5 or less
 
+# For this to work you need to include Twitter Bootstrap in your page
+
 ## Installation
 
 Add alert in your composer.json file:
@@ -102,7 +104,7 @@ Some where in the controller:
    //This simply displays a success message
    Alert::notify('Your account is going to expire today.','Info')->info();
 ```
-Some where in the view layout:
+Some where in the view layout where you want the alert to appear:
 ```html
 @include('alert::notify')
 ```
