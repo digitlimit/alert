@@ -2,7 +2,7 @@
 Alert is designed to make flashing messages in Laravel Applications a breeze. 
 Tested and works in Laravel 5 or less
 
-# For this to work you need to include Twitter Bootstrap in your page
+### For this to work you need to include Twitter Bootstrap in your page
 
 ## Installation
 
