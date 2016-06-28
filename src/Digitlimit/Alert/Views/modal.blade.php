@@ -54,4 +54,9 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        window.onload = function(){
+            $('#alert-modal-message').modal('show');
+        };
+    </script>
 @endif
