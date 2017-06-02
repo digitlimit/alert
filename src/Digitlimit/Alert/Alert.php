@@ -8,10 +8,10 @@ class Alert {
     protected $type;
     protected $title;
     protected $message;
-    protected $status       = 'success'; //default
+    protected $status = 'success'; //default
     protected $icon;
-    protected $closable     = true; //default
-    protected $un_closable  = false; //default
+    protected $closable = true; //default
+    protected $un_closable = false; //default
     protected $un_closable_strict  = false; //default
     protected $self_destroy  = false; //default
 
@@ -221,6 +221,5 @@ class Alert {
         $alert_type = "alert_{$alert_type}_message";
         return is_array($alert) ? isset($alert[$alert_type]) : false;
     }
-
-
+    
 }
