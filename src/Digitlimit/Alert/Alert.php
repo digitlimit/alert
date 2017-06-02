@@ -81,14 +81,6 @@ class Alert {
         if(is_array($alert) && property_exists($this,$method) && isset($alert[$method])) return $alert[$method];
     }
 
-
-//    public function __get($property){
-//        $alert = $this->alert();
-//        if(is_array($alert) && isset($alert[$property])) return $alert[$property];
-//    }
-
-
-
     //Actions
     public function persist(){
         return $this->flash($type='put');
@@ -97,11 +89,6 @@ class Alert {
     public function destroy(){
         return $this->flash($type='pull'); //retrieve an item and forget it
     }
-
-//    public function closable(){
-//        $this->un_closable = true;
-//        return $this->flash();
-//    }
 
     public function unClosable(){
         $this->closable       = false;
