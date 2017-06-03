@@ -2,9 +2,7 @@
     <div class="modal fade" id="alert-modal-message" tabindex="-1" role="dialog" aria-labelledby="alert-modal-message" @if(Alert::un_closable_strict()) data-backdrop="static" data-keyboard="false" @endif aria-hidden="true">
         <div class="modal-dialog {{Alert::modal_size()}}">
             <div class="modal-content">
-
                 <div class="modal-header">
-
                     @if(Alert::closable())
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     @endif
