@@ -19,9 +19,7 @@ class AlertServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
-        $this->app['alert'] = $this->app->singleton(function($app)
-        {
+        $this->app->singleton('digitlimit.alert', function ($app) {
             return new Alert($app['session.store']);
         });
     }
