@@ -10,7 +10,7 @@ Add alert in your composer.json file:
 
 ```php
 "require": {
-    "digitlimit/alert": "v1.0"
+    "digitlimit/alert": "dev-master"
 }
 ```
 
