@@ -1,27 +1,19 @@
-@if (Alert::has('notify'))
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-{{Alert::status()}} bottom-space show">
+@if(Alert::has('notify'))
+    <?php
+        $icon = Alert::icon();
+        $status = Alert::status();
+        $title = Alert::title();
+        $message = Alert::message();
+    ?>
 
-                        @if(Alert::closable())
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        @endif
-
-                        @if(!Alert::title()  && Alert::icon())
-                                <i class="{{Alert::icon()}}"></i>
-                        @elseif(Alert::title())
-                            <strong>
-                                @if(Alert::icon())<i class="{{Alert::icon()}}"></i>@endif
-                                {{Alert::title()}}
-                            </strong>
-                        @endif
-                        {!!Alert::message()!!}
-                    </div>
-                </div>
-            </div>
+    <div class="alert {{$status}}">
+        <input type="checkbox" id="alert1"/>
+        <div class="close" title="close" for="alert1">
+            <i class="icon-remove"></i>
         </div>
-    </section>
-
+        <p class="inner">
+            @if($icon)<i class="{{$icon}}"></i>@endif
+            @if(isset($title))<strong>{{$title}}</strong>@endif {{$message}}
+        </p>
+    </div>
 @endif
