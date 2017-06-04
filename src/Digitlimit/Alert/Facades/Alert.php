@@ -11,7 +11,7 @@ class Alert extends Facade {
      */
     protected static function getFacadeAccessor() {
 
-        return 'alert';
+        return 'digitlimit.alert';
     }
 
 } 

@@ -91,14 +91,14 @@ class Alert {
     }
 
     public function unClosable(){
-        $this->closable       = false;
-        $this->un_closable    = true;
+        $this->closable = false;
+        $this->un_closable = true;
         return $this->flash();
     }
 
     public function unClosableStrict(){
-        $this->closable       = false;
-        $this->un_closable    = true;
+        $this->closable = false;
+        $this->un_closable = true;
         $this->un_closable_strict = true;
         return $this->flash();
     }
@@ -114,14 +114,14 @@ class Alert {
     }
 
     public function setActionButton($label='',$url=''){
-        $this->action_button_label  = $label;
-        $this->action_button_url    = $url;
+        $this->action_button_label = $label;
+        $this->action_button_url = $url;
         return $this->flash();
     }
 
     public function setCloseButton($label='',$url='',$attributes=array()){
-        $this->close_button_label  = $label;
-        $this->close_button_url    = $url;
+        $this->close_button_label = $label;
+        $this->close_button_url = $url;
         $this->close_button_attributes = $attributes;
         return $this->flash();
     }
@@ -139,39 +139,39 @@ class Alert {
 
 
     //Alert status
-    public function success(){
-        $this->status  = 'success';
-        $this->icon    = 'fa fa-check-circle';
+    public function success($class_name='success'){
+        $this->status = $class_name;
+        $this->icon = 'fa fa-check-circle';
         return $this->flash();
     }
 
-    public function info(){
-        $this->status  = 'info';
-        $this->icon    = 'fa fa-info';
+    public function info($class_name='info'){
+        $this->status = $class_name;
+        $this->icon = 'fa fa-info';
         return $this->flash();
     }
 
-    public function warning(){
-        $this->status  = 'warning';
-        $this->icon    = 'fa fa-warning';
+    public function warning($class_name='warning'){
+        $this->status  = $class_name;
+        $this->icon = 'fa fa-warning';
         return $this->flash();
     }
 
-    public function error(){
-        $this->status  = 'danger';
+    public function error($class_name='danger'){
+        $this->status  = $class_name;
         $this->icon    = 'fa fa-times-circle';
         return $this->flash();
     }
 
-    public function royal(){
-        $this->status  = 'royal';
-        $this->icon    = 'fa fa-bullhorn';
+    public function royal($class_name='royal'){
+        $this->status = $class_name;
+        $this->icon = 'fa fa-bullhorn';
         return $this->flash();
     }
 
-    public function primary(){
-        $this->status  = 'primary';
-        $this->icon    = 'fa fa-comments-o';
+    public function primary($class_name='primary'){
+        $this->status = $class_name;
+        $this->icon = 'fa fa-comments-o';
         return $this->flash();
     }
 
@@ -180,34 +180,34 @@ class Alert {
 
     //Alert Types
     public function modal($message, $title='',$view=''){
-        $this->type                 = 'alert_modal_message';
-        $this->title                = $title;
-        $this->message              = $message;
-        $this->modal_view           = $view;
+        $this->type = 'alert_modal_message';
+        $this->title = $title;
+        $this->message = $message;
+        $this->modal_view = $view;
 
         return $this->flash();
     }
 
     public function form($message, $title=''){
-        $this->type                = 'alert_form_message';
-        $this->title               = $title;
-        $this->message             = $message;
+        $this->type = 'alert_form_message';
+        $this->title = $title;
+        $this->message = $message;
 
         return $this->flash();
     }
 
     public function notify($message, $title=''){
-        $this->type                 = 'alert_notify_message';
-        $this->title                = $title;
-        $this->message              = $message;
+        $this->type = 'alert_notify_message';
+        $this->title = $title;
+        $this->message = $message;
 
         return $this->flash();
     }
 
     public function sticky($message, $title=''){
-        $this->type                 = 'alert_sticky_message';
-        $this->sticky_title         = $title;
-        $this->sticky_message       = $message;
+        $this->type = 'alert_sticky_message';
+        $this->sticky_title = $title;
+        $this->sticky_message = $message;
 
         return $this->flash();
     }
