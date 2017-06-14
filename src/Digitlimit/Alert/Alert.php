@@ -30,6 +30,8 @@ class Alert {
     protected $close_button_url; //default
     protected $close_button_attributes; //default
 
+    protected $tag; //default
+
 
 
     public function __construct(Store $session){
@@ -62,7 +64,9 @@ class Alert {
             'action_button_url'         => $this->action_button_url,
             'close_button_label'        => $this->close_button_label,
             'close_button_url'          => $this->close_button_url,
-            'close_button_attributes'   => $this->close_button_attributes
+            'close_button_attributes'   => $this->close_button_attributes,
+
+            'tag'                       => $this->tag,
         );
 
         $this->session->$type('alert_message', $this->alert);
@@ -217,8 +221,18 @@ class Alert {
     public function has($alert_type){
 
         $alert = $this->alert();
+
         $alert_type = "alert_{$alert_type}_message";
         return is_array($alert) ? isset($alert[$alert_type]) : false;
     }
 
+    public function tag($name){
+        $this->tag = $name;
+        return $this->flash();
+    }
+
+    public function tagged($name){
+        $alert = $this->alert();
+        return  $alert['tag'] == $name;
+    }
 }
