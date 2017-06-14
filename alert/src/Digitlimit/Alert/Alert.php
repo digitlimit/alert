@@ -217,7 +217,6 @@ class Alert {
     public function has($alert_type){
 
         $alert = $this->alert();
-
         $alert_type = "alert_{$alert_type}_message";
         return is_array($alert) ? isset($alert[$alert_type]) : false;
     }
