@@ -1,4 +1,6 @@
 # Alert
+
+[![Join the chat at https://gitter.im/digitlimit/alert](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/digitlimit/alert?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Alert is designed to make flashing messages in Laravel Applications a breeze. 
 Tested and works in Laravel 5 or less
 
