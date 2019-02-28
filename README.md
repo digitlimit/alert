@@ -66,7 +66,7 @@ Then in your view your can include the flash message to your view like so:
 
     @include('alert::form')
     
-    <form method="POST" action="{{URL::route('users.postRegister')}}" novalidate>
+    <form method="POST" action="{{route('users.postRegister')}}" novalidate>
             <div class="form-group">
                 <label for="name">First Name</label>
                 <input type="text" id="first_name" class="form-control" name="first_name" placeholder="First Name">
@@ -83,6 +83,10 @@ Then in your view your can include the flash message to your view like so:
         </form>
 </div>
 ```   
+##### Form Alert Example
+[
+![alert](https://user-images.githubusercontent.com/2041419/53573721-5fba5880-3b6e-11e9-9fb4-b13f245e7b90.JPG)
+
 
 ## Features
 There are basically three types of alert messages you can flash
