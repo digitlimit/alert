@@ -84,7 +84,6 @@ Then in your view your can include the flash message to your view like so:
 </div>
 ```   
 ##### Form Alert Example
-[
 ![alert](https://user-images.githubusercontent.com/2041419/53573721-5fba5880-3b6e-11e9-9fb4-b13f245e7b90.JPG)
 
 
@@ -126,8 +125,6 @@ Some where in the view layout:
 ```html
 @include('alert::modal')
 ```
-
-[More Examples](#)
 
 
 
