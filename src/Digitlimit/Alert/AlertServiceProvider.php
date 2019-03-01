@@ -1,10 +1,11 @@
-<?php namespace Digitlimit\Alert;
+<?php
+
+namespace Digitlimit\Alert;
 
 use Illuminate\Support\ServiceProvider;
 
 class AlertServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -31,9 +32,9 @@ class AlertServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom( __DIR__ . '/views', 'alert');
+        $this->loadViewsFrom(__DIR__.'/views', 'alert');
         $this->publishes([
-            __DIR__ . '/views' => base_path('resources/views/vendor/alert')
+            __DIR__.'/views' => base_path('resources/views/vendor/alert'),
         ]);
     }
 }
