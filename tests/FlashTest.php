@@ -1,16 +1,13 @@
 <?php
 
-use Digitlimit\Alert\Alert;
-use Mockery;
 
-class AlertTest extends PHPUnit_Framework_TestCase {
-
+class AlertTest extends PHPUnit_Framework_TestCase
+{
     protected $session;
 
     protected $alert;
 
-	public function setUp()
-	{
-
-	}
+    public function setUp()
+    {
+    }
 }
