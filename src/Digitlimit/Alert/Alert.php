@@ -265,6 +265,12 @@ class Alert
         return $this->flash();
     }
 
+    /**
+     * Tag an alert
+     * 
+     * @param $name
+     * @return bool
+     */
     public function tagged($name)
     {
         $alert = $this->alert();
