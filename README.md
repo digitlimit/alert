@@ -94,8 +94,8 @@ There are basically three types of alert messages you can flash
   
 Some where in the controller: 
 ```pph
-   //This simply displays a success message
-   Alert::form('Your account was successfully created','Congratulations')->success();
+//This simply displays a success message
+Alert::form('Your account was successfully created','Congratulations')->success();
 ```
 Some where in the view:
 ```html
