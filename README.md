@@ -106,8 +106,8 @@ Some where in the view:
 
 Some where in the controller: 
 ```pph
-   //This simply displays a success message
-   Alert::notify('Your account is going to expire today.','Info')->info();
+//This simply displays a success message
+Alert::notify('Your account is going to expire today.','Info')->info();
 ```
 Some where in the view layout where you want the alert to appear:
 ```html
@@ -118,8 +118,8 @@ Some where in the view layout where you want the alert to appear:
 
 Some where in the controller: 
 ```php
-   //This simply displays a success message
-   Alert::modal('Thanks for joining us.','Title')->info();
+//This simply displays a success message
+Alert::modal('Thanks for joining us.','Title')->info();
 ```
 Some where in the view layout:
 ```html
