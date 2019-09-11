@@ -250,7 +250,6 @@ class Alert
 
     /**
      * Check if given alert exists
-     * 
      * @param $alert_type
      * @return bool
      */
@@ -272,7 +271,6 @@ class Alert
 
     /**
      * Tag an alert
-     *
      * @param $name
      * @return bool
      */
