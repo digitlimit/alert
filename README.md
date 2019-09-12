@@ -133,29 +133,29 @@ To customized various alert views run artisan command below
 ```
 
 This will publish `form.blade.php`, `modal.blade.php`, `notify.blade.php` and `sticky.blade.php` 
-to publish views to `resources/views/vendor/alert` directory. You could customize the various views.
+to publish views to `resources/views/vendor/alert` directory. 
 
 The following helpers can be used in blade templates
 
-- {{Alert::icon()}}
-  This displays alert icon class e.g fa fa-cog
-  Example:
-  `<i class="{{Alert::icon()}}"></i>`
-  
-- {{Alert::status()}}
-  This displays alert status
-  Example:
-  `<div class="alert alert-{{Alert::status()}}">`
-  
-- {{Alert::title()}}
-  This displays alert title
-  Example:
-  `<h1>{{Alert::title()}}</h1>`
-  
-- {{Alert::message()}}
-  This displays alert message
-  Example: 
-  `<p>{{Alert::message()}}</p>`
+**Alert Icon**
+This displays alert icon class e.g fa fa-cog
+Example:
+`<i class="{{Alert::icon()}}"></i>`
+
+**Alert Status**
+This displays alert status
+Example:
+`<div class="alert alert-{{Alert::status()}}">`
+
+**Alert Title**
+This displays alert title
+Example:
+`<h1>{{Alert::title()}}</h1>`
+
+**Alert Message**
+This displays alert message
+Example: 
+`<p>{{Alert::message()}}</p>`
 
 
 
