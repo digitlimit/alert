@@ -249,9 +249,10 @@ class Alert
     }
 
     /**
-     * Check if given alert exists
-     * 
+     * Check if given alert exists.
+     *
      * @param $alert_type
+     *
      * @return bool
      */
     public function has($alert_type)
@@ -271,9 +272,10 @@ class Alert
     }
 
     /**
-     * Tag an alert
+     * Tag an alert.
      *
      * @param $name
+     *
      * @return bool
      */
     public function tagged($name)
