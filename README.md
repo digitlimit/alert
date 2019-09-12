@@ -1,6 +1,7 @@
 # Alert
 
-[![Join the chat at https://gitter.im/digitlimit/alert](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/digitlimit/alert?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/digitlimit/alert](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/digitlimit/alert?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  
+
 Alert is designed to make flashing messages in Laravel Applications a breeze. 
 Tested and works in Laravel 5 or less
 
@@ -52,10 +53,36 @@ class UserController extends Controller
 {
   public function postRegister(UserRegisterRequest $request)
   {
-      Alert::form('Your account was successfully created','Congratulations')->success()->closable()->showIcon();
+      Alert::form('Your account was successfully created','Congratulations')
+      ->success()
+      ->closable();
         
       return redirect()->route('users.getRegister');
    }
+}
+
+
+class LoginController extends Controller
+{
+    public function postLogin(Request $request)
+    {
+        /*run validation on request parameters*/
+        $validator = validator($request->only(['email','password']), [
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        /*return errors to view if any*/
+        if($validator->fails()){
+
+            Alert::form('Some errors occured','Opps')
+                ->error();
+
+            return redirect()
+                ->back()
+                ->withErrors($validator);
+        }
+    }
 }
 ```
 
