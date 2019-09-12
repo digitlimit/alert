@@ -1,6 +1,7 @@
 # Alert
 
-[![Join the chat at https://gitter.im/digitlimit/alert](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/digitlimit/alert?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/digitlimit/alert](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/digitlimit/alert?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  
+
 Alert is designed to make flashing messages in Laravel Applications a breeze. 
 Tested and works in Laravel 5 or less
 
@@ -52,10 +53,36 @@ class UserController extends Controller
 {
   public function postRegister(UserRegisterRequest $request)
   {
-      Alert::form('Your account was successfully created','Congratulations')->success()->closable()->showIcon();
+      Alert::form('Your account was successfully created','Congratulations')
+      ->success()
+      ->closable();
         
       return redirect()->route('users.getRegister');
    }
+}
+
+
+class LoginController extends Controller
+{
+    public function postLogin(Request $request)
+    {
+        /*run validation on request parameters*/
+        $validator = validator($request->only(['email','password']), [
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        /*return errors to view if any*/
+        if($validator->fails()){
+
+            Alert::form('Some errors occured','Opps')
+                ->error();
+
+            return redirect()
+                ->back()
+                ->withErrors($validator);
+        }
+    }
 }
 ```
 
@@ -126,7 +153,54 @@ Some where in the view layout:
 @include('alert::modal')
 ```
 
+#### Customize alert views
+To customized various alert views run artisan command below
+```
+   php artisan vendor:publish --provider="Digitlimit\Alert\AlertServiceProvider"
+```
 
+This will publish `form.blade.php`, `modal.blade.php`, `notify.blade.php` and `sticky.blade.php` 
+to publish views to `resources/views/vendor/alert` directory. 
 
+The following helpers can be used in blade templates
+
+**Alert Icon**  
+This displays alert icon class e.g fa fa-cog  
+Example:
+`<i class="{{Alert::icon()}}"></i>`
+
+**Alert Status**  
+This displays alert status  
+Example:  
+`<div class="alert alert-{{Alert::status()}}">`  
+
+**Alert Title**  
+This displays alert title  
+Example:  
+`<h1>{{Alert::title()}}</h1>`  
+
+**Alert Message**  
+This displays alert message  
+Example:  
+`<p>{{Alert::message()}}</p>`  
+
+**Form alert customization example**  
+
+```
+@if(Alert::has('form'))
+    <div class="alert alert-{{Alert::status()}}
+
+        @if(Alert::closable()) alert-dismissible @endif fade show" role="alert">
+
+        @if(Alert::icon())<i class="{{Alert::icon()}}"></i>@endif
+
+        @if(Alert::title())<strong>{{Alert::title()}}</strong>@endif {{Alert::message()}}
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+```
 
 

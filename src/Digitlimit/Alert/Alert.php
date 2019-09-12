@@ -248,7 +248,13 @@ class Alert
         return $this->flash();
     }
 
-    //Helpers
+    /**
+     * Check if given alert exists.
+     *
+     * @param $alert_type
+     *
+     * @return bool
+     */
     public function has($alert_type)
     {
         $alert = $this->alert();
@@ -265,6 +271,13 @@ class Alert
         return $this->flash();
     }
 
+    /**
+     * Tag an alert.
+     *
+     * @param $name
+     *
+     * @return bool
+     */
     public function tagged($name)
     {
         $alert = $this->alert();
