@@ -137,25 +137,24 @@ to publish views to `resources/views/vendor/alert` directory.
 
 The following helpers can be used in blade templates
 
-**Alert Icon**
-This displays alert icon class e.g fa fa-cog
+**Alert Icon**  
+This displays alert icon class e.g fa fa-cog  
 Example:
 `<i class="{{Alert::icon()}}"></i>`
 
-**Alert Status**
-This displays alert status
-Example:
-`<div class="alert alert-{{Alert::status()}}">`
+**Alert Status**  
+This displays alert status  
+Example:  
+`<div class="alert alert-{{Alert::status()}}">`  
 
-**Alert Title**
-This displays alert title
-Example:
-`<h1>{{Alert::title()}}</h1>`
+**Alert Title**  
+This displays alert title  
+Example:  
+`<h1>{{Alert::title()}}</h1>`  
 
-**Alert Message**
-This displays alert message
-Example: 
-`<p>{{Alert::message()}}</p>`
-
+**Alert Message**  
+This displays alert message  
+Example:  
+`<p>{{Alert::message()}}</p>`  
 
 
