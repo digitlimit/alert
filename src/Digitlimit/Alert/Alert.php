@@ -311,4 +311,5 @@ class Alert
     public function hasInfo(){
         return $this->status == 'info';
     }
+    
 }
