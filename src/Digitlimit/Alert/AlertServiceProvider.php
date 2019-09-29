@@ -2,8 +2,8 @@
 
 namespace Digitlimit\Alert;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
 
 class AlertServiceProvider extends ServiceProvider
 {
@@ -38,38 +38,36 @@ class AlertServiceProvider extends ServiceProvider
             __DIR__.'/views' => base_path('resources/views/vendor/alert'),
         ]);
 
-        
-        Blade::directive('alertHasSuccess', function() {
-            return "<?php if(Alert::hasSuccess()): ?>";
+        Blade::directive('alertHasSuccess', function () {
+            return '<?php if(Alert::hasSuccess()): ?>';
         });
 
-        Blade::directive('endAlertHasSuccess', function() {
-            return "<?php endif; ?>";
+        Blade::directive('endAlertHasSuccess', function () {
+            return '<?php endif; ?>';
         });
 
-        Blade::directive('alertHasNoSuccess', function() {
-            return "<?php if(!Alert::hasSuccess()): ?>";
+        Blade::directive('alertHasNoSuccess', function () {
+            return '<?php if(!Alert::hasSuccess()): ?>';
         });
 
-        Blade::directive('endAlertHasNoSuccess', function() {
-            return "<?php endif; ?>";
+        Blade::directive('endAlertHasNoSuccess', function () {
+            return '<?php endif; ?>';
         });
 
-
-        Blade::directive('alertHasError', function() {
-            return "<?php if(Alert::hasError()): ?>";
+        Blade::directive('alertHasError', function () {
+            return '<?php if(Alert::hasError()): ?>';
         });
 
-        Blade::directive('endAlertHasError', function() {
-            return "<?php endif; ?>";
+        Blade::directive('endAlertHasError', function () {
+            return '<?php endif; ?>';
         });
 
-        Blade::directive('alertHasNoError', function() {
-            return "<?php if(!Alert::hasError()): ?>";
+        Blade::directive('alertHasNoError', function () {
+            return '<?php if(!Alert::hasError()): ?>';
         });
 
-        Blade::directive('endAlertHasNoError', function() {
-            return "<?php endif; ?>";
+        Blade::directive('endAlertHasNoError', function () {
+            return '<?php endif; ?>';
         });
     }
 }
