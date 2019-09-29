@@ -292,7 +292,7 @@ class Alert
      */
     public function hasSuccess()
     {
-        return $this->status == 'success';
+        return $this->message && $this->status == 'success';
     }
 
     /**
@@ -302,7 +302,7 @@ class Alert
      */
     public function hasError()
     {
-        return $this->status == 'error';
+        return $this->message && $this->status == 'error';
     }
 
     /**
@@ -312,6 +312,6 @@ class Alert
      */
     public function hasInfo()
     {
-        return $this->status == 'info';
+        return $this->message && $this->status == 'info';
     }
 }
