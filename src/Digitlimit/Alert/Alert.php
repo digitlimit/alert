@@ -286,29 +286,32 @@ class Alert
     }
 
     /**
-     * Check if alert for success
+     * Check if alert for success.
      *
      * @return bool
      */
-    public function hasSuccess(){
+    public function hasSuccess()
+    {
         return $this->status == 'success';
     }
 
     /**
-     * Check if alert for error
+     * Check if alert for error.
      *
      * @return bool
      */
-    public function hasError(){
+    public function hasError()
+    {
         return $this->status == 'error';
     }
 
     /**
-     * Check if alert for info
+     * Check if alert for info.
      *
      * @return bool
      */
-    public function hasInfo(){
+    public function hasInfo()
+    {
         return $this->status == 'info';
     }
 }
