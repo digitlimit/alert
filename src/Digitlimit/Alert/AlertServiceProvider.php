@@ -39,6 +39,8 @@ class AlertServiceProvider extends ServiceProvider
         ]);
 
         Blade::directive('alertHasSuccess', function () {
+            return "<?php if(Alert::message() && Alert::status() == 'success'): ?>";
+
             return '<?php if(Alert::hasSuccess()): ?>';
         });
 
@@ -47,6 +49,8 @@ class AlertServiceProvider extends ServiceProvider
         });
 
         Blade::directive('alertHasNoSuccess', function () {
+            return "<?php if(Alert::message() && Alert::status() != 'success'): ?>";
+
             return '<?php if(!Alert::hasSuccess()): ?>';
         });
 
@@ -55,6 +59,8 @@ class AlertServiceProvider extends ServiceProvider
         });
 
         Blade::directive('alertHasError', function () {
+            return "<?php if(Alert::message() && Alert::status() == 'error'): ?>";
+
             return '<?php if(Alert::hasError()): ?>';
         });
 
@@ -63,6 +69,8 @@ class AlertServiceProvider extends ServiceProvider
         });
 
         Blade::directive('alertHasNoError', function () {
+            return "<?php if(Alert::message() && Alert::status() != 'error'): ?>";
+
             return '<?php if(!Alert::hasError()): ?>';
         });
 
