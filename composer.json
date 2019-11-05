@@ -10,12 +10,14 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "illuminate/support": "~6.0"
+        "php": ">=7.2",
+        "illuminate/support": "^6.0.0"
     },
     "require-dev": {
-        "mockery/mockery": "dev-master"
+        "phpunit/phpunit": "~5.0",
+        "mockery/mockery": "~0.9"
     },
+
     "autoload": {
         "psr-0": {
             "Digitlimit\\Alert": "src/"
