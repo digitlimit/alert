@@ -1,5 +1,4 @@
 @if(Alert::has('form'))
-
     <div class="alert alert-{{Alert::status()}}
 
         @if(Alert::closable()) alert-dismissible @endif fade show" role="alert">
