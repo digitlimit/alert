@@ -1,19 +1,14 @@
 @if(Alert::has('form'))
-    <?php
-    $icon = Alert::icon();
-    $status = Alert::status();
-    $title = Alert::title();
-    $message = Alert::message();
-    ?>
+    <div class="alert alert-{{Alert::status()}}
 
-    <div class="alert {{$status}}">
-        <input type="checkbox" id="alert1"/>
-        <div class="close" title="close" for="alert1">
-            <i class="icon-remove"></i>
-        </div>
-        <p class="inner">
-            @if($icon)<i class="{{$icon}}"></i>@endif
-            @if(isset($title))<strong>{{$title}}</strong>@endif {{$message}}
-        </p>
+        @if(Alert::closable()) alert-dismissible @endif fade show" role="alert">
+
+        @if(Alert::icon())<i class="{{Alert::icon()}}"></i>@endif
+
+        @if(Alert::title())<strong>{{Alert::title()}}</strong>@endif {{Alert::message()}}
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 @endif

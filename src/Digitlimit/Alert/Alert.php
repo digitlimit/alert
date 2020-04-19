@@ -284,4 +284,34 @@ class Alert
 
         return  $alert['tag'] == $name;
     }
+
+    /**
+     * Check if alert for success.
+     *
+     * @return bool
+     */
+    public function hasSuccess()
+    {
+        return $this->message && $this->status == 'success';
+    }
+
+    /**
+     * Check if alert for error.
+     *
+     * @return bool
+     */
+    public function hasError()
+    {
+        return $this->message && $this->status == 'error';
+    }
+
+    /**
+     * Check if alert for info.
+     *
+     * @return bool
+     */
+    public function hasInfo()
+    {
+        return $this->message && $this->status == 'info';
+    }
 }
