@@ -6,7 +6,7 @@ class AlertTest extends PHPUnit_Framework_TestCase
 
     protected $alert;
 
-    public function setUp()
+    protected function setUp(): void
     {
     }
 }
