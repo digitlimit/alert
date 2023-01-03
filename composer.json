@@ -1,7 +1,13 @@
 {
     "name": "digitlimit/alert",
     "description": "An easy way of flashing messages in Laravel Application ",
-    "keywords": ["laravel", "views", "flash", "messages", "withErrors"],
+    "keywords": [
+        "laravel",
+        "views",
+        "flash",
+        "messages",
+        "withErrors"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -15,7 +21,7 @@
     },
     "require-dev": {
         "mockery/mockery": "dev-master",
-        "phpunit/phpunit": "^6.1"
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "psr-0": {
