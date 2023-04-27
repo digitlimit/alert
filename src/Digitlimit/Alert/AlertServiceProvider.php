@@ -1,73 +1,84 @@
 <?php
-
 namespace Digitlimit\Alert;
 
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AlertServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
-     * Register the service provider.
+     * Perform post-registration booting of services.
      *
      * @return void
      */
-    public function register()
+    public function boot(): void
     {
-        $this->app->singleton('digitlimit.alert', function ($app) {
-            return new Alert($app['session.store']);
-        });
+        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'digitlimit');
+        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'digitlimit');
+
+        // Publishing is only necessary when using the CLI.
+        // if ($this->app->runningInConsole()) {
+        //     $this->bootForConsole();
+        // }
     }
 
     /**
-     * Bootstrap the application events.
+     * Register any package services.
      *
      * @return void
      */
-    public function boot()
+    public function register(): void
     {
-        $this->loadViewsFrom(__DIR__.'/views', 'alert');
-        $this->publishes([
-            __DIR__.'/views' => base_path('resources/views/vendor/alert'),
-        ]);
+        // $this->app->singleton('alert', function ($app) {
+        //     return new Alert($app['session.store']);
+        // });
+    }
 
-        Blade::directive('alertHasSuccess', function () {
-            return "<?php if(Alert::status() == 'success'): ?>";
-        });
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['alert'];
+    }
 
-        Blade::directive('endAlertHasSuccess', function () {
-            return '<?php endif; ?>';
-        });
+    /**
+     * Console-specific booting.
+     *
+     * @return void
+     */
+    protected function bootForConsole(): void
+    {
+        // $this->publishes([
+        //     __DIR__.'/../migrations' => database_path('migrations'),
+        // ], 'alert.migrations');
 
-        Blade::directive('alertHasNoSuccess', function () {
-            return "<?php if(Alert::status() != 'success'): ?>";
-        });
+        // $this->publishes([
+        //     __DIR__.'/../seeders' => database_path('seeders'),
+        // ], 'alert.seeders');
 
-        Blade::directive('endAlertHasNoSuccess', function () {
-            return '<?php endif; ?>';
-        });
+        // Publishing the configuration file.
+        /*$this->publishes([
+            __DIR__.'/../config/alert.php' => config_path('alert.php'),
+        ], 'alert.config');*/
 
-        Blade::directive('alertHasError', function () {
-            return "<?php if(Alert::status() == 'error'): ?>";
-        });
+        // Publishing the views.
+        /*$this->publishes([
+            __DIR__.'/../resources/views' => base_path('resources/views/vendor/digitlimit'),
+        ], 'alert.views');*/
 
-        Blade::directive('endAlertHasError', function () {
-            return '<?php endif; ?>';
-        });
+        // Publishing assets.
+        /*$this->publishes([
+            __DIR__.'/../resources/assets' => public_path('vendor/digitlimit'),
+        ], 'alert.views');*/
 
-        Blade::directive('alertHasNoError', function () {
-            return "<?php if(Alert::status() != 'error'): ?>";
-        });
+        // Publishing the translation files.
+        /*$this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang/vendor/digitlimit'),
+        ], 'alert.views');*/
 
-        Blade::directive('endAlertHasNoError', function () {
-            return '<?php endif; ?>';
-        });
+        // Registering package commands.
+        // $this->commands([]);
     }
 }
