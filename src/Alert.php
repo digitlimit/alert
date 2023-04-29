@@ -2,14 +2,13 @@
 
 namespace Digitlimit\Alert;
 
-use Illuminate\Session\Store;
-
 class Alert
 {
-    protected Message $message;
+    protected AlertStore $store;
 
-    public function __construct($store)
+    public function __construct(AlertStore $store)
     {
-        
+
     }
+
 }

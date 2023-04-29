@@ -34,7 +34,10 @@
     "autoload": {
         "psr-4": {
             "Digitlimit\\Alert\\": "src/"
-        }
+        },
+        "files": [
+            "src/Laracasts/Flash/functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

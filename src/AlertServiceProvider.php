@@ -12,7 +12,7 @@ class AlertServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'alert');
     }
 
     /**
@@ -22,7 +22,9 @@ class AlertServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-   
+        $this->app->singleton('alert', function ($app) {
+            return new Alert(new AlertStore($app['session.store']));
+        });
     }
 
     /**
@@ -42,6 +44,8 @@ class AlertServiceProvider extends ServiceProvider
      */
     protected function bootForConsole(): void
     {
-       
+        $this->publishes([
+            __DIR__.'/../resources/views' => base_path('resources/views/vendor/digitlimit'),
+        ], 'alert.views');
     }
 }
