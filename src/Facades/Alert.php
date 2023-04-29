@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Facade;
 class Alert extends Facade
 {
     /**
-     * Get the binding in the IoC container.
+     * Get the registered name of the component.
      *
      * @return string
      */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
-        return 'digitlimit.alert';
+        return 'alert';
     }
 }
