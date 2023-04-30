@@ -10,7 +10,7 @@ class AlertStore
 
     protected string $key = 'digitlimit.alert';
 
-    protected string $tag = '';
+    protected string $tag = 'default';
 
     public function __construct(Store $store)
     {
@@ -48,6 +48,6 @@ class AlertStore
     {
         return $this
             ->store
-            ->get($this->getKey()) ?? new Alerter();
+            ->get($this->getKey()) ?? new Alerter($this);
     }
 }

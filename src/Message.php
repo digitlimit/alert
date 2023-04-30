@@ -5,8 +5,8 @@ namespace Digitlimit\Alert;
 class Message
 {
     public function __construct(
-        protected string $title   = '',
-        protected string $content = ''
+        protected string $content = '',
+        protected string $title   = ''
     ){}
 
     public function setTitle(string $title) : self

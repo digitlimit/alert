@@ -2,13 +2,64 @@
 
 namespace Digitlimit\Alert;
 
-class Alert
+use Digitlimit\Alert\Level;
+use Digitlimit\Alert\Concerns\WithLevelable;
+
+class Alert implements WithLevelable
 {
-    protected AlertStore $store;
+    protected Alerter $alerter;
 
-    public function __construct(AlertStore $store)
+    protected Level $level;
+
+    public function __construct(Alerter $alerter)
     {
-
+        $this->alerter = $alerter;
+        $this->level   = new Level();
     }
 
+    public function tag(string $tag) : self
+    {
+        $this->alerter->setTag($tag);
+        return $this;
+    }
+
+    public function message(string $content, string $title='') : self
+    {
+        $message = new Message($content, $title);
+        $this->alerter->setMessage($message);
+        return $this;
+    }
+
+    public function success() : self
+    {
+        $this->level->success();
+        $this->alerter->setLevel($this->level);
+        return $this;
+    }
+
+    public function info() : self
+    {
+        $this->level->info();
+        $this->alerter->setLevel($this->level);
+        return $this;
+    }
+
+    public function error() : self
+    {
+        $this->level->error();
+        $this->alerter->setLevel($this->level);
+        return $this;
+    }
+
+    public function warning() : self
+    {
+        $this->level->warning();
+        $this->alerter->setLevel($this->level);
+        return $this;
+    }
+
+    public function alerter() : Alerter
+    {
+        return $this->alerter;
+    }
 }
