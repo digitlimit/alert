@@ -13,8 +13,10 @@ class Alert implements WithLevelable
 
     public function __construct(Alerter $alerter)
     {
-        $this->alerter = $alerter;
         $this->level   = new Level();
+        
+        $this->alerter = $alerter;
+        $this->alerter->setLevel($this->level);
     }
 
     public function tag(string $tag) : self
