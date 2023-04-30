@@ -2,13 +2,13 @@
 
 namespace Digitlimit\Alert\Concerns;
 
-interface WithLevelable
+interface WithLevels
 {
     public function success() : self;
 
     public function info() : self;
 
-    public function error();
+    public function error() : self;
 
-    public function warning();
+    public function warning() : self;
 }

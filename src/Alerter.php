@@ -10,6 +10,8 @@ class Alerter
 
     private AlertLevel $level;
 
+    private AlertType $type;
+
     private Message $message;
 
     private ?string $tag = null;
@@ -49,6 +51,13 @@ class Alerter
         return $this;
     }
 
+    public function setType(AlertType $type) : self
+    {
+        $this->type = $type;
+        $this->restore();
+        return $this;
+    }
+
     public function getMessage() : Message
     {
         return $this->message;
@@ -57,6 +66,11 @@ class Alerter
     public function getLevel() : AlertLevel
     {
         return $this->level;
+    }
+
+    public function getType() : AlertType
+    {
+        return $this->type;
     }
 
     public function getKey() : string

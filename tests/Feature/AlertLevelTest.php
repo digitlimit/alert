@@ -1,24 +1,5 @@
 <?php
-use Digitlimit\Alert\Message;
 use Digitlimit\Alert\Enums\Level;
-
-it('has alert with the given message', function () 
-{
-    $alert = alert();
-    $alert->message('Thank you!');
-
-    $alerter = $alert->alerter();
-    expect($alerter->getMessage())->toEqual(new Message('Thank you!'));
-})->name('alert', 'alert-message');
-
-it('has alert with the given tag', function () 
-{
-    $alert = alert();
-    $alert->tag('page footer');
-
-    $alerter = $alert->alerter();
-    expect($alerter->getKey())->toBe('digitlimit.alert.page-footer');
-})->name('alert', 'alert-tag');
 
 it('has alert with the given info level', function () 
 {
@@ -27,7 +8,7 @@ it('has alert with the given info level', function ()
 
     $alerter = $alert->alerter();
     expect($alerter->getLevel()->type())->toEqual(Level::INFO);
-})->name('alert', 'alert-info-level');
+})->name('alert-level', 'alert-info-level');
 
 it('has alert with the given success level', function () 
 {
@@ -36,7 +17,7 @@ it('has alert with the given success level', function ()
 
     $alerter = $alert->alerter();
     expect($alerter->getLevel()->type())->toEqual(Level::SUCCESS);
-})->name('alert', 'alert-success-level');
+})->name('alert-level', 'alert-success-level');
 
 it('has alert with the given error level', function () 
 {
@@ -45,7 +26,7 @@ it('has alert with the given error level', function ()
 
     $alerter = $alert->alerter();
     expect($alerter->getLevel()->type())->toEqual(Level::ERROR);
-})->name('alert', 'alert-error-level');
+})->name('alert-level', 'alert-error-level');
 
 it('has alert with the given warning level', function () 
 {
@@ -54,7 +35,7 @@ it('has alert with the given warning level', function ()
 
     $alerter = $alert->alerter();
     expect($alerter->getLevel()->type())->toEqual(Level::WARNING);
-})->name('alert', 'alert-warning-level');
+})->name('alert-level', 'alert-warning-level');
 
 it('has alert with the given success level as deafult', function () 
 {
@@ -62,4 +43,4 @@ it('has alert with the given success level as deafult', function ()
   
     $alerter = $alert->alerter();
     expect($alerter->getLevel()->type())->toEqual(Level::SUCCESS);
-})->name('alert', 'alert-success-level-default');
+})->name('alert-level', 'alert-success-level-default');

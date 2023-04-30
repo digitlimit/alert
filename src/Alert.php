@@ -3,20 +3,32 @@
 namespace Digitlimit\Alert;
 
 use Digitlimit\Alert\AlertLevel;
-use Digitlimit\Alert\Concerns\WithLevelable;
+use Digitlimit\Alert\AlertType;
 
-class Alert implements WithLevelable
+use Digitlimit\Alert\Concerns\WithLevels;
+use Digitlimit\Alert\Concerns\WithTypes;
+
+use Digitlimit\Alert\Traits\LevelsTrait;
+use Digitlimit\Alert\Traits\TypesTrait;
+
+class Alert implements WithLevels, WithTypes
 {
+    use LevelsTrait, TypesTrait;
+
     protected Alerter $alerter;
 
     protected AlertLevel $level;
 
+    protected AlertType $type;
+
     public function __construct(Alerter $alerter)
     {
         $this->level   = new AlertLevel();
-        
+        $this->type    = new AlertType();
         $this->alerter = $alerter;
+
         $this->alerter->setLevel($this->level);
+        $this->alerter->setType($this->type);
     }
 
     public function tag(string $tag) : self
@@ -32,31 +44,9 @@ class Alert implements WithLevelable
         return $this;
     }
 
-    public function success() : self
+    public function view(string $name, array $data=[]) : self
     {
-        $this->level->success();
-        $this->alerter->setLevel($this->level);
-        return $this;
-    }
-
-    public function info() : self
-    {
-        $this->level->info();
-        $this->alerter->setLevel($this->level);
-        return $this;
-    }
-
-    public function error() : self
-    {
-        $this->level->error();
-        $this->alerter->setLevel($this->level);
-        return $this;
-    }
-
-    public function warning() : self
-    {
-        $this->level->warning();
-        $this->alerter->setLevel($this->level);
+        //@todo
         return $this;
     }
 
