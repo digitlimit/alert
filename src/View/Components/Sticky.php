@@ -21,6 +21,6 @@ class Sticky extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.sticky');
+        return view('alert::components.sticky');
     }
 }

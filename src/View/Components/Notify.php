@@ -21,6 +21,6 @@ class Notify extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.notify');
+        return view('alert::components.notify');
     }
 }

@@ -21,6 +21,6 @@ class Field extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.field');
+        return view('alert::components.field');
     }
 }

@@ -21,6 +21,6 @@ class Bar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.bar');
+        return view('alert::components.bar');
     }
 }
