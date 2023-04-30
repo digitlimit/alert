@@ -39,7 +39,7 @@ class AlertStore
     {
         $this
             ->store
-            ->put($this->getKey(), $alerter);
+            ->flash($this->getKey(), $alerter);
 
         return $this;
     }
