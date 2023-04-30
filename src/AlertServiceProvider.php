@@ -4,7 +4,7 @@ namespace Digitlimit\Alert;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 
-use Digitlimit\View\Components;
+use Digitlimit\Alert\View\Components;
 
 class AlertServiceProvider extends ServiceProvider
 {
@@ -52,7 +52,7 @@ class AlertServiceProvider extends ServiceProvider
      */
     protected function registerComponents() : void
     {
-        Blade::componentNamespace('Digitlimit\\Views\\Components', 'alert');
+        Blade::componentNamespace('Digitlimit\\Alert\View\\Components', 'alert');
 
         Blade::component('alert-bar',    Components\Bar::class);
         Blade::component('alert-field',  Components\Field::class);

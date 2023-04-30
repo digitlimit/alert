@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\View\Components;
+namespace Digitlimit\Alert\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
