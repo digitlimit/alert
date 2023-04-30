@@ -2,18 +2,18 @@
 
 namespace Digitlimit\Alert;
 
-use Digitlimit\Alert\Level;
+use Digitlimit\Alert\AlertLevel;
 use Digitlimit\Alert\Concerns\WithLevelable;
 
 class Alert implements WithLevelable
 {
     protected Alerter $alerter;
 
-    protected Level $level;
+    protected AlertLevel $level;
 
     public function __construct(Alerter $alerter)
     {
-        $this->level   = new Level();
+        $this->level   = new AlertLevel();
         
         $this->alerter = $alerter;
         $this->alerter->setLevel($this->level);

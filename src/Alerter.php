@@ -8,7 +8,7 @@ class Alerter
 {
     private AlertStore $store;
 
-    private Level $level;
+    private AlertLevel $level;
 
     private Message $message;
 
@@ -42,7 +42,7 @@ class Alerter
         return $this;
     }
 
-    public function setLevel(Level $level) : self
+    public function setLevel(AlertLevel $level) : self
     {
         $this->level = $level;
         $this->restore();
@@ -54,7 +54,7 @@ class Alerter
         return $this->message;
     }
 
-    public function getLevel() : Level
+    public function getLevel() : AlertLevel
     {
         return $this->level;
     }

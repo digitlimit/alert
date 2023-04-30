@@ -2,7 +2,7 @@
 
 namespace Digitlimit\Alert\Enums;
 
-enum LevelType: string
+enum Level: string
 {
     case SUCCESS = 'success';
     case INFO    = 'info';

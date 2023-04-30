@@ -1,6 +1,6 @@
 <?php
 use Digitlimit\Alert\Message;
-use Digitlimit\Alert\Enums\LevelType;
+use Digitlimit\Alert\Enums\Level;
 
 it('has alert with the given message', function () 
 {
@@ -26,7 +26,7 @@ it('has alert with the given info level', function ()
     $alert->info();
 
     $alerter = $alert->alerter();
-    expect($alerter->getLevel()->type())->toEqual(LevelType::INFO);
+    expect($alerter->getLevel()->type())->toEqual(Level::INFO);
 })->name('alert', 'alert-info-level');
 
 it('has alert with the given success level', function () 
@@ -35,7 +35,7 @@ it('has alert with the given success level', function ()
     $alert->success();
 
     $alerter = $alert->alerter();
-    expect($alerter->getLevel()->type())->toEqual(LevelType::SUCCESS);
+    expect($alerter->getLevel()->type())->toEqual(Level::SUCCESS);
 })->name('alert', 'alert-success-level');
 
 it('has alert with the given error level', function () 
@@ -44,7 +44,7 @@ it('has alert with the given error level', function ()
     $alert->error();
 
     $alerter = $alert->alerter();
-    expect($alerter->getLevel()->type())->toEqual(LevelType::ERROR);
+    expect($alerter->getLevel()->type())->toEqual(Level::ERROR);
 })->name('alert', 'alert-error-level');
 
 it('has alert with the given warning level', function () 
@@ -53,7 +53,7 @@ it('has alert with the given warning level', function ()
     $alert->warning();
 
     $alerter = $alert->alerter();
-    expect($alerter->getLevel()->type())->toEqual(LevelType::WARNING);
+    expect($alerter->getLevel()->type())->toEqual(Level::WARNING);
 })->name('alert', 'alert-warning-level');
 
 it('has alert with the given success level as deafult', function () 
@@ -61,5 +61,5 @@ it('has alert with the given success level as deafult', function ()
     $alert = alert();
   
     $alerter = $alert->alerter();
-    expect($alerter->getLevel()->type())->toEqual(LevelType::SUCCESS);
+    expect($alerter->getLevel()->type())->toEqual(Level::SUCCESS);
 })->name('alert', 'alert-success-level-default');
