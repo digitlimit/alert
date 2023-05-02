@@ -1,11 +1,19 @@
 @php
-    $tag = $attributes->get('tag', $defaultTag);
+    $tag     = $attributes->get('tag', $defaultTag);
+    $alerter = $alert->tagged('contact');
 @endphp
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-    @if ($slot->isNotEmpty())
-        {{ $slot }}
-    @else
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    @endif
-</div>
+@if($alerter)
+    @php
+        $level   = $alerter->getLevel()->name()->value;
+        $title   = $alerter->getMessage()->getTitle();
+        $content = $alerter->getMessage()->getContent();
+    @endphp
+    <div {{ $attributes->merge(['class' => 'alert alert-'.$level]) }} role="alert">
+        @if ($slot->isNotEmpty())
+            {{ $slot }}
+        @else
+            @if($title)<strong>{{ $title }}</strong>@endif {{ $content }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        @endif
+    </div>
+@endif

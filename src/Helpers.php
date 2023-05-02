@@ -1,6 +1,5 @@
 <?php
 use Digitlimit\Alert\Alert;
-use Digitlimit\Alert\Message;
 
 if (! function_exists('alert')) {
 

@@ -23,10 +23,15 @@ class AlertServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(SessionInterface::class, Session::class);
+
         $this->app->singleton('alert', function ($app) {
-            $store = new AlertStore($app['session.store']);
-            return new Alert(new Alerter($store));
+            return $app->make(Alert::class);
         });
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/alert.php', 'alert'
+        );
     }
 
     /**
@@ -45,6 +50,10 @@ class AlertServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => base_path('resources/views/vendor/digitlimit'),
         ], 'alert.views');
+
+        $this->publishes([
+            __DIR__.'/../config/alert.php' => config_path('alert.php'),
+        ], 'alert.config');
     }
 
     /**
@@ -54,10 +63,10 @@ class AlertServiceProvider extends ServiceProvider
     {
         Blade::componentNamespace('Digitlimit\\Alert\View\\Components', 'alert');
 
-        Blade::component('alert-bar',    Components\Bar::class);
-        Blade::component('alert-field',  Components\Field::class);
-        Blade::component('alert-modal',  Components\Modal::class);
-        Blade::component('alert-notify', Components\Notify::class);
-        Blade::component('alert-sticky', Components\Sticky::class);
+        $types = config('alert.types');
+
+        foreach($types as $name => $type) {
+            Blade::component($name,  $type['component']);
+        }
     }
 }
