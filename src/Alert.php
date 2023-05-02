@@ -27,7 +27,6 @@ class Alert
 
     public function title(string $title) : self
     {
-        
         $this->title = $title;
         return $this;
     }
@@ -58,7 +57,7 @@ class Alert
 
     public function error() : self
     {
-        $this->level = Level::ERROR;
+        $this->level = Level::DANGER;
         return $this;
     }
 
@@ -92,17 +91,34 @@ class Alert
         return $this;
     }
 
+    public function fresh() : self 
+    {
+        return new self($this->session);
+    }
+
     public function default(string $type) : MessageInterface|null
     {
         return self::tagged($type, $this->defaultTag);
     }
 
-    public function tagged(string $type, string $tag='') : MessageInterface|null
+    public function tagged(string $type, string $tag) : MessageInterface|null
     {
-        $taggedKey  = $tag ?? $this->defaultTag;
-        $sessionKey = SessionKey::key($type, $taggedKey);
+        if(!TypeHelper::exists($type)) {
+            throw new Exception("Invalid alert type '$type'. Check the alert config");
+        }
 
-        return null;
+        $sessionKey = SessionKey::key($type, $tag);
+
+        return $this->session->get($sessionKey);
+    }
+
+    public function getTag() : string
+    {
+        if($this->tag) {
+            return $this->tag;
+        }
+
+        return $this->defaultTag;
     }
 
     public function flash(
@@ -127,11 +143,17 @@ class Alert
             self::type($type);
         }
 
-        return MessageFactory::make(
+        $alert = MessageFactory::make(
             $this->message,
             $this->level,
             $this->type,
             $this->title
         );
+
+        // flash in session
+        $sessionKey = SessionKey::key($this->type, $this->getTag()); 
+        $this->session->flash($sessionKey, $alert);
+
+        return $alert;
     }
 }

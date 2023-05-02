@@ -1,13 +1,13 @@
 @php
     $tag = $attributes->get('tag', $defaultTag);
-    $bar = $alert->tagged('bar', $tag);
+    $form = $alert->tagged('form', $tag);
 @endphp
-@if($bar)
-    <div {{ $attributes->merge(['class' => 'alert alert-'.$bar->level()]) }} role="alert">
+@if($form)
+    <div {{ $attributes->merge(['class' => 'alert alert-'.$form->level()]) }} role="alert">
         @if ($slot->isNotEmpty())
             {{ $slot }}
         @else
-            @if($bar->title())<strong>{{ $bar->title() }}</strong>@endif {{ $bar->message() }}
+            @if($form->title())<strong>{{ $form->title() }}</strong>@endif {{ $form->message() }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         @endif
     </div>

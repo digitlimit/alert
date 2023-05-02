@@ -27,6 +27,6 @@ class MessageFactory
             ->setLevel($level)
             ->setTitle($title);
 
-        return new $class($message);
+        return $alert;
     }
 }
