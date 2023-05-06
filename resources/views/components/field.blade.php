@@ -1,4 +1,12 @@
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+@php
+    $tag   = $attributes->get('tag', $defaultTag);
+    $field = $alert->tagged('field', $tag);
+@endphp
+
+@if($slot->isNotEmpty())
+    {{ $slot }}
+@elseif($field)
+    <div {{ $attributes->merge(['class' => 'form-text text-'.$field->level]) }}>
+        {{ $field->message }}
+    </div>
+@endif

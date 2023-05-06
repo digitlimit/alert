@@ -2,49 +2,53 @@
 
 namespace Digitlimit\Alert\Message;
 
-use Digitlimit\Alert\Enums\Level;
+use Digitlimit\Alert\Session;
+use Digitlimit\Alert\Traits\Levelable;
+use Digitlimit\Alert\Helpers\SessionKey;
 
 abstract class AbstractMessage implements MessageInterface
 {
-    protected string $title = '';
+    use Levelable;
 
-    public function __construct(
-        protected string $message,
-        protected Level $level  = Level::INFO
-    ){}
+    protected Session $session;
 
-    public function setLevel(Level $level) : self
+    public string $message = '';
+    public string $title   = '';
+    public string $level   = 'info';
+    protected string $tag  = 'default';
+
+    abstract public function name() : string;
+
+    public function level(string $level) : self
     {
         $this->level = $level;
         return $this;
     }
 
-    public function setMessage(string $message) : self
+    public function message(string $message) : self
     {
         $this->message = $message;
         return $this;
     }
 
-    public function setTitle(string $title) : self
+    public function title(string $title) : self
     {
         $this->title = $title;
         return $this;
     }
 
-    abstract public function name() : string;
-
-    public function level() : string 
+    public function tag(string $tag) : self
     {
-        return $this->level->value;
+        $this->tag = $tag;
+        return $this;
     }
 
-    public function message() : string
+    public function flash(string $message='', string $level='') : void 
     {
-        return $this->message;
-    }
+        $this->message = $message ? $message : $this->message;
+        $this->level   = $level   ? $level   : $this->level;
 
-    public function title() : string
-    {
-       return $this->title;
+        $sessionKey = SessionKey::key($this->name(), $this->tag); 
+        $this->session->flash($sessionKey, $this);
     }
 }

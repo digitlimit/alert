@@ -6,13 +6,13 @@ use Digitlimit\Alert\Enums\Level;
 
 interface MessageInterface
 {
-    public function setMessage(string $message) : self;
+    public function message(string $message) : self;
 
-    public function setTitle(string $title) : self;
+    public function title(string $title) : self;
 
-    public function setLevel(Level $level) : self;
+    public function level(string $level) : self;
 
-    public function message() : string;
+    public function tag(string $tag) : self;
 
-    public function title() : string;
+    public function flash(string $message='', string $level='') : void;
 }

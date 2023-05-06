@@ -2,99 +2,18 @@
 
 namespace Digitlimit\Alert;
 
-use Digitlimit\Alert\Enums\Level;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Message\MessageFactory;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Helpers\TypeHelper;
+use Illuminate\Validation\Validator;
 use Exception;
 
 class Alert
 {
-    protected Level $level;
-
-    protected string $title      = '';
-    protected string $message    = '';
-    protected string $tag        = '';
-    protected string $type       = 'bar';
-    protected string $defaultTag = 'default';
-   
     public function __construct(
         protected Session $session
-    ){
-        $this->level = Level::INFO;
-    }
-
-    public function title(string $title) : self
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    public function message(string $message) : self
-    {
-        $this->message = $message;
-        return $this;
-    }
-
-    public function tag(string $tag) : self
-    {
-        $this->tag = $tag;
-        return $this;
-    }
-
-    public function success() : self
-    {
-        $this->level = Level::SUCCESS;
-        return $this;
-    }
-
-    public function info() : self
-    {
-        $this->level = Level::INFO;
-        return $this;
-    }
-
-    public function error() : self
-    {
-        $this->level = Level::DANGER;
-        return $this;
-    }
-
-    public function warning() : self
-    {
-        $this->level = Level::WARNING;
-        return $this;
-    }
-
-    public function type(string $type) : self 
-    {
-        if(!TypeHelper::exists($type)) {
-            throw new Exception("Invalid alert type '$type'. Check the alert config");
-        }
-
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function level(string $name) : self 
-    {
-        $level = Level::fromValue($name);
-
-        if(!$level) {
-            throw new Exception("Invalid level name: $name");
-        }
-
-        $this->level = $level;
-
-        return $this;
-    }
-
-    public function fresh() : self 
-    {
-        return new self($this->session);
-    }
+    ){}
 
     public function default(string $type) : MessageInterface|null
     {
@@ -107,53 +26,49 @@ class Alert
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $sessionKey = SessionKey::key($type, $tag);
-
-        return $this->session->get($sessionKey);
-    }
-
-    public function getTag() : string
-    {
-        if($this->tag) {
-            return $this->tag;
-        }
-
-        return $this->defaultTag;
-    }
-
-    public function flash(
-        string $message='', 
-        string $level='', 
-        string $type=''
-    ) : ?MessageInterface {
-
-        if($message) {
-            self::message($message);
-        }
-
-        if(empty($this->message)) {
-            throw new Exception("Message cannot be empty string");
-        }
-
-        if($level) {
-            self::level($level);
-        }
-
-        if($type) {
-            self::type($type);
-        }
-
-        $alert = MessageFactory::make(
-            $this->message,
-            $this->level,
-            $this->type,
-            $this->title
+        return $this->session->get(
+            SessionKey::key($type, $tag)
         );
+    }
 
-        // flash in session
-        $sessionKey = SessionKey::key($this->type, $this->getTag()); 
-        $this->session->flash($sessionKey, $alert);
+    public function bar(string $message='') : MessageInterface
+    {
+        return MessageFactory::make($this->session, 'bar', $message);
+    }
 
-        return $alert;
+    public function field(string $message='', ?Validator $validator=null) : MessageInterface
+    {
+        return MessageFactory::make(
+            $this->session, 'bar', $message, $validator
+        );
+    }
+
+    public function form(string $message='') : MessageInterface
+    {
+        return MessageFactory::make($this->session, 'form', $message);
+    }
+
+    public function modal(string $message='') : MessageInterface
+    {
+        return MessageFactory::make($this->session, 'modal', $message);
+    }
+
+    public function notify(string $message='') : MessageInterface
+    {
+        return MessageFactory::make($this->session, 'notify', $message);
+    }
+
+    public function sticky(string $message='') : MessageInterface
+    {
+        return MessageFactory::make($this->session, 'sticky', $message);
+    }
+
+    public function from(string $type, string $message='', ...$args) : MessageInterface
+    {
+        if(!TypeHelper::exists($type)) {
+            throw new Exception("Invalid alert type '$type'. Check the alert config");
+        }
+
+        return MessageFactory::make($this->session, 'sticky', $message, ...$args);
     }
 }
