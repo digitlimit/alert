@@ -4,8 +4,6 @@ namespace Digitlimit\Alert;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 
-use Digitlimit\Alert\View\Components;
-
 class AlertServiceProvider extends ServiceProvider
 {
     /**

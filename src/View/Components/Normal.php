@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Digitlimit\Alert\Alert;
 
-class Form extends Component
+class Normal extends Component
 {
     public string $defaultTag = 'default';
 
@@ -34,6 +34,6 @@ class Form extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('alert::components.form');
+        return view('alert::components.normal');
     }
 }

@@ -14,7 +14,7 @@ abstract class AbstractMessage implements MessageInterface
 
     public string $message = '';
     public string $title   = '';
-    public string $level   = 'info';
+    public string $level   = '';
     protected string $tag  = 'default';
 
     abstract public function name() : string;

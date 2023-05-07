@@ -31,21 +31,16 @@ class Alert
         );
     }
 
-    public function bar(string $message='') : MessageInterface
+    public function normal(string $message='') : MessageInterface
     {
-        return MessageFactory::make($this->session, 'bar', $message);
+        return MessageFactory::make($this->session, 'normal', $message);
     }
 
     public function field(string $message='', ?Validator $validator=null) : MessageInterface
     {
         return MessageFactory::make(
-            $this->session, 'bar', $message, $validator
+            $this->session, 'field', $message, $validator
         );
-    }
-
-    public function form(string $message='') : MessageInterface
-    {
-        return MessageFactory::make($this->session, 'form', $message);
     }
 
     public function modal(string $message='') : MessageInterface

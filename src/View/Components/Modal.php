@@ -62,12 +62,10 @@ class Modal extends Component
     {
         $newAttributes = array_map(function($key) use ($attributes) 
         {
-       
-            if(is_bool($attributes[$key])) {
-                return $attributes[$key] ? $key :'';
-            }
+            $key   = htmlspecialchars($key);
+            $value = htmlspecialchars($attributes[$key]) ?? '';
 
-            return $key .'="' . $attributes[$key] . '"';
+            return "$key=\"$value\"";
 
         }, array_keys($attributes));
 

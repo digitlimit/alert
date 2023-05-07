@@ -12,19 +12,14 @@ return [
     */
     
     'types' => [
-        'alert-bar' => [
-            'alert'     => \Digitlimit\Alert\Types\Bar::class,
-            'component' => \Digitlimit\Alert\View\Components\Bar::class
+        'alert-normal' => [
+            'alert'     => \Digitlimit\Alert\Types\Normal::class,
+            'component' => \Digitlimit\Alert\View\Components\Normal::class
         ],
 
         'alert-field' => [
             'alert'     => \Digitlimit\Alert\Types\Field::class,
             'component' => \Digitlimit\Alert\View\Components\Field::class
-        ],
-
-        'alert-form' => [
-            'alert'     => \Digitlimit\Alert\Types\Form::class,
-            'component' => \Digitlimit\Alert\View\Components\Form::class
         ],
 
         'alert-modal' => [

@@ -6,7 +6,7 @@ use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Session;
 
-class Form extends AbstractMessage implements MessageInterface
+class Normal extends AbstractMessage implements MessageInterface
 {
     public function __construct(
         protected Session $session, 
@@ -15,6 +15,6 @@ class Form extends AbstractMessage implements MessageInterface
 
     public function name(): string
     {
-        return 'form';
+        return 'normal';
     }
 }
