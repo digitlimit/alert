@@ -1,19 +1,19 @@
 @php
-    $tag    = $attributes->get('tag', $defaultTag); 
-    $id     = $attributes->get('id', $id); 
-    $notify = $alert->tagged('notify', $tag);
-    $view   = $notify->view ?? '';
-    $css    = 'top-50 start-50 translate-middle';
+    $tag      = $attributes->get('tag', $defaultTag); 
+    $id       = $attributes->get('id', $id); 
+    $notify   = $alert->tagged('notify', $tag);
+    $view     = $notify->view ?? '';
+    $position = $notify->position ?? 'bottom-0 end-0';
 @endphp
 @if($notify)
     @php
-        $hasTitle  = (isset($header) && $header->isEmpty()) && empty($notify->title);
-        $hasBody   = isset($body) && $body->isEmpty();
-        $hasHeader = isset($header) && $header->isEmpty();
+        $hasBody   = isset($body) && $body->isNotEmpty();
+        $hasHeader = isset($header) && $header->isNotEmpty();
+        $hasTitle  = $hasHeader || $notify->title;
     @endphp
     <div 
-        {{ $attributes->merge(['class'   => 'position-fixed p-3 ' . $css]) }}
-        {{ $attributes->merge(['z-index' => '11']) }}
+        {{ $attributes->merge(['class'   => 'position-fixed p-3 ' . $position]) }}
+        {{ $attributes->merge(['z-index' => '100']) }}
     >
         <div id="{{ $id }}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             
@@ -22,10 +22,10 @@
                     @if ($hasHeader)
                         {{ $header }}
                     @elseif($notify->title)
-                        <strong class="{{ $notify->level ? 'text-' . $notify->level : '' }}">
+                        <strong class="me-auto {{ $notify->level ? 'text-' . $notify->level : '' }}">
                             {{ $notify->title }}
                         </strong>
-                        <small class="text-muted">{{ $notify->title }}</small>
+                        <small class="text-muted">{{ $notify->subtitle ?? '' }}</small>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     @endif
                 </div>

@@ -14,7 +14,7 @@ return [
     'types' => [
         'alert-normal' => [
             'alert'     => \Digitlimit\Alert\Types\Normal::class,
-            'component' => \Digitlimit\Alert\View\Components\Normal::class
+            'component' => \Digitlimit\Alert\View\Components\Normal::class,
         ],
 
         'alert-field' => [
@@ -36,5 +36,15 @@ return [
             'alert'     => \Digitlimit\Alert\Types\Sticky::class,
             'component' => \Digitlimit\Alert\View\Components\Sticky::class
         ]
-    ]
+    ],
+
+    // @todo
+    // 'themes' => [
+    //     'theme'       => 'bootstrap-5',
+    //     'bootstrap-5' => [
+    //         'levels' => [
+    //             'info' => '...'
+    //         ]
+    //     ]
+    // ]
 ];

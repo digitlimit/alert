@@ -13,8 +13,11 @@ class Modal extends AbstractMessage implements MessageInterface
 {
     public Button $action;
     public Button $cancel;
-    public Dialog $dialog;
-    public string $view = '';
+
+    public string $size       = '';
+    public string $scrollable = '';
+    public string $position   = '';
+    public string $view       = '';
 
     public function __construct(
         protected Session $session, 
@@ -22,7 +25,6 @@ class Modal extends AbstractMessage implements MessageInterface
     ){
         $this->action = new Button();
         $this->cancel = new Button();
-        $this->dialog = new Dialog();
     }
     
     public function name(): string
@@ -42,39 +44,40 @@ class Modal extends AbstractMessage implements MessageInterface
         return $this;
     }
 
-    public function scrollable(string $class='modal-dialog-scrollable') : self 
-    {
-        $this->dialog->scrollable($class);
+    public function scrollable(
+        string $class='modal-dialog-scrollable'
+    ) : self {
+        $this->scrollable = $class;
         return $this;
     }
 
     public function small(string $class='modal-sm') : self 
     {
-        $this->dialog->size($class);
+        $this->size = $class;
         return $this;
     }
 
     public function large(string $class='modal-lg') : self 
     {
-        $this->dialog->size($class);
+        $this->size = $class;
         return $this;
     }
 
     public function extraLarge(string $class='modal-xl') : self 
     {
-        $this->dialog->size($class);
+        $this->size = $class;
         return $this;
     }
 
     public function fullscreen(string $class='modal-fullscreen') : self 
     {
-        $this->dialog->size($class);
+        $this->size = $class;
         return $this;
     }
 
     public function centered(string $class='modal-dialog-centered') : self 
     {
-        $this->dialog->position($class);
+        $this->position = $class;
         return $this;
     }
 

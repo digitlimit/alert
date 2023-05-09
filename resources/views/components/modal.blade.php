@@ -3,7 +3,6 @@
   $id     = $attributes->get('id', $id); 
   $modal  = $alert->tagged('modal', $tag);
 
-  $dialog = $modal->dialog ?? '';
   $cancel = $modal->cancel ?? '';
   $action = $modal->action ?? '';
   $view   = $modal->view ?? '';
@@ -22,7 +21,7 @@
     {{ $attributes->merge(['tabindex' => '-1']) }}
   >
     <div 
-      class="modal-dialog {{ $dialog->size }} {{ $dialog->position }} {{ $dialog->scrollable }}"
+      class="modal-dialog {{ $modal->size }} {{ $modal->position }} {{ $modal->scrollable }}"
     >
       <div class="modal-content">
 
