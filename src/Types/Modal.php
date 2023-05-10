@@ -6,7 +6,6 @@ use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Session;
 use Digitlimit\Alert\Component\Button;
-use Digitlimit\Alert\Component\Dialog;
 use Illuminate\View\View;
 
 class Modal extends AbstractMessage implements MessageInterface

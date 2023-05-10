@@ -1,14 +1,27 @@
 @php
     $tag    = $attributes->get('tag', $defaultTag);
     $sticky = $alert->tagged('sticky', $tag);
+    $action = $sticky->action ?? '';
 @endphp
 @if($sticky)
-    <div {{ $attributes->merge(['class' => 'alert alert-'.$sticky->level]) }} role="alert">
+    <div {{ $attributes->merge(['class' => 'alert alert-dismissible alert-'.$sticky->level]) }} role="alert">
         @if ($slot->isNotEmpty())
             {{ $slot }}
         @else
             @if($sticky->title)<strong>{{ $sticky->title }}</strong>@endif {{ $sticky->message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+            @if($action->label)
+                @if($action->link)
+                    <a href="{{ $action->link }}" {!! $actionAttributes($action->attributes) !!}>
+                        {{ $action->label }}
+                    </a>
+                @else
+                    <button {!! $actionAttributes($action->attributes) !!}>
+                        {{ $action->label }}
+                    </button>
+                @endif
+            @endif
+
         @endif
     </div>
 @endif

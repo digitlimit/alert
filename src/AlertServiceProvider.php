@@ -14,6 +14,8 @@ class AlertServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'alert');
 
         $this->registerComponents();
+
+        $this->bootForConsole();
     }
 
     /**
@@ -46,8 +48,9 @@ class AlertServiceProvider extends ServiceProvider
     protected function bootForConsole(): void
     {
         $this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/digitlimit'),
+            __DIR__.'/../resources/views' => base_path('resources/views/vendor/digitlimit/alert'),
         ], 'alert.views');
+
 
         $this->publishes([
             __DIR__.'/../config/alert.php' => config_path('alert.php'),

@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Digitlimit\Alert\Alert;
 use Illuminate\Support\Str;
+use Digitlimit\Alert\Helpers\Attribute;
 
 class Modal extends Component
 {
@@ -45,7 +46,7 @@ class Modal extends Component
             $attributes
         );
 
-        return $this->attributesToString($newAttributes);
+        return Attribute::toString($newAttributes);
     }
 
     public function cancelAttributes(array $attributes) : string 
@@ -55,20 +56,6 @@ class Modal extends Component
             $attributes
         );
 
-        return $this->attributesToString($newAttributes);
-    }
-    
-    public function attributesToString(array $attributes) : string 
-    {
-        $newAttributes = array_map(function($key) use ($attributes) 
-        {
-            $key   = htmlspecialchars($key);
-            $value = htmlspecialchars($attributes[$key]) ?? '';
-
-            return "$key=\"$value\"";
-
-        }, array_keys($attributes));
-
-        return join(' ', $newAttributes);
+        return Attribute::toString($newAttributes);
     }
 }
