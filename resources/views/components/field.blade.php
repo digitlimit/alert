@@ -12,4 +12,16 @@
     <div {{ $attributes->merge(['class' => 'form-text text-'.$field->level]) }}>
         {{ $error ?? $field->message }}
     </div>
+@else
+    @error($name, $tag)
+        <div {{ $attributes->merge(['class' => 'form-text text-danger']) }}>
+            {{ $errors->$tag->first($name) }}
+        </div>
+    @enderror
+
+    @error($name)
+        <div {{ $attributes->merge(['class' => 'form-text text-danger']) }}>
+            {{ $errors->first($name) }}
+        </div>
+    @enderror
 @endif
