@@ -1,8 +1,6 @@
 <?php
 use Illuminate\Session\Store;
 use Digitlimit\Alert\Alert;
-use Digitlimit\Alert\Alerter;
-use Digitlimit\Alert\AlertStore;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,10 +44,4 @@ expect()->extend('toBeOne', function () {
 function store_session()
 {
     return Mockery::spy('Illuminate\Session\Store');
-}
-
-function alert()
-{
-    $alertStore = new AlertStore(store_session());
-    return new Alert(new Alerter($alertStore));
 }

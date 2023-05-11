@@ -25,7 +25,8 @@ class Field extends AbstractMessage implements MessageInterface
     }
 
     public function messages(MessageBag $messages)
-    {
+    { 
+        //just here
         $this->messages = $messages;
         return $this;
     }
