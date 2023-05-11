@@ -11,6 +11,8 @@ use Exception;
 
 class Alert
 {
+    private string $defaultTag = 'default';
+
     public function __construct(
         protected Session $session
     ){}
@@ -58,12 +60,17 @@ class Alert
         return MessageFactory::make($this->session, 'sticky', $message);
     }
 
+    public function message(string $message) : MessageInterface
+    {
+        return $this->normal($message);
+    }
+
     public function from(string $type, string $message='', ...$args) : MessageInterface
     {
         if(!TypeHelper::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        return MessageFactory::make($this->session, 'sticky', $message, ...$args);
+        return MessageFactory::make($this->session, $type, $message, ...$args);
     }
 }
