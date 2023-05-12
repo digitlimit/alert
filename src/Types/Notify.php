@@ -5,7 +5,6 @@ namespace Digitlimit\Alert\Types;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Session;
-use Digitlimit\Alert\Component\Button;
 
 class Notify extends AbstractMessage implements MessageInterface
 {
