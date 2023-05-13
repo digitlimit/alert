@@ -7,7 +7,7 @@
 @if($slot->isNotEmpty())
     {{ $slot }}
 @elseif($field)
-    @if($field->name && $field->name == $name)
+    @if(($name && $field->name == $name) || empty($name))
         <div {{ $attributes->merge(['class' => 'form-text text-'.$field->level]) }}>
             {{ $error ?? $field->message }}
         </div>
