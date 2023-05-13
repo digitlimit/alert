@@ -3,6 +3,8 @@ namespace Digitlimit\Alert;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Foundation\Application;
+use Digitlimit\Alert\Helpers\Type;
 
 class AlertServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,7 @@ class AlertServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(SessionInterface::class, Session::class);
+        $this->app->bind(ConfigInterface::class,  Config::class);
 
         $this->app->singleton('alert', function ($app) {
             return $app->make(Alert::class);

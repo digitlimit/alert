@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Session\Store;
-use Digitlimit\Alert\Session;
 use Digitlimit\Alert\Tests\TestCase;
 
 /*
@@ -42,8 +40,3 @@ expect()->extend('toBeOne', function () {
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
-function alert_store()
-{
-    $store = Mockery::spy(Store::class);
-    return new Session(app(Store::class));
-}

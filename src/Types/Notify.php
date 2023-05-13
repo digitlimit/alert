@@ -15,7 +15,7 @@ class Notify extends AbstractMessage implements MessageInterface
         public string $message
     ) {}
     
-    public function name(): string
+    public function key(): string
     {
         return 'notify';
     }

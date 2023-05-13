@@ -3,39 +3,50 @@
 namespace Digitlimit\Alert\Helpers;
 
 use Exception;
+use Digitlimit\Alert\ConfigInterface;
 
 class TypeHelper
-{
+{    
     const PREFIX = 'alert-';
 
-    public static function types() : array 
+    public function __construct(
+        protected ConfigInterface $config
+    ){}
+
+    public function types() : array 
     {
-        return config('alert.types');
+        return $this
+            ->config
+            ->get('alert.types');
     }
 
-    public static function prefixed(string $type) : string 
+    public function prefixed(string $type) : string 
     {
         return self::PREFIX . $type;
     }
 
-    public static function exists(string $type) : bool
+    public function exists(string $type) : bool
     {
-        $types = self::types();
-        return isset($types[$type]) || isset($types[self::prefixed($type)]);
+        $types = $this->types();
+
+        return isset($types[$type]) 
+            || isset($types[$this->prefixed($type)]);
     }
 
-    public static function type(string $type) : array
+    public function type(string $type) : array
     {
-        $types = self::types();
-        return  $types[$type] ?? $types[self::prefixed($type)];
+        $types = $this->types();
+
+        return  $types[$type] 
+            ?? $types[$this->prefixed($type)];
     }
 
-    public static function clasname(string $type) : string
+    public function clasname(string $type) : string
     {
-        if(!self::exists($type)) {
+        if(!$this->exists($type)) {
             throw new Exception("The alert type '$type' does not exist in config");
         }
         
-        return self::type($type)['alert'];
+        return $this->type($type)['alert'];
     }
 }

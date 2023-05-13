@@ -17,7 +17,7 @@ abstract class AbstractMessage implements MessageInterface
     public string $level   = '';
     protected string $tag  = 'default';
 
-    abstract public function name() : string;
+    abstract public function key() : string;
 
     public function level(string $level) : self
     {
@@ -48,7 +48,7 @@ abstract class AbstractMessage implements MessageInterface
         $this->message = $message ? $message : $this->message;
         $this->level   = $level   ? $level   : $this->level;
 
-        $sessionKey = SessionKey::key($this->name(), $this->tag); 
+        $sessionKey = SessionKey::key($this->key(), $this->tag); 
         $this->session->flash($sessionKey, $this);
     }
 }

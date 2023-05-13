@@ -18,7 +18,7 @@ class Sticky extends AbstractMessage implements MessageInterface
         $this->action = new Button();
     }
 
-    public function name(): string
+    public function key(): string
     {
         return 'sticky';
     }

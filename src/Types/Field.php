@@ -10,6 +10,7 @@ use Digitlimit\Alert\Session;
 
 class Field extends AbstractMessage implements MessageInterface
 {
+    public string     $name = '';
     public MessageBag $messages;
 
     public function __construct(
@@ -19,19 +20,24 @@ class Field extends AbstractMessage implements MessageInterface
         $this->messages = new MessageBag();
     }
 
-    public function name(): string
+    public function key(): string
     {
         return 'field';
     }
 
-    public function messages(MessageBag $messages)
+    public function name(string $name) : self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function messages(MessageBag $messages) : self
     { 
-        //just here
         $this->messages = $messages;
         return $this;
     }
 
-    public function errors(Validator $validator)
+    public function errors(Validator $validator) : self
     {
         $this->messages = $validator->errors();
         return $this;

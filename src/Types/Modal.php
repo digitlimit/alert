@@ -26,7 +26,7 @@ class Modal extends AbstractMessage implements MessageInterface
         $this->cancel = new Button();
     }
     
-    public function name(): string
+    public function key(): string
     {
         return 'modal';
     }
