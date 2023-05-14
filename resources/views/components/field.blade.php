@@ -1,7 +1,7 @@
 @php
-    $name   = $attributes->get('name', '');
-    $tag    = $attributes->get('tag', $defaultTag);
-    $field  = $alert->named('field', $name, $tag);
+    $name  = $attributes->get('name', '');
+    $tag   = $attributes->get('tag', $defaultTag);
+    $field = $alert->named('field', $name, $tag) ?? $alert->tagged('field', $tag);
 @endphp
 
 @if($slot->isNotEmpty())
@@ -10,6 +10,10 @@
     @if(($name && $field->name == $name) || empty($name))
         <div {{ $attributes->merge(['class' => 'form-text text-'.$field->level]) }}>
             {{ $error ?? $field->message }}
+        </div>
+    @elseif($field->messageFor($name))
+        <div {{ $attributes->merge(['class' => 'form-text text-'.$field->level]) }}>
+            {{ $field->messageFor($name) }}
         </div>
     @endif
 @elseif(isset($errors))

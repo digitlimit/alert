@@ -8,6 +8,7 @@ use Illuminate\Validation\Validator;
 use Illuminate\Support\MessageBag;
 use Digitlimit\Alert\Session;
 use Digitlimit\Alert\Helpers\SessionKey;
+use Exception;
 
 class Field extends AbstractMessage implements MessageInterface
 {
@@ -64,7 +65,13 @@ class Field extends AbstractMessage implements MessageInterface
         $this->message = $message ?? $this->message;
         $this->level   = $level   ?? $this->level;
 
-        $sessionKey = SessionKey::key($this->key(), $this->getTag());
+        if($this->messages->isEmpty() && empty($this->name)) {
+            throw new Exception(
+                "Messages or field name is require. Hint: messages(\$validator) or name(\$name)"
+            );
+        }
+
+        $sessionKey = SessionKey::key($this->key(), $this->getTag()); 
         $this->session->flash($sessionKey, $this);
     }
 }

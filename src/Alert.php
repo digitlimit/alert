@@ -48,9 +48,15 @@ class Alert
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        return $this->session->get(
+        $tagged = $this->session->get(
             SessionKey::key($type, $tag)
         );
+
+        if(is_array($tagged)) {
+            return null;
+        }
+
+        return $tagged;
     }
 
     public function normal(string $message=null) : MessageInterface
