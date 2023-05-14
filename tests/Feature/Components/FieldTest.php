@@ -43,18 +43,19 @@ it('can render a named field view component', function ()
         ->success()
         ->flash();
 
-    // Alert::field('Will not see this message because it has different name')
-    //     ->tag('contact')
-    //     ->name('state')
-    //     ->success()
-    //     ->flash();
+    Alert::field('Good, you chose a valid state')
+        ->tag('contact')
+        ->name('state')
+        ->success()
+        ->flash();
 
     $view = $this
         ->blade('<x-alert-field name="country" tag="contact" />');
 
     $view
         ->assertSee('class="form-text text-success"', false)
-        ->assertSee('Good, you chose a valid country');
+        ->assertSee('Good, you chose a valid country')
+        ->assertDontSee('Good, you chose a valid state');
   
 })->name('view-component', 'view-component-field-tagged');
 
