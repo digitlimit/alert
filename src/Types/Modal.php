@@ -13,14 +13,14 @@ class Modal extends AbstractMessage implements MessageInterface
     public Button $action;
     public Button $cancel;
 
-    public string $size       = '';
-    public string $scrollable = '';
-    public string $position   = '';
-    public string $view       = '';
+    public ?string $size       = null;
+    public ?string $scrollable = null;
+    public ?string $position   = null;
+    public ?string $view       = null;
 
     public function __construct(
         protected Session $session, 
-        public string $message
+        public ?string $message
     ){
         $this->action = new Button();
         $this->cancel = new Button();
@@ -31,13 +31,13 @@ class Modal extends AbstractMessage implements MessageInterface
         return 'modal';
     }
 
-    public function action(string $label, string $link='', array $attributes=[]) : self 
+    public function action(string $label, string $link=null, array $attributes=[]) : self 
     {
         $this->action = new Button($label, $link, $attributes);
         return $this;
     }
 
-    public function cancel(string $label, string $link='', array $attributes=[]) : self 
+    public function cancel(string $label, string $link=null, array $attributes=[]) : self 
     {
         $this->cancel = new Button($label, $link, $attributes);
         return $this;

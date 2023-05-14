@@ -14,5 +14,5 @@ interface MessageInterface
 
     public function tag(string $tag) : self;
 
-    public function flash(string $message='', string $level='') : void;
+    public function flash(string $message=null, string $level=null) : void;
 }

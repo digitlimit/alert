@@ -4,5 +4,5 @@ namespace Digitlimit\Alert;
 
 interface ConfigInterface
 {
-    public function get(string $key, string $default='') : mixed;
+    public function get(string $key, string $default=null) : mixed;
 }

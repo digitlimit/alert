@@ -2,7 +2,7 @@
 
 if (! function_exists('alert')) {
 
-    function alert(string $message='', string $title='') : mixed
+    function alert(string $message=null, string $title=null) : mixed
     {
         $alert = app('alert');
 

@@ -13,7 +13,7 @@ class Sticky extends AbstractMessage implements MessageInterface
     
     public function __construct(
         protected Session $session, 
-        public string $message
+        public ?string $message
     ) {
         $this->action = new Button();
     }
@@ -23,7 +23,7 @@ class Sticky extends AbstractMessage implements MessageInterface
         return 'sticky';
     }
 
-    public function action(string $label, string $link='', array $attributes=[]) : self 
+    public function action(string $label, string $link=null, array $attributes=[]) : self 
     {
         $this->action = new Button($label, $link, $attributes);
         return $this;

@@ -12,7 +12,7 @@ class Notify extends AbstractMessage implements MessageInterface
 
     public function __construct(
         protected Session $session, 
-        public string $message
+        public ?string $message
     ) {}
     
     public function key(): string

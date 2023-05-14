@@ -7,24 +7,23 @@ use Digitlimit\Alert\Message\MessageInterface;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\MessageBag;
 use Digitlimit\Alert\Session;
+use Digitlimit\Alert\Helpers\SessionKey;
 
 class Field extends AbstractMessage implements MessageInterface
 {
-    public string     $name = '';
+    public ?string    $name = null;
     public MessageBag $messages;
 
     public function __construct(
         protected Session $session, 
-        public string $message
+        public ?string $message
     ){
         $this->messages = new MessageBag();
     }
 
     public function key(): string
     {
-        return $this->name 
-            ? "field.$this->name" 
-            : 'field';
+        return 'field';
     }
 
     public function name(string $name) : self
@@ -49,4 +48,27 @@ class Field extends AbstractMessage implements MessageInterface
     {
         return $this->messages->first($name);
     }
+
+    // public function getTag() : string
+    // {
+    //     if($this->name) {
+    //         //e.g default.firstname
+    //         return $this->tag . '.' . $this->name;
+    //     }
+
+    //     return $this->tag;
+    // }
+
+    // public function flash(string $message=null, string $level=null) : void 
+    // {
+    //     $this->message = $message ?? $this->message;
+    //     $this->level   = $level   ?? $this->level;
+
+    //     $tag = $this->name ? 
+    //         $this->getTag() . '.' . $this->name //e.g default.firstname
+    //         : $this->getTag();
+
+    //     $sessionKey = SessionKey::key($this->key(), $tag); 
+    //     $this->session->flash($sessionKey, $this);
+    // }
 }

@@ -5,8 +5,8 @@ namespace Digitlimit\Alert\Component;
 class Button
 {
    public function __construct(
-      public string $label      = '',
-      public string $link       = '',
+      public ?string $label     = null,
+      public ?string $link      = null,
       public array  $attributes = []
    ){}
 
