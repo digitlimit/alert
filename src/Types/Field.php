@@ -22,7 +22,9 @@ class Field extends AbstractMessage implements MessageInterface
 
     public function key(): string
     {
-        return 'field';
+        return $this->name 
+            ? "field.$this->name" 
+            : 'field';
     }
 
     public function name(string $name) : self

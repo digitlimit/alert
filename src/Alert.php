@@ -22,12 +22,28 @@ class Alert
         return self::tagged($type, $this->defaultTag);
     }
 
+    public function named(
+        string $type, 
+        string $name, 
+        string $tag = ''
+    ) : MessageInterface|null {
+
+        $tag = ($tag ?? $this->defaultTag) . '.' . $name;
+
+        if(!Type::exists($type)) {
+            throw new Exception("Invalid alert type '$type'. Check the alert config");
+        }
+
+        return $this->session->get(
+            SessionKey::key($type, $tag)
+        );
+    }
+
     public function tagged(string $type, string $tag) : MessageInterface|null
     {
         if(!Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
-
         return $this->session->get(
             SessionKey::key($type, $tag)
         );
