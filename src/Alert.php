@@ -39,8 +39,6 @@ class Alert
         );
     }
 
-    //digitlimit.alert.field.default.first_name | digitlimit.alert.field.contact.first_name
-
     public function tagged(
         string $type, 
         string $tag

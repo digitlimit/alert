@@ -64,11 +64,7 @@ class Field extends AbstractMessage implements MessageInterface
         $this->message = $message ?? $this->message;
         $this->level   = $level   ?? $this->level;
 
-        $tag = $this->name ? 
-            $this->getTag() . '.' . $this->name //e.g default.firstname
-            : $this->getTag();
-
-        $sessionKey = SessionKey::key($this->key(), $tag); 
+        $sessionKey = SessionKey::key($this->key(), $this->getTag());
         $this->session->flash($sessionKey, $this);
     }
 }
