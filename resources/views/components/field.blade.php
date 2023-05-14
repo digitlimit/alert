@@ -1,7 +1,7 @@
 @php
-    $name  = $attributes->get('name', '');
-    $tag   = $attributes->get('tag', $defaultTag);
-    $field = $alert->tagged('field', $tag);
+    $name   = $attributes->get('name', '');
+    $tag    = $attributes->get('tag', $defaultTag);
+    $field  = $alert->named('field', $name, $tag);
 @endphp
 
 @if($slot->isNotEmpty())
@@ -12,7 +12,7 @@
             {{ $error ?? $field->message }}
         </div>
     @endif
-@else
+@elseif(isset($errors))
     @php
         $level = $field->level ?? 'danger';
     @endphp

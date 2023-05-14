@@ -49,26 +49,26 @@ class Field extends AbstractMessage implements MessageInterface
         return $this->messages->first($name);
     }
 
-    // public function getTag() : string
-    // {
-    //     if($this->name) {
-    //         //e.g default.firstname
-    //         return $this->tag . '.' . $this->name;
-    //     }
+    public function getTag() : string
+    {
+        if($this->name) {
+            //e.g default.firstname
+            return $this->tag . '.' . $this->name;
+        }
 
-    //     return $this->tag;
-    // }
+        return $this->tag;
+    }
 
-    // public function flash(string $message=null, string $level=null) : void 
-    // {
-    //     $this->message = $message ?? $this->message;
-    //     $this->level   = $level   ?? $this->level;
+    public function flash(string $message=null, string $level=null) : void 
+    {
+        $this->message = $message ?? $this->message;
+        $this->level   = $level   ?? $this->level;
 
-    //     $tag = $this->name ? 
-    //         $this->getTag() . '.' . $this->name //e.g default.firstname
-    //         : $this->getTag();
+        $tag = $this->name ? 
+            $this->getTag() . '.' . $this->name //e.g default.firstname
+            : $this->getTag();
 
-    //     $sessionKey = SessionKey::key($this->key(), $tag); 
-    //     $this->session->flash($sessionKey, $this);
-    // }
+        $sessionKey = SessionKey::key($this->key(), $tag); 
+        $this->session->flash($sessionKey, $this);
+    }
 }
