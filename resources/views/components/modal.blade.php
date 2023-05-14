@@ -15,6 +15,12 @@
 ])
 
 @if($modal)
+  @php
+    $hasBody   = isset($body) && $body->isNotEmpty();
+    $hasHeader = isset($header) && $header->isNotEmpty();
+    $hasFooter = isset($footer) && $footer->isNotEmpty();
+    $hasTitle  = $hasHeader || $modal->title;
+  @endphp
   <div 
     {{ $attributes->merge(['id'       => $id]) }}
     {{ $attributes->merge(['class'    => 'modal']) }}
@@ -25,22 +31,28 @@
     >
       <div class="modal-content">
 
-        <div {{ isset($header) ? $header->attributes->class(['modal-header']) : 'class=modal-header' }}>
-          @if (isset($header) && $header->isNotEmpty())
-            {{ $header }}
-          @elseif($modal->title)
-            <h5 class="modal-title {{ $modal->level ? 'text-' . $modal->level : '' }}">
-              {{ $modal->title }}
-            </h5>
+        @if($hasTitle)
+          <div {{ isset($header) ? $header->attributes->class(['modal-header']) : 'class=modal-header' }}>
+            @if ($hasHeader)
+              {{ $header }}
+            @elseif($modal->title)
+              <h5 class="modal-title {{ $modal->level ? 'text-' . $modal->level : '' }}">
+                {{ $modal->title }}
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            @endif
+          </div>
+        @else
+          <div {{ isset($header) ? $header->attributes->class(['modal-header']) : 'class=modal-header' }}>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          @endif
-        </div>
+          </div>
+        @endif
 
         @if($view)
           {!! $view !!}
         @else
           <div {{ isset($body) ? $body->attributes->class(['modal-body']) : 'class=modal-body' }}>
-            @if(isset($body) && $body->isNotEmpty())
+            @if($hasBody)
               {{ $body }}
             @elseif($modal->message)
               {{ $modal->message }}
@@ -51,7 +63,7 @@
         @if(empty($action->label) && empty($cancel->label) && (isset($footer) && $footer->isEmpty()) )
 
           <div {{ isset($footer) ? $footer->attributes->class(['modal-footer']) : 'class=modal-footer' }}>
-            @if(isset($footer) && $footer->isNotEmpty())
+            @if($hasFooter)
               {{ $footer }}
             @else
 

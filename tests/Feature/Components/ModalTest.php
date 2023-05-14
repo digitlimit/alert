@@ -1,5 +1,24 @@
 <?php
 
+use Digitlimit\Alert\Facades\Alert;
+
+it('can render a default modal view component', function () 
+{
+    Alert::modal('Than you for joining us')
+        ->flash();
+
+    $view = $this
+        ->blade('<x-alert-modal />');
+
+    $view
+        ->assertSee('class="modal"', false)
+        ->assertSee('Than you for joining us');
+  
+})->name('view-component', 'view-component-modal-default');
+
+
+
+
 // namespace Digitlimit\Alert\View\Components;
 
 // use Closure;
