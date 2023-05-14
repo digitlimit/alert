@@ -67,7 +67,7 @@ class Field extends AbstractMessage implements MessageInterface
 
         if($this->messages->isEmpty() && empty($this->name)) {
             throw new Exception(
-                "Messages or field name is require. Hint: messages(\$validator) or name(\$name)"
+                "Messages or field name is required. Hint: messages(\$validator) or name(\$name)"
             );
         }
 

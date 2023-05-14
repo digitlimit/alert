@@ -6,10 +6,11 @@ it('can render a default field view component', function ()
 {
     Alert::field('Username is available')
         ->success()
+        ->name('username')
         ->flash();
 
     $view = $this
-        ->blade('<x-alert-field />');
+        ->blade('<x-alert-field name="username" />');
 
     $view
         ->assertSee('class="form-text text-success"', false)
@@ -19,17 +20,18 @@ it('can render a default field view component', function ()
 
 it('can render a tagged field view component', function () 
 {
-    Alert::field('Some errors occurred!')
+    Alert::field('Please select a country')
         ->tag('contact')
+        ->name('country')
         ->warning()
         ->flash();
 
     $view = $this
-        ->blade('<x-alert-field tag="contact" />');
+        ->blade('<x-alert-field name="country" tag="contact" />');
 
     $view
         ->assertSee('class="form-text text-warning"', false)
-        ->assertSee('Some errors occurred!');
+        ->assertSee('Please select a country');
   
 })->name('view-component', 'view-component-field-tagged');
 

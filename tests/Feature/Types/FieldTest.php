@@ -6,12 +6,14 @@ use Digitlimit\Alert\Message\MessageInterface;
 
 it('can create a field alert', function () 
 {
-    Alert::field('Thank you!')->flash();
+    Alert::field('Invalid firstname')
+        ->name('firstname')
+        ->flash();
 
-    $default = Alert::default('field');
+    $default = Alert::named('field', 'firstname');
 
     expect($default)->toBeInstanceOf(MessageInterface::class);
     expect($default)->toBeInstanceOf(Field::class);
-    expect($default->message)->toEqual('Thank you!');
+    expect($default->message)->toEqual('Invalid firstname');
 
 })->name('types', 'types-field', 'types-field');
