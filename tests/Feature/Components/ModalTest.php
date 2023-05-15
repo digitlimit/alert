@@ -1,6 +1,7 @@
 <?php
 
 use Digitlimit\Alert\Facades\Alert;
+use Illuminate\Support\Facades\Blade;
 
 it('can render a default modal view component', function () 
 {
@@ -16,65 +17,40 @@ it('can render a default modal view component', function ()
   
 })->name('view-component', 'view-component-modal-default');
 
+it('can render a default modal view from a view instance', function () 
+{
+//     $customView = view( '<div class="custom-content">
+//     <h1>Welcome to my world</h1>
+// </div>');
 
+//     Alert::modal()
+//         ->view($customView)
+//         ->flash();
 
+//     $view = $this
+//         ->blade('<x-alert-modal />');
 
-// namespace Digitlimit\Alert\View\Components;
+//     $view
+//         ->assertSee('class="custom-content"', false)
+//         ->assertSee('Welcome to my world');
+  
+})->name('view-component', 'view-component-modal-view');
 
-// use Closure;
-// use Illuminate\Contracts\View\View;
-// use Illuminate\View\Component;
-// use Digitlimit\Alert\Alert;
-// use Illuminate\Support\Str;
-// use Digitlimit\Alert\Helpers\Attribute;
+it('can render a default modal with all the features', function () 
+{
+    Alert::modal('Your message has been recieved, you will hear from us soon')
+    ->action('Yes')
+    ->cancel('Cancel')
+    ->centered()
+    ->title('Please login')
+    ->error()
+    ->flash();
 
-// class Modal extends Component
-// {
-//     public string $defaultTag = 'default';
+    $view = $this
+        ->blade('<x-alert-modal />');
 
-//     public string $id;
-
-//     public Alert $alert;
-
-//     public array $actionAttributes = [
-//         'type'            => 'button', 
-//         'class'           => 'btn btn-primary'
-//     ];
-
-//     public array $cancelAttributes = [
-//         'type'            => 'button', 
-//         'class'           => 'btn btn-secondary',
-//         'data-bs-dismiss' => 'modal'
-//     ];
-
-//     public function __construct(Alert $alert)
-//     {
-//         $this->alert = $alert;
-//         $this->id    = 'modal' . Str::random(10);
-//     }
-
-//     public function render(): View|Closure|string
-//     {
-//         return view('alert::components.modal');
-//     }
-
-//     public function actionAttributes(array $attributes) : string 
-//     {
-//         $newAttributes = array_merge(
-//             $this->actionAttributes, 
-//             $attributes
-//         );
-
-//         return Attribute::toString($newAttributes);
-//     }
-
-//     public function cancelAttributes(array $attributes) : string 
-//     {
-//         $newAttributes = array_merge(
-//             $this->cancelAttributes, 
-//             $attributes
-//         );
-
-//         return Attribute::toString($newAttributes);
-//     }
-// }
+    $view
+        ->assertSee('class="modal"', false)
+        ->assertSee('Your message has been recieved, you will hear from us soon');
+  
+})->name('view-component', 'view-component-modal-view');
