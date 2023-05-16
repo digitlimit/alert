@@ -1,6 +1,6 @@
 @php 
   $tag    = $attributes->get('tag', $defaultTag); 
-  $id     = $attributes->get('id', $id); 
+  $id     = $attributes->get('id'); 
   $modal  = $alert->tagged('modal', $tag);
 
   $cancel = $modal->cancel ?? '';
@@ -16,6 +16,7 @@
 
 @if($modal)
   @php
+    $id        = $id ?? $modal->id;
     $hasBody   = isset($body) && $body->isNotEmpty();
     $hasHeader = isset($header) && $header->isNotEmpty();
     $hasFooter = isset($footer) && $footer->isNotEmpty();

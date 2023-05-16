@@ -1,12 +1,13 @@
 @php
     $tag      = $attributes->get('tag', $defaultTag); 
-    $id       = $attributes->get('id', $id); 
+    $id       = $attributes->get('id'); 
     $notify   = $alert->tagged('notify', $tag);
     $view     = $notify->view ?? '';
     $position = $notify->position ?? 'bottom-0 end-0';
 @endphp
 @if($notify)
     @php
+        $id        = $id ?? $notify->id;
         $hasBody   = isset($body) && $body->isNotEmpty();
         $hasHeader = isset($header) && $header->isNotEmpty();
         $hasTitle  = $hasHeader || $notify->title;

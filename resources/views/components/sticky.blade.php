@@ -1,10 +1,15 @@
 @php
+    $id     = $attributes->get('id'); 
     $tag    = $attributes->get('tag', $defaultTag);
     $sticky = $alert->tagged('sticky', $tag);
     $action = $sticky->action ?? '';
 @endphp
 @if($sticky)
-    <div {{ $attributes->merge(['class' => 'alert alert-dismissible alert-'.$sticky->level]) }} role="alert">
+    @php
+        $id = $id ?? $sticky->id;
+    @endphp
+
+    <div id="{{$id}}" {{ $attributes->merge(['class' => 'alert alert-dismissible alert-'.$sticky->level]) }} role="alert">
         @if ($slot->isNotEmpty())
             {{ $slot }}
         @else
