@@ -6,6 +6,8 @@ use Digitlimit\Alert\Enums\Level;
 
 interface MessageInterface
 {
+    public function id(string|int $id) : self;
+    
     public function message(string $message) : self;
 
     public function title(string $title) : self;

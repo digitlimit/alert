@@ -1,39 +1,16 @@
 <?php
 
-// namespace Digitlimit\Alert\View\Components;
+use Digitlimit\Alert\Facades\Alert;
 
-// use Closure;
-// use Illuminate\Contracts\View\View;
-// use Illuminate\View\Component;
-// use Digitlimit\Alert\Alert;
-
-// class Normal extends Component
+// it('can render a default normal alert', function () 
 // {
-//     public string $defaultTag = 'default';
+//     Alert::normal('Than you for joining us')
+//     ->flash();
 
-//     public Alert $alert;
+//     $this
+//     ->blade('<x-alert-normal />')
+//     ->assertSee('class="modal"', false)
+//     ->assertSee('Than you for joining us');
+  
+// })->name('view-component', 'view-component-modal-default');
 
-//     /**
-//      * Create a new component instance.
-//      */
-//     public function __construct(Alert $alert)
-//     {
-//         $this->alert = $alert;
-//     }
-
-//     /**
-//      * Whether the component should be rendered
-//      */
-//     // public function shouldRender(): bool
-//     // {
-
-//     // }
-
-//     /**
-//      * Get the view / contents that represent the component.
-//      */
-//     public function render(): View|Closure|string
-//     {
-//         return view('alert::components.normal');
-//     }
-// }

@@ -7,6 +7,7 @@ use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Session;
 use Digitlimit\Alert\Component\Button;
 use Illuminate\View\View;
+use Digitlimit\Alert\Helpers\Helper;
 
 class Modal extends AbstractMessage implements MessageInterface
 {
@@ -22,6 +23,7 @@ class Modal extends AbstractMessage implements MessageInterface
         protected Session $session, 
         public ?string $message
     ){
+        $this->id(Helper::randomString());
         $this->action = new Button();
         $this->cancel = new Button();
     }

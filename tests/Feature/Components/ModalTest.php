@@ -6,14 +6,12 @@ use Illuminate\Support\Facades\Blade;
 it('can render a default modal view component', function () 
 {
     Alert::modal('Than you for joining us')
-        ->flash();
+    ->flash();
 
-    $view = $this
-        ->blade('<x-alert-modal />');
-
-    $view
-        ->assertSee('class="modal"', false)
-        ->assertSee('Than you for joining us');
+    $this
+    ->blade('<x-alert-modal />')
+    ->assertSee('class="modal"', false)
+    ->assertSee('Than you for joining us');
   
 })->name('view-component', 'view-component-modal-default');
 

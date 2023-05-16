@@ -11,6 +11,7 @@ abstract class AbstractMessage implements MessageInterface
     use Levelable;
 
     protected Session $session;
+    public string|int $id;
 
     public ?string $message = null;
     public ?string $title   = null;
@@ -18,6 +19,12 @@ abstract class AbstractMessage implements MessageInterface
     protected string $tag   = 'default';
 
     abstract public function key() : string;
+
+    public function id(string|int $id) : self
+    {
+        $this->id = $id;
+        return $this;
+    }
 
     public function level(string $level) : self
     {

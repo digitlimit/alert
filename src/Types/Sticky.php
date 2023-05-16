@@ -6,6 +6,7 @@ use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Session;
 use Digitlimit\Alert\Component\Button;
+use  Digitlimit\Alert\Helpers\Helper;
 
 class Sticky extends AbstractMessage implements MessageInterface
 {
@@ -15,6 +16,7 @@ class Sticky extends AbstractMessage implements MessageInterface
         protected Session $session, 
         public ?string $message
     ) {
+        $this->id(Helper::randomString());
         $this->action = new Button();
     }
 
