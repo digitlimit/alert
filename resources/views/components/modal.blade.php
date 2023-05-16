@@ -60,7 +60,7 @@
           </div>
         @endif
 
-        @if(empty($action->label) && empty($cancel->label) && (isset($footer) && $footer->isEmpty()) )
+        @if( $action->label || $cancel->label && $hasFooter )
 
           <div {{ isset($footer) ? $footer->attributes->class(['modal-footer']) : 'class=modal-footer' }}>
             @if($hasFooter)

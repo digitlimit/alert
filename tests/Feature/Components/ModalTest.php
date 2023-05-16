@@ -51,6 +51,9 @@ it('can render a default modal with all the features', function ()
 
     $view
         ->assertSee('class="modal"', false)
+        ->assertSee('Yes')
+        ->assertSee('Cancel')
+        ->assertSee('Please login')
         ->assertSee('Your message has been recieved, you will hear from us soon');
   
 })->name('view-component', 'view-component-modal-view');
