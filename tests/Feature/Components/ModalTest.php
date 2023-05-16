@@ -36,7 +36,7 @@ it('can render a default modal view from a view instance', function ()
   
 })->name('view-component', 'view-component-modal-view');
 
-it('can render a default modal with all the features', function () 
+it('can render a default modal with buttons and title', function () 
 {
     Alert::modal('Your message has been recieved, you will hear from us soon')
     ->action('Yes')
@@ -56,4 +56,32 @@ it('can render a default modal with all the features', function ()
         ->assertSee('Please login')
         ->assertSee('Your message has been recieved, you will hear from us soon');
   
-})->name('view-component', 'view-component-modal-view');
+})->name('view-component', 'view-component-modal-buttons-title');
+
+it('can render a default modal a the right position', function () 
+{
+    Alert::modal()
+    ->centered('centered')
+    ->flash();
+
+    $view = $this
+        ->blade('<x-alert-modal />');
+
+    $view
+        ->assertSee('class="modal-dialog  centered "', false);
+
+})->name('view-component', 'view-component-modal-position');
+
+it('can render a default modal a the right size', function () 
+{
+    Alert::modal()
+    ->small('small')
+    ->flash();
+
+    $view = $this
+        ->blade('<x-alert-modal />');
+
+    $view
+        ->assertSee('class="modal-dialog small  "', false);
+
+})->name('view-component', 'view-component-modal-size');
