@@ -75,13 +75,35 @@ it('can render a default modal a the right position', function ()
 it('can render a default modal a the right size', function () 
 {
     Alert::modal()
-    ->small('small')
+    ->small()
     ->flash();
 
-    $view = $this
-        ->blade('<x-alert-modal />');
+    $this
+    ->blade('<x-alert-modal />')
+    ->assertSee('class="modal-dialog modal-sm  "', false);
 
-    $view
-        ->assertSee('class="modal-dialog small  "', false);
+    Alert::modal()
+    ->large()
+    ->flash();
+
+    $this
+    ->blade('<x-alert-modal />')
+    ->assertSee('class="modal-dialog modal-lg  "', false);
+    
+    Alert::modal()
+    ->extraLarge()
+    ->flash();
+
+    $this
+    ->blade('<x-alert-modal />')
+    ->assertSee('class="modal-dialog modal-xl  "', false);
+
+    Alert::modal()
+    ->fullscreen()
+    ->flash();
+
+    $this
+    ->blade('<x-alert-modal />')
+    ->assertSee('class="modal-dialog modal-fullscreen  "', false);
 
 })->name('view-component', 'view-component-modal-size');
