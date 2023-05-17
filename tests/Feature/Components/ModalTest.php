@@ -15,25 +15,6 @@ it('can render a default modal view component', function ()
   
 })->name('view-component', 'view-component-modal-default');
 
-it('can render a default modal view from a view instance', function () 
-{
-//     $customView = view( '<div class="custom-content">
-//     <h1>Welcome to my world</h1>
-// </div>');
-
-//     Alert::modal()
-//         ->view($customView)
-//         ->flash();
-
-//     $view = $this
-//         ->blade('<x-alert-modal />');
-
-//     $view
-//         ->assertSee('class="custom-content"', false)
-//         ->assertSee('Welcome to my world');
-  
-})->name('view-component', 'view-component-modal-view');
-
 it('can render a default modal with buttons and title', function () 
 {
     Alert::modal('Your message has been recieved, you will hear from us soon')
