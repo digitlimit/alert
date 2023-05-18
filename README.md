@@ -1,5 +1,5 @@
 <h1>
-    ![alert](https://github.com/digitlimit/alert/assets/2041419/78fd41cb-917e-430c-ae34-143f027333a5)
+   <img src="https://github.com/digitlimit/alert/assets/2041419/131bac3e-5406-4939-be5d-439945ff6a28">
 </h1>
 
 > Version 2.0
