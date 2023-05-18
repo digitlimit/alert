@@ -4,18 +4,74 @@
 
 > Version 2.0
 
-Alert is the Internet's icon library and toolkit, used by millions of
-designers, developers, and content creators.
+Alert is Laravel package for displaying different types of messages in Laravel application views.
+It's designed to make flashing messages in Laravel Applications a breeze, with a lot of easy to use and fluent methods.
+
+## Quick Start
+
+1. Install Alert with composer:
+
+```
+composer require digitlimit/alert
+```
+
+2. Somewhere in the blade template
+
+```
+<x-alert-normal />
+```
+
+Example:
+
+```
+@extends('layouts.default')
+
+@section('content')
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+      <div class="col-md-12">
+        <x-alert-normal />
+      </div>
+    </div>
+
+    <div class="row">
+      @include('form.profile')
+    </div>        
+  </div>
+
+  @include('partials.footer')
+@endsection
+```
+
+NB: At the moment the alert components are built with Twitter Bootstrap 5, and can be customized to use other CSS classes
+
+3. Somewhere in the application
+
+```
+<?php
+
+namespace App\Http\Controllers;
+
+use Alert;
+
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        Alert::message('Welcome! Please complete your profile')
+            ->info()
+            ->flash();
+
+        return view('home');
+    }
+}
+```
 
 ## Documentation
 
 Learn how to get started with Alert and then dive deeper into other and advanced topics:
 
-[Docs for version 2.0](https://github.com/digitlimit/alert/wiki)
-
-### Where did Alert v1.0 go?
-
-Coming soon
+[Complete documentation](https://github.com/digitlimit/alert/wiki)
 
 ## Change log
 
