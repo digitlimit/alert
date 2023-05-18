@@ -1,5 +1,5 @@
 <h1>
-    <img src="https://img.fortawesome.com/349cfdf6/fa-free-logo.svg" alt="Alert Free" width="50%">
+   <img src="https://github.com/digitlimit/alert/assets/2041419/131bac3e-5406-4939-be5d-439945ff6a28">
 </h1>
 
 > Version 2.0
