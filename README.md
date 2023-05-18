@@ -70,7 +70,8 @@ class DashboardController extends Controller
 
 4. Result
 
-![screencapture-localhost-8000-2023-05-18-17_28_02](https://github.com/digitlimit/alert/assets/2041419/0d7c7489-16b2-47b5-8b3c-0dce683b95f3)
+<img width="1052" alt="image" src="https://github.com/digitlimit/alert/assets/2041419/5cd28524-d78c-413a-a425-a92be1796e18">
+
 
 ## Documentation
 
