@@ -10,10 +10,19 @@ use Digitlimit\Alert\Helpers\Attribute;
 
 class Sticky extends Component
 {
-    public string $defaultTag = 'default';
+    /**
+     * Set the default tag
+     */
+    public string $defaultTag = Alert::DEFAULT_TAG;
 
+    /**
+     * Alert instance
+     */
     public Alert $alert;
 
+    /**
+     * Default action button
+     */
     public array $actionAttributes = [
         'type'  => 'button', 
         'class' => 'btn btn-sm btn-primary float-end'
@@ -35,6 +44,9 @@ class Sticky extends Component
         return view('alert::components.sticky');
     }
 
+    /**
+     * Merge and convert array attributes to HTML string attributes
+     */
     public function actionAttributes(array $attributes) : string 
     {
         $newAttributes = array_merge(

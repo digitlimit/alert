@@ -2,6 +2,9 @@
 
 if (! function_exists('alert')) {
 
+    /**
+     * Alert helper function that creates an instance of alert
+     */
     function alert(string $message=null, string $title=null) : mixed
     {
         $alert = app('alert');
@@ -15,5 +18,4 @@ if (! function_exists('alert')) {
 
         return $alert;
     }
-
 }

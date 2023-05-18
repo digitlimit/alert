@@ -6,14 +6,17 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Digitlimit\Alert\Alert;
-use Illuminate\Support\Str;
 
 class Notify extends Component
 {
-    public string $id;
+    /**
+     * Set the default tag
+     */
+    public string $defaultTag = Alert::DEFAULT_TAG;
 
-    public string $defaultTag = 'default';
-
+    /**
+     * Alert instance
+     */
     public Alert $alert;
 
     /**
@@ -22,7 +25,6 @@ class Notify extends Component
     public function __construct(Alert $alert)
     {
         $this->alert = $alert;
-        $this->id    = 'notify' . Str::random(10);
     }
 
     /**

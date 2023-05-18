@@ -9,6 +9,10 @@ use Digitlimit\Alert\Helpers\Helper;
 
 class Normal extends AbstractMessage implements MessageInterface
 {
+    /**
+     * Create a new nomal alert instance.
+     * @return void
+     */
     public function __construct(
         protected Session $session, 
         public ?string $message
@@ -16,6 +20,9 @@ class Normal extends AbstractMessage implements MessageInterface
         $this->id(Helper::randomString());
     }
 
+    /**
+     * Message store key for the normal alert
+     */
     public function key(): string
     {
         return 'normal';

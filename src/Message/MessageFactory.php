@@ -8,6 +8,9 @@ use Digitlimit\Alert\Session;
 
 class MessageFactory
 { 
+    /**
+     * Make a new alert instance
+     */
     public static function make(Session $session, string $type, ...$args) : MessageInterface 
     {
         $class = Type::clasname($type);

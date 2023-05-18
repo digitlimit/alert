@@ -9,8 +9,14 @@ use Digitlimit\Alert\Alert;
 
 class Normal extends Component
 {
-    public string $defaultTag = 'default';
+    /**
+     * Set the default tag
+     */
+    public string $defaultTag = Alert::DEFAULT_TAG;
 
+    /**
+     * Alert instance
+     */
     public Alert $alert;
 
     /**
@@ -20,14 +26,6 @@ class Normal extends Component
     {
         $this->alert = $alert;
     }
-
-    /**
-     * Whether the component should be rendered
-     */
-    // public function shouldRender(): bool
-    // {
-
-    // }
 
     /**
      * Get the view / contents that represent the component.

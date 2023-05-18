@@ -36,15 +36,5 @@ return [
             'alert'     => \Digitlimit\Alert\Types\Sticky::class,
             'component' => \Digitlimit\Alert\View\Components\Sticky::class
         ]
-    ],
-
-    // @todo
-    // 'themes' => [
-    //     'theme'       => 'bootstrap-5',
-    //     'bootstrap-5' => [
-    //         'levels' => [
-    //             'info' => '...'
-    //         ]
-    //     ]
-    // ]
+    ]
 ];

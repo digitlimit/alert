@@ -9,8 +9,14 @@ use Digitlimit\Alert\Alert;
 
 class Field extends Component
 {
-    public string $defaultTag = 'default';
+    /**
+     * Set the default tag
+     */
+    public string $defaultTag = Alert::DEFAULT_TAG;
 
+    /**
+     * Alert instance
+     */
     public Alert $alert;
 
     /**
