@@ -59,7 +59,7 @@ Alert Free is free, open source, and GPL friendly. You can use it for
 commercial projects, open source projects, or really almost whatever you want.
 
 - Code — MIT License
-  - In the Alert Free download, the MIT license applies to all non-font and non-icon files.
+  - In the Alert Free download, the MIT license applies all PHP files.
 
 We've kept attribution comments terse, so we ask that you do not actively work
 to remove them from files, especially code. They're a great way for folks to
