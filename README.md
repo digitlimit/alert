@@ -43,7 +43,8 @@ Example:
 @endsection
 ```
 
-NB: At the moment the alert components are built with Twitter Bootstrap 5, and can be customized to use other CSS classes
+NB: At the moment the alert components are built with Twitter Bootstrap 5, and can be customized to use other CSS classes.
+Need to ensure bootstrap is included on the page.
 
 3. Somewhere in the application
 
@@ -66,6 +67,10 @@ class DashboardController extends Controller
     }
 }
 ```
+
+4. Result
+
+![screencapture-localhost-8000-2023-05-18-17_28_02](https://github.com/digitlimit/alert/assets/2041419/0d7c7489-16b2-47b5-8b3c-0dce683b95f3)
 
 ## Documentation
 
