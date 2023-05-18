@@ -96,9 +96,6 @@ with the following format:
 
 For more information on SemVer, please visit https://semver.org.
 
-**The major version "6" is part of an umbrella release.  It includes many different types of files and technologies. Therefore
-we deviate from normal SemVer in the following ways:**
-
 * Any release may update the design, look-and-feel, or branding of an existing
   icon
 * We will never intentionally release a `patch` version update that breaks
