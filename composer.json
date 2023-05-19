@@ -15,7 +15,9 @@
         "views",
         "flash",
         "messages",
-        "withErrors"
+        "errors",
+        "validation",
+        "error bags"
     ],
     "require": {
         "ext-json": "*",
