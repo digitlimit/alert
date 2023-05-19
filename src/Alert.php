@@ -150,13 +150,12 @@ class Alert
      */
     public function from(
         string $type,
-        string $message = null,
         ...$args
     ): MessageInterface {
         if (!Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        return MessageFactory::make($this->session, $type, $message, ...$args);
+        return MessageFactory::make($this->session, $type, ...$args);
     }
 }
