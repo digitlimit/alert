@@ -1,5 +1,5 @@
 @php
-    $name  = $attributes->get('name', '');
+    $name  = $attributes->get('name');
     $tag   = $attributes->get('tag', $defaultTag);
     $field = $alert->named('field', $name, $tag) ?? $alert->tagged('field', $tag);
     $bag   = $alert->tagged('bag', $tag);
