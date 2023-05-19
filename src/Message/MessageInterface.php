@@ -5,32 +5,32 @@ namespace Digitlimit\Alert\Message;
 interface MessageInterface
 {
     /**
-     * Set the alert ID
+     * Set the alert ID.
      */
-    public function id(string|int $id) : self;
-    
-    /**
-     * Set the alert message
-     */
-    public function message(string $message) : self;
+    public function id(string|int $id): self;
 
     /**
-     * Set the alert title
+     * Set the alert message.
      */
-    public function title(string $title) : self;
+    public function message(string $message): self;
 
     /**
-     * Set the alert level
+     * Set the alert title.
      */
-    public function level(string $level) : self;
+    public function title(string $title): self;
 
     /**
-     * Set the alert tag
+     * Set the alert level.
      */
-    public function tag(string $tag) : self;
+    public function level(string $level): self;
 
     /**
-     * Flash the alert to store
+     * Set the alert tag.
      */
-    public function flash(string $message=null, string $level=null) : void;
+    public function tag(string $tag): self;
+
+    /**
+     * Flash the alert to store.
+     */
+    public function flash(string $message = null, string $level = null): void;
 }

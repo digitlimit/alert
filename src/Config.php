@@ -7,7 +7,7 @@ use Illuminate\Config\Repository;
 class Config implements ConfigInterface
 {
     /**
-     * The config
+     * The config.
      */
     private Repository $config;
 
@@ -17,9 +17,9 @@ class Config implements ConfigInterface
     }
 
     /**
-     * Fetch value from the config based on the given key
+     * Fetch value from the config based on the given key.
      */
-    public function get(string $key, mixed $default=null) : mixed
+    public function get(string $key, mixed $default = null): mixed
     {
         return $this->config->get($key, $default);
     }

@@ -1,10 +1,9 @@
 <?php
+
 namespace Digitlimit\Alert;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Foundation\Application;
-use Digitlimit\Alert\Helpers\Type;
+use Illuminate\Support\ServiceProvider;
 
 class AlertServiceProvider extends ServiceProvider
 {
@@ -26,21 +25,22 @@ class AlertServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(SessionInterface::class, Session::class);
-        $this->app->bind(ConfigInterface::class,  Config::class);
+        $this->app->bind(ConfigInterface::class, Config::class);
 
         $this->app->singleton('alert', function ($app) {
             return $app->make(Alert::class);
         });
 
         $this->mergeConfigFrom(
-            __DIR__.'/../config/alert.php', 'alert'
+            __DIR__.'/../config/alert.php',
+            'alert'
         );
     }
 
     /**
      * Get the services provided by the provider.
      */
-    public function provides() : array
+    public function provides(): array
     {
         return ['alert'];
     }
@@ -54,23 +54,22 @@ class AlertServiceProvider extends ServiceProvider
             __DIR__.'/../resources/views' => base_path('resources/views/vendor/digitlimit/alert'),
         ], 'alert.views');
 
-
         $this->publishes([
             __DIR__.'/../config/alert.php' => config_path('alert.php'),
         ], 'alert.config');
     }
 
     /**
-     * Register alert components
+     * Register alert components.
      */
-    protected function registerComponents() : void
+    protected function registerComponents(): void
     {
         Blade::componentNamespace('Digitlimit\\Alert\View\\Components', 'alert');
 
         $types = config('alert.types');
 
-        foreach($types as $name => $type) {
-            Blade::component($name,  $type['component']);
+        foreach ($types as $name => $type) {
+            Blade::component($name, $type['component']);
         }
     }
 }

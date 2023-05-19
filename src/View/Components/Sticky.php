@@ -3,29 +3,29 @@
 namespace Digitlimit\Alert\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Attribute;
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
 
 class Sticky extends Component
 {
     /**
-     * Set the default tag
+     * Set the default tag.
      */
     public string $defaultTag = Alert::DEFAULT_TAG;
 
     /**
-     * Alert instance
+     * Alert instance.
      */
     public Alert $alert;
 
     /**
-     * Default action button
+     * Default action button.
      */
     public array $actionAttributes = [
-        'type'  => 'button', 
-        'class' => 'btn btn-sm btn-primary float-end'
+        'type'  => 'button',
+        'class' => 'btn btn-sm btn-primary float-end',
     ];
 
     /**
@@ -45,12 +45,12 @@ class Sticky extends Component
     }
 
     /**
-     * Merge and convert array attributes to HTML string attributes
+     * Merge and convert array attributes to HTML string attributes.
      */
-    public function actionAttributes(array $attributes) : string 
+    public function actionAttributes(array $attributes): string
     {
         $newAttributes = array_merge(
-            $this->actionAttributes, 
+            $this->actionAttributes,
             $attributes
         );
 

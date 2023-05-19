@@ -7,7 +7,7 @@ use Illuminate\Session\Store;
 class Session implements SessionInterface
 {
     /**
-     * The store
+     * The store.
      */
     private Store $store;
 
@@ -17,17 +17,17 @@ class Session implements SessionInterface
     }
 
     /**
-     * Flash alert to store
+     * Flash alert to store.
      */
-    public function flash(string $key, mixed $value) : void
+    public function flash(string $key, mixed $value): void
     {
         $this->store->flash($key, $value);
     }
 
     /**
-     * Fetch alert from the store
+     * Fetch alert from the store.
      */
-    public function get(string $key, mixed $default=null) : mixed
+    public function get(string $key, mixed $default = null): mixed
     {
         return $this->store->get($key, $default);
     }
