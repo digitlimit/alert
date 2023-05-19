@@ -11,19 +11,19 @@ It's designed to make flashing messages in Laravel Applications a breeze, with a
 
 1. Install Alert with composer:
 
-```
+```php
 composer require digitlimit/alert
 ```
 
 2. Somewhere in the blade template
 
-```
+```html
 <x-alert-normal />
 ```
 
 Example:
 
-```
+```html
 @extends('layouts.default')
 
 @section('content')
@@ -48,7 +48,7 @@ Need to ensure bootstrap is included on the page.
 
 3. Somewhere in the application
 
-```
+```php
 <?php
 
 namespace App\Http\Controllers;
