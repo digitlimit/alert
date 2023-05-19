@@ -3,39 +3,38 @@
 namespace Digitlimit\Alert\View\Components;
 
 use Closure;
+use Digitlimit\Alert\Alert;
+use Digitlimit\Alert\Helpers\Attribute;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use Digitlimit\Alert\Alert;
-use Illuminate\Support\Str;
-use Digitlimit\Alert\Helpers\Attribute;
 
 class Modal extends Component
 {
     /**
-     * Set the default tag
+     * Set the default tag.
      */
     public string $defaultTag = Alert::DEFAULT_TAG;
 
     /**
-     * Alert instance
+     * Alert instance.
      */
     public Alert $alert;
 
     /**
-     * Default action button attributes
+     * Default action button attributes.
      */
     public array $actionAttributes = [
-        'type'            => 'button', 
-        'class'           => 'btn btn-primary'
+        'type'            => 'button',
+        'class'           => 'btn btn-primary',
     ];
 
     /**
-     * Default cancel button attributes
+     * Default cancel button attributes.
      */
     public array $cancelAttributes = [
-        'type'            => 'button', 
+        'type'            => 'button',
         'class'           => 'btn btn-secondary',
-        'data-bs-dismiss' => 'modal'
+        'data-bs-dismiss' => 'modal',
     ];
 
     /**
@@ -55,12 +54,12 @@ class Modal extends Component
     }
 
     /**
-     * Merge and convert array attributes to HTML string attributes
+     * Merge and convert array attributes to HTML string attributes.
      */
-    public function actionAttributes(array $attributes) : string 
+    public function actionAttributes(array $attributes): string
     {
         $newAttributes = array_merge(
-            $this->actionAttributes, 
+            $this->actionAttributes,
             $attributes
         );
 
@@ -68,12 +67,12 @@ class Modal extends Component
     }
 
     /**
-     * Merge and convert array attributes to HTML string attributes
+     * Merge and convert array attributes to HTML string attributes.
      */
-    public function cancelAttributes(array $attributes) : string 
+    public function cancelAttributes(array $attributes): string
     {
         $newAttributes = array_merge(
-            $this->cancelAttributes, 
+            $this->cancelAttributes,
             $attributes
         );
 

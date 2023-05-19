@@ -2,8 +2,7 @@
 
 use Digitlimit\Alert\Facades\Alert;
 
-it('can sets the correct levels', function () 
-{
+it('can sets the correct levels', function () {
     $alert = Alert::message('Thank you!')->primary();
     expect($alert->level)->toEqual('primary');
 
@@ -27,5 +26,4 @@ it('can sets the correct levels', function ()
 
     $alert = Alert::message('Thank you!')->dark();
     expect($alert->level)->toEqual('dark');
-
 })->name('traits', 'traits-levelable');

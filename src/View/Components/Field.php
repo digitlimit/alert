@@ -3,19 +3,19 @@
 namespace Digitlimit\Alert\View\Components;
 
 use Closure;
+use Digitlimit\Alert\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use Digitlimit\Alert\Alert;
 
 class Field extends Component
 {
     /**
-     * Set the default tag
+     * Set the default tag.
      */
     public string $defaultTag = Alert::DEFAULT_TAG;
 
     /**
-     * Alert instance
+     * Alert instance.
      */
     public Alert $alert;
 
