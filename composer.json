@@ -1,6 +1,15 @@
 {
     "name": "digitlimit/alert",
-    "description": "An easy way of flashing messages in Laravel Application ",
+    "description": "An easy way of flashing messages in Laravel Application",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Emeka Mbah",
+            "email": "frankemeks77@yahoo.com",
+            "homepage": "https://emekambah.medium.com"
+        }
+    ],
+    "homepage": "https://github.com/digitlimit/alert",
     "keywords": [
         "laravel",
         "views",
@@ -8,25 +17,51 @@
         "messages",
         "withErrors"
     ],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Mbah Emeka",
-            "email": "frankemeks77@yahoo.com"
-        }
-    ],
     "require": {
-        "php": ">=5.4.0",
-        "illuminate/support": "~5.0|^6.0"
+        "ext-json": "*",
+        "php": "^7.4|^8.0",
+        "illuminate/contracts": "^7.20|^8.19|^9.0|^10.0",
+        "illuminate/support": "^7.20|^8.19|^9.0|^10.0"
     },
     "require-dev": {
-        "mockery/mockery": "dev-master",
-        "phpunit/phpunit": "^9.0"
+        "guzzlehttp/guzzle": "^7.3",
+        "laravel/framework": "^7.20|^8.19|^9.0|^10.0",
+        "phpunit/phpunit": "^10.0",
+        "orchestra/testbench": "^8.5",
+        "nunomaduro/collision": "^7.5",
+        "pestphp/pest": "^2.5"
     },
     "autoload": {
-        "psr-0": {
-            "Digitlimit\\Alert": "src/"
+        "psr-4": {
+            "Digitlimit\\Alert\\": "src/"
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Digitlimit\\Alert\\Tests\\": "tests"
         }
     },
-    "minimum-stability": "stable"
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Digitlimit\\Alert\\AlertServiceProvider"
+            ],
+            "aliases": {
+                "Alert": "Digitlimit\\Alert\\Facades\\Alert"
+            }
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php vendor/bin/testbench package:discover --ansi"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
 }

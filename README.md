@@ -1,206 +1,126 @@
-# Alert
+<h1>
+   <img src="https://github.com/digitlimit/alert/assets/2041419/131bac3e-5406-4939-be5d-439945ff6a28">
+</h1>
 
-[![Join the chat at https://gitter.im/digitlimit/alert](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/digitlimit/alert?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  
+> Version 2.0
 
-Alert is designed to make flashing messages in Laravel Applications a breeze. 
-Tested and works in Laravel 5 or less
+Alert is Laravel package for displaying different types of messages in Laravel application views.
+It's designed to make flashing messages in Laravel Applications a breeze, with a lot of easy to use and fluent methods.
 
-### For this to work you need to include Twitter Bootstrap in your page
+## Quick Start
 
-## Installation
+1. Install Alert with composer:
 
-Add alert in your composer.json file:
-
-```php
-"require": {
-    "digitlimit/alert": "v1.0"
-}
+```
+composer require digitlimit/alert
 ```
 
-Then run 
-```command
-composer update
+2. Somewhere in the blade template
+
+```
+<x-alert-normal />
 ```
 
-In Laravel 5 include Alert Service Provider within config/app.php or  app/config/app.php in Laravel 4
+Example:
 
-```php
-'providers' => [
-    'Digitlimit\Alert\AlertServiceProvider'
-];
+```
+@extends('layouts.default')
+
+@section('content')
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+      <div class="col-md-12">
+        <x-alert-normal />
+      </div>
+    </div>
+
+    <div class="row">
+      @include('form.profile')
+    </div>        
+  </div>
+
+  @include('partials.footer')
+@endsection
 ```
 
-You can also include alert facade in aliases array in same file above i.e config/app.php or  app/config/app.php in Laravel 4
+NB: At the moment the alert components are built with Twitter Bootstrap 5, and can be customized to use other CSS classes.
+Need to ensure bootstrap is included on the page.
 
-```php
-'aliases' => [
-    'Alert'     => 'Digitlimit\Alert\Facades\Alert'
-];
+3. Somewhere in the application
+
 ```
+<?php
 
-## Usage
+namespace App\Http\Controllers;
 
-In your controller simply set your alert before redirection like so:
+use Alert;
 
-In laravel 5 controller for example:
-
-```php
-<?php namespace App\Http\Controllers;
-
-use \Alert; //using Alert Facades
-
-class UserController extends Controller
+class DashboardController extends Controller
 {
-  public function postRegister(UserRegisterRequest $request)
-  {
-      Alert::form('Your account was successfully created','Congratulations')
-      ->success()
-      ->closable();
-        
-      return redirect()->route('users.getRegister');
-   }
-}
-
-
-class LoginController extends Controller
-{
-    public function postLogin(Request $request)
+    public function index()
     {
-        /*run validation on request parameters*/
-        $validator = validator($request->only(['email','password']), [
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
+        Alert::message('Welcome! Please complete your profile')
+            ->info()
+            ->flash();
 
-        /*return errors to view if any*/
-        if($validator->fails()){
-
-            Alert::form('Some errors occured','Opps')
-                ->error();
-
-            return redirect()
-                ->back()
-                ->withErrors($validator);
-        }
+        return view('home');
     }
 }
 ```
 
-Then in your view your can include the flash message to your view like so:
+4. Result
 
-```html
-<div class"registration_form">
-
-    @include('alert::form')
-    
-    <form method="POST" action="{{route('users.postRegister')}}" novalidate>
-            <div class="form-group">
-                <label for="name">First Name</label>
-                <input type="text" id="first_name" class="form-control" name="first_name" placeholder="First Name">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" class="form-control" name="email" placeholder="Email Address">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" name="password">
-            </div>
-            <button type="submit" class="btn btn-success">Register</button>
-        </form>
-</div>
-```   
-##### Form Alert Example
-![alert](https://user-images.githubusercontent.com/2041419/53573721-5fba5880-3b6e-11e9-9fb4-b13f245e7b90.JPG)
+<img width="1052" alt="image" src="https://github.com/digitlimit/alert/assets/2041419/5cd28524-d78c-413a-a425-a92be1796e18">
 
 
-## Features
-There are basically three types of alert messages you can flash
+## Documentation
 
-#### Form - used mostly to display message in the header of your form
-  
-Some where in the controller: 
-```pph
-//This simply displays a success message
-Alert::form('Your account was successfully created','Congratulations')->success();
-```
-Some where in the view:
-```html
-@include('alert::form')
-```
+Learn how to get started with Alert and then dive deeper into other and advanced topics:
 
-#### Notify - used mostly on the header of your page
+[Complete documentation](https://github.com/digitlimit/alert/wiki)
 
-Some where in the controller: 
-```pph
-//This simply displays a success message
-Alert::notify('Your account is going to expire today.','Info')->info();
-```
-Some where in the view layout where you want the alert to appear:
-```html
-@include('alert::notify')
-```
+## Change log
 
-#### Modal - used mostly to display an overlay message
+Coming soon
 
-Some where in the controller: 
-```php
-//This simply displays a success message
-Alert::modal('Thanks for joining us.','Title')->info();
-```
-Some where in the view layout:
-```html
-@include('alert::modal')
-```
+## Code of conduct
 
-#### Customize alert views
-To customized various alert views run artisan command below
-```
-   php artisan vendor:publish --provider="Digitlimit\Alert\AlertServiceProvider"
-```
+We will behave ourselves if you behave yourselves. For more details see our
+[CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 
-This will publish `form.blade.php`, `modal.blade.php`, `notify.blade.php` and `sticky.blade.php` 
-to publish views to `resources/views/vendor/alert` directory. 
+## Contributing
 
-The following helpers can be used in blade templates
+Please read through our [contributing guidelines](./CONTRIBUTING.md).  Included
+are directions for opening issues.
 
-**Alert Icon**  
-This displays alert icon class e.g fa fa-cog  
-Example:
-`<i class="{{Alert::icon()}}"></i>`
+## Versioning
 
-**Alert Status**  
-This displays alert status  
-Example:  
-`<div class="alert alert-{{Alert::status()}}">`  
+Alert will be maintained under the Semantic Versioning guidelines as much as possible. Releases will be numbered
+with the following format:
 
-**Alert Title**  
-This displays alert title  
-Example:  
-`<h1>{{Alert::title()}}</h1>`  
+`<major>.<minor>.<patch>`
 
-**Alert Message**  
-This displays alert message  
-Example:  
-`<p>{{Alert::message()}}</p>`  
+For more information on SemVer, please visit https://semver.org.
 
-**Form alert customization example**  
+* Any release may update the design, look-and-feel, or branding of an existing
+  icon
+* We will never intentionally release a `patch` version update that breaks
+  backward compatibility
+* A `minor` release **may include backward-incompatible changes** but we will
+  write clear upgrading instructions in UPGRADING.md
+* A `minor` or `patch` release will never remove icons
+* Bug fixes will be addressed as `patch` releases unless they include backward
+  incompatibility then they will be `minor` releases
 
-```
-@if(Alert::has('form'))
-    <div class="alert alert-{{Alert::status()}}
+## License
 
-        @if(Alert::closable()) alert-dismissible @endif fade show" role="alert">
+Alert Free is free, open source, and GPL friendly. You can use it for
+commercial projects, open source projects, or really almost whatever you want.
 
-        @if(Alert::icon())<i class="{{Alert::icon()}}"></i>@endif
+- Code — MIT License
+  - In the Alert Free download, the MIT license applies all PHP files.
 
-        @if(Alert::title())<strong>{{Alert::title()}}</strong>@endif {{Alert::message()}}
-
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-@endif
-```
-
+We've kept attribution comments terse, so we ask that you do not actively work
+to remove them from files, especially code. They're a great way for folks to
+learn about Alert.
 
