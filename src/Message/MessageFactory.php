@@ -14,7 +14,9 @@ class MessageFactory
     public static function make(Session $session, string $type, ...$args): MessageInterface
     {
         $class = Type::clasname($type);
-
+if($type == 'alert-bag') {
+    dd($class);
+}
         if (!class_exists($class)) {
             throw new Exception("Alert type '$class' class not found ");
         }

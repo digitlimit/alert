@@ -2,20 +2,19 @@
     $name  = $attributes->get('name', '');
     $tag   = $attributes->get('tag', $defaultTag);
     $field = $alert->named('field', $name, $tag) ?? $alert->tagged('field', $tag);
+    $bag   = $alert->tagged('bag', $tag);
 @endphp
 
 @if($slot->isNotEmpty())
     {{ $slot }}
-@elseif($field)
-    @if(($name && $field->name == $name) || empty($name))
-        <div {{ $attributes->merge(['class' => 'form-text text-'.$field->level]) }}>
-            {{ $error ?? $field->message }}
-        </div>
-    @elseif($field->messageFor($name))
-        <div {{ $attributes->merge(['class' => 'form-text text-'.$field->level]) }}>
-            {{ $field->messageFor($name) }}
-        </div>
-    @endif
+@elseif($field && $field->name == $name)
+    <div {{ $attributes->merge(['class' => 'form-text text-'.$field->level]) }}>
+        {{ $error ?? $field->message }}
+    </div>
+@elseif($bag && $bag->messageFor($name))
+    <div {{ $attributes->merge(['class' => 'form-text text-'.$bag->level]) }}>
+        {{ $bag->messageFor($name) }}
+    </div>
 @elseif(isset($errors))
     @php
         $level = $field->level ?? 'danger';

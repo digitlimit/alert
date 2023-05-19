@@ -2,15 +2,20 @@
 
 namespace Digitlimit\Alert;
 
+use Exception;
+use Illuminate\Validation\Validator;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\Traits\Macroable;
+
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Helpers\Type;
 use Digitlimit\Alert\Message\MessageFactory;
 use Digitlimit\Alert\Message\MessageInterface;
-use Exception;
-use Illuminate\Validation\Validator;
 
 class Alert
 {
+    use Macroable;
+    
     /**
      * The name of the default type tag.
      */
@@ -86,15 +91,25 @@ class Alert
     /**
      * Fetch the field alert.
      */
-    public function field(
-        string $message = null,
-        ?Validator $validator = null
-    ): MessageInterface {
+    public function field(string $message=null) : MessageInterface 
+    {
         return MessageFactory::make(
             $this->session,
             'field',
-            $message,
-            $validator
+            $message
+        );
+    }
+
+    /**
+     * Fetch the field bag alert.
+     */
+    public function fieldBag(
+        Validator|MessageBag $bag = null
+    ) : MessageInterface {
+        return MessageFactory::make(
+            $this->session,
+            'bag',
+            $bag
         );
     }
 

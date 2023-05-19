@@ -68,8 +68,8 @@ class AlertServiceProvider extends ServiceProvider
 
         $types = config('alert.types');
 
-        foreach ($types as $name => $type) {
-            Blade::component($name, $type['component']);
+        foreach ($types as $type) {
+            Blade::component($type['view'], $type['component']);
         }
     }
 }

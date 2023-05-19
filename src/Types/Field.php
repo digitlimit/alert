@@ -19,11 +19,6 @@ class Field extends AbstractMessage implements MessageInterface
     public ?string $name = null;
 
     /**
-     * Field message back.
-     */
-    public MessageBag $messages;
-
-    /**
      * Create a new field alert instance.
      *
      * @return void
@@ -33,7 +28,6 @@ class Field extends AbstractMessage implements MessageInterface
         public ?string $message
     ) {
         $this->id(Helper::randomString());
-        $this->messages = new MessageBag();
     }
 
     /**
@@ -52,34 +46,6 @@ class Field extends AbstractMessage implements MessageInterface
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * Set messages.
-     */
-    public function messages(MessageBag $messages): self
-    {
-        $this->messages = $messages;
-
-        return $this;
-    }
-
-    /**
-     * Set errors.
-     */
-    public function errors(Validator $validator): self
-    {
-        $this->messages = $validator->errors();
-
-        return $this;
-    }
-
-    /**
-     * Fetch message for a given field name.
-     */
-    public function messageFor(string $name): string
-    {
-        return $this->messages->first($name);
     }
 
     /**
@@ -102,12 +68,6 @@ class Field extends AbstractMessage implements MessageInterface
     {
         $this->message = $message ?? $this->message;
         $this->level = $level ?? $this->level;
-
-        if ($this->messages->isEmpty() && empty($this->name)) {
-            throw new Exception(
-                'Messages or field name is required. Hint: messages($validator) or name($name)'
-            );
-        }
 
         $sessionKey = SessionKey::key($this->key(), $this->getTag());
         $this->session->flash($sessionKey, $this);
