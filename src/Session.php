@@ -33,7 +33,7 @@ class Session implements SessionInterface
     }
 
     /**
-     * Remove alert from store
+     * Remove alert from store.
      */
     public function forget(string $key): void
     {

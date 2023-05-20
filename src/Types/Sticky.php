@@ -5,10 +5,10 @@ namespace Digitlimit\Alert\Types;
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Component\Button;
 use Digitlimit\Alert\Helpers\Helper;
+use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\SessionInterface;
-use Digitlimit\Alert\Helpers\SessionKey;
 
 class Sticky extends AbstractMessage implements MessageInterface
 {
@@ -26,7 +26,7 @@ class Sticky extends AbstractMessage implements MessageInterface
         protected SessionInterface $session,
         public ?string $message
     ) {
-        $this->id($this->key() . '-' . Helper::randomString());
+        $this->id($this->key().'-'.Helper::randomString());
         $this->action = new Button();
     }
 
@@ -49,7 +49,7 @@ class Sticky extends AbstractMessage implements MessageInterface
     }
 
     /**
-     * Put alert in the store
+     * Put alert in the store.
      */
     public function flash(string $message = null, string $level = null): void
     {
@@ -61,13 +61,13 @@ class Sticky extends AbstractMessage implements MessageInterface
     }
 
     /**
-     * Remove alert from the store
+     * Remove alert from the store.
      */
-    public function forget(string $tag=null): void
+    public function forget(string $tag = null): void
     {
         $tag = $tag ?? $this->getTag();
 
-        if(empty($tag)) {
+        if (empty($tag)) {
             $tag = Alert::DEFAULT_TAG;
         }
 
