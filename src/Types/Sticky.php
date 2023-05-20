@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Component\Button;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
@@ -66,9 +67,11 @@ class Sticky extends AbstractMessage implements MessageInterface
     {
         $tag = $tag ?? $this->getTag();
 
-        if(!empty($tag)) {
-            $sessionKey = SessionKey::key($this->key(), $tag);
-            $this->session->forget($sessionKey, $this);
+        if(empty($tag)) {
+            $tag = Alert::DEFAULT_TAG;
         }
+
+        $sessionKey = SessionKey::key($this->key(), $tag);
+        $this->session->forget($sessionKey, $this);
     }
 }
