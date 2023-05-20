@@ -9,13 +9,13 @@ It's designed to make flashing messages in Laravel Applications a breeze, with a
 
 ## Quick Start
 
-1. Install Alert with composer:
+> #### 1. Install Alert with composer:
 
 ```php
 composer require digitlimit/alert
 ```
 
-2. Somewhere in the blade template
+> #### 2. Somewhere in the blade template
 
 ```html
 <x-alert-message />
@@ -46,7 +46,7 @@ Example:
 NB: At the moment the alert components are built with Twitter Bootstrap 5, and can be customized to use other CSS classes.
 Need to ensure bootstrap is included on the page.
 
-3. Somewhere in the application
+> #### 3. Somewhere in the application
 
 ```php
 <?php
@@ -68,7 +68,7 @@ class DashboardController extends Controller
 }
 ```
 
-4. Result
+> #### 4. Result
 
 <img width="1052" alt="image" src="https://github.com/digitlimit/alert/assets/2041419/5cd28524-d78c-413a-a425-a92be1796e18">
 
