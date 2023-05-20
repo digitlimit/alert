@@ -50,7 +50,7 @@ class Modal extends AbstractMessage implements MessageInterface
         protected SessionInterface $session,
         public ?string $message
     ) {
-        $this->id($this->key() . '-' . Helper::randomString());
+        $this->id($this->key().'-'.Helper::randomString());
         $this->action = new Button();
         $this->cancel = new Button();
     }

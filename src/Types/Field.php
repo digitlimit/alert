@@ -25,7 +25,7 @@ class Field extends AbstractMessage implements MessageInterface
         protected SessionInterface $session,
         public ?string $message
     ) {
-        $this->id($this->key() . '-' . Helper::randomString());
+        $this->id($this->key().'-'.Helper::randomString());
     }
 
     /**
@@ -67,8 +67,8 @@ class Field extends AbstractMessage implements MessageInterface
         $this->message = $message ?? $this->message;
         $this->level = $level ?? $this->level;
 
-        if(empty($this->name)) {
-            throw new Exception("Field name is required");
+        if (empty($this->name)) {
+            throw new Exception('Field name is required');
         }
 
         $sessionKey = SessionKey::key($this->key(), $this->getTag());

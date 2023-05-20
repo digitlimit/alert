@@ -2,7 +2,6 @@
 
 namespace Digitlimit\Alert;
 
-use Digitlimit\Alert\Alert;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -77,12 +76,11 @@ class AlertServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register some helper macros
+     * Register some helper macros.
      */
     protected function registerMacros(): void
     {
-        Alert::macro('stickForget', function(string $tag=null)
-        {
+        Alert::macro('stickForget', function (string $tag = null) {
             app(Alert::class)
                 ->sticky()
                 ->forget($tag);
