@@ -6,7 +6,7 @@ use Digitlimit\Alert\Component\Button;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\Session;
+use Digitlimit\Alert\SessionInterface;
 use Illuminate\View\View;
 
 class Modal extends AbstractMessage implements MessageInterface
@@ -47,7 +47,7 @@ class Modal extends AbstractMessage implements MessageInterface
      * @return void
      */
     public function __construct(
-        protected Session $session,
+        protected SessionInterface $session,
         public ?string $message
     ) {
         $this->id($this->key() . '-' . Helper::randomString());

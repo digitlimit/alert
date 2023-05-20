@@ -5,7 +5,7 @@ namespace Digitlimit\Alert\Types;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\Session;
+use Digitlimit\Alert\SessionInterface;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator;
 
@@ -22,7 +22,7 @@ class FieldBag extends AbstractMessage implements MessageInterface
      * @return void
      */
     public function __construct(
-        protected Session $session,
+        protected SessionInterface $session,
         Validator|MessageBag $bag = null
     ) {
         $this->id($this->key() . '-' . Helper::randomString());

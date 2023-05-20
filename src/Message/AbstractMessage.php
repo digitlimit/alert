@@ -4,7 +4,7 @@ namespace Digitlimit\Alert\Message;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\SessionKey;
-use Digitlimit\Alert\Session;
+use Digitlimit\Alert\SessionInterface;
 use Digitlimit\Alert\Traits\Levelable;
 
 abstract class AbstractMessage implements MessageInterface
@@ -17,7 +17,7 @@ abstract class AbstractMessage implements MessageInterface
     /**
      * Alert store.
      */
-    protected Session $session;
+    protected SessionInterface $session;
 
     /**
      * Alert unique ID.

@@ -5,7 +5,7 @@ namespace Digitlimit\Alert\Types;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\Session;
+use Digitlimit\Alert\SessionInterface;
 
 class Notify extends AbstractMessage implements MessageInterface
 {
@@ -20,7 +20,7 @@ class Notify extends AbstractMessage implements MessageInterface
      * @return void
      */
     public function __construct(
-        protected Session $session,
+        protected SessionInterface $session,
         public ?string $message
     ) {
         $this->id($this->key() . '-' . Helper::randomString());
