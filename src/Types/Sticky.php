@@ -6,7 +6,8 @@ use Digitlimit\Alert\Component\Button;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use  Digitlimit\Alert\Session;
+use Digitlimit\Alert\SessionInterface;
+use Digitlimit\Alert\Helpers\SessionKey;
 
 class Sticky extends AbstractMessage implements MessageInterface
 {
@@ -21,7 +22,7 @@ class Sticky extends AbstractMessage implements MessageInterface
      * @return void
      */
     public function __construct(
-        protected Session $session,
+        protected SessionInterface $session,
         public ?string $message
     ) {
         $this->id($this->key() . '-' . Helper::randomString());
@@ -44,5 +45,30 @@ class Sticky extends AbstractMessage implements MessageInterface
         $this->action = new Button($label, $link, $attributes);
 
         return $this;
+    }
+
+    /**
+     * Put alert in the store
+     */
+    public function flash(string $message = null, string $level = null): void
+    {
+        $this->message = $message ?? $this->message;
+        $this->level = $level ?? $this->level;
+
+        $sessionKey = SessionKey::key($this->key(), $this->getTag());
+        $this->session->put($sessionKey, $this);
+    }
+
+    /**
+     * Remove alert from the store
+     */
+    public function forget(string $tag=null): void
+    {
+        $tag = $tag ?? $this->getTag();
+
+        if(!empty($tag)) {
+            $sessionKey = SessionKey::key($this->key(), $tag);
+            $this->session->forget($sessionKey, $this);
+        }
     }
 }

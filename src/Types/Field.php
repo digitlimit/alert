@@ -6,10 +6,8 @@ use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\Session;
+use Digitlimit\Alert\SessionInterface;
 use Exception;
-use Illuminate\Support\MessageBag;
-use Illuminate\Validation\Validator;
 
 class Field extends AbstractMessage implements MessageInterface
 {
@@ -24,7 +22,7 @@ class Field extends AbstractMessage implements MessageInterface
      * @return void
      */
     public function __construct(
-        protected Session $session,
+        protected SessionInterface $session,
         public ?string $message
     ) {
         $this->id($this->key() . '-' . Helper::randomString());

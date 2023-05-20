@@ -25,6 +25,22 @@ class Session implements SessionInterface
     }
 
     /**
+     * Put alert in the store.
+     */
+    public function put(string $key, mixed $value): void
+    {
+        $this->store->put($key, $value);
+    }
+
+    /**
+     * Remove alert from store
+     */
+    public function forget(string $key): void
+    {
+        $this->store->forget($key);
+    }
+
+    /**
      * Fetch alert from the store.
      */
     public function get(string $key, mixed $default = null): mixed
