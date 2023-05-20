@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert;
 
+use Digitlimit\Alert\Alert;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +16,8 @@ class AlertServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'alert');
 
         $this->registerComponents();
+
+        $this->registerMacros();
 
         $this->bootForConsole();
     }
@@ -71,5 +74,18 @@ class AlertServiceProvider extends ServiceProvider
         foreach ($types as $type) {
             Blade::component($type['view'], $type['component']);
         }
+    }
+
+    /**
+     * Register some helper macros
+     */
+    protected function registerMacros(): void
+    {
+        Alert::macro('stickForget', function(string $tag=null)
+        {
+            app(Alert::class)
+                ->sticky()
+                ->forget($tag);
+        });
     }
 }
