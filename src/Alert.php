@@ -81,14 +81,6 @@ class Alert
     }
 
     /**
-     * Fetch the normal alert.
-     */
-    public function normal(string $message = null): MessageInterface
-    {
-        return MessageFactory::make($this->session, 'normal', $message);
-    }
-
-    /**
      * Fetch the field alert.
      */
     public function field(string $message=null) : MessageInterface 
@@ -138,11 +130,11 @@ class Alert
     }
 
     /**
-     * Fetch the default alert type, which is the normal alert.
+     * Fetch the default alert type, which is the message alert.
      */
     public function message(string $message): MessageInterface
     {
-        return $this->normal($message);
+        return MessageFactory::make($this->session, 'message', $message);
     }
 
     /**

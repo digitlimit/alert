@@ -7,7 +7,7 @@ use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Session;
 
-class Normal extends AbstractMessage implements MessageInterface
+class Message extends AbstractMessage implements MessageInterface
 {
     /**
      * Create a new nomal alert instance.
@@ -18,14 +18,14 @@ class Normal extends AbstractMessage implements MessageInterface
         protected Session $session,
         public ?string $message
     ) {
-        $this->id(Helper::randomString());
+        $this->id($this->key() . '-' . Helper::randomString());
     }
 
     /**
-     * Message store key for the normal alert.
+     * Message store key for the message alert.
      */
     public function key(): string
     {
-        return 'normal';
+        return 'message';
     }
 }

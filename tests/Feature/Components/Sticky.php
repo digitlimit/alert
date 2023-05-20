@@ -2,7 +2,7 @@
 
 use Digitlimit\Alert\Facades\Alert;
 
-it('can render a default normal alert', function () {
+it('can render a default sticky alert', function () {
     Alert::sticky('Thank you for joining us')
     ->flash();
 

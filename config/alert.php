@@ -12,10 +12,10 @@ return [
     */
 
     'types' => [
-        'normal' => [
-            'view'      => 'alert-normal',
-            'alert'     => \Digitlimit\Alert\Types\Normal::class,
-            'component' => \Digitlimit\Alert\View\Components\Normal::class,
+        'message' => [
+            'view'      => 'alert-message',
+            'alert'     => \Digitlimit\Alert\Types\Message::class,
+            'component' => \Digitlimit\Alert\View\Components\Message::class,
         ],
 
         'field' => [

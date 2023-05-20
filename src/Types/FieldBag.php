@@ -25,7 +25,7 @@ class FieldBag extends AbstractMessage implements MessageInterface
         protected Session $session,
         Validator|MessageBag $bag = null
     ) {
-        $this->id(Helper::randomString());
+        $this->id($this->key() . '-' . Helper::randomString());
 
         if(is_a($bag, Validator::class)) { 
             $this->errors($bag);
