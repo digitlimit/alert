@@ -18,7 +18,7 @@ composer require digitlimit/alert
 2. Somewhere in the blade template
 
 ```html
-<x-alert-normal />
+<x-alert-message />
 ```
 
 Example:
@@ -30,7 +30,7 @@ Example:
   <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
       <div class="col-md-12">
-        <x-alert-normal />
+        <x-alert-message />
       </div>
     </div>
 
