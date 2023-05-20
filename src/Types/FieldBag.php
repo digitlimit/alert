@@ -25,15 +25,15 @@ class FieldBag extends AbstractMessage implements MessageInterface
         protected SessionInterface $session,
         Validator|MessageBag $bag = null
     ) {
-        $this->id($this->key() . '-' . Helper::randomString());
+        $this->id($this->key().'-'.Helper::randomString());
 
-        if(is_a($bag, Validator::class)) { 
+        if (is_a($bag, Validator::class)) {
             $this->errors($bag);
-        } elseif(is_a($bag, MessageBag::class)) {
+        } elseif (is_a($bag, MessageBag::class)) {
             $this->messages($bag);
         } else {
             $this->messages = new MessageBag();
-        } 
+        }
     }
 
     /**
@@ -71,5 +71,4 @@ class FieldBag extends AbstractMessage implements MessageInterface
     {
         return $this->messages->first($name);
     }
-
 }
