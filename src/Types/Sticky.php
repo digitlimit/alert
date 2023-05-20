@@ -67,7 +67,7 @@ class Sticky extends AbstractMessage implements MessageInterface
     {
         $tag = $tag ?? $this->getTag();
 
-        if(!empty($tag)) {
+        if(empty($tag)) {
             $tag = Alert::DEFAULT_TAG;
         }
 
