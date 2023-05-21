@@ -4,8 +4,7 @@ use Digitlimit\Alert\Facades\Alert;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Types\Notify;
 
-it('can create a notify alert', function () 
-{
+it('can create a notify alert', function () {
     Alert::notify('Thank you!')->flash();
 
     $default = Alert::default('notify');
@@ -16,8 +15,7 @@ it('can create a notify alert', function ()
     expect($default->key())->toEqual('notify');
 })->name('types', 'types-notify', 'types-notify');
 
-it('can create a notify alert position', function () 
-{
+it('can create a notify alert position', function () {
     // top right
     Alert::notify('Thank you!')
     ->topRight()
@@ -65,5 +63,4 @@ it('can create a notify alert position', function ()
 
     $default = Alert::default('notify');
     expect($default->position)->toEqual('bottom-0 start-50 translate-middle-x');
-
 })->name('types', 'types-notify', 'types-notify-position');
