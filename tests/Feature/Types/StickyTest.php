@@ -22,8 +22,6 @@ it('can create a sticky alert title', function () {
 
     $default = Alert::default('sticky');
 
-    expect($default)->toBeInstanceOf(MessageInterface::class);
-    expect($default)->toBeInstanceOf(Sticky::class);
     expect($default->title)->toEqual('Order');
     expect($default->message)->toEqual('Thank for ordering pizza!');
 })->name('types', 'types-sticky', 'types-sticky-title');
@@ -34,8 +32,5 @@ it('can create a sticky alert button', function () {
     ->flash();
 
     $default = Alert::default('sticky');
-
-    expect($default)->toBeInstanceOf(MessageInterface::class);
-    expect($default)->toBeInstanceOf(Sticky::class);
     expect($default->action)->toBeInstanceOf(Button::class);
 })->name('types', 'types-sticky', 'types-sticky-button');

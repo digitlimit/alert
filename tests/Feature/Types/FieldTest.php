@@ -4,7 +4,7 @@ use Digitlimit\Alert\Facades\Alert;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Types\Field;
 
-it('can create a field alert', function () {
+it('can create an alert', function () {
     Alert::field('Invalid firstname')
         ->name('firstname')
         ->flash();
