@@ -26,9 +26,11 @@
         </div>
     @enderror
 
-    @error($name)
-        <div {{ $attributes->merge(['class' => 'form-text text-'.$level ]) }}>
-            {{ $errors->first($name) }}
-        </div>
-    @enderror
+    @if(empty($tag))
+        @error($name)
+            <div {{ $attributes->merge(['class' => 'form-text text-'.$level ]) }}>
+                {{ $errors->first($name) }}
+            </div>
+        @enderror
+    @endif
 @endif
