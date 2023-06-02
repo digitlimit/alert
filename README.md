@@ -4,8 +4,9 @@
 
 > Version 2.0
 
-Alert is Laravel package for displaying different types of messages in Laravel application views.
-It's designed to make flashing messages in Laravel Applications a breeze, with a lot of easy to use and fluent methods.
+Alert is a Laravel package for displaying different types of messages in Laravel application views. It's designed to make flashing messages in Laravel Applications a breeze, with a lot of easy-to-use and fluent methods.
+
+The alert is pretty easy to use, customize and extend. There are 5 out-of-box alert types, fortunately, you can easily create custom types.
 
 ## Quick Start
 
