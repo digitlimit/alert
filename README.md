@@ -6,7 +6,7 @@
 
 Alert is a Laravel package for displaying different types of messages in Laravel application views. It's designed to make flashing messages in Laravel Applications a breeze, with a lot of easy-to-use and fluent methods.
 
-The alert is pretty easy to use, customize and extend. There are 5 out-of-box alert types, fortunately, you can easily create custom types.
+The alert is pretty easy to use, customize and extend. There are 6 out-of-box alert types, which include **Message Alert**, **Sticky Alert**, **Field Alert**, **FieldBag Alert**,** Modal Alert** and **Notify Alert**. Fortunately, you can easily create custom types. The package can be easily extended with macros.
 
 ## Quick Start
 
