@@ -15,7 +15,7 @@ class MessageFactory
     {
         $class = Type::clasname($type);
 
-        if (! class_exists($class)) {
+        if (!class_exists($class)) {
             throw new Exception("Alert type '$class' class not found ");
         }
 

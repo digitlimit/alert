@@ -1,6 +1,6 @@
 <?php
 
-if (! function_exists('alert')) {
+if (!function_exists('alert')) {
     /**
      * Alert helper function that creates an instance of alert.
      */
@@ -8,7 +8,7 @@ if (! function_exists('alert')) {
     {
         $alert = app('alert');
 
-        if (! is_null($message)) {
+        if (!is_null($message)) {
             return $alert
                 ->message($message)
                 ->title($title)
