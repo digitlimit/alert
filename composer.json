@@ -31,7 +31,8 @@
         "phpunit/phpunit": "^10.0",
         "orchestra/testbench": "^8.5",
         "nunomaduro/collision": "^7.5",
-        "pestphp/pest": "^2.5"
+        "pestphp/pest": "^2.5",
+        "laravel/pint": "^1.10"
     },
     "autoload": {
         "psr-4": {
