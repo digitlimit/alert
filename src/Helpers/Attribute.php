@@ -16,6 +16,6 @@ class Attribute
             return "$key=\"$value\"";
         }, array_keys($attributes));
 
-        return join(' ', $newAttributes);
+        return implode(' ', $newAttributes);
     }
 }

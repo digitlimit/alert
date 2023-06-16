@@ -48,7 +48,7 @@ class Type
     {
         $types = self::types();
 
-        return  $types[$type] ?? $types[self::prefixed($type)];
+        return $types[$type] ?? $types[self::prefixed($type)];
     }
 
     /**
@@ -56,7 +56,7 @@ class Type
      */
     public static function clasname(string $type): string
     {
-        if (!self::exists($type)) {
+        if (! self::exists($type)) {
             throw new Exception("The alert type '$type' does not exist in config");
         }
 
