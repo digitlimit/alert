@@ -11,6 +11,10 @@ use Illuminate\Support\MessageBag;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Validation\Validator;
 
+/**
+ * Class Alert
+ * @package Digitlimit\Alert
+ */
 class Alert
 {
     use Macroable;

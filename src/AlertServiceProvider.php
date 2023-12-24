@@ -5,6 +5,10 @@ namespace Digitlimit\Alert;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class AlertServiceProvider
+ * @package Digitlimit\Alert
+ */
 class AlertServiceProvider extends ServiceProvider
 {
     /**

@@ -2,6 +2,10 @@
 
 namespace Digitlimit\Alert;
 
+/**
+ * Interface ConfigInterface
+ * @package Digitlimit\Alert
+ */
 interface ConfigInterface
 {
     /**
