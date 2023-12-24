@@ -102,6 +102,11 @@ We will behave ourselves if you behave yourselves. For more details see our
 Please read through our [contributing guidelines](./CONTRIBUTING.md).  Included
 are directions for opening issues.
 
+## Maintainers
+
+The alert package is currently maintained by [Emeka Mbah](https://github.com/digitlimit). 
+If you have any questions please don't hesitate to create an issue on this repo.
+
 ## Versioning
 
 Alert will be maintained under the Semantic Versioning guidelines as much as possible. Releases will be numbered
