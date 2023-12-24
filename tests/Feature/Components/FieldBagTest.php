@@ -7,7 +7,7 @@ it('can render validation errors for the field view component', function () {
         ['firstname' => '', 'lastname' => ''],
         [
             'firstname' => 'required',
-            'lastname'  => 'required',
+            'lastname' => 'required',
         ]
     );
 

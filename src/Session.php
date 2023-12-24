@@ -6,7 +6,6 @@ use Illuminate\Session\Store;
 
 /**
  * Class Session
- * @package Digitlimit\Alert
  */
 class Session implements SessionInterface
 {

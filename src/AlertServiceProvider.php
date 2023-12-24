@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 /**
  * Class AlertServiceProvider
- * @package Digitlimit\Alert
  */
 class AlertServiceProvider extends ServiceProvider
 {
@@ -84,7 +83,7 @@ class AlertServiceProvider extends ServiceProvider
      */
     protected function registerMacros(): void
     {
-        Alert::macro('stickForget', function (string $tag = null) {
+        Alert::macro('stickForget', function (?string $tag = null) {
             app(Alert::class)
                 ->sticky()
                 ->forget($tag);

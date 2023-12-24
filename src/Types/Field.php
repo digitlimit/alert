@@ -62,7 +62,7 @@ class Field extends AbstractMessage implements MessageInterface
     /**
      * Flash field instance to store.
      */
-    public function flash(string $message = null, string $level = null): void
+    public function flash(?string $message = null, ?string $level = null): void
     {
         $this->message = $message ?? $this->message;
         $this->level = $level ?? $this->level;

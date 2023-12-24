@@ -66,7 +66,7 @@ class Modal extends AbstractMessage implements MessageInterface
     /**
      * Set the action button.
      */
-    public function action(string $label, string $link = null, array $attributes = []): self
+    public function action(string $label, ?string $link = null, array $attributes = []): self
     {
         $this->action = new Button($label, $link, $attributes);
 
@@ -76,7 +76,7 @@ class Modal extends AbstractMessage implements MessageInterface
     /**
      * Set the cancel button.
      */
-    public function cancel(string $label, string $link = null, array $attributes = []): self
+    public function cancel(string $label, ?string $link = null, array $attributes = []): self
     {
         $this->cancel = new Button($label, $link, $attributes);
 

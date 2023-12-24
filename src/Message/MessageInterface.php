@@ -32,5 +32,5 @@ interface MessageInterface
     /**
      * Flash the alert to store.
      */
-    public function flash(string $message = null, string $level = null): void;
+    public function flash(?string $message = null, ?string $level = null): void;
 }

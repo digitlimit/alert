@@ -4,7 +4,6 @@ namespace Digitlimit\Alert;
 
 /**
  * Interface SessionInterface
- * @package Digitlimit\Alert
  */
 interface SessionInterface
 {

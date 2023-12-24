@@ -111,7 +111,7 @@ abstract class AbstractMessage implements MessageInterface
      * Flash alert to store.
      * Its a temporal store that is deleted once pulled/fetched.
      */
-    public function flash(string $message = null, string $level = null): void
+    public function flash(?string $message = null, ?string $level = null): void
     {
         $this->message = $message ?? $this->message;
         $this->level = $level ?? $this->level;

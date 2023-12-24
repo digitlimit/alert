@@ -1,72 +1,72 @@
 {
-    "name": "digitlimit/alert",
-    "description": "An easy way of flashing messages in Laravel Application",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Emeka Mbah",
-            "email": "frankemeks77@yahoo.com",
-            "homepage": "https://emekambah.medium.com"
-        }
-    ],
-    "homepage": "https://github.com/digitlimit/alert",
-    "keywords": [
-        "laravel",
-        "views",
-        "flash",
-        "messages",
-        "errors",
-        "validation",
-        "error bags"
-    ],
-    "require": {
-        "ext-json": "*",
-        "php": "^7.4|^8.0",
-        "illuminate/contracts": "^7.20|^8.19|^9.0|^10.0",
-        "illuminate/support": "^7.20|^8.19|^9.0|^10.0"
+  "name": "digitlimit/alert",
+  "description": "An easy way of flashing messages in Laravel Application",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Emeka Mbah",
+      "email": "frankemeks77@yahoo.com",
+      "homepage": "https://emekambah.medium.com"
+    }
+  ],
+  "homepage": "https://github.com/digitlimit/alert",
+  "keywords": [
+    "laravel",
+    "views",
+    "flash",
+    "messages",
+    "errors",
+    "validation",
+    "error bags"
+  ],
+  "require": {
+    "ext-json": "*",
+    "php": "^8.0",
+    "illuminate/contracts": "^8.19|^9.0|^10.0",
+    "illuminate/support": "^8.19|^9.0|^10.0"
+  },
+  "require-dev": {
+    "guzzlehttp/guzzle": "^7.3",
+    "laravel/framework": "^8.19|^9.0|^10.0",
+    "phpunit/phpunit": "^10.0",
+    "orchestra/testbench": "^8.5",
+    "nunomaduro/collision": "^7.5",
+    "pestphp/pest": "^2.5",
+    "laravel/pint": "^1.10"
+  },
+  "autoload": {
+    "psr-4": {
+      "Digitlimit\\Alert\\": "src/"
     },
-    "require-dev": {
-        "guzzlehttp/guzzle": "^7.3",
-        "laravel/framework": "^7.20|^8.19|^9.0|^10.0",
-        "phpunit/phpunit": "^10.0",
-        "orchestra/testbench": "^8.5",
-        "nunomaduro/collision": "^7.5",
-        "pestphp/pest": "^2.5",
-        "laravel/pint": "^1.10"
-    },
-    "autoload": {
-        "psr-4": {
-            "Digitlimit\\Alert\\": "src/"
-        },
-        "files": [
-            "src/Helpers.php"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Digitlimit\\Alert\\Tests\\": "tests"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Digitlimit\\Alert\\AlertServiceProvider"
-            ],
-            "aliases": {
-                "Alert": "Digitlimit\\Alert\\Facades\\Alert"
-            }
-        }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "@php vendor/bin/testbench package:discover --ansi"
-        ]
-    },
-    "config": {
-        "allow-plugins": {
-            "pestphp/pest-plugin": true
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "files": [
+      "src/Helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Digitlimit\\Alert\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Digitlimit\\Alert\\AlertServiceProvider"
+      ],
+      "aliases": {
+        "Alert": "Digitlimit\\Alert\\Facades\\Alert"
+      }
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "@php vendor/bin/testbench package:discover --ansi"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

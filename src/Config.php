@@ -6,7 +6,6 @@ use Illuminate\Config\Repository;
 
 /**
  * Class Config
- * @package Digitlimit\Alert
  */
 class Config implements ConfigInterface
 {

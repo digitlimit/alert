@@ -17,8 +17,8 @@ it('can create a sticky alert', function () {
 
 it('can create a sticky alert title', function () {
     Alert::sticky('Thank for ordering pizza!')
-    ->title('Order')
-    ->flash();
+        ->title('Order')
+        ->flash();
 
     $default = Alert::default('sticky');
 
@@ -28,8 +28,8 @@ it('can create a sticky alert title', function () {
 
 it('can create a sticky alert button', function () {
     Alert::sticky()
-    ->action('Yes')
-    ->flash();
+        ->action('Yes')
+        ->flash();
 
     $default = Alert::default('sticky');
     expect($default->action)->toBeInstanceOf(Button::class);
