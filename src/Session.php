@@ -2,26 +2,16 @@
 
 namespace Digitlimit\Alert;
 
-use Illuminate\Session\Store;
+use Illuminate\Support\Facades\Session as Store;
 
 class Session implements SessionInterface
 {
-    /**
-     * The store.
-     */
-    private Store $store;
-
-    public function __construct(Store $store)
-    {
-        $this->store = $store;
-    }
-
     /**
      * Flash alert to store.
      */
     public function flash(string $key, mixed $value): void
     {
-        $this->store->flash($key, $value);
+        Store::flash($key, $value);
     }
 
     /**
@@ -29,7 +19,7 @@ class Session implements SessionInterface
      */
     public function put(string $key, mixed $value): void
     {
-        $this->store->put($key, $value);
+        Store::put($key, $value);
     }
 
     /**
@@ -37,7 +27,7 @@ class Session implements SessionInterface
      */
     public function forget(string $key): void
     {
-        $this->store->forget($key);
+        Store::forget($key);
     }
 
     /**
@@ -45,6 +35,6 @@ class Session implements SessionInterface
      */
     public function get(string $key, mixed $default = null): mixed
     {
-        return $this->store->get($key, $default);
+        return Store::get($key, $default);
     }
 }
