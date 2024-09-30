@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert\View\Components;
+namespace Digitlimit\Alert\View\Components\Themes\Bootstrap5;
 
 use Closure;
 use Digitlimit\Alert\Alert;
