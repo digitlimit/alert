@@ -2,7 +2,6 @@
 
 namespace Digitlimit\Alert\View\Components\Themes\Bootstrap5;
 
-use Closure;
 use Digitlimit\Alert\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -30,8 +29,8 @@ class Message extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string
+    public function render(): View
     {
-        return view('alert::components.message');
+        return view('alert::components.themes.bootstrap5.message');
     }
 }

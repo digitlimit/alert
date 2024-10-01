@@ -26,7 +26,6 @@ return [
     */
     'themes' => [
         'bootstrap5' => [
-            'views'      => 'components/themes/bootstrap5',
             'components' => 'Digitlimit\Alert\View\Components\Themes\Bootstrap5',
             'types' => [
                 'message' => [
