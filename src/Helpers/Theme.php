@@ -2,8 +2,6 @@
 
 namespace Digitlimit\Alert\Helpers;
 
-use Digitlimit\Alert\ConfigInterface;
-
 class Theme
 {
     public static function name(): string
