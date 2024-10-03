@@ -1,7 +1,7 @@
 <?php
 
-use Digitlimit\Alert\View\Components\Themes;
 use Digitlimit\Alert\Types;
+use Digitlimit\Alert\View\Components\Themes;
 
 return [
 
@@ -27,7 +27,7 @@ return [
     'themes' => [
         'classic' => [
             'components' => 'Digitlimit\Alert\View\Components\Themes\Classic',
-            'types' => [
+            'types'      => [
                 'message' => [
                     'view'      => 'alert-message',
                     'alert'     => Types\Message::class,
@@ -67,7 +67,7 @@ return [
         ],
         'bootstrap5' => [
             'components' => 'Digitlimit\Alert\View\Components\Themes\Bootstrap5',
-            'types' => [
+            'types'      => [
                 'message' => [
                     'view'      => 'alert-message',
                     'alert'     => Types\Message::class,

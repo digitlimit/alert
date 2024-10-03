@@ -2,8 +2,8 @@
 
 namespace Digitlimit\Alert;
 
-use Exception;
 use Digitlimit\Alert\Helpers\Theme;
+use Exception;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -65,13 +65,14 @@ class AlertServiceProvider extends ServiceProvider
 
     /**
      * Register alert components.
+     *
      * @throws Exception
      */
     protected function registerComponents(): void
     {
         $theme = Theme::theme();
 
-        if (empty($theme)){
+        if (empty($theme)) {
             throw new Exception('Invalid alert theme configuration');
         }
 

@@ -38,6 +38,7 @@ class Field extends AbstractMessage implements MessageInterface
 
     /**
      * Set field name.
+     *
      * @throws Exception
      */
     public function name(string $name): self
