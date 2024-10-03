@@ -44,6 +44,7 @@ class Sticky extends AbstractMessage implements MessageInterface
     public function action(string $label, string $link = null, array $attributes = []): self
     {
         $this->action = new Button($label, $link, $attributes);
+        $this->flash();
 
         return $this;
     }

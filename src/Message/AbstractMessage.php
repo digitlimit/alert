@@ -55,6 +55,7 @@ abstract class AbstractMessage implements MessageInterface
     public function id(string|int $id): self
     {
         $this->id = $id;
+        $this->flash();
 
         return $this;
     }
@@ -65,6 +66,7 @@ abstract class AbstractMessage implements MessageInterface
     public function level(string $level): self
     {
         $this->level = $level;
+        $this->flash();
 
         return $this;
     }
@@ -75,6 +77,7 @@ abstract class AbstractMessage implements MessageInterface
     public function message(string $message): self
     {
         $this->message = $message;
+        $this->flash();
 
         return $this;
     }
@@ -85,6 +88,7 @@ abstract class AbstractMessage implements MessageInterface
     public function title(string $title): self
     {
         $this->title = $title;
+        $this->flash();
 
         return $this;
     }
@@ -95,6 +99,7 @@ abstract class AbstractMessage implements MessageInterface
     public function tag(string $tag): self
     {
         $this->tag = $tag;
+        $this->flash();
 
         return $this;
     }

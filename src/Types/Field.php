@@ -38,10 +38,12 @@ class Field extends AbstractMessage implements MessageInterface
 
     /**
      * Set field name.
+     * @throws Exception
      */
     public function name(string $name): self
     {
         $this->name = $name;
+        $this->flash();
 
         return $this;
     }
