@@ -49,7 +49,7 @@ if (! function_exists('modal')) {
 if (! function_exists('notify')) {
     function notify(string $message, string $title = null): mixed
     {
-        $alert = app('alert')->modal($message);
+        $alert = app('alert')->notify($message);
 
         if($title) {
             $alert->title($title);
@@ -62,7 +62,7 @@ if (! function_exists('notify')) {
 if (! function_exists('sticky')) {
     function sticky(string $message, string $title = null): mixed
     {
-        $alert = app('alert')->modal($message);
+        $alert = app('alert')->sticky($message);
 
         if($title) {
             $alert->title($title);
