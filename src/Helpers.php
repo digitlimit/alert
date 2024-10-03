@@ -22,6 +22,52 @@ if (! function_exists('field')) {
         return app('alert')
             ->field($message)
             ->name($name);
-           
+    }
+}
+
+if (! function_exists('fieldBag')) {
+    function fieldBag(Validator|MessageBag $bag): mixed
+    {
+        return app('alert')
+            ->fieldBag($bag);
+    }
+}
+
+if (! function_exists('modal')) {
+    function modal(string $message, string $title = null): mixed
+    {
+        $alert = app('alert')->modal($message);
+
+        if($title) {
+            $alert->title($title);
+        }
+
+        return $alert;
+    }
+}
+
+if (! function_exists('notify')) {
+    function notify(string $message, string $title = null): mixed
+    {
+        $alert = app('alert')->modal($message);
+
+        if($title) {
+            $alert->title($title);
+        }
+
+        return $alert;
+    }
+}
+
+if (! function_exists('sticky')) {
+    function sticky(string $message, string $title = null): mixed
+    {
+        $alert = app('alert')->modal($message);
+
+        if($title) {
+            $alert->title($title);
+        }
+
+        return $alert;
     }
 }
