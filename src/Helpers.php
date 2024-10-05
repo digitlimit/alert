@@ -6,7 +6,9 @@ use Illuminate\Validation\Validator;
 if (!function_exists('alert')) {
     function alert(string $message, string $title = null): mixed
     {
-        $alert = app('alert')->message($message);
+        $alert = app('alert')
+            ->message($message)
+            ->info();
 
         if ($title) {
             $alert->title($title);
