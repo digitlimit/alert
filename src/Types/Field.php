@@ -38,10 +38,13 @@ class Field extends AbstractMessage implements MessageInterface
 
     /**
      * Set field name.
+     *
+     * @throws Exception
      */
     public function name(string $name): self
     {
         $this->name = $name;
+        $this->flash();
 
         return $this;
     }
@@ -66,10 +69,6 @@ class Field extends AbstractMessage implements MessageInterface
     {
         $this->message = $message ?? $this->message;
         $this->level = $level ?? $this->level;
-
-        if (empty($this->name)) {
-            throw new Exception('Field name is required');
-        }
 
         $sessionKey = SessionKey::key($this->key(), $this->getTag());
         $this->session->flash($sessionKey, $this);

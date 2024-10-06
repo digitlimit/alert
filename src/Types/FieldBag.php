@@ -50,6 +50,7 @@ class FieldBag extends AbstractMessage implements MessageInterface
     public function messages(MessageBag $messages): self
     {
         $this->messages = $messages;
+        $this->flash();
 
         return $this;
     }
@@ -60,12 +61,13 @@ class FieldBag extends AbstractMessage implements MessageInterface
     public function errors(Validator $validator): self
     {
         $this->messages = $validator->errors();
+        $this->flash();
 
         return $this;
     }
 
     /**
-     * Fetch message for a given field name.
+     * Fetch a message for a given field name.
      */
     public function messageFor(string $name): string
     {

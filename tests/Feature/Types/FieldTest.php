@@ -6,8 +6,7 @@ use Digitlimit\Alert\Types\Field;
 
 it('can create an alert', function () {
     Alert::field('Invalid firstname')
-        ->name('firstname')
-        ->flash();
+        ->name('firstname');
 
     $default = Alert::named('field', 'firstname');
 

@@ -1,8 +1,7 @@
 <?php
 
-namespace Digitlimit\Alert\View\Components;
+namespace Digitlimit\Alert\View\Components\Themes\Bootstrap5;
 
-use Closure;
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Attribute;
 use Illuminate\Contracts\View\View;
@@ -39,9 +38,9 @@ class Sticky extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string
+    public function render(): View
     {
-        return view('alert::components.sticky');
+        return view('alert::components.themes.bootstrap5.sticky');
     }
 
     /**
