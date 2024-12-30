@@ -2,6 +2,8 @@
 
 namespace Digitlimit\Alert;
 
+use Digitlimit\Alert\Helpers\Theme;
+use Exception;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -9,6 +11,8 @@ class AlertServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
+     *
+     * @throws Exception
      */
     public function boot(): void
     {
@@ -33,10 +37,7 @@ class AlertServiceProvider extends ServiceProvider
             return $app->make(Alert::class);
         });
 
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/alert.php',
-            'alert'
-        );
+        $this->mergeConfigFrom(__DIR__.'/../config/alert.php', 'alert');
     }
 
     /**
@@ -63,14 +64,20 @@ class AlertServiceProvider extends ServiceProvider
 
     /**
      * Register alert components.
+     *
+     * @throws Exception
      */
     protected function registerComponents(): void
     {
-        Blade::componentNamespace('Digitlimit\\Alert\View\\Components', 'alert');
+        $theme = Theme::theme();
 
-        $types = config('alert.types');
+        if (empty($theme)) {
+            throw new Exception('Invalid alert theme configuration');
+        }
 
-        foreach ($types as $type) {
+        Blade::componentNamespace($theme['components'], 'alert');
+
+        foreach ($theme['types'] as $type) {
             Blade::component($type['view'], $type['component']);
         }
     }
@@ -80,7 +87,7 @@ class AlertServiceProvider extends ServiceProvider
      */
     protected function registerMacros(): void
     {
-        Alert::macro('stickForget', function (string $tag = null) {
+        Alert::macro('stickForget', function (?string $tag = null) {
             app(Alert::class)
                 ->sticky()
                 ->forget($tag);

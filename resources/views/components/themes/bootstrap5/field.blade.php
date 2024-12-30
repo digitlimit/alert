@@ -8,16 +8,16 @@
 @if($slot->isNotEmpty())
     {{ $slot }}
 @elseif($field && $field->name == $name)
-    <div {{ $attributes->merge(['class' => 'form-text text-'.$field->level]) }}>
-        {{ $error ?? $field->message }}
+    <div {{ $attributes->merge(['class' => 'form-text text-'.$field->getLevel()]) }}>
+        {{ $error ?? $field->getMessage() }}
     </div>
 @elseif($bag && $bag->messageFor($name))
-    <div {{ $attributes->merge(['class' => 'form-text text-'.$bag->level]) }}>
+    <div {{ $attributes->merge(['class' => 'form-text text-'.$bag->getLevel()]) }}>
         {{ $bag->messageFor($name) }}
     </div>
 @elseif(isset($errors))
     @php
-        $level = $field->level ?? 'danger';
+        $level = $field->getLevel() ?? 'danger';
     @endphp
 
     @error($name, $tag)

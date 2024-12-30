@@ -27,7 +27,7 @@ class Sticky extends AbstractMessage implements MessageInterface
         public ?string $message
     ) {
         $this->id($this->key().'-'.Helper::randomString());
-        $this->action = new Button();
+        $this->action = new Button;
     }
 
     /**
@@ -41,9 +41,10 @@ class Sticky extends AbstractMessage implements MessageInterface
     /**
      * Set the action button.
      */
-    public function action(string $label, string $link = null, array $attributes = []): self
+    public function action(string $label, ?string $link = null, array $attributes = []): self
     {
         $this->action = new Button($label, $link, $attributes);
+        $this->flash();
 
         return $this;
     }
@@ -51,11 +52,8 @@ class Sticky extends AbstractMessage implements MessageInterface
     /**
      * Put alert in the store.
      */
-    public function flash(string $message = null, string $level = null): void
+    public function flash(): void
     {
-        $this->message = $message ?? $this->message;
-        $this->level = $level ?? $this->level;
-
         $sessionKey = SessionKey::key($this->key(), $this->getTag());
         $this->session->put($sessionKey, $this);
     }
@@ -63,7 +61,7 @@ class Sticky extends AbstractMessage implements MessageInterface
     /**
      * Remove alert from the store.
      */
-    public function forget(string $tag = null): void
+    public function forget(?string $tag = null): void
     {
         $tag = $tag ?? $this->getTag();
 
@@ -72,6 +70,6 @@ class Sticky extends AbstractMessage implements MessageInterface
         }
 
         $sessionKey = SessionKey::key($this->key(), $tag);
-        $this->session->forget($sessionKey, $this);
+        $this->session->forget($sessionKey);
     }
 }

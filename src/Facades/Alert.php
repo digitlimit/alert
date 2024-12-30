@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static modal(string $string)
  * @method static notify(string $string)
  * @method static sticky(string $string)
- * @method static field(string $string)
+ * @method static field(string $name, string $message)
  * @method static fieldBag($bag)
  * @method static form(string $string, string $string1)
  * @method static success(string $string)

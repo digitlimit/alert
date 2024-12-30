@@ -10,13 +10,13 @@ use Digitlimit\Alert\SessionInterface;
 class Message extends AbstractMessage implements MessageInterface
 {
     /**
-     * Create a new nomal alert instance.
+     * Create a new normal alert instance.
      *
      * @return void
      */
     public function __construct(
         protected SessionInterface $session,
-        public ?string $message
+        public string $message
     ) {
         $this->id($this->key().'-'.Helper::randomString());
     }

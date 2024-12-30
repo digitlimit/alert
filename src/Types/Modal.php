@@ -51,8 +51,8 @@ class Modal extends AbstractMessage implements MessageInterface
         public ?string $message
     ) {
         $this->id($this->key().'-'.Helper::randomString());
-        $this->action = new Button();
-        $this->cancel = new Button();
+        $this->action = new Button;
+        $this->cancel = new Button;
     }
 
     /**
@@ -66,9 +66,10 @@ class Modal extends AbstractMessage implements MessageInterface
     /**
      * Set the action button.
      */
-    public function action(string $label, string $link = null, array $attributes = []): self
+    public function action(string $label, ?string $link = null, array $attributes = []): self
     {
         $this->action = new Button($label, $link, $attributes);
+        $this->flash();
 
         return $this;
     }
@@ -76,9 +77,10 @@ class Modal extends AbstractMessage implements MessageInterface
     /**
      * Set the cancel button.
      */
-    public function cancel(string $label, string $link = null, array $attributes = []): self
+    public function cancel(string $label, ?string $link = null, array $attributes = []): self
     {
         $this->cancel = new Button($label, $link, $attributes);
+        $this->flash();
 
         return $this;
     }
@@ -90,6 +92,7 @@ class Modal extends AbstractMessage implements MessageInterface
         string $class = 'modal-dialog-scrollable'
     ): self {
         $this->scrollable = $class;
+        $this->flash();
 
         return $this;
     }
@@ -100,6 +103,7 @@ class Modal extends AbstractMessage implements MessageInterface
     public function small(string $class = 'modal-sm'): self
     {
         $this->size = $class;
+        $this->flash();
 
         return $this;
     }
@@ -110,6 +114,7 @@ class Modal extends AbstractMessage implements MessageInterface
     public function large(string $class = 'modal-lg'): self
     {
         $this->size = $class;
+        $this->flash();
 
         return $this;
     }
@@ -120,6 +125,7 @@ class Modal extends AbstractMessage implements MessageInterface
     public function extraLarge(string $class = 'modal-xl'): self
     {
         $this->size = $class;
+        $this->flash();
 
         return $this;
     }
@@ -130,6 +136,7 @@ class Modal extends AbstractMessage implements MessageInterface
     public function fullscreen(string $class = 'modal-fullscreen'): self
     {
         $this->size = $class;
+        $this->flash();
 
         return $this;
     }
@@ -140,6 +147,7 @@ class Modal extends AbstractMessage implements MessageInterface
     public function centered(string $class = 'modal-dialog-centered'): self
     {
         $this->position = $class;
+        $this->flash();
 
         return $this;
     }
@@ -150,6 +158,7 @@ class Modal extends AbstractMessage implements MessageInterface
     public function view(View $view): self
     {
         $this->view = $view->render();
+        $this->flash();
 
         return $this;
     }
@@ -160,6 +169,7 @@ class Modal extends AbstractMessage implements MessageInterface
     public function html(string $html): self
     {
         $this->view = $html;
+        $this->flash();
 
         return $this;
     }

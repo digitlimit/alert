@@ -10,7 +10,7 @@
         $id        = $id ?? $notify->id;
         $hasBody   = isset($body) && $body->isNotEmpty();
         $hasHeader = isset($header) && $header->isNotEmpty();
-        $hasTitle  = $hasHeader || $notify->title;
+        $hasTitle  = $hasHeader || $notify->getTitle();
     @endphp
     <div 
         {{ $attributes->merge(['class'   => 'position-fixed p-3 ' . $position]) }}
@@ -22,9 +22,9 @@
                 <div {{ isset($header) ? $header->attributes->class(['toast-header']) : 'class=toast-header' }}>
                     @if ($hasHeader)
                         {{ $header }}
-                    @elseif($notify->title)
-                        <strong class="me-auto {{ $notify->level ? 'text-' . $notify->level : '' }}">
-                            {{ $notify->title }}
+                    @elseif($notify->getTitle())
+                        <strong class="me-auto {{ $notify->getLevel() ? 'text-' . $notify->getLevel() : '' }}">
+                            {{ $notify->getTitle() }}
                         </strong>
                         <small class="text-muted">{{ $notify->subtitle ?? '' }}</small>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -40,8 +40,8 @@
                     <div {{ isset($body) ? $body->attributes->class(['toast-body']) : 'class=toast-body' }}>
                         @if($hasBody)
                             {{ $body }}
-                        @elseif($notify->message)
-                            {{ $notify->message }}
+                        @elseif($notify->getMessage())
+                            {{ $notify->getMessage() }}
                         @endif
                     </div>
 
@@ -53,8 +53,8 @@
                 <div {{ isset($body) ? $body->attributes->class(['toast-body']) : 'class=toast-body' }}>
                     @if($hasBody)
                         {{ $body }}
-                    @elseif($notify->message)
-                        {{ $notify->message }}
+                    @elseif($notify->getMessage())
+                        {{ $notify->getMessage() }}
                     @endif
                 </div>
             @endif

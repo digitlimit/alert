@@ -1,8 +1,7 @@
 <?php
 
-namespace Digitlimit\Alert\View\Components;
+namespace Digitlimit\Alert\View\Components\Themes\Classic;
 
-use Closure;
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Attribute;
 use Illuminate\Contracts\View\View;
@@ -24,7 +23,7 @@ class Sticky extends Component
      * Default action button.
      */
     public array $actionAttributes = [
-        'type'  => 'button',
+        'type' => 'button',
         'class' => 'btn btn-sm btn-primary float-end',
     ];
 
@@ -39,9 +38,9 @@ class Sticky extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string
+    public function render(): View
     {
-        return view('alert::components.sticky');
+        return view('alert::components.themes.classic.sticky');
     }
 
     /**
