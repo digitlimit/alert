@@ -4,7 +4,7 @@ use Digitlimit\Alert\Facades\Alert;
 
 it('can render a default notify alert', function () {
     Alert::notify('Thank you for joining us')
-        ->flash();
+        ;
 
     $this
         ->blade('<x-alert-notify />')
@@ -15,7 +15,7 @@ it('can render a default notify alert', function () {
 it('can render a tagged notify alert', function () {
     Alert::notify('Thank you for joining us')
         ->tag('contact')
-        ->flash();
+        ;
 
     $this
         ->blade('<x-alert-notify tag="contact" />')

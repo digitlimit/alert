@@ -4,8 +4,8 @@ use Digitlimit\Alert\Facades\Alert;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Types\Field;
 
-it('can create an alert', function () {
-    Alert::field('firstname', 'Invalid firstname');
+it('can create an alert with helper', function () {
+    field('firstname', 'Invalid firstname');
 
     $default = Alert::named('field', 'firstname');
 
@@ -16,4 +16,4 @@ it('can create an alert', function () {
         ->and($default->message)
         ->toEqual('Invalid firstname');
 
-})->group('types', 'types-field', 'types-field');
+})->group('types', 'types-field');

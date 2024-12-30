@@ -4,7 +4,7 @@ use Digitlimit\Alert\Facades\Alert;
 
 it('can render a default modal view component', function () {
     Alert::modal('Than you for joining us')
-        ->flash();
+        ;
 
     $this
         ->blade('<x-alert-modal />')
@@ -19,7 +19,7 @@ it('can render a default modal with buttons and title', function () {
         ->centered()
         ->title('Please login')
         ->error()
-        ->flash();
+        ;
 
     $view = $this
         ->blade('<x-alert-modal />');
@@ -35,7 +35,7 @@ it('can render a default modal with buttons and title', function () {
 it('can render a default modal a the right position', function () {
     Alert::modal()
         ->centered('centered')
-        ->flash();
+        ;
 
     $view = $this
         ->blade('<x-alert-modal />');
@@ -47,7 +47,7 @@ it('can render a default modal a the right position', function () {
 it('can render a default modal a the right size', function () {
     Alert::modal()
         ->small()
-        ->flash();
+        ;
 
     $this
         ->blade('<x-alert-modal />')
@@ -55,7 +55,7 @@ it('can render a default modal a the right size', function () {
 
     Alert::modal()
         ->large()
-        ->flash();
+        ;
 
     $this
         ->blade('<x-alert-modal />')
@@ -63,7 +63,7 @@ it('can render a default modal a the right size', function () {
 
     Alert::modal()
         ->extraLarge()
-        ->flash();
+        ;
 
     $this
         ->blade('<x-alert-modal />')
@@ -71,7 +71,7 @@ it('can render a default modal a the right size', function () {
 
     Alert::modal()
         ->fullscreen()
-        ->flash();
+        ;
 
     $this
         ->blade('<x-alert-modal />')

@@ -14,7 +14,7 @@ it('can render validation errors for the field view component', function () {
     Alert::fieldBag($validator)
         ->tag('contact')
         ->error()
-        ->flash();
+        ;
 
     $this
         ->blade('<x-alert-field name="firstname" tag="contact" />')

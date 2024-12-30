@@ -4,7 +4,7 @@ use Digitlimit\Alert\Facades\Alert;
 
 it('can render a default message alert', function () {
     Alert::message('Thank you for joining us')
-        ->flash();
+        ;
 
     $this
         ->blade('<x-alert-message />')

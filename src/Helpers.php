@@ -19,11 +19,15 @@ if (! function_exists('alert')) {
 }
 
 if (! function_exists('field')) {
-    function field(string $name, string $message): mixed
+    function field(string $name, string $message, string $tag = null): mixed
     {
-        return app('alert')
-            ->field($message)
-            ->name($name);
+        $alert = app('alert')->field($name, $message);
+
+        if ($tag) {
+            $alert->tag($tag);
+        }
+
+        return $alert;
     }
 }
 

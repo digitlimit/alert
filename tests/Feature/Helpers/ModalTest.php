@@ -2,18 +2,18 @@
 
 use Digitlimit\Alert\Facades\Alert;
 use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\Types\Message;
+use Digitlimit\Alert\Types\Modal;
 
-it('can create a default alert', function () {
-    Alert::message('Thank you!');
+it('can create a modal alert with helper', function () {
+    modal('Thank you!');
 
-    $default = Alert::default('message');
+    $default = Alert::default('modal');
 
     expect($default)
         ->toBeInstanceOf(MessageInterface::class)
         ->and($default)
-        ->toBeInstanceOf(Message::class)
+        ->toBeInstanceOf(Modal::class)
         ->and($default->message)
         ->toEqual('Thank you!');
 
-})->group('types', 'types-default', 'types-message');
+})->group('types', 'types-modal', 'types-modal');

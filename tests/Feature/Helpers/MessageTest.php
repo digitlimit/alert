@@ -4,8 +4,8 @@ use Digitlimit\Alert\Facades\Alert;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Types\Message;
 
-it('can create a default alert', function () {
-    Alert::message('Thank you!');
+it('can create a default alert with helper', function () {
+    alert('Thank you!');
 
     $default = Alert::default('message');
 
