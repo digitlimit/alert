@@ -7,15 +7,9 @@ use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\SessionInterface;
-use Exception;
 
 class Field extends AbstractMessage implements MessageInterface
 {
-    /**
-     * Field name.
-     */
-    public ?string $name = null;
-
     /**
      * Create a new field alert instance.
      *
@@ -23,7 +17,8 @@ class Field extends AbstractMessage implements MessageInterface
      */
     public function __construct(
         protected SessionInterface $session,
-        public ?string $message
+        public string $name,
+        public string $message
     ) {
         $this->id($this->key().'-'.Helper::randomString());
     }
@@ -34,19 +29,6 @@ class Field extends AbstractMessage implements MessageInterface
     public function key(): string
     {
         return 'field';
-    }
-
-    /**
-     * Set field name.
-     *
-     * @throws Exception
-     */
-    public function name(string $name): self
-    {
-        $this->name = $name;
-        $this->flash();
-
-        return $this;
     }
 
     /**
@@ -65,12 +47,14 @@ class Field extends AbstractMessage implements MessageInterface
     /**
      * Flash field instance to store.
      */
-    public function flash(string $message = null, string $level = null): void
+    public function flash(): void
     {
-        $this->message = $message ?? $this->message;
-        $this->level = $level ?? $this->level;
-
         $sessionKey = SessionKey::key($this->key(), $this->getTag());
+
+        if(empty($this->name) || empty($this->message)) {
+            return;
+        }
+
         $this->session->flash($sessionKey, $this);
     }
 }

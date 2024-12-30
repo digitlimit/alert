@@ -20,7 +20,7 @@
     $hasBody   = isset($body) && $body->isNotEmpty();
     $hasHeader = isset($header) && $header->isNotEmpty();
     $hasFooter = isset($footer) && $footer->isNotEmpty();
-    $hasTitle  = $hasHeader || $modal->title;
+    $hasTitle  = $hasHeader || $modal->getTitle();
   @endphp
   <div 
     {{ $attributes->merge(['id'       => $id]) }}
@@ -36,9 +36,9 @@
           <div {{ isset($header) ? $header->attributes->class(['modal-header']) : 'class=modal-header' }}>
             @if ($hasHeader)
               {{ $header }}
-            @elseif($modal->title)
-              <h5 class="modal-title {{ $modal->level ? 'text-' . $modal->level : '' }}">
-                {{ $modal->title }}
+            @elseif($modal->getTitle())
+              <h5 class="modal-title {{ $modal->getLevel() ? 'text-' . $modal->getLevel() : '' }}">
+                {{ $modal->getTitle() }}
               </h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             @endif
@@ -55,8 +55,8 @@
           <div {{ isset($body) ? $body->attributes->class(['modal-body']) : 'class=modal-body' }}>
             @if($hasBody)
               {{ $body }}
-            @elseif($modal->message)
-              {{ $modal->message }}
+            @elseif($modal->getMessage())
+              {{ $modal->getMessage() }}
             @endif
           </div>
         @endif

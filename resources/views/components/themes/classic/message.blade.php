@@ -7,11 +7,11 @@
     @php
         $id = $id ?? $message->id;
     @endphp
-    <div id="{{$id}}" {{ $attributes->merge(['class' => 'alert alert-dismissible alert-'.$message->level]) }} role="alert">
+    <div id="{{$id}}" {{ $attributes->merge(['class' => 'alert alert-dismissible alert-'.$message->getLevel()]) }} role="alert">
         @if ($slot->isNotEmpty())
             {{ $slot }}
         @else
-            @if($message->title)<strong>{{ $message->title }}</strong>@endif {{ $message->message }}
+            @if($message->getTitle())<strong>{{ $message->getTitle() }}</strong>@endif {{ $message->getMessage() }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         @endif
     </div>
