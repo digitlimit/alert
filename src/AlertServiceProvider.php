@@ -11,6 +11,8 @@ class AlertServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
+     *
+     * @throws Exception
      */
     public function boot(): void
     {
@@ -35,10 +37,7 @@ class AlertServiceProvider extends ServiceProvider
             return $app->make(Alert::class);
         });
 
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/alert.php',
-            'alert'
-        );
+        $this->mergeConfigFrom(__DIR__.'/../config/alert.php', 'alert');
     }
 
     /**
@@ -88,7 +87,7 @@ class AlertServiceProvider extends ServiceProvider
      */
     protected function registerMacros(): void
     {
-        Alert::macro('stickForget', function (string $tag = null) {
+        Alert::macro('stickForget', function (?string $tag = null) {
             app(Alert::class)
                 ->sticky()
                 ->forget($tag);

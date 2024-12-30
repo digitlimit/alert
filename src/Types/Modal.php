@@ -51,8 +51,8 @@ class Modal extends AbstractMessage implements MessageInterface
         public ?string $message
     ) {
         $this->id($this->key().'-'.Helper::randomString());
-        $this->action = new Button();
-        $this->cancel = new Button();
+        $this->action = new Button;
+        $this->cancel = new Button;
     }
 
     /**
@@ -66,7 +66,7 @@ class Modal extends AbstractMessage implements MessageInterface
     /**
      * Set the action button.
      */
-    public function action(string $label, string $link = null, array $attributes = []): self
+    public function action(string $label, ?string $link = null, array $attributes = []): self
     {
         $this->action = new Button($label, $link, $attributes);
         $this->flash();
@@ -77,7 +77,7 @@ class Modal extends AbstractMessage implements MessageInterface
     /**
      * Set the cancel button.
      */
-    public function cancel(string $label, string $link = null, array $attributes = []): self
+    public function cancel(string $label, ?string $link = null, array $attributes = []): self
     {
         $this->cancel = new Button($label, $link, $attributes);
         $this->flash();

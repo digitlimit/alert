@@ -91,7 +91,7 @@ class Notify extends AbstractMessage implements MessageInterface
     }
 
     /**
-     * Position notifies on the bottom right of the screen.
+     * Position notify on the bottom right of the screen.
      */
     public function bottomRight(string $class = 'bottom-0 end-0'): self
     {

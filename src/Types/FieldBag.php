@@ -23,7 +23,7 @@ class FieldBag extends AbstractMessage implements MessageInterface
      */
     public function __construct(
         protected SessionInterface $session,
-        Validator|MessageBag $bag = null
+        Validator|MessageBag|null $bag = null
     ) {
         $this->id($this->key().'-'.Helper::randomString());
 
@@ -32,7 +32,7 @@ class FieldBag extends AbstractMessage implements MessageInterface
         } elseif (is_a($bag, MessageBag::class)) {
             $this->messages($bag);
         } else {
-            $this->messages = new MessageBag();
+            $this->messages = new MessageBag;
         }
     }
 

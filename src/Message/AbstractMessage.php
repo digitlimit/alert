@@ -7,6 +7,11 @@ use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\SessionInterface;
 use Digitlimit\Alert\Traits\Levelable;
 
+/**
+ * @property string $title
+ * @property string $message
+ * @property string $level
+ */
 abstract class AbstractMessage implements MessageInterface
 {
     /**
@@ -23,21 +28,6 @@ abstract class AbstractMessage implements MessageInterface
      * Alert unique ID.
      */
     public string|int $id;
-
-    /**
-     * Alert message.
-     */
-    public ?string $message = null;
-
-    /**
-     * Alert title.
-     */
-    public ?string $title = null;
-
-    /**
-     * Alert level.
-     */
-    public ?string $level = null;
 
     /**
      * Alert tag.
@@ -113,15 +103,41 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * Flash alert to store.
-     * Its a temporal store that is deleted once pulled/fetched.
+     * Fetch the alert level.
      */
-    public function flash(string $message = null, string $level = null): void
+    public function getLevel(): ?string
     {
-        $this->message = $message ?? $this->message;
-        $this->level = $level ?? $this->level;
+        return $this->level ?? null;
+    }
 
+    /**
+     * Fetch the alert title.
+     */
+    public function getTitle(): ?string
+    {
+        return $this->title ?? null;
+    }
+
+    /**
+     * Fetch the alert message.
+     */
+    public function getMessage(): ?string
+    {
+        return $this->message ?? null;
+    }
+
+    /**
+     * Flash alert to store.
+     * Its temporal store that is deleted once pulled/fetched.
+     */
+    public function flash(): void
+    {
         $sessionKey = SessionKey::key($this->key(), $this->getTag());
+
+        if (empty($sessionKey)) {
+            return;
+        }
+
         $this->session->flash($sessionKey, $this);
     }
 }

@@ -23,7 +23,7 @@ class Modal extends Component
      * Default action button attributes.
      */
     public array $actionAttributes = [
-        'type'  => 'button',
+        'type' => 'button',
         'class' => 'btn btn-primary',
     ];
 
@@ -31,8 +31,8 @@ class Modal extends Component
      * Default cancel button attributes.
      */
     public array $cancelAttributes = [
-        'type'            => 'button',
-        'class'           => 'btn btn-secondary',
+        'type' => 'button',
+        'class' => 'btn btn-secondary',
         'data-bs-dismiss' => 'modal',
     ];
 
