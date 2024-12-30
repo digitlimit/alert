@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Types/Field.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Types/Field.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Components/FieldTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Components/FieldTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Types/FieldTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Types/FieldTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.phpunit.cache/test-results" beforeDir="false" afterPath="$PROJECT_DIR$/.phpunit.cache/test-results" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +232,16 @@
       <workItem from="1727976387244" duration="7372000" />
       <workItem from="1728027696974" duration="440000" />
       <workItem from="1728053326553" duration="801000" />
-      <workItem from="1728161930831" duration="4528000" />
+      <workItem from="1728161930831" duration="5128000" />
+      <workItem from="1728330469660" duration="2058000" />
+      <workItem from="1728416499617" duration="525000" />
+      <workItem from="1728420547804" duration="798000" />
+      <workItem from="1728682798130" duration="615000" />
+      <workItem from="1730447610807" duration="698000" />
+      <workItem from="1730497386491" duration="1348000" />
+      <workItem from="1730551525883" duration="574000" />
+      <workItem from="1731845979231" duration="1219000" />
+      <workItem from="1735560737838" duration="14284000" />
     </task>
     <servers />
   </component>

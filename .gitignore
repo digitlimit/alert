@@ -2,3 +2,6 @@
 composer.phar
 composer.lock
 .DS_Store
+.idea/php.xml
+.idea/workspace.xml
+.phpunit.cache
