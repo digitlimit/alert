@@ -60,6 +60,10 @@ class AlertServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/alert.php' => config_path('alert.php'),
         ], 'alert.config');
+
+        $this->publishes([
+            __DIR__.'/../public' => public_path('vendor/alert'),
+        ], 'alert.assets');
     }
 
     /**
