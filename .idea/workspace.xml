@@ -5,7 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Helpers/TypeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Helpers/TypeTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.phpunit.cache/test-results" beforeDir="false" afterPath="$PROJECT_DIR$/.phpunit.cache/test-results" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/alert.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/alert.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/_alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_message.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/_field.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_field.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/_message.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/_modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_modal.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/_notify.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/_sticky.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_sticky.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/_toasts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_notify.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/_tooltip.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/_utilities.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/_variables-dark.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/shared/_variables-dark.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/shared/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/alert.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,26 +189,30 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.laravel-idea.update-module-directories": "true",
     "git-widget-placeholder": "44-eliminate-bootstrap-dependency-in-views",
-    "last_opened_file_path": "/Users/embah/projects/alert/tests/Unit/Helpers",
+    "last_opened_file_path": "/Users/embah/projects/alert/resources/js/components",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Applications/PhpStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components" />
+      <recent name="$PROJECT_DIR$/resources/js" />
       <recent name="$PROJECT_DIR$/tests/Unit/Helpers" />
       <recent name="$PROJECT_DIR$/resources/scss" />
       <recent name="$PROJECT_DIR$/resources/views" />
-      <recent name="$PROJECT_DIR$/tests/Feature" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources" />
-      <recent name="$PROJECT_DIR$/resources/views/components/themes/bootstrap5" />
+      <recent name="$PROJECT_DIR$/resources/js/shared" />
+      <recent name="$PROJECT_DIR$/resources/scss/shared" />
+      <recent name="$PROJECT_DIR$/resources/scss/components" />
+      <recent name="$PROJECT_DIR$/resources/js" />
+      <recent name="$PROJECT_DIR$/resources/js/components" />
     </key>
   </component>
   <component name="RunManager" selected="Pest.Main">
@@ -245,7 +265,7 @@
       <workItem from="1731845979231" duration="1219000" />
       <workItem from="1735560737838" duration="17096000" />
       <workItem from="1736075415268" duration="1699000" />
-      <workItem from="1736078529767" duration="13141000" />
+      <workItem from="1736078529767" duration="19139000" />
     </task>
     <servers />
   </component>
