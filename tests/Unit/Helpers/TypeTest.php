@@ -1,7 +1,6 @@
 <?php
 
 use Digitlimit\Alert\Helpers\Type;
-use Digitlimit\Alert\Helpers\Helper;
 
 it('should return alert types', function () {
     $types = Type::types();
