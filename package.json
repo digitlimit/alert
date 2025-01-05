@@ -1,0 +1,20 @@
+{
+  "name": "alert",
+  "version": "1.0.0",
+  "description": "Laravel alert package",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "laravel-vite-plugin": "^1.1.1",
+    "vite": "^6.0.7"
+  }
+}

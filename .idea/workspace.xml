@@ -5,23 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/Feature/Helpers/MessageTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/Helpers/ModalTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/Helpers/NotifyTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/Helpers/StickyTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.phpunit.cache/test-results" beforeDir="false" afterPath="$PROJECT_DIR$/.phpunit.cache/test-results" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Components/FieldBagTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Components/FieldBagTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Components/MessageTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Components/MessageTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Components/ModalTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Components/ModalTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Components/NotifyTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Components/NotifyTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Components/StickyTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Components/StickyTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Types/FieldTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Helpers/FieldTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Types/MessageTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Types/ModalTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Types/NotifyTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Types/StickyTest.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +175,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.laravel-idea.update-module-directories": "true",
     "git-widget-placeholder": "44-eliminate-bootstrap-dependency-in-views",
-    "last_opened_file_path": "/Users/embah/projects/alert/tests/Feature",
+    "last_opened_file_path": "/Users/embah/projects/alert/resources/scss",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -200,10 +186,13 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/scss" />
+      <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/tests/Feature" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/resources/views/components/themes/bootstrap5" />
     </key>
   </component>
@@ -255,7 +244,9 @@
       <workItem from="1730497386491" duration="1348000" />
       <workItem from="1730551525883" duration="574000" />
       <workItem from="1731845979231" duration="1219000" />
-      <workItem from="1735560737838" duration="16965000" />
+      <workItem from="1735560737838" duration="17096000" />
+      <workItem from="1736075415268" duration="1699000" />
+      <workItem from="1736078529767" duration="3762000" />
     </task>
     <servers />
   </component>
