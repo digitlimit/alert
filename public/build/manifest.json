@@ -1,0 +1,14 @@
+{
+  "resources/js/alert.js": {
+    "file": "assets/alert-PLG4xQQD.js",
+    "name": "alert",
+    "src": "resources/js/alert.js",
+    "isEntry": true
+  },
+  "resources/scss/alert.scss": {
+    "file": "assets/alert-l0sNRNKZ.js",
+    "name": "alert",
+    "src": "resources/scss/alert.scss",
+    "isEntry": true
+  }
+}

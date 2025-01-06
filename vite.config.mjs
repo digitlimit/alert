@@ -6,7 +6,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/js/alert.js',
-                'resources/css/alert.css',
+                'resources/scss/alert.scss',
             ],
             refresh: true,
         }),
