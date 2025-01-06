@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/assets/alert-l0sNRNKZ.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/scss/alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/alert.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/shared/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/components/_message.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_message.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,6 +255,7 @@
       <workItem from="1735560737838" duration="17096000" />
       <workItem from="1736075415268" duration="1699000" />
       <workItem from="1736078529767" duration="28945000" />
+      <workItem from="1736199397538" duration="1700000" />
     </task>
     <servers />
   </component>
