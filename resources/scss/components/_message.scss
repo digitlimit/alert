@@ -1,37 +1,28 @@
+@use "../shared/variables" as *;
+@use "../shared/mixins" as *;
+
 .alert {
-  background-color: #2ca02c;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  // scss-docs-start alert-css-vars
+  --#{$prefix}alert-bg: transparent;
+  --#{$prefix}alert-padding-x: #{$alert-padding-x};
+  --#{$prefix}alert-padding-y: #{$alert-padding-y};
+  --#{$prefix}alert-margin-bottom: #{$alert-margin-bottom};
+  --#{$prefix}alert-color: inherit;
+  --#{$prefix}alert-border-color: transparent;
+  --#{$prefix}alert-border: #{$alert-border-width} solid var(--#{$prefix}alert-border-color);
+  --#{$prefix}alert-border-radius: #{$alert-border-radius};
+  --#{$prefix}alert-link-color: inherit;
+   //scss-docs-end alert-css-vars
+
+  position: relative;
+  padding: var(--#{$prefix}alert-padding-y) var(--#{$prefix}alert-padding-x);
+  margin-bottom: var(--#{$prefix}alert-margin-bottom);
+  color: var(--#{$prefix}alert-color);
+  background-color: var(--#{$prefix}alert-bg);
+  border: var(--#{$prefix}alert-border);
+  @include border-radius(var(--#{$prefix}alert-border-radius));
 }
 
-
-
-////
-//// Base styles
-////
-//
-//.alert {
-//  // scss-docs-start alert-css-vars
-//  --#{$prefix}alert-bg: transparent;
-//  --#{$prefix}alert-padding-x: #{$alert-padding-x};
-//  --#{$prefix}alert-padding-y: #{$alert-padding-y};
-//  --#{$prefix}alert-margin-bottom: #{$alert-margin-bottom};
-//  --#{$prefix}alert-color: inherit;
-//  --#{$prefix}alert-border-color: transparent;
-//  --#{$prefix}alert-border: #{$alert-border-width} solid var(--#{$prefix}alert-border-color);
-//  --#{$prefix}alert-border-radius: #{$alert-border-radius};
-//  --#{$prefix}alert-link-color: inherit;
-//  // scss-docs-end alert-css-vars
-//
-//  position: relative;
-//  padding: var(--#{$prefix}alert-padding-y) var(--#{$prefix}alert-padding-x);
-//  margin-bottom: var(--#{$prefix}alert-margin-bottom);
-//  color: var(--#{$prefix}alert-color);
-//  background-color: var(--#{$prefix}alert-bg);
-//  border: var(--#{$prefix}alert-border);
-//  @include border-radius(var(--#{$prefix}alert-border-radius));
-//}
-//
 //// Headings for larger alerts
 //.alert-heading {
 //  // Specified to prevent conflicts of changing $headings-color
