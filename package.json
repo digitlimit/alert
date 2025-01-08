@@ -14,8 +14,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "laravel-mix": "^6.0.49",
     "laravel-vite-plugin": "^1.1.1",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.83.1",
     "sass-embedded": "^1.83.1",
+    "sass-loader": "^12.6.0",
     "vite": "^6.0.7"
   }
 }
