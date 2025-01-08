@@ -6,43 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/assets/alert-PLG4xQQD.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/assets/alert-rfeVmhyD.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/manifest.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/scss/alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/alert.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/components/_sticky.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_sticky.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/_functions.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/_mixins.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_alert.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_backdrop.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_banner.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_border-radius.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_box-shadow.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_breakpoints.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_buttons.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_caret.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_clearfix.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_color-mode.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_color-scheme.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_container.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_deprecate.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_forms.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_gradients.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_grid.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_image.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_list-group.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_lists.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_pagination.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_reset-text.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_resize.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_table-variants.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_text-truncate.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_transition.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_utilities.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/mixins/_visually-hidden.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlertServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlertServiceProvider.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +254,7 @@
       <workItem from="1736078529767" duration="28945000" />
       <workItem from="1736199397538" duration="3208000" />
       <workItem from="1736274329147" duration="12620000" />
-      <workItem from="1736370148710" duration="9383000" />
+      <workItem from="1736370148710" duration="9738000" />
     </task>
     <servers />
   </component>
