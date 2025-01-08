@@ -1,67 +1,55 @@
-@use "../shared/variables" as *;
-@use "../shared/mixins" as *;
-
-.alert {
-  // scss-docs-start alert-css-vars
-  --#{$prefix}alert-bg: transparent;
-  --#{$prefix}alert-padding-x: #{$alert-padding-x};
-  --#{$prefix}alert-padding-y: #{$alert-padding-y};
-  --#{$prefix}alert-margin-bottom: #{$alert-margin-bottom};
-  --#{$prefix}alert-color: inherit;
-  --#{$prefix}alert-border-color: transparent;
-  --#{$prefix}alert-border: #{$alert-border-width} solid var(--#{$prefix}alert-border-color);
-  --#{$prefix}alert-border-radius: #{$alert-border-radius};
-  --#{$prefix}alert-link-color: inherit;
-   //scss-docs-end alert-css-vars
-
-  position: relative;
-  padding: var(--#{$prefix}alert-padding-y) var(--#{$prefix}alert-padding-x);
-  margin-bottom: var(--#{$prefix}alert-margin-bottom);
-  color: var(--#{$prefix}alert-color);
-  background-color: var(--#{$prefix}alert-bg);
-  border: var(--#{$prefix}alert-border);
-  @include border-radius(var(--#{$prefix}alert-border-radius));
+.alert-primary {
+  --bs-alert-color: var(--bs-primary-text-emphasis);
+  --bs-alert-bg: var(--bs-primary-bg-subtle);
+  --bs-alert-border-color: var(--bs-primary-border-subtle);
+  --bs-alert-link-color: var(--bs-primary-text-emphasis);
 }
 
-//// Headings for larger alerts
-//.alert-heading {
-//  // Specified to prevent conflicts of changing $headings-color
-//  color: inherit;
-//}
-//
-//// Provide class for links that match alerts
-//.alert-link {
-//  font-weight: $alert-link-font-weight;
-//  color: var(--#{$prefix}alert-link-color);
-//}
-//
-//
-//// Dismissible alerts
-////
-//// Expand the right padding and account for the close button's positioning.
-//
-//.alert-dismissible {
-//  padding-right: $alert-dismissible-padding-r;
-//
-//  // Adjust close link position
-//  .btn-close {
-//    position: absolute;
-//    top: 0;
-//    right: 0;
-//    z-index: $stretched-link-z-index + 1;
-//    padding: $alert-padding-y * 1.25 $alert-padding-x;
-//  }
-//}
-//
-//
-//// scss-docs-start alert-modifiers
-//// Generate contextual modifier classes for colorizing the alert
-//@each $state in map-keys($theme-colors) {
-//  .alert-#{$state} {
-//    --#{$prefix}alert-color: var(--#{$prefix}#{$state}-text-emphasis);
-//    --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-bg-subtle);
-//    --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-border-subtle);
-//    --#{$prefix}alert-link-color: var(--#{$prefix}#{$state}-text-emphasis);
-//  }
-//}
-//// scss-docs-end alert-modifiers
+.alert-secondary {
+  --bs-alert-color: var(--bs-secondary-text-emphasis);
+  --bs-alert-bg: var(--bs-secondary-bg-subtle);
+  --bs-alert-border-color: var(--bs-secondary-border-subtle);
+  --bs-alert-link-color: var(--bs-secondary-text-emphasis);
+}
+
+.alert-success {
+  --bs-alert-color: var(--bs-success-text-emphasis);
+  --bs-alert-bg: var(--bs-success-bg-subtle);
+  --bs-alert-border-color: var(--bs-success-border-subtle);
+  --bs-alert-link-color: var(--bs-success-text-emphasis);
+}
+
+.alert-info {
+  --bs-alert-color: var(--bs-info-text-emphasis);
+  --bs-alert-bg: var(--bs-info-bg-subtle);
+  --bs-alert-border-color: var(--bs-info-border-subtle);
+  --bs-alert-link-color: var(--bs-info-text-emphasis);
+}
+
+.alert-warning {
+  --bs-alert-color: var(--bs-warning-text-emphasis);
+  --bs-alert-bg: var(--bs-warning-bg-subtle);
+  --bs-alert-border-color: var(--bs-warning-border-subtle);
+  --bs-alert-link-color: var(--bs-warning-text-emphasis);
+}
+
+.alert-danger {
+  --bs-alert-color: var(--bs-danger-text-emphasis);
+  --bs-alert-bg: var(--bs-danger-bg-subtle);
+  --bs-alert-border-color: var(--bs-danger-border-subtle);
+  --bs-alert-link-color: var(--bs-danger-text-emphasis);
+}
+
+.alert-light {
+  --bs-alert-color: var(--bs-light-text-emphasis);
+  --bs-alert-bg: var(--bs-light-bg-subtle);
+  --bs-alert-border-color: var(--bs-light-border-subtle);
+  --bs-alert-link-color: var(--bs-light-text-emphasis);
+}
+
+.alert-dark {
+  --bs-alert-color: var(--bs-dark-text-emphasis);
+  --bs-alert-bg: var(--bs-dark-bg-subtle);
+  --bs-alert-border-color: var(--bs-dark-border-subtle);
+  --bs-alert-link-color: var(--bs-dark-text-emphasis);
+}

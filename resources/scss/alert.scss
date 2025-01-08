@@ -1,21 +1,4 @@
-@use "components/message";
-
-
-
-
-
-
-
-
-
-
-
-//@import "shared/mixins";
-//@import "shared/functions";
-//@import "shared/variables";
-////@use "shared/variables-dark";
-////@use "components/field";
-////@use "components/message";
-////@use "components/modal";
-////@use "components/notify";
-////@use "components/sticky";
+@import "shared/variables";
+@import "shared/variables-dark";
+@import "shared/text";
+@import "components/message";
