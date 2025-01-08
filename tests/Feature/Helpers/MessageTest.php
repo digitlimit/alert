@@ -15,5 +15,4 @@ it('can create a default alert with helper', function () {
         ->toBeInstanceOf(Message::class)
         ->and($default->message)
         ->toEqual('Thank you!');
-
 })->group('types', 'types-default', 'types-message');

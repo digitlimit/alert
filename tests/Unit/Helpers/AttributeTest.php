@@ -4,7 +4,7 @@ use Digitlimit\Alert\Helpers\Attribute;
 
 it('can generate html element attribute from an array', function () {
     $attributesString = Attribute::toString([
-        'id' => 'alert-id',
+        'id'    => 'alert-id',
         'class' => 'alert alert-success',
     ]);
 

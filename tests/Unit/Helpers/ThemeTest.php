@@ -9,7 +9,6 @@ it('can get the correct theme name', function () {
     expect($theme)
         ->toEqual('classic')
         ->and(Theme::name())->toEqual('classic');
-
 })->group('theme', 'helpers', 'theme-name');
 
 it('can get all themes', function () {
@@ -20,7 +19,6 @@ it('can get all themes', function () {
         ->not()->toBeEmpty()
         ->toBeArray()
         ->toEqual(Theme::all());
-
 })->group('theme', 'helpers', 'theme-all');
 
 it('can get the correct theme based on config', function () {
@@ -41,5 +39,4 @@ it('can get the correct theme based on config', function () {
         ->toBeArray()
         ->not()->toBeEmpty()
         ->toEqual(config('alert.themes.classic'));
-
 })->group('theme', 'helpers', 'theme-theme');

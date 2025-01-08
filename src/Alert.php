@@ -25,7 +25,8 @@ class Alert
      */
     public function __construct(
         protected SessionInterface $session
-    ) {}
+    ) {
+    }
 
     /**
      * Fetch an alert based on the default tag.
@@ -43,7 +44,7 @@ class Alert
         string $name,
         ?string $tag = null
     ): ?MessageInterface {
-        if (! Type::exists($type)) {
+        if (!Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
@@ -61,7 +62,7 @@ class Alert
         string $type,
         string $tag
     ): ?MessageInterface {
-        if (! Type::exists($type)) {
+        if (!Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
@@ -141,7 +142,7 @@ class Alert
         string $type,
         ...$args
     ): MessageInterface {
-        if (! Type::exists($type)) {
+        if (!Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
