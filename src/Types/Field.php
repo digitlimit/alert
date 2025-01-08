@@ -51,7 +51,7 @@ class Field extends AbstractMessage implements MessageInterface
     {
         $sessionKey = SessionKey::key($this->key(), $this->getTag());
 
-        if(empty($this->name) || empty($this->message)) {
+        if (empty($this->name) || empty($this->message)) {
             return;
         }
 

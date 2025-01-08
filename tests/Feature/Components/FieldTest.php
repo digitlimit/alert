@@ -3,7 +3,7 @@
 use Digitlimit\Alert\Facades\Alert;
 
 it('can render a default field view component', function () {
-    Alert::field('username','Username is available')
+    Alert::field('username', 'Username is available')
         ->success();
 
     $view = $this

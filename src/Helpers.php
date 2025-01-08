@@ -19,7 +19,7 @@ if (! function_exists('alert')) {
 }
 
 if (! function_exists('field')) {
-    function field(string $name, string $message, string $tag = null): mixed
+    function field(string $name, string $message, ?string $tag = null): mixed
     {
         $alert = app('alert')->field($name, $message);
 

@@ -22,48 +22,42 @@ it('can create a notify alert', function () {
 it('can create a notify alert position', function () {
     // top right
     Alert::notify('Thank you!')
-        ->topRight()
-        ;
+        ->topRight();
 
     $default = Alert::default('notify');
     expect($default->position)->toEqual('top-0 end-0');
 
     // top left
     Alert::notify('Thank you!')
-        ->topLeft()
-        ;
+        ->topLeft();
 
     $default = Alert::default('notify');
     expect($default->position)->toEqual('top-0 start-0');
 
     // bottom right
     Alert::notify('Thank you!')
-        ->bottomRight()
-        ;
+        ->bottomRight();
 
     $default = Alert::default('notify');
     expect($default->position)->toEqual('bottom-0 end-0');
 
     // bottom left
     Alert::notify('Thank you!')
-        ->bottomLeft()
-        ;
+        ->bottomLeft();
 
     $default = Alert::default('notify');
     expect($default->position)->toEqual('bottom-0 start-0');
 
     // centered
     Alert::notify('Thank you!')
-        ->centered()
-        ;
+        ->centered();
 
     $default = Alert::default('notify');
     expect($default->position)->toEqual('top-50 start-50 translate-middle');
 
     // bottom center
     Alert::notify('Thank you!')
-        ->bottomCenter()
-        ;
+        ->bottomCenter();
 
     $default = Alert::default('notify');
     expect($default->position)->toEqual('bottom-0 start-50 translate-middle-x');

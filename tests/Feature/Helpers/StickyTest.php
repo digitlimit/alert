@@ -1,6 +1,5 @@
 <?php
 
-use Digitlimit\Alert\Component\Button;
 use Digitlimit\Alert\Facades\Alert;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Types\Sticky;

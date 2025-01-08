@@ -21,8 +21,7 @@ it('can create a sticky alert', function () {
 
 it('can create a sticky alert title', function () {
     Alert::sticky('Thank for ordering pizza!')
-        ->title('Order')
-        ;
+        ->title('Order');
 
     $default = Alert::default('sticky');
 
@@ -35,8 +34,7 @@ it('can create a sticky alert title', function () {
 
 it('can create a sticky alert button', function () {
     Alert::sticky()
-        ->action('Yes')
-        ;
+        ->action('Yes');
 
     $default = Alert::default('sticky');
 

@@ -22,13 +22,10 @@ class Alert
 
     /**
      * Create a new alert instance.
-     *
-     * @param SessionInterface $session
      */
     public function __construct(
         protected SessionInterface $session
-    ) {
-    }
+    ) {}
 
     /**
      * Fetch an alert based on the default tag.
@@ -50,7 +47,7 @@ class Alert
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $tag = ($tag ?? self::DEFAULT_TAG) . '.' . $name;
+        $tag = ($tag ?? self::DEFAULT_TAG).'.'.$name;
 
         return $this->session->get(
             SessionKey::key($type, $tag)

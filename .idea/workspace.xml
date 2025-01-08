@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/alert.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/components/_field.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_field.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/components/_message.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_message.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/components/_modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_modal.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/components/_notify.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_notify.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/components/_sticky.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_sticky.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/_variables-dark.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/shared/_variables-dark.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/shared/_variables.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +253,7 @@
       <workItem from="1736078529767" duration="28945000" />
       <workItem from="1736199397538" duration="3208000" />
       <workItem from="1736274329147" duration="12620000" />
-      <workItem from="1736370148710" duration="2869000" />
+      <workItem from="1736370148710" duration="4850000" />
     </task>
     <servers />
   </component>

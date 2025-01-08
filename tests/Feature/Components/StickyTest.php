@@ -3,8 +3,7 @@
 use Digitlimit\Alert\Facades\Alert;
 
 it('can render a default sticky alert', function () {
-    Alert::sticky('Thank you for joining us')
-        ;
+    Alert::sticky('Thank you for joining us');
 
     $this
         ->blade('<x-alert-sticky />')
@@ -14,8 +13,7 @@ it('can render a default sticky alert', function () {
 
 it('can render a tagged sticky alert', function () {
     Alert::sticky('Thank you for joining us')
-        ->tag('contact')
-        ;
+        ->tag('contact');
 
     $this
         ->blade('<x-alert-sticky tag="contact" />')
@@ -25,8 +23,7 @@ it('can render a tagged sticky alert', function () {
 
 it('can render a tagged sticky alert button', function () {
     Alert::sticky('Thank you for joining us')
-        ->action('Pay')
-        ;
+        ->action('Pay');
 
     $this
         ->blade('<x-alert-sticky />')

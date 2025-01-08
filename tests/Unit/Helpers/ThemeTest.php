@@ -1,10 +1,9 @@
 <?php
 
-use Digitlimit\Alert\Helpers\Theme;
 use Digitlimit\Alert\Helpers\Helper;
+use Digitlimit\Alert\Helpers\Theme;
 
-it('can get the correct theme name', function ()
-{
+it('can get the correct theme name', function () {
     $theme = Helper::config()->get('alert.theme');
 
     expect($theme)
@@ -13,8 +12,7 @@ it('can get the correct theme name', function ()
 
 })->group('theme', 'helpers', 'theme-name');
 
-it('can get all themes', function ()
-{
+it('can get all themes', function () {
     $themes = Helper::config()->get('alert.themes');
     $this->assertIsArray($themes);
 
@@ -25,8 +23,7 @@ it('can get all themes', function ()
 
 })->group('theme', 'helpers', 'theme-all');
 
-it('can get the correct theme based on config', function ()
-{
+it('can get the correct theme based on config', function () {
     // set a non-existent theme
     config(['alert.theme' => 'none']);
 

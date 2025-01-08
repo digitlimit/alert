@@ -3,8 +3,7 @@
 use Digitlimit\Alert\Facades\Alert;
 
 it('can render a default modal view component', function () {
-    Alert::modal('Than you for joining us')
-        ;
+    Alert::modal('Than you for joining us');
 
     $this
         ->blade('<x-alert-modal />')
@@ -18,8 +17,7 @@ it('can render a default modal with buttons and title', function () {
         ->cancel('Cancel')
         ->centered()
         ->title('Please login')
-        ->error()
-        ;
+        ->error();
 
     $view = $this
         ->blade('<x-alert-modal />');
@@ -34,8 +32,7 @@ it('can render a default modal with buttons and title', function () {
 
 it('can render a default modal a the right position', function () {
     Alert::modal()
-        ->centered('centered')
-        ;
+        ->centered('centered');
 
     $view = $this
         ->blade('<x-alert-modal />');
@@ -46,32 +43,28 @@ it('can render a default modal a the right position', function () {
 
 it('can render a default modal a the right size', function () {
     Alert::modal()
-        ->small()
-        ;
+        ->small();
 
     $this
         ->blade('<x-alert-modal />')
         ->assertSee('class="modal-dialog modal-sm  "', false);
 
     Alert::modal()
-        ->large()
-        ;
+        ->large();
 
     $this
         ->blade('<x-alert-modal />')
         ->assertSee('class="modal-dialog modal-lg  "', false);
 
     Alert::modal()
-        ->extraLarge()
-        ;
+        ->extraLarge();
 
     $this
         ->blade('<x-alert-modal />')
         ->assertSee('class="modal-dialog modal-xl  "', false);
 
     Alert::modal()
-        ->fullscreen()
-        ;
+        ->fullscreen();
 
     $this
         ->blade('<x-alert-modal />')
