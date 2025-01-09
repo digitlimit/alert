@@ -36,6 +36,11 @@
   opacity: var(--bs-btn-close-disabled-opacity);
 }
 
+.btn-close:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .btn-close-white {
   filter: var(--bs-btn-close-white-filter);
 }
