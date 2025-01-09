@@ -6,6 +6,7 @@
   $cancel = $modal->cancel ?? '';
   $action = $modal->action ?? '';
   $view   = $modal->view ?? '';
+  $theme  = $attributes->get('theme', 'light');
 @endphp
 
 @props([
@@ -22,7 +23,7 @@
     $hasFooter = isset($footer) && $footer->isNotEmpty();
     $hasTitle  = $hasHeader || $modal->getTitle();
   @endphp
-  <div
+  <div data-bs-theme="{{$theme}}"
     {{ $attributes->merge(['id'       => $id]) }}
     {{ $attributes->merge(['class'    => 'modal']) }}
     {{ $attributes->merge(['tabindex' => '-1']) }}

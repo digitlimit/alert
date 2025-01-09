@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/themes/classic/field.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/themes/classic/field.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/components/themes/classic/message.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/themes/classic/message.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/themes/classic/modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/themes/classic/modal.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/themes/classic/notify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/themes/classic/notify.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/themes/classic/sticky.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/themes/classic/sticky.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +258,7 @@
       <workItem from="1736078529767" duration="28945000" />
       <workItem from="1736199397538" duration="3208000" />
       <workItem from="1736274329147" duration="12620000" />
-      <workItem from="1736370148710" duration="10819000" />
+      <workItem from="1736370148710" duration="11389000" />
     </task>
     <servers />
   </component>

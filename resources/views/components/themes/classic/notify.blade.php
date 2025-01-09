@@ -4,6 +4,7 @@
     $notify   = $alert->tagged('notify', $tag);
     $view     = $notify->view ?? '';
     $position = $notify->position ?? 'bottom-0 end-0';
+    $theme    = $attributes->get('theme', 'light');
 @endphp
 @if($notify)
     @php
@@ -12,7 +13,7 @@
         $hasHeader = isset($header) && $header->isNotEmpty();
         $hasTitle  = $hasHeader || $notify->getTitle();
     @endphp
-    <div 
+    <div data-bs-theme="{{$theme}}"
         {{ $attributes->merge(['class'   => 'position-fixed p-3 ' . $position]) }}
         {{ $attributes->merge(['z-index' => '100']) }}
     >
