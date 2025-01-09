@@ -1,3 +1,11 @@
+button,
+select {
+  text-transform: none;
+}
+
+[role=button] {
+  cursor: pointer;
+}
 
 .btn-close {
   --bs-btn-close-color: #000;
