@@ -7,7 +7,7 @@
     @php
         $id = $id ?? $message->id;
     @endphp
-    <div id="{{$id}}" {{ $attributes->merge(['class' => 'alert alert-dismissible alert-'.$message->getLevel()]) }} role="alert">
+    <div data-bs-theme="light" id="{{$id}}" {{ $attributes->merge(['class' => 'alert alert-dismissible alert-'.$message->getLevel()]) }} role="alert">
         @if ($slot->isNotEmpty())
             {{ $slot }}
         @else

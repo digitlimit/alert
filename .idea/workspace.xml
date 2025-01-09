@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/alert.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/alert.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/alert.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/alert.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/alert.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/components/_message.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_message.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/components/_sticky.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/themes/classic/message.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/themes/classic/message.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +254,7 @@
       <workItem from="1736078529767" duration="28945000" />
       <workItem from="1736199397538" duration="3208000" />
       <workItem from="1736274329147" duration="12620000" />
-      <workItem from="1736370148710" duration="10294000" />
+      <workItem from="1736370148710" duration="10819000" />
     </task>
     <servers />
   </component>
