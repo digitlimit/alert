@@ -48,6 +48,7 @@
   filter: var(--bs-btn-close-white-filter);
 }
 
-button {
+button,
+[role=button] {
   cursor: pointer;
 }

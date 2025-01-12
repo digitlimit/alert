@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/alert.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/scss/shared/_button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/shared/_button.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,23 +169,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.laravel-idea.update-module-directories&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;44-eliminate-bootstrap-dependency-in-views&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/embah/projects/alert/resources/scss/shared&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;watcher.settings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/PhpStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.laravel-idea.update-module-directories": "true",
+    "git-widget-placeholder": "44-eliminate-bootstrap-dependency-in-views",
+    "last_opened_file_path": "/Users/embah/projects/alert",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "watcher.settings",
+    "ts.external.directory.path": "/Applications/PhpStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/scss/shared" />
@@ -257,7 +258,8 @@
       <workItem from="1736370148710" duration="12063000" />
       <workItem from="1736412466763" duration="470000" />
       <workItem from="1736449665747" duration="3351000" />
-      <workItem from="1736548320326" duration="120000" />
+      <workItem from="1736548320326" duration="1821000" />
+      <workItem from="1736640343694" duration="50000" />
     </task>
     <servers />
   </component>
