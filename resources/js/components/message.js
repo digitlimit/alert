@@ -3,7 +3,7 @@ import EventHandler from '../shared/dom/event-handler.js'
 import { enableDismissTrigger } from '../shared/util/component-functions.js'
 import { defineJQueryPlugin } from '../shared/util'
 
-const NAME = 'alert'
+const NAME = 'message'
 const DATA_KEY = 'alert.message'
 const EVENT_KEY = `.${DATA_KEY}`
 const EVENT_CLOSE = `close${EVENT_KEY}`
