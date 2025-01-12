@@ -6,8 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/alert.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/shared/_button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/shared/_button.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/alert.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/alert.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/alert.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/alert.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/alert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,7 +267,7 @@
       <workItem from="1736412466763" duration="470000" />
       <workItem from="1736449665747" duration="3351000" />
       <workItem from="1736548320326" duration="1821000" />
-      <workItem from="1736640343694" duration="50000" />
+      <workItem from="1736640343694" duration="14555000" />
     </task>
     <servers />
   </component>
