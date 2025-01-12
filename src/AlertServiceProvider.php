@@ -105,8 +105,8 @@ class AlertServiceProvider extends ServiceProvider
      */
     public function registerBladeDirectives(): void
     {
-        $css = asset('vendor/alert/css/alert.min.css');
-        $js = asset('vendor/alert/js/alert.min.js');
+        $css = asset('vendor/alert/css/alert.css');
+        $js = asset('vendor/alert/js/alert.js');
 
         Blade::directive(
             'alertStyles',
