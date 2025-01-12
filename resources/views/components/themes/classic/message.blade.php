@@ -13,7 +13,7 @@
             {{ $slot }}
         @else
             @if($message->getTitle())<strong>{{ $message->getTitle() }}</strong>@endif {{ $message->getMessage() }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="message" aria-label="Close"></button>
         @endif
     </div>
 @endif
