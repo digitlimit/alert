@@ -3,41 +3,41 @@ import EventHandler from '../shared/dom/event-handler.js'
 import { enableDismissTrigger } from '../shared/util/component-functions.js'
 import { defineJQueryPlugin, reflow } from '../shared/util'
 
-const NAME = 'notify'
-const DATA_KEY = 'alert.notify'
-const EVENT_KEY = `.${DATA_KEY}`
-
-const EVENT_MOUSEOVER = `mouseover${EVENT_KEY}`
-const EVENT_MOUSEOUT = `mouseout${EVENT_KEY}`
-const EVENT_FOCUSIN = `focusin${EVENT_KEY}`
-const EVENT_FOCUSOUT = `focusout${EVENT_KEY}`
-const EVENT_HIDE = `hide${EVENT_KEY}`
-const EVENT_HIDDEN = `hidden${EVENT_KEY}`
-const EVENT_SHOW = `show${EVENT_KEY}`
-const EVENT_SHOWN = `shown${EVENT_KEY}`
-
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_HIDE = 'hide' // @deprecated - kept here only for backwards compatibility
-const CLASS_NAME_SHOW = 'show'
-const CLASS_NAME_SHOWING = 'showing'
-
-const DefaultType = {
-  animation: 'boolean',
-  autohide: 'boolean',
-  delay: 'number'
-}
-
-const Default = {
-  animation: true,
-  autohide: true,
-  delay: 5000
-}
-
 /**
  * Class definition
  */
+class Notify extends BaseComponent
+{
+  static NAME = 'notify'
+  static DATA_KEY = 'alert.notify'
+  static EVENT_KEY = `.${Notify.DATA_KEY}`
 
-class Notify extends BaseComponent {
+  static EVENT_MOUSEOVER = `mouseover${Notify.EVENT_KEY}`
+  static EVENT_MOUSEOUT = `mouseout${Notify.EVENT_KEY}`
+  static EVENT_FOCUSIN = `focusin${Notify.EVENT_KEY}`
+  static EVENT_FOCUSOUT = `focusout${Notify.EVENT_KEY}`
+  static EVENT_HIDE = `hide${Notify.EVENT_KEY}`
+  static EVENT_HIDDEN = `hidden${Notify.EVENT_KEY}`
+  static EVENT_SHOW = `show${Notify.EVENT_KEY}`
+  static EVENT_SHOWN = `shown${Notify.EVENT_KEY}`
+
+  static CLASS_NAME_FADE = 'fade'
+  static CLASS_NAME_HIDE = 'hide'
+  static CLASS_NAME_SHOW = 'show'
+  static CLASS_NAME_SHOWING = 'showing'
+
+  static DefaultType = {
+    animation: 'boolean',
+    autohide: 'boolean',
+    delay: 'number'
+  }
+
+  static Default = {
+    animation: true,
+    autohide: true,
+    delay: 5000
+  }
+
   constructor(element, config) {
     super(element, config)
 
@@ -49,20 +49,20 @@ class Notify extends BaseComponent {
 
   // Getters
   static get Default() {
-    return Default
+    return this.Default;
   }
 
   static get DefaultType() {
-    return DefaultType
+    return this.DefaultType;
   }
 
   static get NAME() {
-    return NAME
+    return this.NAME;
   }
 
   // Public
   show() {
-    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW)
+    const showEvent = EventHandler.trigger(this._element, Notify.EVENT_SHOW)
 
     if (showEvent.defaultPrevented) {
       return
@@ -71,19 +71,19 @@ class Notify extends BaseComponent {
     this._clearTimeout()
 
     if (this._config.animation) {
-      this._element.classList.add(CLASS_NAME_FADE)
+      this._element.classList.add(Notify.CLASS_NAME_FADE)
     }
 
     const complete = () => {
-      this._element.classList.remove(CLASS_NAME_SHOWING)
-      EventHandler.trigger(this._element, EVENT_SHOWN)
+      this._element.classList.remove(Notify.CLASS_NAME_SHOWING)
+      EventHandler.trigger(this._element, Notify.EVENT_SHOWN)
 
       this._maybeScheduleHide()
     }
 
-    this._element.classList.remove(CLASS_NAME_HIDE) // @deprecated
+    this._element.classList.remove(Notify.CLASS_NAME_HIDE) // @deprecated
     reflow(this._element)
-    this._element.classList.add(CLASS_NAME_SHOW, CLASS_NAME_SHOWING)
+    this._element.classList.add(Notify.CLASS_NAME_SHOW, Notify.CLASS_NAME_SHOWING)
 
     this._queueCallback(complete, this._element, this._config.animation)
   }
@@ -93,19 +93,19 @@ class Notify extends BaseComponent {
       return
     }
 
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE)
+    const hideEvent = EventHandler.trigger(this._element, Notify.EVENT_HIDE)
 
     if (hideEvent.defaultPrevented) {
       return
     }
 
     const complete = () => {
-      this._element.classList.add(CLASS_NAME_HIDE) // @deprecated
-      this._element.classList.remove(CLASS_NAME_SHOWING, CLASS_NAME_SHOW)
-      EventHandler.trigger(this._element, EVENT_HIDDEN)
+      this._element.classList.add(Notify.CLASS_NAME_HIDE) // @deprecated
+      this._element.classList.remove(Notify.CLASS_NAME_SHOWING, Notify.CLASS_NAME_SHOW)
+      EventHandler.trigger(this._element, Notify.EVENT_HIDDEN)
     }
 
-    this._element.classList.add(CLASS_NAME_SHOWING)
+    this._element.classList.add(Notify.CLASS_NAME_SHOWING)
     this._queueCallback(complete, this._element, this._config.animation)
   }
 
@@ -113,14 +113,14 @@ class Notify extends BaseComponent {
     this._clearTimeout()
 
     if (this.isShown()) {
-      this._element.classList.remove(CLASS_NAME_SHOW)
+      this._element.classList.remove(Notify.CLASS_NAME_SHOW)
     }
 
     super.dispose()
   }
 
   isShown() {
-    return this._element.classList.contains(CLASS_NAME_SHOW)
+    return this._element.classList.contains(Notify.CLASS_NAME_SHOW)
   }
 
   // Private
@@ -172,10 +172,10 @@ class Notify extends BaseComponent {
   }
 
   _setListeners() {
-    EventHandler.on(this._element, EVENT_MOUSEOVER, event => this._onInteraction(event, true))
-    EventHandler.on(this._element, EVENT_MOUSEOUT, event => this._onInteraction(event, false))
-    EventHandler.on(this._element, EVENT_FOCUSIN, event => this._onInteraction(event, true))
-    EventHandler.on(this._element, EVENT_FOCUSOUT, event => this._onInteraction(event, false))
+    EventHandler.on(this._element, Notify.EVENT_MOUSEOVER, event => this._onInteraction(event, true))
+    EventHandler.on(this._element, Notify.EVENT_MOUSEOUT, event => this._onInteraction(event, false))
+    EventHandler.on(this._element, Notify.EVENT_FOCUSIN, event => this._onInteraction(event, true))
+    EventHandler.on(this._element, Notify.EVENT_FOCUSOUT, event => this._onInteraction(event, false))
   }
 
   _clearTimeout() {
@@ -202,9 +202,8 @@ class Notify extends BaseComponent {
 /**
  * Data API implementation
  */
+enableDismissTrigger(Notify);
 
-enableDismissTrigger(Notify)
+defineJQueryPlugin(Notify);
 
-defineJQueryPlugin(Notify)
-
-export default Notify
+export default Notify;

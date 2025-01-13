@@ -740,34 +740,39 @@ var DigitlimitAlert = (function (exports) {
     });
   };
 
-  const NAME$6 = 'field';
-  const DATA_KEY$5 = 'alert.field';
-  const EVENT_KEY$5 = `.${DATA_KEY$5}`;
-  const EVENT_CLOSE$2 = `close${EVENT_KEY$5}`;
-  const EVENT_CLOSED$2 = `closed${EVENT_KEY$5}`;
-  const CLASS_NAME_FADE$5 = 'fade';
-  const CLASS_NAME_SHOW$5 = 'show';
+  /**
+   * Class definition
+   */
   class Field extends BaseComponent {
+    // Static properties
+    static NAME = 'field';
+    static DATA_KEY = 'alert.field';
+    static EVENT_KEY = `.${Field.DATA_KEY}`;
+    static EVENT_CLOSE = `close${Field.EVENT_KEY}`;
+    static EVENT_CLOSED = `closed${Field.EVENT_KEY}`;
+    static CLASS_NAME_FADE = 'fade';
+    static CLASS_NAME_SHOW = 'show';
+
     // Getters
     static get NAME() {
-      return NAME$6;
+      return this.NAME;
     }
 
     // Public
     close() {
-      const closeEvent = EventHandler.trigger(this._element, EVENT_CLOSE$2);
+      const closeEvent = EventHandler.trigger(this._element, Field.EVENT_CLOSE);
       if (closeEvent.defaultPrevented) {
         return;
       }
-      this._element.classList.remove(CLASS_NAME_SHOW$5);
-      const isAnimated = this._element.classList.contains(CLASS_NAME_FADE$5);
+      this._element.classList.remove(Field.CLASS_NAME_SHOW);
+      const isAnimated = this._element.classList.contains(Field.CLASS_NAME_FADE);
       this._queueCallback(() => this._destroyElement(), this._element, isAnimated);
     }
 
     // Private
     _destroyElement() {
       this._element.remove();
-      EventHandler.trigger(this._element, EVENT_CLOSED$2);
+      EventHandler.trigger(this._element, Field.EVENT_CLOSED);
       this.dispose();
     }
 
@@ -789,48 +794,46 @@ var DigitlimitAlert = (function (exports) {
   /**
    * Data API implementation
    */
-
   enableDismissTrigger(Field, 'close');
 
   /**
    * jQuery
    */
-
   defineJQueryPlugin(Field);
-
-  const NAME$5 = 'message';
-  const DATA_KEY$4 = 'alert.message';
-  const EVENT_KEY$4 = `.${DATA_KEY$4}`;
-  const EVENT_CLOSE$1 = `close${EVENT_KEY$4}`;
-  const EVENT_CLOSED$1 = `closed${EVENT_KEY$4}`;
-  const CLASS_NAME_FADE$4 = 'fade';
-  const CLASS_NAME_SHOW$4 = 'show';
 
   /**
    * Class definition
    */
-
   class Message extends BaseComponent {
+    // Static properties
+    static NAME = 'message';
+    static DATA_KEY = 'alert.message';
+    static EVENT_KEY = `.${Message.DATA_KEY}`;
+    static EVENT_CLOSE = `close${Message.EVENT_KEY}`;
+    static EVENT_CLOSED = `closed${Message.EVENT_KEY}`;
+    static CLASS_NAME_FADE = 'fade';
+    static CLASS_NAME_SHOW = 'show';
+
     // Getters
     static get NAME() {
-      return NAME$5;
+      return this.NAME;
     }
 
     // Public
     close() {
-      const closeEvent = EventHandler.trigger(this._element, EVENT_CLOSE$1);
+      const closeEvent = EventHandler.trigger(this._element, Message.EVENT_CLOSE);
       if (closeEvent.defaultPrevented) {
         return;
       }
-      this._element.classList.remove(CLASS_NAME_SHOW$4);
-      const isAnimated = this._element.classList.contains(CLASS_NAME_FADE$4);
+      this._element.classList.remove(Message.CLASS_NAME_SHOW);
+      const isAnimated = this._element.classList.contains(Message.CLASS_NAME_FADE);
       this._queueCallback(() => this._destroyElement(), this._element, isAnimated);
     }
 
     // Private
     _destroyElement() {
       this._element.remove();
-      EventHandler.trigger(this._element, EVENT_CLOSED$1);
+      EventHandler.trigger(this._element, Message.EVENT_CLOSED);
       this.dispose();
     }
 
@@ -852,13 +855,11 @@ var DigitlimitAlert = (function (exports) {
   /**
    * Data API implementation
    */
-
   enableDismissTrigger(Message, 'close');
 
   /**
    * jQuery
    */
-
   defineJQueryPlugin(Message);
 
   /**
@@ -873,11 +874,11 @@ var DigitlimitAlert = (function (exports) {
    * Constants
    */
 
-  const NAME$4 = 'backdrop';
-  const CLASS_NAME_FADE$3 = 'fade';
-  const CLASS_NAME_SHOW$3 = 'show';
-  const EVENT_MOUSEDOWN = `mousedown.bs.${NAME$4}`;
-  const Default$3 = {
+  const NAME$1 = 'backdrop';
+  const CLASS_NAME_FADE = 'fade';
+  const CLASS_NAME_SHOW = 'show';
+  const EVENT_MOUSEDOWN = `mousedown.bs.${NAME$1}`;
+  const Default$1 = {
     className: 'modal-backdrop',
     clickCallback: null,
     isAnimated: false,
@@ -885,7 +886,7 @@ var DigitlimitAlert = (function (exports) {
     // if false, we use the backdrop helper without adding any element to the dom
     rootElement: 'body' // give the choice to place backdrop under different elements
   };
-  const DefaultType$3 = {
+  const DefaultType$1 = {
     className: 'string',
     clickCallback: '(function|null)',
     isAnimated: 'boolean',
@@ -907,13 +908,13 @@ var DigitlimitAlert = (function (exports) {
 
     // Getters
     static get Default() {
-      return Default$3;
+      return Default$1;
     }
     static get DefaultType() {
-      return DefaultType$3;
+      return DefaultType$1;
     }
     static get NAME() {
-      return NAME$4;
+      return NAME$1;
     }
 
     // Public
@@ -927,7 +928,7 @@ var DigitlimitAlert = (function (exports) {
       if (this._config.isAnimated) {
         reflow(element);
       }
-      element.classList.add(CLASS_NAME_SHOW$3);
+      element.classList.add(CLASS_NAME_SHOW);
       this._emulateAnimation(() => {
         execute(callback);
       });
@@ -937,7 +938,7 @@ var DigitlimitAlert = (function (exports) {
         execute(callback);
         return;
       }
-      this._getElement().classList.remove(CLASS_NAME_SHOW$3);
+      this._getElement().classList.remove(CLASS_NAME_SHOW);
       this._emulateAnimation(() => {
         this.dispose();
         execute(callback);
@@ -958,7 +959,7 @@ var DigitlimitAlert = (function (exports) {
         const backdrop = document.createElement('div');
         backdrop.className = this._config.className;
         if (this._config.isAnimated) {
-          backdrop.classList.add(CLASS_NAME_FADE$3);
+          backdrop.classList.add(CLASS_NAME_FADE);
         }
         this._element = backdrop;
       }
@@ -997,19 +998,19 @@ var DigitlimitAlert = (function (exports) {
    * Constants
    */
 
-  const NAME$3 = 'focustrap';
-  const DATA_KEY$3 = 'bs.focustrap';
-  const EVENT_KEY$3 = `.${DATA_KEY$3}`;
-  const EVENT_FOCUSIN$1 = `focusin${EVENT_KEY$3}`;
-  const EVENT_KEYDOWN_TAB = `keydown.tab${EVENT_KEY$3}`;
+  const NAME = 'focustrap';
+  const DATA_KEY = 'bs.focustrap';
+  const EVENT_KEY = `.${DATA_KEY}`;
+  const EVENT_FOCUSIN = `focusin${EVENT_KEY}`;
+  const EVENT_KEYDOWN_TAB = `keydown.tab${EVENT_KEY}`;
   const TAB_KEY = 'Tab';
   const TAB_NAV_FORWARD = 'forward';
   const TAB_NAV_BACKWARD = 'backward';
-  const Default$2 = {
+  const Default = {
     autofocus: true,
     trapElement: null // The element to trap focus inside of
   };
-  const DefaultType$2 = {
+  const DefaultType = {
     autofocus: 'boolean',
     trapElement: 'element'
   };
@@ -1028,13 +1029,13 @@ var DigitlimitAlert = (function (exports) {
 
     // Getters
     static get Default() {
-      return Default$2;
+      return Default;
     }
     static get DefaultType() {
-      return DefaultType$2;
+      return DefaultType;
     }
     static get NAME() {
-      return NAME$3;
+      return NAME;
     }
 
     // Public
@@ -1045,8 +1046,8 @@ var DigitlimitAlert = (function (exports) {
       if (this._config.autofocus) {
         this._config.trapElement.focus();
       }
-      EventHandler.off(document, EVENT_KEY$3); // guard against infinite focus loop
-      EventHandler.on(document, EVENT_FOCUSIN$1, event => this._handleFocusin(event));
+      EventHandler.off(document, EVENT_KEY); // guard against infinite focus loop
+      EventHandler.on(document, EVENT_FOCUSIN, event => this._handleFocusin(event));
       EventHandler.on(document, EVENT_KEYDOWN_TAB, event => this._handleKeydown(event));
       this._isActive = true;
     }
@@ -1055,7 +1056,7 @@ var DigitlimitAlert = (function (exports) {
         return;
       }
       this._isActive = false;
-      EventHandler.off(document, EVENT_KEY$3);
+      EventHandler.off(document, EVENT_KEY);
     }
 
     // Private
@@ -1181,48 +1182,46 @@ var DigitlimitAlert = (function (exports) {
     }
   }
 
-  const NAME$2 = 'modal';
-  const DATA_KEY$2 = 'alert.modal';
-  const EVENT_KEY$2 = `.${DATA_KEY$2}`;
-  const DATA_API_KEY = '.data-api';
-  const ESCAPE_KEY = 'Escape';
-  const EVENT_HIDE$1 = `hide${EVENT_KEY$2}`;
-  const EVENT_HIDE_PREVENTED = `hidePrevented${EVENT_KEY$2}`;
-  const EVENT_HIDDEN$1 = `hidden${EVENT_KEY$2}`;
-  const EVENT_SHOW$1 = `show${EVENT_KEY$2}`;
-  const EVENT_SHOWN$1 = `shown${EVENT_KEY$2}`;
-  const EVENT_RESIZE = `resize${EVENT_KEY$2}`;
-  const EVENT_CLICK_DISMISS = `click.dismiss${EVENT_KEY$2}`;
-  const EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${EVENT_KEY$2}`;
-  const EVENT_KEYDOWN_DISMISS = `keydown.dismiss${EVENT_KEY$2}`;
-  const EVENT_CLICK_DATA_API = `click${EVENT_KEY$2}${DATA_API_KEY}`;
-  const CLASS_NAME_OPEN = 'modal-open';
-  const CLASS_NAME_FADE$2 = 'fade';
-  const CLASS_NAME_SHOW$2 = 'show';
-  const CLASS_NAME_STATIC = 'modal-static';
-  const OPEN_SELECTOR = '.modal.show';
-  const SELECTOR_DIALOG = '.modal-dialog';
-  const SELECTOR_MODAL_BODY = '.modal-body';
-  const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="modal"]';
-  const Default$1 = {
-    backdrop: true,
-    focus: true,
-    keyboard: true
-  };
-  const DefaultType$1 = {
-    backdrop: '(boolean|string)',
-    focus: 'boolean',
-    keyboard: 'boolean'
-  };
-
   /**
    * Class definition
    */
-
   class Modal extends BaseComponent {
+    static NAME = 'modal';
+    static DATA_KEY = 'alert.modal';
+    static EVENT_KEY = `.${Modal.DATA_KEY}`;
+    static DATA_API_KEY = '.data-api';
+    static ESCAPE_KEY = 'Escape';
+    static EVENT_HIDE = `hide${Modal.EVENT_KEY}`;
+    static EVENT_HIDE_PREVENTED = `hidePrevented${Modal.EVENT_KEY}`;
+    static EVENT_HIDDEN = `hidden${Modal.EVENT_KEY}`;
+    static EVENT_SHOW = `show${Modal.EVENT_KEY}`;
+    static EVENT_SHOWN = `shown${Modal.EVENT_KEY}`;
+    static EVENT_RESIZE = `resize${Modal.EVENT_KEY}`;
+    static EVENT_CLICK_DISMISS = `click.dismiss${Modal.EVENT_KEY}`;
+    static EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${Modal.EVENT_KEY}`;
+    static EVENT_KEYDOWN_DISMISS = `keydown.dismiss${Modal.EVENT_KEY}`;
+    static EVENT_CLICK_DATA_API = `click${Modal.EVENT_KEY}${Modal.DATA_API_KEY}`;
+    static CLASS_NAME_OPEN = 'modal-open';
+    static CLASS_NAME_FADE = 'fade';
+    static CLASS_NAME_SHOW = 'show';
+    static CLASS_NAME_STATIC = 'modal-static';
+    static OPEN_SELECTOR = '.modal.show';
+    static SELECTOR_DIALOG = '.modal-dialog';
+    static SELECTOR_MODAL_BODY = '.modal-body';
+    static SELECTOR_DATA_TOGGLE = '[data-bs-toggle="modal"]';
+    static Default = {
+      backdrop: true,
+      focus: true,
+      keyboard: true
+    };
+    static DefaultType = {
+      backdrop: '(boolean|string)',
+      focus: 'boolean',
+      keyboard: 'boolean'
+    };
     constructor(element, config) {
       super(element, config);
-      this._dialog = SelectorEngine.findOne(SELECTOR_DIALOG, this._element);
+      this._dialog = SelectorEngine.findOne(Modal.SELECTOR_DIALOG, this._element);
       this._backdrop = this._initializeBackDrop();
       this._focustrap = this._initializeFocusTrap();
       this._isShown = false;
@@ -1233,13 +1232,13 @@ var DigitlimitAlert = (function (exports) {
 
     // Getters
     static get Default() {
-      return Default$1;
+      return this.Default;
     }
     static get DefaultType() {
-      return DefaultType$1;
+      return this.DefaultType;
     }
     static get NAME() {
-      return NAME$2;
+      return this.NAME;
     }
 
     // Public
@@ -1250,7 +1249,7 @@ var DigitlimitAlert = (function (exports) {
       if (this._isShown || this._isTransitioning) {
         return;
       }
-      const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$1, {
+      const showEvent = EventHandler.trigger(this._element, Modal.EVENT_SHOW, {
         relatedTarget
       });
       if (showEvent.defaultPrevented) {
@@ -1259,7 +1258,7 @@ var DigitlimitAlert = (function (exports) {
       this._isShown = true;
       this._isTransitioning = true;
       this._scrollBar.hide();
-      document.body.classList.add(CLASS_NAME_OPEN);
+      document.body.classList.add(Modal.CLASS_NAME_OPEN);
       this._adjustDialog();
       this._backdrop.show(() => this._showElement(relatedTarget));
     }
@@ -1267,19 +1266,19 @@ var DigitlimitAlert = (function (exports) {
       if (!this._isShown || this._isTransitioning) {
         return;
       }
-      const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$1);
+      const hideEvent = EventHandler.trigger(this._element, Modal.EVENT_HIDE);
       if (hideEvent.defaultPrevented) {
         return;
       }
       this._isShown = false;
       this._isTransitioning = true;
       this._focustrap.deactivate();
-      this._element.classList.remove(CLASS_NAME_SHOW$2);
+      this._element.classList.remove(Modal.CLASS_NAME_SHOW);
       this._queueCallback(() => this._hideModal(), this._element, this._isAnimated());
     }
     dispose() {
-      EventHandler.off(window, EVENT_KEY$2);
-      EventHandler.off(this._dialog, EVENT_KEY$2);
+      EventHandler.off(window, Modal.EVENT_KEY);
+      EventHandler.off(this._dialog, Modal.EVENT_KEY);
       this._backdrop.dispose();
       this._focustrap.deactivate();
       super.dispose();
@@ -1311,26 +1310,26 @@ var DigitlimitAlert = (function (exports) {
       this._element.setAttribute('aria-modal', true);
       this._element.setAttribute('role', 'dialog');
       this._element.scrollTop = 0;
-      const modalBody = SelectorEngine.findOne(SELECTOR_MODAL_BODY, this._dialog);
+      const modalBody = SelectorEngine.findOne(Modal.SELECTOR_MODAL_BODY, this._dialog);
       if (modalBody) {
         modalBody.scrollTop = 0;
       }
       reflow(this._element);
-      this._element.classList.add(CLASS_NAME_SHOW$2);
+      this._element.classList.add(Modal.CLASS_NAME_SHOW);
       const transitionComplete = () => {
         if (this._config.focus) {
           this._focustrap.activate();
         }
         this._isTransitioning = false;
-        EventHandler.trigger(this._element, EVENT_SHOWN$1, {
+        EventHandler.trigger(this._element, Modal.EVENT_SHOWN, {
           relatedTarget
         });
       };
       this._queueCallback(transitionComplete, this._dialog, this._isAnimated());
     }
     _addEventListeners() {
-      EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS, event => {
-        if (event.key !== ESCAPE_KEY) {
+      EventHandler.on(this._element, Modal.EVENT_KEYDOWN_DISMISS, event => {
+        if (event.key !== Modal.ESCAPE_KEY) {
           return;
         }
         if (this._config.keyboard) {
@@ -1339,14 +1338,14 @@ var DigitlimitAlert = (function (exports) {
         }
         this._triggerBackdropTransition();
       });
-      EventHandler.on(window, EVENT_RESIZE, () => {
+      EventHandler.on(window, Modal.EVENT_RESIZE, () => {
         if (this._isShown && !this._isTransitioning) {
           this._adjustDialog();
         }
       });
-      EventHandler.on(this._element, EVENT_MOUSEDOWN_DISMISS, event => {
+      EventHandler.on(this._element, Modal.EVENT_MOUSEDOWN_DISMISS, event => {
         // a bad trick to segregate clicks that may start inside dialog but end outside, and avoid listen to scrollbar clicks
-        EventHandler.one(this._element, EVENT_CLICK_DISMISS, event2 => {
+        EventHandler.one(this._element, Modal.EVENT_CLICK_DISMISS, event2 => {
           if (this._element !== event.target || this._element !== event2.target) {
             return;
           }
@@ -1367,32 +1366,32 @@ var DigitlimitAlert = (function (exports) {
       this._element.removeAttribute('role');
       this._isTransitioning = false;
       this._backdrop.hide(() => {
-        document.body.classList.remove(CLASS_NAME_OPEN);
+        document.body.classList.remove(Modal.CLASS_NAME_OPEN);
         this._resetAdjustments();
         this._scrollBar.reset();
-        EventHandler.trigger(this._element, EVENT_HIDDEN$1);
+        EventHandler.trigger(this._element, Modal.EVENT_HIDDEN);
       });
     }
     _isAnimated() {
-      return this._element.classList.contains(CLASS_NAME_FADE$2);
+      return this._element.classList.contains(Modal.CLASS_NAME_FADE);
     }
     _triggerBackdropTransition() {
-      const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED);
+      const hideEvent = EventHandler.trigger(this._element, Modal.EVENT_HIDE_PREVENTED);
       if (hideEvent.defaultPrevented) {
         return;
       }
       const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
       const initialOverflowY = this._element.style.overflowY;
       // return if the following background transition hasn't yet completed
-      if (initialOverflowY === 'hidden' || this._element.classList.contains(CLASS_NAME_STATIC)) {
+      if (initialOverflowY === 'hidden' || this._element.classList.contains(Modal.CLASS_NAME_STATIC)) {
         return;
       }
       if (!isModalOverflowing) {
         this._element.style.overflowY = 'hidden';
       }
-      this._element.classList.add(CLASS_NAME_STATIC);
+      this._element.classList.add(Modal.CLASS_NAME_STATIC);
       this._queueCallback(() => {
-        this._element.classList.remove(CLASS_NAME_STATIC);
+        this._element.classList.remove(Modal.CLASS_NAME_STATIC);
         this._queueCallback(() => {
           this._element.style.overflowY = initialOverflowY;
         }, this._dialog);
@@ -1403,7 +1402,6 @@ var DigitlimitAlert = (function (exports) {
     /**
      * The following methods are used to handle overflowing modals
      */
-
     _adjustDialog() {
       const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
       const scrollbarWidth = this._scrollBar.getWidth();
@@ -1441,17 +1439,17 @@ var DigitlimitAlert = (function (exports) {
    * Data API implementation
    */
 
-  EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (event) {
+  EventHandler.on(document, Modal.EVENT_CLICK_DATA_API, Modal.SELECTOR_DATA_TOGGLE, function (event) {
     const target = SelectorEngine.getElementFromSelector(this);
     if (['A', 'AREA'].includes(this.tagName)) {
       event.preventDefault();
     }
-    EventHandler.one(target, EVENT_SHOW$1, showEvent => {
+    EventHandler.one(target, Modal.EVENT_SHOW, showEvent => {
       if (showEvent.defaultPrevented) {
         // only register focus restorer if modal will actually get shown
         return;
       }
-      EventHandler.one(target, EVENT_HIDDEN$1, () => {
+      EventHandler.one(target, Modal.EVENT_HIDDEN, () => {
         if (isVisible(this)) {
           this.focus();
         }
@@ -1459,7 +1457,7 @@ var DigitlimitAlert = (function (exports) {
     });
 
     // avoid conflict when clicking modal toggler while another one is open
-    const alreadyOpen = SelectorEngine.findOne(OPEN_SELECTOR);
+    const alreadyOpen = SelectorEngine.findOne(Modal.OPEN_SELECTOR);
     if (alreadyOpen) {
       Modal.getInstance(alreadyOpen).hide();
     }
@@ -1474,37 +1472,35 @@ var DigitlimitAlert = (function (exports) {
 
   defineJQueryPlugin(Modal);
 
-  const NAME$1 = 'notify';
-  const DATA_KEY$1 = 'alert.notify';
-  const EVENT_KEY$1 = `.${DATA_KEY$1}`;
-  const EVENT_MOUSEOVER = `mouseover${EVENT_KEY$1}`;
-  const EVENT_MOUSEOUT = `mouseout${EVENT_KEY$1}`;
-  const EVENT_FOCUSIN = `focusin${EVENT_KEY$1}`;
-  const EVENT_FOCUSOUT = `focusout${EVENT_KEY$1}`;
-  const EVENT_HIDE = `hide${EVENT_KEY$1}`;
-  const EVENT_HIDDEN = `hidden${EVENT_KEY$1}`;
-  const EVENT_SHOW = `show${EVENT_KEY$1}`;
-  const EVENT_SHOWN = `shown${EVENT_KEY$1}`;
-  const CLASS_NAME_FADE$1 = 'fade';
-  const CLASS_NAME_HIDE = 'hide'; // @deprecated - kept here only for backwards compatibility
-  const CLASS_NAME_SHOW$1 = 'show';
-  const CLASS_NAME_SHOWING = 'showing';
-  const DefaultType = {
-    animation: 'boolean',
-    autohide: 'boolean',
-    delay: 'number'
-  };
-  const Default = {
-    animation: true,
-    autohide: true,
-    delay: 5000
-  };
-
   /**
    * Class definition
    */
-
   class Notify extends BaseComponent {
+    static NAME = 'notify';
+    static DATA_KEY = 'alert.notify';
+    static EVENT_KEY = `.${Notify.DATA_KEY}`;
+    static EVENT_MOUSEOVER = `mouseover${Notify.EVENT_KEY}`;
+    static EVENT_MOUSEOUT = `mouseout${Notify.EVENT_KEY}`;
+    static EVENT_FOCUSIN = `focusin${Notify.EVENT_KEY}`;
+    static EVENT_FOCUSOUT = `focusout${Notify.EVENT_KEY}`;
+    static EVENT_HIDE = `hide${Notify.EVENT_KEY}`;
+    static EVENT_HIDDEN = `hidden${Notify.EVENT_KEY}`;
+    static EVENT_SHOW = `show${Notify.EVENT_KEY}`;
+    static EVENT_SHOWN = `shown${Notify.EVENT_KEY}`;
+    static CLASS_NAME_FADE = 'fade';
+    static CLASS_NAME_HIDE = 'hide';
+    static CLASS_NAME_SHOW = 'show';
+    static CLASS_NAME_SHOWING = 'showing';
+    static DefaultType = {
+      animation: 'boolean',
+      autohide: 'boolean',
+      delay: 'number'
+    };
+    static Default = {
+      animation: true,
+      autohide: true,
+      delay: 5000
+    };
     constructor(element, config) {
       super(element, config);
       this._timeout = null;
@@ -1515,60 +1511,60 @@ var DigitlimitAlert = (function (exports) {
 
     // Getters
     static get Default() {
-      return Default;
+      return this.Default;
     }
     static get DefaultType() {
-      return DefaultType;
+      return this.DefaultType;
     }
     static get NAME() {
-      return NAME$1;
+      return this.NAME;
     }
 
     // Public
     show() {
-      const showEvent = EventHandler.trigger(this._element, EVENT_SHOW);
+      const showEvent = EventHandler.trigger(this._element, Notify.EVENT_SHOW);
       if (showEvent.defaultPrevented) {
         return;
       }
       this._clearTimeout();
       if (this._config.animation) {
-        this._element.classList.add(CLASS_NAME_FADE$1);
+        this._element.classList.add(Notify.CLASS_NAME_FADE);
       }
       const complete = () => {
-        this._element.classList.remove(CLASS_NAME_SHOWING);
-        EventHandler.trigger(this._element, EVENT_SHOWN);
+        this._element.classList.remove(Notify.CLASS_NAME_SHOWING);
+        EventHandler.trigger(this._element, Notify.EVENT_SHOWN);
         this._maybeScheduleHide();
       };
-      this._element.classList.remove(CLASS_NAME_HIDE); // @deprecated
+      this._element.classList.remove(Notify.CLASS_NAME_HIDE); // @deprecated
       reflow(this._element);
-      this._element.classList.add(CLASS_NAME_SHOW$1, CLASS_NAME_SHOWING);
+      this._element.classList.add(Notify.CLASS_NAME_SHOW, Notify.CLASS_NAME_SHOWING);
       this._queueCallback(complete, this._element, this._config.animation);
     }
     hide() {
       if (!this.isShown()) {
         return;
       }
-      const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE);
+      const hideEvent = EventHandler.trigger(this._element, Notify.EVENT_HIDE);
       if (hideEvent.defaultPrevented) {
         return;
       }
       const complete = () => {
-        this._element.classList.add(CLASS_NAME_HIDE); // @deprecated
-        this._element.classList.remove(CLASS_NAME_SHOWING, CLASS_NAME_SHOW$1);
-        EventHandler.trigger(this._element, EVENT_HIDDEN);
+        this._element.classList.add(Notify.CLASS_NAME_HIDE); // @deprecated
+        this._element.classList.remove(Notify.CLASS_NAME_SHOWING, Notify.CLASS_NAME_SHOW);
+        EventHandler.trigger(this._element, Notify.EVENT_HIDDEN);
       };
-      this._element.classList.add(CLASS_NAME_SHOWING);
+      this._element.classList.add(Notify.CLASS_NAME_SHOWING);
       this._queueCallback(complete, this._element, this._config.animation);
     }
     dispose() {
       this._clearTimeout();
       if (this.isShown()) {
-        this._element.classList.remove(CLASS_NAME_SHOW$1);
+        this._element.classList.remove(Notify.CLASS_NAME_SHOW);
       }
       super.dispose();
     }
     isShown() {
-      return this._element.classList.contains(CLASS_NAME_SHOW$1);
+      return this._element.classList.contains(Notify.CLASS_NAME_SHOW);
     }
 
     // Private
@@ -1610,10 +1606,10 @@ var DigitlimitAlert = (function (exports) {
       this._maybeScheduleHide();
     }
     _setListeners() {
-      EventHandler.on(this._element, EVENT_MOUSEOVER, event => this._onInteraction(event, true));
-      EventHandler.on(this._element, EVENT_MOUSEOUT, event => this._onInteraction(event, false));
-      EventHandler.on(this._element, EVENT_FOCUSIN, event => this._onInteraction(event, true));
-      EventHandler.on(this._element, EVENT_FOCUSOUT, event => this._onInteraction(event, false));
+      EventHandler.on(this._element, Notify.EVENT_MOUSEOVER, event => this._onInteraction(event, true));
+      EventHandler.on(this._element, Notify.EVENT_MOUSEOUT, event => this._onInteraction(event, false));
+      EventHandler.on(this._element, Notify.EVENT_FOCUSIN, event => this._onInteraction(event, true));
+      EventHandler.on(this._element, Notify.EVENT_FOCUSOUT, event => this._onInteraction(event, false));
     }
     _clearTimeout() {
       clearTimeout(this._timeout);
@@ -1637,38 +1633,38 @@ var DigitlimitAlert = (function (exports) {
   /**
    * Data API implementation
    */
-
   enableDismissTrigger(Notify);
   defineJQueryPlugin(Notify);
 
-  const NAME = 'sticky';
-  const DATA_KEY = 'alert.sticky';
-  const EVENT_KEY = `.${DATA_KEY}`;
-  const EVENT_CLOSE = `close${EVENT_KEY}`;
-  const EVENT_CLOSED = `closed${EVENT_KEY}`;
-  const CLASS_NAME_FADE = 'fade';
-  const CLASS_NAME_SHOW = 'show';
   class Sticky extends BaseComponent {
+    static NAME = 'sticky';
+    static DATA_KEY = 'alert.sticky';
+    static EVENT_KEY = `.${Sticky.DATA_KEY}`;
+    static EVENT_CLOSE = `close${Sticky.EVENT_KEY}`;
+    static EVENT_CLOSED = `closed${Sticky.EVENT_KEY}`;
+    static CLASS_NAME_FADE = 'fade';
+    static CLASS_NAME_SHOW = 'show';
+
     // Getters
     static get NAME() {
-      return NAME;
+      return this.NAME;
     }
 
     // Public
     close() {
-      const closeEvent = EventHandler.trigger(this._element, EVENT_CLOSE);
+      const closeEvent = EventHandler.trigger(this._element, Sticky.EVENT_CLOSE);
       if (closeEvent.defaultPrevented) {
         return;
       }
-      this._element.classList.remove(CLASS_NAME_SHOW);
-      const isAnimated = this._element.classList.contains(CLASS_NAME_FADE);
+      this._element.classList.remove(Sticky.CLASS_NAME_SHOW);
+      const isAnimated = this._element.classList.contains(Sticky.CLASS_NAME_FADE);
       this._queueCallback(() => this._destroyElement(), this._element, isAnimated);
     }
 
     // Private
     _destroyElement() {
       this._element.remove();
-      EventHandler.trigger(this._element, EVENT_CLOSED);
+      EventHandler.trigger(this._element, Sticky.EVENT_CLOSED);
       this.dispose();
     }
 
@@ -1690,13 +1686,11 @@ var DigitlimitAlert = (function (exports) {
   /**
    * Data API implementation
    */
-
   enableDismissTrigger(Sticky, 'close');
 
   /**
    * jQuery
    */
-
   defineJQueryPlugin(Sticky);
 
   exports.Field = Field;

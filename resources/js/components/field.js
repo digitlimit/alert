@@ -3,39 +3,42 @@ import EventHandler from '../shared/dom/event-handler.js'
 import { enableDismissTrigger } from '../shared/util/component-functions.js'
 import { defineJQueryPlugin } from '../shared/util'
 
-const NAME = 'field'
-const DATA_KEY = 'alert.field'
-const EVENT_KEY = `.${DATA_KEY}`
-const EVENT_CLOSE = `close${EVENT_KEY}`
-const EVENT_CLOSED = `closed${EVENT_KEY}`
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
+/**
+ * Class definition
+ */
+class Field extends BaseComponent {
+  // Static properties
+  static NAME = 'field'
+  static DATA_KEY = 'alert.field'
+  static EVENT_KEY = `.${Field.DATA_KEY}`
+  static EVENT_CLOSE = `close${Field.EVENT_KEY}`
+  static EVENT_CLOSED = `closed${Field.EVENT_KEY}`
+  static CLASS_NAME_FADE = 'fade'
+  static CLASS_NAME_SHOW = 'show'
 
-class Field extends BaseComponent
-{
   // Getters
   static get NAME() {
-    return NAME
+    return this.NAME
   }
 
   // Public
   close() {
-    const closeEvent = EventHandler.trigger(this._element, EVENT_CLOSE)
+    const closeEvent = EventHandler.trigger(this._element, Field.EVENT_CLOSE)
 
     if (closeEvent.defaultPrevented) {
       return
     }
 
-    this._element.classList.remove(CLASS_NAME_SHOW)
+    this._element.classList.remove(Field.CLASS_NAME_SHOW)
 
-    const isAnimated = this._element.classList.contains(CLASS_NAME_FADE)
+    const isAnimated = this._element.classList.contains(Field.CLASS_NAME_FADE)
     this._queueCallback(() => this._destroyElement(), this._element, isAnimated)
   }
 
   // Private
   _destroyElement() {
     this._element.remove()
-    EventHandler.trigger(this._element, EVENT_CLOSED)
+    EventHandler.trigger(this._element, Field.EVENT_CLOSED)
     this.dispose()
   }
 
@@ -60,13 +63,11 @@ class Field extends BaseComponent
 /**
  * Data API implementation
  */
-
-enableDismissTrigger(Field, 'close')
+enableDismissTrigger(Field, 'close');
 
 /**
  * jQuery
  */
+defineJQueryPlugin(Field);
 
-defineJQueryPlugin(Field)
-
-export default Field
+export default Field;

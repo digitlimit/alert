@@ -3,43 +3,42 @@ import EventHandler from '../shared/dom/event-handler.js'
 import { enableDismissTrigger } from '../shared/util/component-functions.js'
 import { defineJQueryPlugin } from '../shared/util'
 
-const NAME = 'message'
-const DATA_KEY = 'alert.message'
-const EVENT_KEY = `.${DATA_KEY}`
-const EVENT_CLOSE = `close${EVENT_KEY}`
-const EVENT_CLOSED = `closed${EVENT_KEY}`
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
-
 /**
  * Class definition
  */
+class Message extends BaseComponent {
+  // Static properties
+  static NAME = 'message'
+  static DATA_KEY = 'alert.message'
+  static EVENT_KEY = `.${Message.DATA_KEY}`
+  static EVENT_CLOSE = `close${Message.EVENT_KEY}`
+  static EVENT_CLOSED = `closed${Message.EVENT_KEY}`
+  static CLASS_NAME_FADE = 'fade'
+  static CLASS_NAME_SHOW = 'show'
 
-class Message extends BaseComponent
-{
   // Getters
   static get NAME() {
-    return NAME
+    return this.NAME
   }
 
   // Public
   close() {
-    const closeEvent = EventHandler.trigger(this._element, EVENT_CLOSE)
+    const closeEvent = EventHandler.trigger(this._element, Message.EVENT_CLOSE)
 
     if (closeEvent.defaultPrevented) {
       return
     }
 
-    this._element.classList.remove(CLASS_NAME_SHOW)
+    this._element.classList.remove(Message.CLASS_NAME_SHOW)
 
-    const isAnimated = this._element.classList.contains(CLASS_NAME_FADE)
+    const isAnimated = this._element.classList.contains(Message.CLASS_NAME_FADE)
     this._queueCallback(() => this._destroyElement(), this._element, isAnimated)
   }
 
   // Private
   _destroyElement() {
     this._element.remove()
-    EventHandler.trigger(this._element, EVENT_CLOSED)
+    EventHandler.trigger(this._element, Message.EVENT_CLOSED)
     this.dispose()
   }
 
@@ -64,13 +63,11 @@ class Message extends BaseComponent
 /**
  * Data API implementation
  */
-
-enableDismissTrigger(Message, 'close')
+enableDismissTrigger(Message, 'close');
 
 /**
  * jQuery
  */
+defineJQueryPlugin(Message);
 
-defineJQueryPlugin(Message)
-
-export default Message
+export default Message;

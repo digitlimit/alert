@@ -9,55 +9,54 @@ import {
 } from '../shared/util'
 import ScrollBarHelper from '../shared/util/scrollbar.js'
 
-const NAME = 'modal'
-const DATA_KEY = 'alert.modal'
-const EVENT_KEY = `.${DATA_KEY}`
-const DATA_API_KEY = '.data-api'
-const ESCAPE_KEY = 'Escape'
-
-const EVENT_HIDE = `hide${EVENT_KEY}`
-const EVENT_HIDE_PREVENTED = `hidePrevented${EVENT_KEY}`
-const EVENT_HIDDEN = `hidden${EVENT_KEY}`
-const EVENT_SHOW = `show${EVENT_KEY}`
-const EVENT_SHOWN = `shown${EVENT_KEY}`
-const EVENT_RESIZE = `resize${EVENT_KEY}`
-const EVENT_CLICK_DISMISS = `click.dismiss${EVENT_KEY}`
-const EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${EVENT_KEY}`
-const EVENT_KEYDOWN_DISMISS = `keydown.dismiss${EVENT_KEY}`
-const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
-
-const CLASS_NAME_OPEN = 'modal-open'
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
-const CLASS_NAME_STATIC = 'modal-static'
-
-const OPEN_SELECTOR = '.modal.show'
-const SELECTOR_DIALOG = '.modal-dialog'
-const SELECTOR_MODAL_BODY = '.modal-body'
-const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="modal"]'
-
-const Default = {
-  backdrop: true,
-  focus: true,
-  keyboard: true
-}
-
-const DefaultType = {
-  backdrop: '(boolean|string)',
-  focus: 'boolean',
-  keyboard: 'boolean'
-}
-
 /**
  * Class definition
  */
-
 class Modal extends BaseComponent
 {
+  static NAME = 'modal'
+  static DATA_KEY = 'alert.modal'
+  static EVENT_KEY = `.${Modal.DATA_KEY}`
+  static DATA_API_KEY = '.data-api'
+  static ESCAPE_KEY = 'Escape'
+
+  static EVENT_HIDE = `hide${Modal.EVENT_KEY}`
+  static EVENT_HIDE_PREVENTED = `hidePrevented${Modal.EVENT_KEY}`
+  static EVENT_HIDDEN = `hidden${Modal.EVENT_KEY}`
+  static EVENT_SHOW = `show${Modal.EVENT_KEY}`
+  static EVENT_SHOWN = `shown${Modal.EVENT_KEY}`
+  static EVENT_RESIZE = `resize${Modal.EVENT_KEY}`
+  static EVENT_CLICK_DISMISS = `click.dismiss${Modal.EVENT_KEY}`
+  static EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${Modal.EVENT_KEY}`
+  static EVENT_KEYDOWN_DISMISS = `keydown.dismiss${Modal.EVENT_KEY}`
+  static EVENT_CLICK_DATA_API = `click${Modal.EVENT_KEY}${Modal.DATA_API_KEY}`
+
+  static CLASS_NAME_OPEN = 'modal-open'
+  static CLASS_NAME_FADE = 'fade'
+  static CLASS_NAME_SHOW = 'show'
+  static CLASS_NAME_STATIC = 'modal-static'
+
+  static OPEN_SELECTOR = '.modal.show'
+  static SELECTOR_DIALOG = '.modal-dialog'
+  static SELECTOR_MODAL_BODY = '.modal-body'
+  static SELECTOR_DATA_TOGGLE = '[data-bs-toggle="modal"]'
+
+  static Default = {
+    backdrop: true,
+    focus: true,
+    keyboard: true
+  }
+
+  static DefaultType = {
+    backdrop: '(boolean|string)',
+    focus: 'boolean',
+    keyboard: 'boolean'
+  }
+
   constructor(element, config) {
     super(element, config)
 
-    this._dialog = SelectorEngine.findOne(SELECTOR_DIALOG, this._element)
+    this._dialog = SelectorEngine.findOne(Modal.SELECTOR_DIALOG, this._element)
     this._backdrop = this._initializeBackDrop()
     this._focustrap = this._initializeFocusTrap()
     this._isShown = false
@@ -69,15 +68,15 @@ class Modal extends BaseComponent
 
   // Getters
   static get Default() {
-    return Default
+    return this.Default;
   }
 
   static get DefaultType() {
-    return DefaultType
+    return this.DefaultType
   }
 
   static get NAME() {
-    return NAME
+    return this.NAME;
   }
 
   // Public
@@ -90,7 +89,7 @@ class Modal extends BaseComponent
       return
     }
 
-    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW, {
+    const showEvent = EventHandler.trigger(this._element, Modal.EVENT_SHOW, {
       relatedTarget
     })
 
@@ -103,7 +102,7 @@ class Modal extends BaseComponent
 
     this._scrollBar.hide()
 
-    document.body.classList.add(CLASS_NAME_OPEN)
+    document.body.classList.add(Modal.CLASS_NAME_OPEN)
 
     this._adjustDialog()
 
@@ -115,7 +114,7 @@ class Modal extends BaseComponent
       return
     }
 
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE)
+    const hideEvent = EventHandler.trigger(this._element, Modal.EVENT_HIDE)
 
     if (hideEvent.defaultPrevented) {
       return
@@ -125,14 +124,14 @@ class Modal extends BaseComponent
     this._isTransitioning = true
     this._focustrap.deactivate()
 
-    this._element.classList.remove(CLASS_NAME_SHOW)
+    this._element.classList.remove(Modal.CLASS_NAME_SHOW)
 
     this._queueCallback(() => this._hideModal(), this._element, this._isAnimated())
   }
 
   dispose() {
-    EventHandler.off(window, EVENT_KEY)
-    EventHandler.off(this._dialog, EVENT_KEY)
+    EventHandler.off(window, Modal.EVENT_KEY)
+    EventHandler.off(this._dialog, Modal.EVENT_KEY)
 
     this._backdrop.dispose()
     this._focustrap.deactivate()
@@ -170,14 +169,14 @@ class Modal extends BaseComponent
     this._element.setAttribute('role', 'dialog')
     this._element.scrollTop = 0
 
-    const modalBody = SelectorEngine.findOne(SELECTOR_MODAL_BODY, this._dialog)
+    const modalBody = SelectorEngine.findOne(Modal.SELECTOR_MODAL_BODY, this._dialog)
     if (modalBody) {
       modalBody.scrollTop = 0
     }
 
     reflow(this._element)
 
-    this._element.classList.add(CLASS_NAME_SHOW)
+    this._element.classList.add(Modal.CLASS_NAME_SHOW)
 
     const transitionComplete = () => {
       if (this._config.focus) {
@@ -185,7 +184,7 @@ class Modal extends BaseComponent
       }
 
       this._isTransitioning = false
-      EventHandler.trigger(this._element, EVENT_SHOWN, {
+      EventHandler.trigger(this._element, Modal.EVENT_SHOWN, {
         relatedTarget
       })
     }
@@ -194,8 +193,8 @@ class Modal extends BaseComponent
   }
 
   _addEventListeners() {
-    EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS, event => {
-      if (event.key !== ESCAPE_KEY) {
+    EventHandler.on(this._element, Modal.EVENT_KEYDOWN_DISMISS, event => {
+      if (event.key !== Modal.ESCAPE_KEY) {
         return
       }
 
@@ -207,15 +206,15 @@ class Modal extends BaseComponent
       this._triggerBackdropTransition()
     })
 
-    EventHandler.on(window, EVENT_RESIZE, () => {
+    EventHandler.on(window, Modal.EVENT_RESIZE, () => {
       if (this._isShown && !this._isTransitioning) {
         this._adjustDialog()
       }
     })
 
-    EventHandler.on(this._element, EVENT_MOUSEDOWN_DISMISS, event => {
+    EventHandler.on(this._element, Modal.EVENT_MOUSEDOWN_DISMISS, event => {
       // a bad trick to segregate clicks that may start inside dialog but end outside, and avoid listen to scrollbar clicks
-      EventHandler.one(this._element, EVENT_CLICK_DISMISS, event2 => {
+      EventHandler.one(this._element, Modal.EVENT_CLICK_DISMISS, event2 => {
         if (this._element !== event.target || this._element !== event2.target) {
           return
         }
@@ -240,19 +239,19 @@ class Modal extends BaseComponent
     this._isTransitioning = false
 
     this._backdrop.hide(() => {
-      document.body.classList.remove(CLASS_NAME_OPEN)
+      document.body.classList.remove(Modal.CLASS_NAME_OPEN)
       this._resetAdjustments()
       this._scrollBar.reset()
-      EventHandler.trigger(this._element, EVENT_HIDDEN)
+      EventHandler.trigger(this._element, Modal.EVENT_HIDDEN)
     })
   }
 
   _isAnimated() {
-    return this._element.classList.contains(CLASS_NAME_FADE)
+    return this._element.classList.contains(Modal.CLASS_NAME_FADE)
   }
 
   _triggerBackdropTransition() {
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED)
+    const hideEvent = EventHandler.trigger(this._element, Modal.EVENT_HIDE_PREVENTED)
     if (hideEvent.defaultPrevented) {
       return
     }
@@ -260,7 +259,7 @@ class Modal extends BaseComponent
     const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight
     const initialOverflowY = this._element.style.overflowY
     // return if the following background transition hasn't yet completed
-    if (initialOverflowY === 'hidden' || this._element.classList.contains(CLASS_NAME_STATIC)) {
+    if (initialOverflowY === 'hidden' || this._element.classList.contains(Modal.CLASS_NAME_STATIC)) {
       return
     }
 
@@ -268,9 +267,9 @@ class Modal extends BaseComponent
       this._element.style.overflowY = 'hidden'
     }
 
-    this._element.classList.add(CLASS_NAME_STATIC)
+    this._element.classList.add(Modal.CLASS_NAME_STATIC)
     this._queueCallback(() => {
-      this._element.classList.remove(CLASS_NAME_STATIC)
+      this._element.classList.remove(Modal.CLASS_NAME_STATIC)
       this._queueCallback(() => {
         this._element.style.overflowY = initialOverflowY
       }, this._dialog)
@@ -282,7 +281,6 @@ class Modal extends BaseComponent
   /**
    * The following methods are used to handle overflowing modals
    */
-
   _adjustDialog() {
     const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight
     const scrollbarWidth = this._scrollBar.getWidth()
@@ -326,20 +324,20 @@ class Modal extends BaseComponent
  * Data API implementation
  */
 
-EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (event) {
+EventHandler.on(document, Modal.EVENT_CLICK_DATA_API, Modal.SELECTOR_DATA_TOGGLE, function (event) {
   const target = SelectorEngine.getElementFromSelector(this)
 
   if (['A', 'AREA'].includes(this.tagName)) {
     event.preventDefault()
   }
 
-  EventHandler.one(target, EVENT_SHOW, showEvent => {
+  EventHandler.one(target, Modal.EVENT_SHOW, showEvent => {
     if (showEvent.defaultPrevented) {
       // only register focus restorer if modal will actually get shown
       return
     }
 
-    EventHandler.one(target, EVENT_HIDDEN, () => {
+    EventHandler.one(target, Modal.EVENT_HIDDEN, () => {
       if (isVisible(this)) {
         this.focus()
       }
@@ -347,7 +345,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (
   })
 
   // avoid conflict when clicking modal toggler while another one is open
-  const alreadyOpen = SelectorEngine.findOne(OPEN_SELECTOR)
+  const alreadyOpen = SelectorEngine.findOne(Modal.OPEN_SELECTOR)
   if (alreadyOpen) {
     Modal.getInstance(alreadyOpen).hide()
   }

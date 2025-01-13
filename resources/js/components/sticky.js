@@ -3,39 +3,39 @@ import EventHandler from '../shared/dom/event-handler.js'
 import { enableDismissTrigger } from '../shared/util/component-functions.js'
 import { defineJQueryPlugin } from '../shared/util'
 
-const NAME = 'sticky'
-const DATA_KEY = 'alert.sticky'
-const EVENT_KEY = `.${DATA_KEY}`
-const EVENT_CLOSE = `close${EVENT_KEY}`
-const EVENT_CLOSED = `closed${EVENT_KEY}`
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
-
 class Sticky extends BaseComponent
 {
+  static NAME = 'sticky'
+  static DATA_KEY = 'alert.sticky'
+  static EVENT_KEY = `.${Sticky.DATA_KEY}`
+  static EVENT_CLOSE = `close${Sticky.EVENT_KEY}`
+  static EVENT_CLOSED = `closed${Sticky.EVENT_KEY}`
+  static CLASS_NAME_FADE = 'fade'
+  static CLASS_NAME_SHOW = 'show'
+
   // Getters
   static get NAME() {
-    return NAME
+    return this.NAME;
   }
 
   // Public
   close() {
-    const closeEvent = EventHandler.trigger(this._element, EVENT_CLOSE)
+    const closeEvent = EventHandler.trigger(this._element, Sticky.EVENT_CLOSE)
 
     if (closeEvent.defaultPrevented) {
       return
     }
 
-    this._element.classList.remove(CLASS_NAME_SHOW)
+    this._element.classList.remove(Sticky.CLASS_NAME_SHOW)
 
-    const isAnimated = this._element.classList.contains(CLASS_NAME_FADE)
+    const isAnimated = this._element.classList.contains(Sticky.CLASS_NAME_FADE)
     this._queueCallback(() => this._destroyElement(), this._element, isAnimated)
   }
 
   // Private
   _destroyElement() {
     this._element.remove()
-    EventHandler.trigger(this._element, EVENT_CLOSED)
+    EventHandler.trigger(this._element, Sticky.EVENT_CLOSED)
     this.dispose()
   }
 
@@ -60,13 +60,11 @@ class Sticky extends BaseComponent
 /**
  * Data API implementation
  */
-
 enableDismissTrigger(Sticky, 'close')
 
 /**
  * jQuery
  */
+defineJQueryPlugin(Sticky);
 
-defineJQueryPlugin(Sticky)
-
-export default Sticky
+export default Sticky;
