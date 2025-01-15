@@ -1,46 +1,32 @@
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/backdrop.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
-
 import EventHandler from '../dom/event-handler.js'
 import Config from './config.js'
 import {
   execute, executeAfterTransition, getElement, reflow
 } from './index.js'
 
-/**
- * Constants
- */
+class Backdrop extends Config
+{
+  static NAME = 'backdrop'
+  static CLASS_NAME_FADE = 'fade'
+  static CLASS_NAME_SHOW = 'show'
+  static EVENT_MOUSEDOWN = `mousedown.bs.${Backdrop.NAME}`
 
-const NAME = 'backdrop'
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
-const EVENT_MOUSEDOWN = `mousedown.bs.${NAME}`
+  static Default = {
+    className: 'modal-backdrop',
+    clickCallback: null,
+    isAnimated: false,
+    isVisible: true, // if false, we use the backdrop helper without adding any element to the dom
+    rootElement: 'body' // give the choice to place backdrop under different elements
+  }
 
-const Default = {
-  className: 'modal-backdrop',
-  clickCallback: null,
-  isAnimated: false,
-  isVisible: true, // if false, we use the backdrop helper without adding any element to the dom
-  rootElement: 'body' // give the choice to place backdrop under different elements
-}
+  static DefaultType = {
+    className: 'string',
+    clickCallback: '(function|null)',
+    isAnimated: 'boolean',
+    isVisible: 'boolean',
+    rootElement: '(element|string)'
+  }
 
-const DefaultType = {
-  className: 'string',
-  clickCallback: '(function|null)',
-  isAnimated: 'boolean',
-  isVisible: 'boolean',
-  rootElement: '(element|string)'
-}
-
-/**
- * Class definition
- */
-
-class Backdrop extends Config {
   constructor(config) {
     super()
     this._config = this._getConfig(config)
@@ -50,15 +36,15 @@ class Backdrop extends Config {
 
   // Getters
   static get Default() {
-    return Default
+    return this.Default;
   }
 
   static get DefaultType() {
-    return DefaultType
+    return this.DefaultType;
   }
 
   static get NAME() {
-    return NAME
+    return this.NAME;
   }
 
   // Public
@@ -75,7 +61,7 @@ class Backdrop extends Config {
       reflow(element)
     }
 
-    element.classList.add(CLASS_NAME_SHOW)
+    element.classList.add(Backdrop.CLASS_NAME_SHOW)
 
     this._emulateAnimation(() => {
       execute(callback)
@@ -88,7 +74,7 @@ class Backdrop extends Config {
       return
     }
 
-    this._getElement().classList.remove(CLASS_NAME_SHOW)
+    this._getElement().classList.remove(Backdrop.CLASS_NAME_SHOW)
 
     this._emulateAnimation(() => {
       this.dispose()
@@ -101,7 +87,7 @@ class Backdrop extends Config {
       return
     }
 
-    EventHandler.off(this._element, EVENT_MOUSEDOWN)
+    EventHandler.off(this._element, Backdrop.EVENT_MOUSEDOWN)
 
     this._element.remove()
     this._isAppended = false
@@ -113,7 +99,7 @@ class Backdrop extends Config {
       const backdrop = document.createElement('div')
       backdrop.className = this._config.className
       if (this._config.isAnimated) {
-        backdrop.classList.add(CLASS_NAME_FADE)
+        backdrop.classList.add(Backdrop.CLASS_NAME_FADE)
       }
 
       this._element = backdrop
@@ -136,7 +122,7 @@ class Backdrop extends Config {
     const element = this._getElement()
     this._config.rootElement.append(element)
 
-    EventHandler.on(element, EVENT_MOUSEDOWN, () => {
+    EventHandler.on(element, Backdrop.EVENT_MOUSEDOWN, () => {
       execute(this._config.clickCallback)
     })
 

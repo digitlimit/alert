@@ -3,8 +3,6 @@ import EventHandler from './dom/event-handler.js'
 import Config from './util/config.js'
 import { executeAfterTransition, getElement } from './util'
 
-const VERSION = '5.3.3'
-
 /**
  * Class definition
  */
@@ -52,10 +50,6 @@ class BaseComponent extends Config {
 
   static getOrCreateInstance(element, config = {}) {
     return this.getInstance(element) || new this(element, typeof config === 'object' ? config : null)
-  }
-
-  static get VERSION() {
-    return VERSION
   }
 
   static get DATA_KEY() {

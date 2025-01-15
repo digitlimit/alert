@@ -1,43 +1,29 @@
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/focustrap.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
-
 import EventHandler from '../dom/event-handler.js'
 import SelectorEngine from '../dom/selector-engine.js'
 import Config from './config.js'
 
-/**
- * Constants
- */
+class FocusTrap extends Config
+{
+  static NAME = 'focustrap'
+  static DATA_KEY = 'bs.focustrap'
+  static EVENT_KEY = `.${FocusTrap.DATA_KEY}`
+  static EVENT_FOCUSIN = `focusin${FocusTrap.EVENT_KEY}`
+  static EVENT_KEYDOWN_TAB = `keydown.tab${FocusTrap.EVENT_KEY}`
 
-const NAME = 'focustrap'
-const DATA_KEY = 'bs.focustrap'
-const EVENT_KEY = `.${DATA_KEY}`
-const EVENT_FOCUSIN = `focusin${EVENT_KEY}`
-const EVENT_KEYDOWN_TAB = `keydown.tab${EVENT_KEY}`
+  static TAB_KEY = 'Tab'
+  static TAB_NAV_FORWARD = 'forward'
+  static TAB_NAV_BACKWARD = 'backward'
 
-const TAB_KEY = 'Tab'
-const TAB_NAV_FORWARD = 'forward'
-const TAB_NAV_BACKWARD = 'backward'
+  static Default = {
+    autofocus: true,
+    trapElement: null // The element to trap focus inside of
+  }
 
-const Default = {
-  autofocus: true,
-  trapElement: null // The element to trap focus inside of
-}
+  static DefaultType = {
+    autofocus: 'boolean',
+    trapElement: 'element'
+  }
 
-const DefaultType = {
-  autofocus: 'boolean',
-  trapElement: 'element'
-}
-
-/**
- * Class definition
- */
-
-class FocusTrap extends Config {
   constructor(config) {
     super()
     this._config = this._getConfig(config)
@@ -47,15 +33,15 @@ class FocusTrap extends Config {
 
   // Getters
   static get Default() {
-    return Default
+    return this.Default;
   }
 
   static get DefaultType() {
-    return DefaultType
+    return this.DefaultType;
   }
 
   static get NAME() {
-    return NAME
+    return this.NAME;
   }
 
   // Public
@@ -68,9 +54,9 @@ class FocusTrap extends Config {
       this._config.trapElement.focus()
     }
 
-    EventHandler.off(document, EVENT_KEY) // guard against infinite focus loop
-    EventHandler.on(document, EVENT_FOCUSIN, event => this._handleFocusin(event))
-    EventHandler.on(document, EVENT_KEYDOWN_TAB, event => this._handleKeydown(event))
+    EventHandler.off(document, FocusTrap.EVENT_KEY) // guard against infinite focus loop
+    EventHandler.on(document, FocusTrap.EVENT_FOCUSIN, event => this._handleFocusin(event))
+    EventHandler.on(document, FocusTrap.EVENT_KEYDOWN_TAB, event => this._handleKeydown(event))
 
     this._isActive = true
   }
@@ -81,7 +67,7 @@ class FocusTrap extends Config {
     }
 
     this._isActive = false
-    EventHandler.off(document, EVENT_KEY)
+    EventHandler.off(document, FocusTrap.EVENT_KEY)
   }
 
   // Private
@@ -96,7 +82,7 @@ class FocusTrap extends Config {
 
     if (elements.length === 0) {
       trapElement.focus()
-    } else if (this._lastTabNavDirection === TAB_NAV_BACKWARD) {
+    } else if (this._lastTabNavDirection === FocusTrap.TAB_NAV_BACKWARD) {
       elements[elements.length - 1].focus()
     } else {
       elements[0].focus()
@@ -104,11 +90,11 @@ class FocusTrap extends Config {
   }
 
   _handleKeydown(event) {
-    if (event.key !== TAB_KEY) {
+    if (event.key !== FocusTrap.TAB_KEY) {
       return
     }
 
-    this._lastTabNavDirection = event.shiftKey ? TAB_NAV_BACKWARD : TAB_NAV_FORWARD
+    this._lastTabNavDirection = event.shiftKey ? FocusTrap.TAB_NAV_BACKWARD : FocusTrap.TAB_NAV_FORWARD
   }
 }
 

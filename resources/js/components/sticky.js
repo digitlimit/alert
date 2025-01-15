@@ -57,14 +57,7 @@ class Sticky extends BaseComponent
   }
 }
 
-/**
- * Data API implementation
- */
 enableDismissTrigger(Sticky, 'close')
-
-/**
- * jQuery
- */
 defineJQueryPlugin(Sticky);
 
 export default Sticky;

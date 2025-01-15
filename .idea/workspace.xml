@@ -6,17 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/alert.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/alert.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/alert.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/alert.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/alert.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/alert.min.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/field.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/field.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/notify.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/notify.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/sticky.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/sticky.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/shared/base-component.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/shared/base-component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/shared/dom/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/shared/dom/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/shared/dom/event-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/shared/dom/event-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/shared/util/backdrop.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/shared/util/backdrop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/shared/util/component-functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/shared/util/component-functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/shared/util/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/shared/util/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/shared/util/focustrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/shared/util/focustrap.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,7 +267,9 @@
       <workItem from="1736449665747" duration="3351000" />
       <workItem from="1736548320326" duration="1821000" />
       <workItem from="1736640343694" duration="23153000" />
-      <workItem from="1736800720678" duration="4867000" />
+      <workItem from="1736800720678" duration="5835000" />
+      <workItem from="1736882090342" duration="598000" />
+      <workItem from="1736973176350" duration="3151000" />
     </task>
     <servers />
   </component>

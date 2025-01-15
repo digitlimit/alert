@@ -3,9 +3,6 @@ import EventHandler from '../shared/dom/event-handler.js'
 import { enableDismissTrigger } from '../shared/util/component-functions.js'
 import { defineJQueryPlugin } from '../shared/util'
 
-/**
- * Class definition
- */
 class Field extends BaseComponent {
   // Static properties
   static NAME = 'field'
