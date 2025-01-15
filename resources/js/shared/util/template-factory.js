@@ -1,51 +1,37 @@
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/template-factory.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
-
 import SelectorEngine from '../dom/selector-engine.js'
 import Config from './config.js'
 import { DefaultAllowlist, sanitizeHtml } from './sanitizer.js'
 import { execute, getElement, isElement } from './index.js'
 
-/**
- * Constants
- */
+class TemplateFactory extends Config
+{
+  static NAME = 'TemplateFactory'
 
-const NAME = 'TemplateFactory'
+  static Default = {
+    allowList: DefaultAllowlist,
+    content: {}, // { selector : text ,  selector2 : text2 , }
+    extraClass: '',
+    html: false,
+    sanitize: true,
+    sanitizeFn: null,
+    template: '<div></div>'
+  }
 
-const Default = {
-  allowList: DefaultAllowlist,
-  content: {}, // { selector : text ,  selector2 : text2 , }
-  extraClass: '',
-  html: false,
-  sanitize: true,
-  sanitizeFn: null,
-  template: '<div></div>'
-}
+  static DefaultType = {
+    allowList: 'object',
+    content: 'object',
+    extraClass: '(string|function)',
+    html: 'boolean',
+    sanitize: 'boolean',
+    sanitizeFn: '(null|function)',
+    template: 'string'
+  }
 
-const DefaultType = {
-  allowList: 'object',
-  content: 'object',
-  extraClass: '(string|function)',
-  html: 'boolean',
-  sanitize: 'boolean',
-  sanitizeFn: '(null|function)',
-  template: 'string'
-}
+  static DefaultContentType = {
+    entry: '(string|element|function|null)',
+    selector: '(string|element)'
+  }
 
-const DefaultContentType = {
-  entry: '(string|element|function|null)',
-  selector: '(string|element)'
-}
-
-/**
- * Class definition
- */
-
-class TemplateFactory extends Config {
   constructor(config) {
     super()
     this._config = this._getConfig(config)
@@ -53,15 +39,15 @@ class TemplateFactory extends Config {
 
   // Getters
   static get Default() {
-    return Default
+    return this.Default
   }
 
   static get DefaultType() {
-    return DefaultType
+    return this.DefaultType;
   }
 
   static get NAME() {
-    return NAME
+    return this.NAME;
   }
 
   // Public
@@ -107,7 +93,7 @@ class TemplateFactory extends Config {
 
   _checkContent(arg) {
     for (const [selector, content] of Object.entries(arg)) {
-      super._typeCheckConfig({ selector, entry: content }, DefaultContentType)
+      super._typeCheckConfig({ selector, entry: content }, TemplateFactory.DefaultContentType)
     }
   }
 
