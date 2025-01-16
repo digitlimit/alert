@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/js/shared/util/scrollbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/shared/util/scrollbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/shared/util/swipe.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/shared/util/swipe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/shared/util/template-factory.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/shared/util/template-factory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +260,7 @@
       <workItem from="1736640343694" duration="23153000" />
       <workItem from="1736800720678" duration="5835000" />
       <workItem from="1736882090342" duration="598000" />
-      <workItem from="1736973176350" duration="4015000" />
+      <workItem from="1736973176350" duration="4968000" />
     </task>
     <servers />
   </component>

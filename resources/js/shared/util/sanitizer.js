@@ -1,10 +1,3 @@
-/**
- * --------------------------------------------------------------------------
- * Bootstrap util/sanitizer.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
-
 // js-docs-start allow-list
 const ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i
 

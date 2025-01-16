@@ -8,7 +8,6 @@
 import Manipulator from '../dom/manipulator.js'
 import { isElement, toType } from './index.js'
 
-
 class Config
 {
   // Getters

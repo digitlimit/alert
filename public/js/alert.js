@@ -1,17 +1,6 @@
 var DigitlimitAlert = (function (exports) {
   'use strict';
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap dom/data.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-  /**
-   * Constants
-   */
-
   const elementMap = new Map();
   var Data = {
     set(element, key, instance) {
@@ -237,18 +226,6 @@ var DigitlimitAlert = (function (exports) {
     }, emulatedDuration);
   };
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap dom/event-handler.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
-
   const namespaceRegex = /[^.]*(?=\..*)\.|.*/;
   const stripNameRegex = /\..*/;
   const stripUidRegex = /::\d+$/;
@@ -459,13 +436,6 @@ var DigitlimitAlert = (function (exports) {
     return obj;
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap dom/manipulator.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
   function normalizeData(value) {
     if (value === 'true') {
       return true;
@@ -523,11 +493,6 @@ var DigitlimitAlert = (function (exports) {
    * --------------------------------------------------------------------------
    */
 
-
-  /**
-   * Class definition
-   */
-
   class Config {
     // Getters
     static get Default() {
@@ -569,8 +534,6 @@ var DigitlimitAlert = (function (exports) {
     }
   }
 
-  const VERSION = '5.3.3';
-
   /**
    * Class definition
    */
@@ -611,9 +574,6 @@ var DigitlimitAlert = (function (exports) {
     }
     static getOrCreateInstance(element, config = {}) {
       return this.getInstance(element) || new this(element, typeof config === 'object' ? config : null);
-    }
-    static get VERSION() {
-      return VERSION;
     }
     static get DATA_KEY() {
       return `bs.${this.NAME}`;
@@ -715,13 +675,6 @@ var DigitlimitAlert = (function (exports) {
     }
   };
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/component-functions.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
   const enableDismissTrigger = (component, method = 'hide') => {
     const clickEvent = `click.dismiss${component.EVENT_KEY}`;
     const name = component.NAME;
@@ -740,9 +693,6 @@ var DigitlimitAlert = (function (exports) {
     });
   };
 
-  /**
-   * Class definition
-   */
   class Field extends BaseComponent {
     // Static properties
     static NAME = 'field';
@@ -862,43 +812,26 @@ var DigitlimitAlert = (function (exports) {
    */
   defineJQueryPlugin(Message);
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/backdrop.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
-
-  const NAME$1 = 'backdrop';
-  const CLASS_NAME_FADE = 'fade';
-  const CLASS_NAME_SHOW = 'show';
-  const EVENT_MOUSEDOWN = `mousedown.bs.${NAME$1}`;
-  const Default$1 = {
-    className: 'modal-backdrop',
-    clickCallback: null,
-    isAnimated: false,
-    isVisible: true,
-    // if false, we use the backdrop helper without adding any element to the dom
-    rootElement: 'body' // give the choice to place backdrop under different elements
-  };
-  const DefaultType$1 = {
-    className: 'string',
-    clickCallback: '(function|null)',
-    isAnimated: 'boolean',
-    isVisible: 'boolean',
-    rootElement: '(element|string)'
-  };
-
-  /**
-   * Class definition
-   */
-
   class Backdrop extends Config {
+    static NAME = 'backdrop';
+    static CLASS_NAME_FADE = 'fade';
+    static CLASS_NAME_SHOW = 'show';
+    static EVENT_MOUSEDOWN = `mousedown.bs.${Backdrop.NAME}`;
+    static Default = {
+      className: 'modal-backdrop',
+      clickCallback: null,
+      isAnimated: false,
+      isVisible: true,
+      // if false, we use the backdrop helper without adding any element to the dom
+      rootElement: 'body' // give the choice to place backdrop under different elements
+    };
+    static DefaultType = {
+      className: 'string',
+      clickCallback: '(function|null)',
+      isAnimated: 'boolean',
+      isVisible: 'boolean',
+      rootElement: '(element|string)'
+    };
     constructor(config) {
       super();
       this._config = this._getConfig(config);
@@ -908,13 +841,13 @@ var DigitlimitAlert = (function (exports) {
 
     // Getters
     static get Default() {
-      return Default$1;
+      return this.Default;
     }
     static get DefaultType() {
-      return DefaultType$1;
+      return this.DefaultType;
     }
     static get NAME() {
-      return NAME$1;
+      return this.NAME;
     }
 
     // Public
@@ -928,7 +861,7 @@ var DigitlimitAlert = (function (exports) {
       if (this._config.isAnimated) {
         reflow(element);
       }
-      element.classList.add(CLASS_NAME_SHOW);
+      element.classList.add(Backdrop.CLASS_NAME_SHOW);
       this._emulateAnimation(() => {
         execute(callback);
       });
@@ -938,7 +871,7 @@ var DigitlimitAlert = (function (exports) {
         execute(callback);
         return;
       }
-      this._getElement().classList.remove(CLASS_NAME_SHOW);
+      this._getElement().classList.remove(Backdrop.CLASS_NAME_SHOW);
       this._emulateAnimation(() => {
         this.dispose();
         execute(callback);
@@ -948,7 +881,7 @@ var DigitlimitAlert = (function (exports) {
       if (!this._isAppended) {
         return;
       }
-      EventHandler.off(this._element, EVENT_MOUSEDOWN);
+      EventHandler.off(this._element, Backdrop.EVENT_MOUSEDOWN);
       this._element.remove();
       this._isAppended = false;
     }
@@ -959,7 +892,7 @@ var DigitlimitAlert = (function (exports) {
         const backdrop = document.createElement('div');
         backdrop.className = this._config.className;
         if (this._config.isAnimated) {
-          backdrop.classList.add(CLASS_NAME_FADE);
+          backdrop.classList.add(Backdrop.CLASS_NAME_FADE);
         }
         this._element = backdrop;
       }
@@ -976,7 +909,7 @@ var DigitlimitAlert = (function (exports) {
       }
       const element = this._getElement();
       this._config.rootElement.append(element);
-      EventHandler.on(element, EVENT_MOUSEDOWN, () => {
+      EventHandler.on(element, Backdrop.EVENT_MOUSEDOWN, () => {
         execute(this._config.clickCallback);
       });
       this._isAppended = true;
@@ -986,40 +919,23 @@ var DigitlimitAlert = (function (exports) {
     }
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/focustrap.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
-
-  const NAME = 'focustrap';
-  const DATA_KEY = 'bs.focustrap';
-  const EVENT_KEY = `.${DATA_KEY}`;
-  const EVENT_FOCUSIN = `focusin${EVENT_KEY}`;
-  const EVENT_KEYDOWN_TAB = `keydown.tab${EVENT_KEY}`;
-  const TAB_KEY = 'Tab';
-  const TAB_NAV_FORWARD = 'forward';
-  const TAB_NAV_BACKWARD = 'backward';
-  const Default = {
-    autofocus: true,
-    trapElement: null // The element to trap focus inside of
-  };
-  const DefaultType = {
-    autofocus: 'boolean',
-    trapElement: 'element'
-  };
-
-  /**
-   * Class definition
-   */
-
   class FocusTrap extends Config {
+    static NAME = 'focustrap';
+    static DATA_KEY = 'bs.focustrap';
+    static EVENT_KEY = `.${FocusTrap.DATA_KEY}`;
+    static EVENT_FOCUSIN = `focusin${FocusTrap.EVENT_KEY}`;
+    static EVENT_KEYDOWN_TAB = `keydown.tab${FocusTrap.EVENT_KEY}`;
+    static TAB_KEY = 'Tab';
+    static TAB_NAV_FORWARD = 'forward';
+    static TAB_NAV_BACKWARD = 'backward';
+    static Default = {
+      autofocus: true,
+      trapElement: null // The element to trap focus inside of
+    };
+    static DefaultType = {
+      autofocus: 'boolean',
+      trapElement: 'element'
+    };
     constructor(config) {
       super();
       this._config = this._getConfig(config);
@@ -1029,13 +945,13 @@ var DigitlimitAlert = (function (exports) {
 
     // Getters
     static get Default() {
-      return Default;
+      return this.Default;
     }
     static get DefaultType() {
-      return DefaultType;
+      return this.DefaultType;
     }
     static get NAME() {
-      return NAME;
+      return this.NAME;
     }
 
     // Public
@@ -1046,9 +962,9 @@ var DigitlimitAlert = (function (exports) {
       if (this._config.autofocus) {
         this._config.trapElement.focus();
       }
-      EventHandler.off(document, EVENT_KEY); // guard against infinite focus loop
-      EventHandler.on(document, EVENT_FOCUSIN, event => this._handleFocusin(event));
-      EventHandler.on(document, EVENT_KEYDOWN_TAB, event => this._handleKeydown(event));
+      EventHandler.off(document, FocusTrap.EVENT_KEY); // guard against infinite focus loop
+      EventHandler.on(document, FocusTrap.EVENT_FOCUSIN, event => this._handleFocusin(event));
+      EventHandler.on(document, FocusTrap.EVENT_KEYDOWN_TAB, event => this._handleKeydown(event));
       this._isActive = true;
     }
     deactivate() {
@@ -1056,7 +972,7 @@ var DigitlimitAlert = (function (exports) {
         return;
       }
       this._isActive = false;
-      EventHandler.off(document, EVENT_KEY);
+      EventHandler.off(document, FocusTrap.EVENT_KEY);
     }
 
     // Private
@@ -1070,42 +986,25 @@ var DigitlimitAlert = (function (exports) {
       const elements = SelectorEngine.focusableChildren(trapElement);
       if (elements.length === 0) {
         trapElement.focus();
-      } else if (this._lastTabNavDirection === TAB_NAV_BACKWARD) {
+      } else if (this._lastTabNavDirection === FocusTrap.TAB_NAV_BACKWARD) {
         elements[elements.length - 1].focus();
       } else {
         elements[0].focus();
       }
     }
     _handleKeydown(event) {
-      if (event.key !== TAB_KEY) {
+      if (event.key !== FocusTrap.TAB_KEY) {
         return;
       }
-      this._lastTabNavDirection = event.shiftKey ? TAB_NAV_BACKWARD : TAB_NAV_FORWARD;
+      this._lastTabNavDirection = event.shiftKey ? FocusTrap.TAB_NAV_BACKWARD : FocusTrap.TAB_NAV_FORWARD;
     }
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/scrollBar.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
-
-  const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
-  const SELECTOR_STICKY_CONTENT = '.sticky-top';
-  const PROPERTY_PADDING = 'padding-right';
-  const PROPERTY_MARGIN = 'margin-right';
-
-  /**
-   * Class definition
-   */
-
   class ScrollBarHelper {
+    static SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
+    static SELECTOR_STICKY_CONTENT = '.sticky-top';
+    static PROPERTY_PADDING = 'padding-right';
+    static PROPERTY_MARGIN = 'margin-right';
     constructor() {
       this._element = document.body;
     }
@@ -1120,16 +1019,16 @@ var DigitlimitAlert = (function (exports) {
       const width = this.getWidth();
       this._disableOverFlow();
       // give padding to element to balance the hidden scrollbar width
-      this._setElementAttributes(this._element, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
+      this._setElementAttributes(this._element, ScrollBarHelper.PROPERTY_PADDING, calculatedValue => calculatedValue + width);
       // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
-      this._setElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
-      this._setElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN, calculatedValue => calculatedValue - width);
+      this._setElementAttributes(ScrollBarHelper.SELECTOR_FIXED_CONTENT, ScrollBarHelper.PROPERTY_PADDING, calculatedValue => calculatedValue + width);
+      this._setElementAttributes(ScrollBarHelper.SELECTOR_STICKY_CONTENT, ScrollBarHelper.PROPERTY_MARGIN, calculatedValue => calculatedValue - width);
     }
     reset() {
       this._resetElementAttributes(this._element, 'overflow');
-      this._resetElementAttributes(this._element, PROPERTY_PADDING);
-      this._resetElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING);
-      this._resetElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN);
+      this._resetElementAttributes(this._element, ScrollBarHelper.PROPERTY_PADDING);
+      this._resetElementAttributes(ScrollBarHelper.SELECTOR_FIXED_CONTENT, ScrollBarHelper.PROPERTY_PADDING);
+      this._resetElementAttributes(ScrollBarHelper.SELECTOR_STICKY_CONTENT, ScrollBarHelper.PROPERTY_MARGIN);
     }
     isOverflowing() {
       return this.getWidth() > 0;
@@ -1682,15 +1581,7 @@ var DigitlimitAlert = (function (exports) {
       });
     }
   }
-
-  /**
-   * Data API implementation
-   */
   enableDismissTrigger(Sticky, 'close');
-
-  /**
-   * jQuery
-   */
   defineJQueryPlugin(Sticky);
 
   exports.Field = Field;
