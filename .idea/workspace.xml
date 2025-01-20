@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/alert.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/themes/classic/message.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/themes/classic/message.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -175,7 +171,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.laravel-idea.update-module-directories": "true",
     "git-widget-placeholder": "44-eliminate-bootstrap-dependency-in-views",
-    "last_opened_file_path": "/Users/embah/projects/alert/resources/js",
+    "last_opened_file_path": "/Users/embah/projects/alert",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -263,7 +259,10 @@
       <workItem from="1736800720678" duration="5835000" />
       <workItem from="1736882090342" duration="598000" />
       <workItem from="1736973176350" duration="4968000" />
-      <workItem from="1737063091844" duration="2001000" />
+      <workItem from="1737063091844" duration="2720000" />
+      <workItem from="1737143528754" duration="66000" />
+      <workItem from="1737234613166" duration="2106000" />
+      <workItem from="1737323469068" duration="147000" />
     </task>
     <servers />
   </component>
