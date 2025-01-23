@@ -14,14 +14,14 @@ export default {
             file: 'public/js/alert.js',
             format: 'iife',
             name: 'DigitlimitAlert',
-            sourcemap: true,
+            sourcemap: false,
         },
         {
             file: 'public/js/alert.min.js',
             format: 'iife',
             name: 'DigitlimitAlert',
             plugins: [terser()],
-            sourcemap: true,
+            sourcemap: false,
         },
     ],
     plugins: [
@@ -46,43 +46,3 @@ export default {
         }),
     ],
 };
-
-
-
-
-
-// import resolve from '@rollup/plugin-node-resolve';
-// import commonjs from '@rollup/plugin-commonjs';
-// import babel from '@rollup/plugin-babel';
-// import terser from '@rollup/plugin-terser';
-// import scss from 'rollup-plugin-scss';
-//
-// export default {
-//     input: 'resources/js/alert.js',
-//     output: [
-//         {
-//             file: 'public/js/alert.js',
-//             format: 'iife',
-//             name: 'DigitlimitAlert',
-//             sourcemap: true,
-//         },
-//         {
-//             file: 'public/js/alert.min.js',
-//             format: 'iife',
-//             name: 'DigitlimitAlert',
-//             plugins: [terser()],
-//             sourcemap: true,
-//         },
-//     ],
-//     plugins: [
-//         resolve(),
-//         commonjs(),
-//         babel({
-//             babelHelpers: 'bundled',
-//             exclude: 'node_modules/**',
-//         }),
-//         scss({
-//             output: 'public/css/alert.css',
-//         }),
-//     ],
-// };
