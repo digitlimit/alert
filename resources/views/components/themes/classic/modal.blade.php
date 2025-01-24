@@ -101,27 +101,23 @@
       </div>
     </div>
   </div>
- <script>
-  (function ()
-  {
-    var modalId      = '{{$id}}';
-    var modalElement = document.querySelector('#'+modalId);
+  <script>
+      window.onload = function ()
+      {
+          var modalId = '{{$id}}';
+          var modalElement = document.querySelector('#' + modalId);
 
-    if(!modalElement) {
-      console.log('digitlimit alert: bootstrap modal with given ID ' + modalId +' not found');
-      return;
-    }
+          if (!modalElement) {
+              console.log('digitlimit alert: bootstrap modal with given ID ' + modalId + ' not found');
+              return;
+          }
 
-    if(typeof(bootstrap) == 'undefined') {
-      console.log('digitlimit alert: bootstrap is not loaded on the page');
-      return;
-    }
+          const modal = DigitlimitAlert.Modal.getOrCreateInstance(modalElement, {
+              keyboard: false, // Disable closing the modal with the ESC key
+              backdrop: 'static' // Disable clicking on the backdrop to close the modal
+          });
 
-    var modal = new bootstrap.Modal(modalElement, {
-      keyboard: false
-    });
-
-    modal.show();
-  })();
+          modal.show();
+      };
   </script>
 @endif
