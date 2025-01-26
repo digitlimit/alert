@@ -1,14 +1,13 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap dom/selector-engine.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * dom/selector-engine.js
  * --------------------------------------------------------------------------
  */
 
 import { isDisabled, isVisible, parseSelector } from '../util/index.js'
 
 const getSelector = element => {
-  let selector = element.getAttribute('data-bs-target')
+  let selector = element.getAttribute('data-dl-target')
 
   if (!selector || selector === '#') {
     let hrefAttribute = element.getAttribute('href')
@@ -16,7 +15,7 @@ const getSelector = element => {
     // The only valid content that could double as a selector are IDs or classes,
     // so everything starting with `#` or `.`. If a "real" URL is used as the selector,
     // `document.querySelector` will rightfully complain it is invalid.
-    // See https://github.com/twbs/bootstrap/issues/32273
+    // See https://github.com/twdl/bootstrap/issues/32273
     if (!hrefAttribute || (!hrefAttribute.includes('#') && !hrefAttribute.startsWith('.'))) {
       return null
     }

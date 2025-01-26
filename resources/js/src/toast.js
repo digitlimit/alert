@@ -1,7 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap toast.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * toast.js
  * --------------------------------------------------------------------------
  */
 
@@ -15,7 +14,7 @@ import { defineJQueryPlugin, reflow } from './util/index.js'
  */
 
 const NAME = 'toast'
-const DATA_KEY = 'bs.toast'
+const DATA_KEY = 'dl.toast'
 const EVENT_KEY = `.${DATA_KEY}`
 
 const EVENT_MOUSEOVER = `mouseover${EVENT_KEY}`

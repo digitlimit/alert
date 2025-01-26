@@ -1,7 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap util/backdrop.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * util/backdrop.js
  * --------------------------------------------------------------------------
  */
 
@@ -18,7 +17,7 @@ import {
 const NAME = 'backdrop'
 const CLASS_NAME_FADE = 'fade'
 const CLASS_NAME_SHOW = 'show'
-const EVENT_MOUSEDOWN = `mousedown.bs.${NAME}`
+const EVENT_MOUSEDOWN = `mousedown.dl.${NAME}`
 
 const Default = {
   className: 'modal-backdrop',

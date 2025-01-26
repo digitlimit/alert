@@ -6,6 +6,28 @@
   <component name="ChangeListManager">
     <list default="true" id="811504c8-b31f-49f1-9f76-4ece5533ca50" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/alert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/base-component.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/base-component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/button.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/dom/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/dom/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/dom/event-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/dom/event-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/dom/manipulator.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/dom/manipulator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/dom/selector-engine.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/dom/selector-engine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/toast.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/toast.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/util/backdrop.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/util/backdrop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/util/component-functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/util/component-functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/util/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/util/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/util/focustrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/util/focustrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/util/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/util/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/util/sanitizer.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/util/sanitizer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/util/scrollbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/util/scrollbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/util/swipe.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/util/swipe.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/src/util/template-factory.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/src/util/template-factory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/components/_field.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_field.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/components/_message.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_message.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/components/_modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_modal.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/scss/components/_notify.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/components/_notify.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/components/themes/classic/modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/themes/classic/modal.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -267,7 +289,7 @@
       <workItem from="1737234613166" duration="2106000" />
       <workItem from="1737323469068" duration="1070000" />
       <workItem from="1737580825833" duration="7142000" />
-      <workItem from="1737753978512" duration="660000" />
+      <workItem from="1737753978512" duration="6545000" />
     </task>
     <servers />
   </component>

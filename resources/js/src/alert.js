@@ -1,7 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap alert.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * alert.js
  * --------------------------------------------------------------------------
  */
 
@@ -15,7 +14,7 @@ import { defineJQueryPlugin } from './util/index.js'
  */
 
 const NAME = 'alert'
-const DATA_KEY = 'bs.alert'
+const DATA_KEY = 'dl.alert'
 const EVENT_KEY = `.${DATA_KEY}`
 
 const EVENT_CLOSE = `close${EVENT_KEY}`

@@ -1,7 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap util/focustrap.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * util/focustrap.js
  * --------------------------------------------------------------------------
  */
 
@@ -14,7 +13,7 @@ import Config from './config.js'
  */
 
 const NAME = 'focustrap'
-const DATA_KEY = 'bs.focustrap'
+const DATA_KEY = 'dl.focustrap'
 const EVENT_KEY = `.${DATA_KEY}`
 const EVENT_FOCUSIN = `focusin${EVENT_KEY}`
 const EVENT_KEYDOWN_TAB = `keydown.tab${EVENT_KEY}`
