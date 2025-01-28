@@ -1,7 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap util/config.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * util/config.js
  * --------------------------------------------------------------------------
  */
 

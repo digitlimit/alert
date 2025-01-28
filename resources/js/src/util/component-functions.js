@@ -1,7 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap util/component-functions.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * util/component-functions.js
  * --------------------------------------------------------------------------
  */
 
@@ -13,7 +12,7 @@ const enableDismissTrigger = (component, method = 'hide') => {
   const clickEvent = `click.dismiss${component.EVENT_KEY}`
   const name = component.NAME
 
-  EventHandler.on(document, clickEvent, `[data-bs-dismiss="${name}"]`, function (event) {
+  EventHandler.on(document, clickEvent, `[data-dl-dismiss="${name}"]`, function (event) {
     if (['A', 'AREA'].includes(this.tagName)) {
       event.preventDefault()
     }

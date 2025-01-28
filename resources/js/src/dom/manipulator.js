@@ -1,7 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap dom/manipulator.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * dom/manipulator.js
  * --------------------------------------------------------------------------
  */
 
@@ -39,11 +38,11 @@ function normalizeDataKey(key) {
 
 const Manipulator = {
   setDataAttribute(element, key, value) {
-    element.setAttribute(`data-bs-${normalizeDataKey(key)}`, value)
+    element.setAttribute(`data-dl-${normalizeDataKey(key)}`, value)
   },
 
   removeDataAttribute(element, key) {
-    element.removeAttribute(`data-bs-${normalizeDataKey(key)}`)
+    element.removeAttribute(`data-dl-${normalizeDataKey(key)}`)
   },
 
   getDataAttributes(element) {
@@ -52,10 +51,10 @@ const Manipulator = {
     }
 
     const attributes = {}
-    const bsKeys = Object.keys(element.dataset).filter(key => key.startsWith('bs') && !key.startsWith('bsConfig'))
+    const dlKeys = Object.keys(element.dataset).filter(key => key.startsWith('dl') && !key.startsWith('dlConfig'))
 
-    for (const key of bsKeys) {
-      let pureKey = key.replace(/^bs/, '')
+    for (const key of dlKeys) {
+      let pureKey = key.replace(/^dl/, '')
       pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1)
       attributes[pureKey] = normalizeData(element.dataset[key])
     }
@@ -64,7 +63,7 @@ const Manipulator = {
   },
 
   getDataAttribute(element, key) {
-    return normalizeData(element.getAttribute(`data-bs-${normalizeDataKey(key)}`))
+    return normalizeData(element.getAttribute(`data-dl-${normalizeDataKey(key)}`))
   }
 }
 

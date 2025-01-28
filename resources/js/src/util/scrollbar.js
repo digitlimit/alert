@@ -1,7 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap util/scrollBar.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * util/scrollBar.js
  * --------------------------------------------------------------------------
  */
 
@@ -31,7 +30,7 @@ class ScrollBarHelper {
   getWidth() {
     // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
     const documentWidth = document.documentElement.clientWidth
-    return Math.abs(window.innerWidth - documentWidth)
+    return Math.adl(window.innerWidth - documentWidth)
   }
 
   hide() {

@@ -1,29 +1,29 @@
 .toast {
-  --bs-toast-zindex: 1090;
-  --bs-toast-padding-x: 0.75rem;
-  --bs-toast-padding-y: 0.5rem;
-  --bs-toast-spacing: 1.5rem;
-  --bs-toast-max-width: 350px;
-  --bs-toast-font-size: 0.875rem;
-  --bs-toast-color: ;
-  --bs-toast-bg: rgba(var(--bs-body-bg-rgb), 0.85);
-  --bs-toast-border-width: var(--bs-border-width);
-  --bs-toast-border-color: var(--bs-border-color-translucent);
-  --bs-toast-border-radius: var(--bs-border-radius);
-  --bs-toast-box-shadow: var(--bs-box-shadow);
-  --bs-toast-header-color: var(--bs-secondary-color);
-  --bs-toast-header-bg: rgba(var(--bs-body-bg-rgb), 0.85);
-  --bs-toast-header-border-color: var(--bs-border-color-translucent);
-  width: var(--bs-toast-max-width);
+  --dl-toast-zindex: 1090;
+  --dl-toast-padding-x: 0.75rem;
+  --dl-toast-padding-y: 0.5rem;
+  --dl-toast-spacing: 1.5rem;
+  --dl-toast-max-width: 350px;
+  --dl-toast-font-size: 0.875rem;
+  --dl-toast-color: ;
+  --dl-toast-bg: rgba(var(--dl-body-bg-rgb), 0.85);
+  --dl-toast-border-width: var(--dl-border-width);
+  --dl-toast-border-color: var(--dl-border-color-translucent);
+  --dl-toast-border-radius: var(--dl-border-radius);
+  --dl-toast-box-shadow: var(--dl-box-shadow);
+  --dl-toast-header-color: var(--dl-secondary-color);
+  --dl-toast-header-bg: rgba(var(--dl-body-bg-rgb), 0.85);
+  --dl-toast-header-border-color: var(--dl-border-color-translucent);
+  width: var(--dl-toast-max-width);
   max-width: 100%;
-  font-size: var(--bs-toast-font-size);
-  color: var(--bs-toast-color);
+  font-size: var(--dl-toast-font-size);
+  color: var(--dl-toast-color);
   pointer-events: auto;
-  background-color: var(--bs-toast-bg);
+  background-color: var(--dl-toast-bg);
   background-clip: padding-box;
-  border: var(--bs-toast-border-width) solid var(--bs-toast-border-color);
-  box-shadow: var(--bs-toast-box-shadow);
-  border-radius: var(--bs-toast-border-radius);
+  border: var(--dl-toast-border-width) solid var(--dl-toast-border-color);
+  box-shadow: var(--dl-toast-box-shadow);
+  border-radius: var(--dl-toast-border-radius);
 }
 .toast.showing {
   opacity: 0;
@@ -33,9 +33,9 @@
 }
 
 .toast-container {
-  --bs-toast-zindex: 1090;
+  --dl-toast-zindex: 1090;
   position: absolute;
-  z-index: var(--bs-toast-zindex);
+  z-index: var(--dl-toast-zindex);
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -43,26 +43,26 @@
   pointer-events: none;
 }
 .toast-container > :not(:last-child) {
-  margin-bottom: var(--bs-toast-spacing);
+  margin-bottom: var(--dl-toast-spacing);
 }
 
 .toast-header {
   display: flex;
   align-items: center;
-  padding: var(--bs-toast-padding-y) var(--bs-toast-padding-x);
-  color: var(--bs-toast-header-color);
-  background-color: var(--bs-toast-header-bg);
+  padding: var(--dl-toast-padding-y) var(--dl-toast-padding-x);
+  color: var(--dl-toast-header-color);
+  background-color: var(--dl-toast-header-bg);
   background-clip: padding-box;
-  border-bottom: var(--bs-toast-border-width) solid var(--bs-toast-header-border-color);
-  border-top-left-radius: calc(var(--bs-toast-border-radius) - var(--bs-toast-border-width));
-  border-top-right-radius: calc(var(--bs-toast-border-radius) - var(--bs-toast-border-width));
+  border-bottom: var(--dl-toast-border-width) solid var(--dl-toast-header-border-color);
+  border-top-left-radius: calc(var(--dl-toast-border-radius) - var(--dl-toast-border-width));
+  border-top-right-radius: calc(var(--dl-toast-border-radius) - var(--dl-toast-border-width));
 }
 .toast-header .btn-close {
-  margin-right: calc(-0.5 * var(--bs-toast-padding-x));
-  margin-left: var(--bs-toast-padding-x);
+  margin-right: calc(-0.5 * var(--dl-toast-padding-x));
+  margin-left: var(--dl-toast-padding-x);
 }
 
 .toast-body {
-  padding: var(--bs-toast-padding-x);
+  padding: var(--dl-toast-padding-x);
   word-wrap: break-word;
 }

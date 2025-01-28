@@ -112,12 +112,17 @@
               return;
           }
 
+          modalElement.addEventListener('shown.bs.modal', function () {
+              modalElement.setAttribute('aria-hidden', 'false');
+          });
+
           const modal = DigitlimitAlert.Modal.getOrCreateInstance(modalElement, {
               keyboard: false, // Disable closing the modal with the ESC key
               backdrop: 'static' // Disable clicking on the backdrop to close the modal
           });
 
           modal.show();
+          modal.focus();
       };
   </script>
 @endif

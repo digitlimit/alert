@@ -1,20 +1,20 @@
 .alert {
-  --bs-alert-bg: transparent;
-  --bs-alert-padding-x: 1rem;
-  --bs-alert-padding-y: 1rem;
-  --bs-alert-margin-bottom: 1rem;
-  --bs-alert-color: inherit;
-  --bs-alert-border-color: transparent;
-  --bs-alert-border: var(--bs-border-width) solid var(--bs-alert-border-color);
-  --bs-alert-border-radius: var(--bs-border-radius);
-  --bs-alert-link-color: inherit;
+  --dl-alert-bg: transparent;
+  --dl-alert-padding-x: 1rem;
+  --dl-alert-padding-y: 1rem;
+  --dl-alert-margin-bottom: 1rem;
+  --dl-alert-color: inherit;
+  --dl-alert-border-color: transparent;
+  --dl-alert-border: var(--dl-border-width) solid var(--dl-alert-border-color);
+  --dl-alert-border-radius: var(--dl-border-radius);
+  --dl-alert-link-color: inherit;
   position: relative;
-  padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
-  margin-bottom: var(--bs-alert-margin-bottom);
-  color: var(--bs-alert-color);
-  background-color: var(--bs-alert-bg);
-  border: var(--bs-alert-border);
-  border-radius: var(--bs-alert-border-radius);
+  padding: var(--dl-alert-padding-y) var(--dl-alert-padding-x);
+  margin-bottom: var(--dl-alert-margin-bottom);
+  color: var(--dl-alert-color);
+  background-color: var(--dl-alert-bg);
+  border: var(--dl-alert-border);
+  border-radius: var(--dl-alert-border-radius);
 }
 
 .alert-heading {
@@ -23,7 +23,7 @@
 
 .alert-link {
   font-weight: 700;
-  color: var(--bs-alert-link-color);
+  color: var(--dl-alert-link-color);
 }
 
 .alert-dismissible {
@@ -38,57 +38,57 @@
 }
 
 .alert-primary {
-  --bs-alert-color: var(--bs-primary-text-emphasis);
-  --bs-alert-bg: var(--bs-primary-bg-subtle);
-  --bs-alert-border-color: var(--bs-primary-border-subtle);
-  --bs-alert-link-color: var(--bs-primary-text-emphasis);
+  --dl-alert-color: var(--dl-primary-text-emphasis);
+  --dl-alert-bg: var(--dl-primary-bg-subtle);
+  --dl-alert-border-color: var(--dl-primary-border-subtle);
+  --dl-alert-link-color: var(--dl-primary-text-emphasis);
 }
 
 .alert-secondary {
-  --bs-alert-color: var(--bs-secondary-text-emphasis);
-  --bs-alert-bg: var(--bs-secondary-bg-subtle);
-  --bs-alert-border-color: var(--bs-secondary-border-subtle);
-  --bs-alert-link-color: var(--bs-secondary-text-emphasis);
+  --dl-alert-color: var(--dl-secondary-text-emphasis);
+  --dl-alert-bg: var(--dl-secondary-bg-subtle);
+  --dl-alert-border-color: var(--dl-secondary-border-subtle);
+  --dl-alert-link-color: var(--dl-secondary-text-emphasis);
 }
 
 .alert-success {
-  --bs-alert-color: var(--bs-success-text-emphasis);
-  --bs-alert-bg: var(--bs-success-bg-subtle);
-  --bs-alert-border-color: var(--bs-success-border-subtle);
-  --bs-alert-link-color: var(--bs-success-text-emphasis);
+  --dl-alert-color: var(--dl-success-text-emphasis);
+  --dl-alert-bg: var(--dl-success-bg-subtle);
+  --dl-alert-border-color: var(--dl-success-border-subtle);
+  --dl-alert-link-color: var(--dl-success-text-emphasis);
 }
 
 .alert-info {
-  --bs-alert-color: var(--bs-info-text-emphasis);
-  --bs-alert-bg: var(--bs-info-bg-subtle);
-  --bs-alert-border-color: var(--bs-info-border-subtle);
-  --bs-alert-link-color: var(--bs-info-text-emphasis);
+  --dl-alert-color: var(--dl-info-text-emphasis);
+  --dl-alert-bg: var(--dl-info-bg-subtle);
+  --dl-alert-border-color: var(--dl-info-border-subtle);
+  --dl-alert-link-color: var(--dl-info-text-emphasis);
 }
 
 .alert-warning {
-  --bs-alert-color: var(--bs-warning-text-emphasis);
-  --bs-alert-bg: var(--bs-warning-bg-subtle);
-  --bs-alert-border-color: var(--bs-warning-border-subtle);
-  --bs-alert-link-color: var(--bs-warning-text-emphasis);
+  --dl-alert-color: var(--dl-warning-text-emphasis);
+  --dl-alert-bg: var(--dl-warning-bg-subtle);
+  --dl-alert-border-color: var(--dl-warning-border-subtle);
+  --dl-alert-link-color: var(--dl-warning-text-emphasis);
 }
 
 .alert-danger {
-  --bs-alert-color: var(--bs-danger-text-emphasis);
-  --bs-alert-bg: var(--bs-danger-bg-subtle);
-  --bs-alert-border-color: var(--bs-danger-border-subtle);
-  --bs-alert-link-color: var(--bs-danger-text-emphasis);
+  --dl-alert-color: var(--dl-danger-text-emphasis);
+  --dl-alert-bg: var(--dl-danger-bg-subtle);
+  --dl-alert-border-color: var(--dl-danger-border-subtle);
+  --dl-alert-link-color: var(--dl-danger-text-emphasis);
 }
 
 .alert-light {
-  --bs-alert-color: var(--bs-light-text-emphasis);
-  --bs-alert-bg: var(--bs-light-bg-subtle);
-  --bs-alert-border-color: var(--bs-light-border-subtle);
-  --bs-alert-link-color: var(--bs-light-text-emphasis);
+  --dl-alert-color: var(--dl-light-text-emphasis);
+  --dl-alert-bg: var(--dl-light-bg-subtle);
+  --dl-alert-border-color: var(--dl-light-border-subtle);
+  --dl-alert-link-color: var(--dl-light-text-emphasis);
 }
 
 .alert-dark {
-  --bs-alert-color: var(--bs-dark-text-emphasis);
-  --bs-alert-bg: var(--bs-dark-bg-subtle);
-  --bs-alert-border-color: var(--bs-dark-border-subtle);
-  --bs-alert-link-color: var(--bs-dark-text-emphasis);
+  --dl-alert-color: var(--dl-dark-text-emphasis);
+  --dl-alert-bg: var(--dl-dark-bg-subtle);
+  --dl-alert-border-color: var(--dl-dark-border-subtle);
+  --dl-alert-link-color: var(--dl-dark-text-emphasis);
 }

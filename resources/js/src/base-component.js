@@ -1,10 +1,3 @@
-/**
- * --------------------------------------------------------------------------
- * Bootstrap base-component.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
-
 import Data from './dom/data.js'
 import EventHandler from './dom/event-handler.js'
 import Config from './util/config.js'
@@ -70,7 +63,7 @@ class BaseComponent extends Config {
   }
 
   static get DATA_KEY() {
-    return `bs.${this.NAME}`
+    return `dl.${this.NAME}`
   }
 
   static get EVENT_KEY() {

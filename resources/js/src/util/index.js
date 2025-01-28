@@ -1,7 +1,6 @@
 /**
  * --------------------------------------------------------------------------
  * Bootstrap util/index.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
 
@@ -177,7 +176,7 @@ const reflow = element => {
 }
 
 const getjQuery = () => {
-  if (window.jQuery && !document.body.hasAttribute('data-bs-no-jquery')) {
+  if (window.jQuery && !document.body.hasAttribute('data-dl-no-jquery')) {
     return window.jQuery
   }
 

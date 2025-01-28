@@ -1,7 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap util/swipe.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * util/swipe.js
  * --------------------------------------------------------------------------
  */
 
@@ -14,7 +13,7 @@ import { execute } from './index.js'
  */
 
 const NAME = 'swipe'
-const EVENT_KEY = '.bs.swipe'
+const EVENT_KEY = '.dl.swipe'
 const EVENT_TOUCHSTART = `touchstart${EVENT_KEY}`
 const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY}`
 const EVENT_TOUCHEND = `touchend${EVENT_KEY}`
