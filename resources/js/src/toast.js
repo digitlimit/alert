@@ -86,6 +86,17 @@ class Toast
     });
   }
 
+  shouldExit(options, map) {
+  if (options.preventDuplicates) {
+    if (map.message === previousToast) {
+      return true;
+    } else {
+      previousToast = map.message;
+    }
+  }
+  return false;
+}
+
   notify(map) {
     let options = this.getOptions();
     let iconClass = map.iconClass || options.iconClass;
