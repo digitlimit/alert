@@ -19,9 +19,10 @@ class Toast
     const toasts = document.querySelectorAll('.toastr');
 
     toasts.forEach(toastr => {
+      const id = toastr.getAttribute('id');
       const toast = this.firstEl('.toast');
 
-      if (!toast) {
+      if (!id || !toast) {
         console.error('Toast not found.');
         return;
       }
@@ -40,6 +41,9 @@ class Toast
         type,
         message,
         title,
+        optionsOverride: {
+          containerId: id,
+        }
       });
     });
   }
@@ -52,13 +56,23 @@ class Toast
     return 'info'; // Default type
   }
 
+  closeBtnEl() {
+    const button = document.createElement("button");
+
+    button.setAttribute("type", "button");
+
+    button.innerHTML = "&times;";
+
+    return button;
+  }
+
   el(selector, context = document) {
     if(selector.startsWith('.')) {
       return context.getElementsByClassName(selector.substring(1));
     }
 
     if(selector.startsWith('<') && selector.endsWith('>')) {
-      return context.createElement(selector.substring(1, selector.length - 1));
+      return context.createElement(selector.substring(1, selector.length - 2));
     }
 
     if(selector.startsWith('#')) {
@@ -99,10 +113,12 @@ class Toast
 
   getContainer(options, create) {
     if (!options) { options = this.getOptions(); }
-    this.$container = this.el('#' + options.containerId);
-    if (this.$container.length) {
+    this.$container = this.$container ?? document.getElementById(options.containerId);
+
+    if (this.$container) {
       return this.$container;
     }
+
     if (create) {
       this.$container = this.createContainer(options);
     }
@@ -276,7 +292,7 @@ class Toast
     let $titleElement = this.el('<div/>');
     let $messageElement = this.el('<div/>');
     let $progressElement = this.el('<div/>');
-    let $closeElement = this.el(options.closeHtml);
+    let $closeElement = this.closeBtnEl();
     let progressBar = {
       intervalId: null,
       hideEta: null,
