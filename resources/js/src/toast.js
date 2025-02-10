@@ -11,6 +11,47 @@ class Toast
     warning: 'warning'
   };
 
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    const toasts = document.querySelectorAll('.toastr');
+
+    toasts.forEach(toastr => {
+      const toast = this.firstEl('.toast');
+
+      if (!toast) {
+        console.error('Toast not found.');
+        return;
+      }
+
+      const progress = this.firstEl('.toast-progress', toast);
+      const close = this.firstEl('.toast-close-button', toast);
+      const title = this.firstEl('.toast-title', toast)?.innerText ?? '';
+      const message = this.firstEl('.toast-message', toast)?.innerText ?? '';
+      const type = this.getToastType(toast) ?? 'info';
+      const iconClass = this.getOptions().iconClasses[type];
+
+      this.$container = toast
+
+      this.notify({
+        iconClass,
+        type,
+        message,
+        title,
+      });
+    });
+  }
+
+  getToastType(element) {
+    if (element.classList.contains('toast-success')) return 'success';
+    if (element.classList.contains('toast-error')) return 'error';
+    if (element.classList.contains('toast-info')) return 'info';
+    if (element.classList.contains('toast-warning')) return 'warning';
+    return 'info'; // Default type
+  }
+
   el(selector, context = document) {
     if(selector.startsWith('.')) {
       return context.getElementsByClassName(selector.substring(1));
@@ -25,6 +66,10 @@ class Toast
     }
 
     return context.querySelector(selector);
+  }
+
+  firstEl(selector, context = document) {
+    return this.el(selector, context)[0] ?? null;
   }
 
   toastr() {
@@ -494,7 +539,7 @@ class Toast
 
 
   getOptions() {
-    return $.extend({}, this.getDefaults(), this.toastr.options);
+    return Object.assign({}, this.getDefaults(), this.toastr.options);
   }
 
   removeToast($toastElement) {
@@ -508,350 +553,6 @@ class Toast
       this.$container.remove();
       this.previousToast = undefined;
     }
-  }
-}
-
-
-
-
-// class Toast
-// {
-//     constructor() {
-//         this.$container = null;
-//         this.listener = null;
-//         this.toastId = 0;
-//         this.previousToast = undefined;
-//         this.options = {};
-//         this.toastType = {
-//             error: 'error',
-//             info: 'info',
-//             success: 'success',
-//             warning: 'warning',
-//         };
-//
-//         // Initialize any existing toasts on page load
-//         this.init();
-//     }
-//
-//     init() {
-//         const toasts = document.querySelectorAll('.toastr');
-//
-//         toasts.forEach(toastr => {
-//             console.log('toast', toastr);
-//
-//             const toast = toastr.querySelector('.toast');
-//             const progress = toast.querySelector('.toast-progress');
-//             const title = toast.querySelector('.toast-title');
-//             const message = toast.querySelector('.toast-message');
-//
-//             const type = this.getToastType(toast) ?? 'info';
-//             const iconClass = this.getOptions().iconClasses[type];
-//
-// console.log('type', type);
-//
-//             this.$container = toast
-//
-//             this.notify({
-//                 iconClass,
-//                 type,
-//                 message,
-//                 title,
-//             });
-//         });
-//     }
-//
-//     getToastType(element) {
-//         if (element.classList.contains('toast-success')) return 'success';
-//         if (element.classList.contains('toast-error')) return 'error';
-//         if (element.classList.contains('toast-info')) return 'info';
-//         if (element.classList.contains('toast-warning')) return 'warning';
-//         return 'info'; // Default type
-//     }
-//
-//     error(message, title, optionsOverride) {
-//         return this.notify({
-//             type: this.toastType.error,
-//             iconClass: this.getOptions().iconClasses.error,
-//             message,
-//             optionsOverride,
-//             title,
-//         });
-//     }
-//
-//     info(message, title, optionsOverride) {
-//         return this.notify({
-//             type: this.toastType.info,
-//             iconClass: this.getOptions().iconClasses.info,
-//             message,
-//             optionsOverride,
-//             title,
-//         });
-//     }
-//
-//     success(message, title, optionsOverride) {
-//         return this.notify({
-//             type: this.toastType.success,
-//             iconClass: this.getOptions().iconClasses.success,
-//             message,
-//             optionsOverride,
-//             title,
-//         });
-//     }
-//
-//     warning(message, title, optionsOverride) {
-//         return this.notify({
-//             type: this.toastType.warning,
-//             iconClass: this.getOptions().iconClasses.warning,
-//             message,
-//             optionsOverride,
-//             title,
-//         });
-//     }
-//
-//     notify(map) {
-//         let options = this.getOptions();
-//         let iconClass = map.iconClass || options.iconClass;
-//         if (map.optionsOverride) {
-//             options = Object.assign(options, map.optionsOverride);
-//             iconClass = map.optionsOverride.iconClass || iconClass;
-//         }
-//         if (this.shouldExit(options, map)) return;
-//
-//         this.toastId++;
-//         this.$container = this.getContainer(options, true);
-//
-//         let $toastElement = $('<div/>')
-//             .addClass('toast')
-//             .addClass(iconClass)
-//             .append(`<div class="toast-title">${map.title || ''}</div>`)
-//             .append(`<div class="toast-message">${map.message}</div>`)
-//             .append(`<div class="toast-progress" style="width: 100%;"></div>`);
-//
-//         if (options.newestOnTop) {
-//             this.$container.prepend($toastElement);
-//         } else {
-//             this.$container.append($toastElement);
-//         }
-//
-//         setTimeout(() => this.removeToast($toastElement), options.timeOut);
-//         return $toastElement;
-//     }
-//
-//     removeToast($toastElement) {
-//         if (!$toastElement) return;
-//         $toastElement.fadeOut(500, () => $toastElement.remove());
-//     }
-//
-//     getDefaults() {
-//         return {
-//             containerId: 'toast-container',
-//             positionClass: 'toast-bottom-center',
-//             iconClasses: {
-//                 error: 'toast-error',
-//                 info: 'toast-info',
-//                 success: 'toast-success',
-//                 warning: 'toast-warning',
-//             },
-//             timeOut: 5000,
-//             closeOnHover: true,
-//             preventDuplicates: false,
-//         };
-//     }
-//
-//     getOptions() {
-//         return Object.assign({}, this.getDefaults(), this.options);
-//     }
-//
-//     getContainer(options = this.getOptions(), create = false) {
-//         this.$container = $('#' + options.containerId);
-//         if (!this.$container.length && create) {
-//             this.$container = this.createContainer(options);
-//         }
-//         return this.$container;
-//     }
-//
-//     createContainer(options) {
-//         this.$container = $('<div/>')
-//             .attr('id', options.containerId)
-//             .addClass(options.positionClass)
-//             .appendTo($(options.target || 'body'));
-//         return this.$container;
-//     }
-// }
-//
-// export default Toast;
-
-
-
-
-
-class Toast
-{
-  constructor() {
-    this.$container = null;
-    this.listener = null;
-    this.toastId = 0;
-    this.previousToast = undefined;
-    this.options = {};
-    this.toastType = {
-      error: 'error',
-      info: 'info',
-      success: 'success',
-      warning: 'warning',
-    };
-
-    // Initialize any existing toasts on page load
-    this.init();
-  }
-
-  init() {
-    // Check if the toast container exists and has toasts inside
-    this.$container = $('#toastr-container');
-    if (this.$container.length) {
-      this.$container.children('.toastr').each((_, el) => {
-        const $toastElement = $(el);
-        const type = this.getToastType($toastElement);
-        const title = $toastElement.find('.toastr-title').text();
-        const message = $toastElement.find('.toastr-message').text();
-
-        // Rebuild the toast using the existing elements
-        this.notify({
-          type,
-          iconClass: this.getOptions().iconClasses[type],
-          message,
-          title,
-        });
-      });
-    }
-  }
-
-  getToastType($toastElement) {
-    if ($toastElement.hasClass('toastr-success')) return 'success';
-    if ($toastElement.hasClass('toastr-error')) return 'error';
-    if ($toastElement.hasClass('toastr-info')) return 'info';
-    if ($toastElement.hasClass('toastr-warning')) return 'warning';
-    return 'info'; // Default type
-  }
-
-  error(message, title, optionsOverride) {
-    return this.notify({
-      type: this.toastType.error,
-      iconClass: this.getOptions().iconClasses.error,
-      message,
-      optionsOverride,
-      title,
-    });
-  }
-
-  info(message, title, optionsOverride) {
-    return this.notify({
-      type: this.toastType.info,
-      iconClass: this.getOptions().iconClasses.info,
-      message,
-      optionsOverride,
-      title,
-    });
-  }
-
-  success(message, title, optionsOverride) {
-    return this.notify({
-      type: this.toastType.success,
-      iconClass: this.getOptions().iconClasses.success,
-      message,
-      optionsOverride,
-      title,
-    });
-  }
-
-  warning(message, title, optionsOverride) {
-    return this.notify({
-      type: this.toastType.warning,
-      iconClass: this.getOptions().iconClasses.warning,
-      message,
-      optionsOverride,
-      title,
-    });
-  }
-
-  shouldExit(options, map) {
-  if (options.preventDuplicates) {
-    if (map.message === previousToast) {
-      return true;
-    } else {
-      previousToast = map.message;
-    }
-  }
-  return false;
-}
-
-  notify(map) {
-    let options = this.getOptions();
-    let iconClass = map.iconClass || options.iconClass;
-    if (map.optionsOverride) {
-      options = Object.assign(options, map.optionsOverride);
-      iconClass = map.optionsOverride.iconClass || iconClass;
-    }
-    if (this.shouldExit(options, map)) return;
-
-    this.toastId++;
-    this.$container = this.getContainer(options, true);
-
-    let $toastElement = $('<div/>')
-        .addClass('toastr')
-        .addClass(iconClass)
-        .append(`<div class="toastr-title">${map.title || ''}</div>`)
-        .append(`<div class="toastr-message">${map.message}</div>`)
-        .append(`<div class="toastr-progress" style="width: 100%;"></div>`);
-
-    if (options.newestOnTop) {
-      this.$container.prepend($toastElement);
-    } else {
-      this.$container.append($toastElement);
-    }
-
-    setTimeout(() => this.removeToast($toastElement), options.timeOut);
-    return $toastElement;
-  }
-
-  removeToast($toastElement) {
-    if (!$toastElement) return;
-    $toastElement.fadeOut(500, () => $toastElement.remove());
-  }
-
-  getDefaults() {
-    return {
-      containerId: 'toastr-container',
-      positionClass: 'toastr-bottom-center',
-      iconClasses: {
-        error: 'toastr-error',
-        info: 'toastr-info',
-        success: 'toastr-success',
-        warning: 'toastr-warning',
-      },
-      timeOut: 5000,
-      closeOnHover: true,
-      preventDuplicates: false,
-    };
-  }
-
-  getOptions() {
-    return Object.assign({}, this.getDefaults(), this.options);
-  }
-
-  getContainer(options = this.getOptions(), create = false) {
-    this.$container = $('#' + options.containerId);
-    if (!this.$container.length && create) {
-      this.$container = this.createContainer(options);
-    }
-    return this.$container;
-  }
-
-  createContainer(options) {
-    this.$container = $('<div/>')
-        .attr('id', options.containerId)
-        .addClass(options.positionClass)
-        .appendTo($(options.target || 'body'));
-    return this.$container;
   }
 }
 
