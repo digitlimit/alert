@@ -28,9 +28,4 @@ interface MessageInterface
      * Set the alert tag.
      */
     public function tag(string $tag): self;
-
-    /**
-     * Flash the alert to store.
-     */
-    public function flash(string $message = null, string $level = null): void;
 }

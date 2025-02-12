@@ -20,8 +20,7 @@ class TestCase extends BaseTestCase
     /**
      * Override application aliases.
      *
-     * @param \Illuminate\Foundation\Application $app
-     *
+     * @param  \Illuminate\Foundation\Application  $app
      * @return array<string, class-string<\Illuminate\Support\Facades\Facade>>
      */
     protected function getPackageAliases($app)
