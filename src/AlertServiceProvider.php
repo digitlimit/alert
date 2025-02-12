@@ -110,12 +110,12 @@ class AlertServiceProvider extends ServiceProvider
 
         Blade::directive(
             'alertStyles',
-            fn() => '<link rel="stylesheet" href="' . $css . '">'
+            fn () => '<link rel="stylesheet" href="'.$css.'">'
         );
 
         Blade::directive(
             'alertScripts',
-            fn() => '<script src="' . $js . '"></script>'
+            fn () => '<script src="'.$js.'"></script>'
         );
     }
 }
