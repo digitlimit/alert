@@ -66,6 +66,33 @@ class Toast
     return button;
   }
 
+  fadeOut(el, duration, callback) {
+    el.style.opacity = 1;
+    (function fade() {
+      if ((el.style.opacity -= .1) < 0) {
+        el.style.display = "none";
+      } else {
+        requestAnimationFrame(fade);
+        callback();
+      }
+    })();
+  };
+
+  fadeIn(el, duration) {
+    el.style.opacity = 0;
+
+    const increment = 1 / (duration / 16);
+
+    (function fade() {
+      let val = parseFloat(el.style.opacity);
+
+      if (!((val += increment) > 1)) {
+        el.style.opacity = val;
+        requestAnimationFrame(fade);
+      }
+    })();
+  };
+
   el(selector, context = document) {
     if(selector.startsWith('.')) {
       return context.getElementsByClassName(selector.substring(1));
@@ -204,7 +231,7 @@ class Toast
         duration: options.hideDuration,
         easing: options.hideEasing,
         complete: () =>{
-          this.removeToast($toastElement); // TODO: used arrow function to bind this
+          this.removeToast($toastElement);
         }
       });
       return true;
@@ -322,9 +349,7 @@ class Toast
 
     this.publish(response);
 
-    if (options.debug && console) {
-      console.log(response);
-    }
+    // console.log(response);
 
     return $toastElement;
   }
@@ -355,23 +380,26 @@ class Toast
       default:
         ariaValue = 'assertive';
     }
-    $toastElement.attr('aria-live', ariaValue);
-    // TODO: return $toastElement;
+
+    $toastElement.setAttribute('aria-live', ariaValue);
+
+    return $toastElement;
   }
 
   handleEvents(options, $toastElement, $closeElement, intervalId, progressBar, response)
   {
     if (options.closeOnHover) {
-      $toastElement.hover(
-          this.stickAround,
-          //TODO: should override be null?
-          this.delayedHideToast(null, options, $toastElement, intervalId, progressBar, response)
+      $toastElement.addEventListener(
+          "mouseleave",
+          () => this.delayedHideToast(null, options, $toastElement, intervalId, progressBar, response)
       );
     }
 
     if (!options.onclick && options.tapToDismiss) {
-      // TODO: should override be null?
-      $toastElement.click(this.hideToast(null, options, $toastElement, intervalId, progressBar, response));
+      $toastElement.addEventListener(
+          'click',
+          () =>  this.hideToast(null, options, $toastElement, intervalId, progressBar, response)
+      );
     }
 
     if (options.closeButton && $closeElement) {
@@ -386,7 +414,7 @@ class Toast
           options.onCloseClick(event);
         }
 
-        this.hideToast(true, options, $toastElement, intervalId, progressBar, response); // TODO: used arrow function to bind this
+        // this.hideToast(true, options, $toastElement, intervalId, progressBar, response); // TODO: used arrow function to bind this
       });
     }
 
@@ -399,16 +427,17 @@ class Toast
   }
 
   displayToast(options, $toastElement, intervalId, progressBar, response) {
-    $toastElement.hide();
+    $toastElement.style.display = "none";
 
-    $toastElement[options.showMethod](
-        {duration: options.showDuration, easing: options.showEasing, complete: options.onShown}
-    );
+    // $toastElement[options.showMethod](
+    //     {duration: options.showDuration, easing: options.showEasing, complete: options.onShown}
+    // );
+
+    this.fadeIn($toastElement, options.showDuration);
 
     if (options.timeOut > 0) {
       intervalId = setTimeout(
-          //TODO: should override be null?
-          this.hideToast(null, options, $toastElement, intervalId, progressBar, response),
+          () => this.hideToast(null, options, $toastElement, intervalId, progressBar, response),
           options.timeOut
       );
 
@@ -501,25 +530,25 @@ class Toast
         options.closeDuration : options.hideDuration;
 
     let easing = override && options.closeEasing !== false ? options.closeEasing : options.hideEasing;
-    if (this.el(':focus', $toastElement).length && !override) {
+    if ($toastElement.querySelector(':focus') && !override) {
       return;
     }
 
     clearTimeout(progressBar.intervalId);
 
-    return $toastElement[method]({
-      duration: duration,
-      easing: easing,
-      complete: () => { //TODO: used arrow function to bind this
-        this.removeToast($toastElement);
-        clearTimeout(intervalId);
-        if (options.onHidden && response.state !== 'hidden') {
-          options.onHidden();
-        }
-        response.state = 'hidden';
-        response.endTime = new Date();
-        this.publish(response);
+    return this.fadeOut($toastElement, duration, () => {
+      this.removeToast($toastElement);
+
+      clearTimeout(intervalId);
+
+      if (options.onHidden && response.state !== 'hidden') {
+        options.onHidden();
       }
+
+      response.state = 'hidden';
+      response.endTime = new Date();
+
+      this.publish(response);
     });
   }
 
@@ -559,13 +588,14 @@ class Toast
   }
 
   removeToast($toastElement) {
-    if (!this.$container) { this.$container = this.getContainer(); }
-    if ($toastElement.is(':visible')) {
-      return;
+    if (!this.$container) {
+      this.$container = this.getContainer();
     }
+
     $toastElement.remove();
     $toastElement = null;
-    if (this.$container.children().length === 0) {
+
+    if (this.$container) {
       this.$container.remove();
       this.previousToast = undefined;
     }
