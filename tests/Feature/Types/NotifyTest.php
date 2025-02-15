@@ -16,7 +16,6 @@ it('can create a notify alert', function () {
         ->toEqual('Thank you!')
         ->and($default->key())
         ->toEqual('notify');
-
 })->group('types', 'types-notify', 'types-notify');
 
 it('can create a notify alert position', function () {

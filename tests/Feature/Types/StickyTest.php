@@ -16,7 +16,6 @@ it('can create a sticky alert', function () {
         ->toBeInstanceOf(Sticky::class)
         ->and($default->message)
         ->toEqual('Thank you!');
-
 })->group('types', 'types-sticky', 'types-sticky-message');
 
 it('can create a sticky alert title', function () {
@@ -29,7 +28,6 @@ it('can create a sticky alert title', function () {
         ->toEqual('Order')
         ->and($default->message)
         ->toEqual('Thank for ordering pizza!');
-
 })->group('types', 'types-sticky', 'types-sticky-title');
 
 it('can create a sticky alert button', function () {
@@ -40,5 +38,4 @@ it('can create a sticky alert button', function () {
 
     expect($default->action)
         ->toBeInstanceOf(Button::class);
-
 })->group('types', 'types-sticky', 'types-sticky-button');

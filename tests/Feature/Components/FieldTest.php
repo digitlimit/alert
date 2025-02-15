@@ -12,7 +12,6 @@ it('can render a default field view component', function () {
     $view
         ->assertSee('class="form-text text-success"', false)
         ->assertSee('Username is available');
-
 })->group('view-component', 'view-component-field-default');
 
 it('can render a tagged field view component', function () {
@@ -26,7 +25,6 @@ it('can render a tagged field view component', function () {
     $view
         ->assertSee('class="form-text text-warning"', false)
         ->assertSee('Please select a country');
-
 })->group('view-component', 'view-component-field-tagged');
 
 it('can render a named field view component', function () {
@@ -45,5 +43,4 @@ it('can render a named field view component', function () {
         ->assertSee('class="form-text text-success"', false)
         ->assertSee('Good, you chose a valid country')
         ->assertDontSee('Good, you chose a valid state');
-
 })->group('view-component', 'view-component-field-named-tagged');
