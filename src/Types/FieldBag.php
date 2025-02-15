@@ -32,7 +32,7 @@ class FieldBag extends AbstractMessage implements MessageInterface
         } elseif (is_a($bag, MessageBag::class)) {
             $this->messages($bag);
         } else {
-            $this->messages = new MessageBag;
+            $this->messages = new MessageBag();
         }
     }
 
