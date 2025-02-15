@@ -15,5 +15,4 @@ it('can create a modal alert with helper', function () {
         ->toBeInstanceOf(Modal::class)
         ->and($default->message)
         ->toEqual('Thank you!');
-
 })->group('types', 'types-modal', 'types-modal');

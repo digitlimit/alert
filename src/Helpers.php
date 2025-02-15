@@ -3,7 +3,7 @@
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator;
 
-if (! function_exists('alert')) {
+if (!function_exists('alert')) {
     function alert(string $message, ?string $title = null): mixed
     {
         $alert = app('alert')
@@ -18,7 +18,7 @@ if (! function_exists('alert')) {
     }
 }
 
-if (! function_exists('field')) {
+if (!function_exists('field')) {
     function field(string $name, string $message, ?string $tag = null): mixed
     {
         $alert = app('alert')->field($name, $message);
@@ -31,7 +31,7 @@ if (! function_exists('field')) {
     }
 }
 
-if (! function_exists('fieldBag')) {
+if (!function_exists('fieldBag')) {
     function fieldBag(Validator|MessageBag $bag): mixed
     {
         return app('alert')
@@ -39,7 +39,7 @@ if (! function_exists('fieldBag')) {
     }
 }
 
-if (! function_exists('modal')) {
+if (!function_exists('modal')) {
     function modal(string $message, ?string $title = null): mixed
     {
         $alert = app('alert')->modal($message);
@@ -52,7 +52,7 @@ if (! function_exists('modal')) {
     }
 }
 
-if (! function_exists('notify')) {
+if (!function_exists('notify')) {
     function notify(string $message, ?string $title = null): mixed
     {
         $alert = app('alert')->notify($message);
@@ -65,7 +65,7 @@ if (! function_exists('notify')) {
     }
 }
 
-if (! function_exists('sticky')) {
+if (!function_exists('sticky')) {
     function sticky(string $message, ?string $title = null): mixed
     {
         $alert = app('alert')->sticky($message);
@@ -78,7 +78,7 @@ if (! function_exists('sticky')) {
     }
 }
 
-if (! function_exists('forgetSticky')) {
+if (!function_exists('forgetSticky')) {
     function forgetSticky(?string $name = null): void
     {
         app('alert')->stickForget($name);

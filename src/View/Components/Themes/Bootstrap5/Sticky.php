@@ -23,7 +23,7 @@ class Sticky extends Component
      * Default action button.
      */
     public array $actionAttributes = [
-        'type' => 'button',
+        'type'  => 'button',
         'class' => 'btn btn-sm btn-primary float-end',
     ];
 

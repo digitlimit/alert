@@ -17,5 +17,4 @@ it('can create a notify alert  with helper', function () {
         ->toEqual('Thank you!')
         ->and($default->key())
         ->toEqual('notify');
-
 })->group('types', 'types-notify', 'types-notify');

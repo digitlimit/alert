@@ -51,8 +51,8 @@ class Modal extends AbstractMessage implements MessageInterface
         public ?string $message
     ) {
         $this->id($this->key().'-'.Helper::randomString());
-        $this->action = new Button;
-        $this->cancel = new Button;
+        $this->action = new Button();
+        $this->cancel = new Button();
     }
 
     /**

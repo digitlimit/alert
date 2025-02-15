@@ -15,5 +15,4 @@ it('can create an alert with helper', function () {
         ->toBeInstanceOf(Field::class)
         ->and($default->message)
         ->toEqual('Invalid firstname');
-
 })->group('types', 'types-field');
