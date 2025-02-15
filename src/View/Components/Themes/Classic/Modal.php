@@ -24,7 +24,8 @@ class Modal extends Component
      */
     public array $actionAttributes = [
         'type' => 'button',
-        'class' => 'btn btn-primary',
+        'class' => 'inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 bg-neutral-950 hover:bg-neutral-900',
+        '@click' => "modalOpen = false;",
     ];
 
     /**
@@ -32,8 +33,26 @@ class Modal extends Component
      */
     public array $cancelAttributes = [
         'type' => 'button',
-        'class' => 'btn btn-secondary',
-        'data-bs-dismiss' => 'modal',
+        'class' => 'inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-100 focus:ring-offset-2',
+        '@click' => "modalOpen = false;",
+    ];
+
+    /**
+     * Default action button attributes.
+     */
+    public array $linkActionAttributes = [
+        'type' => 'button',
+        'class' => 'inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 bg-neutral-950 hover:bg-neutral-900',
+        '@click' => "modalOpen = false;",
+    ];
+
+    /**
+     * Default cancel button attributes.
+     */
+    public array $linkCancelAttributes = [
+        'type' => 'button',
+        'class' => 'inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-100 focus:ring-offset-2',
+        '@click' => "modalOpen = false;",
     ];
 
     /**
