@@ -7,14 +7,13 @@ it('can render validation errors for the field view component', function () {
         ['firstname' => '', 'lastname' => ''],
         [
             'firstname' => 'required',
-            'lastname'  => 'required',
+            'lastname' => 'required',
         ]
     );
 
     Alert::fieldBag($validator)
         ->tag('contact')
-        ->error()
-        ->flash();
+        ->error();
 
     $this
         ->blade('<x-alert-field name="firstname" tag="contact" />')
@@ -25,4 +24,4 @@ it('can render validation errors for the field view component', function () {
         ->blade('<x-alert-field name="lastname" tag="contact" />')
         ->assertSee('class="form-text text-danger"', false)
         ->assertSee('The lastname field is required');
-})->name('view-component', 'view-component-field-bag');
+})->group('view-component', 'view-component-field-bag');

@@ -9,11 +9,11 @@
         $id = $id ?? $sticky->id;
     @endphp
 
-    <div id="{{$id}}" {{ $attributes->merge(['class' => 'alert alert-dismissible alert-'.$sticky->level]) }} role="alert">
+    <div id="{{$id}}" {{ $attributes->merge(['class' => 'alert alert-dismissible alert-'.$sticky->getLevel()]) }} role="alert">
         @if ($slot->isNotEmpty())
             {{ $slot }}
         @else
-            @if($sticky->title)<strong>{{ $sticky->title }}</strong>@endif {{ $sticky->message }}
+            @if($sticky->getTitle())<strong>{{ $sticky->getTitle() }}</strong>@endif {{ $sticky->getMessage() }}
 
             @if($action->label)
                 @if($action->link)

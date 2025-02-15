@@ -13,9 +13,9 @@ class MessageFactory
      */
     public static function make(SessionInterface $session, string $type, ...$args): MessageInterface
     {
-        $class = Type::clasname($type);
+        $class = Type::classname($type);
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             throw new Exception("Alert type '$class' class not found ");
         }
 

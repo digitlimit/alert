@@ -22,18 +22,15 @@ class Alert
 
     /**
      * Create a new alert instance.
-     *
-     * @return void
      */
     public function __construct(
         protected SessionInterface $session
-    ) {
-    }
+    ) {}
 
     /**
      * Fetch an alert based on the default tag.
      */
-    public function default(string $type): MessageInterface|null
+    public function default(string $type): ?MessageInterface
     {
         return self::tagged($type, self::DEFAULT_TAG);
     }
@@ -44,9 +41,9 @@ class Alert
     public function named(
         string $type,
         string $name,
-        string $tag = null
-    ): MessageInterface|null {
-        if (!Type::exists($type)) {
+        ?string $tag = null
+    ): ?MessageInterface {
+        if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
@@ -63,8 +60,8 @@ class Alert
     public function tagged(
         string $type,
         string $tag
-    ): MessageInterface|null {
-        if (!Type::exists($type)) {
+    ): ?MessageInterface {
+        if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
@@ -82,11 +79,12 @@ class Alert
     /**
      * Fetch the field alert.
      */
-    public function field(string $message = null): MessageInterface
+    public function field(?string $name = null, ?string $message = null): MessageInterface
     {
         return MessageFactory::make(
             $this->session,
             'field',
+            $name,
             $message
         );
     }
@@ -95,7 +93,7 @@ class Alert
      * Fetch the field bag alert.
      */
     public function fieldBag(
-        Validator|MessageBag $bag = null
+        Validator|MessageBag|null $bag = null
     ): MessageInterface {
         return MessageFactory::make(
             $this->session,
@@ -107,7 +105,7 @@ class Alert
     /**
      * Fetch the modal alert.
      */
-    public function modal(string $message = null): MessageInterface
+    public function modal(?string $message = null): MessageInterface
     {
         return MessageFactory::make($this->session, 'modal', $message);
     }
@@ -115,7 +113,7 @@ class Alert
     /**
      * Fetch the notify alert.
      */
-    public function notify(string $message = null): MessageInterface
+    public function notify(?string $message = null): MessageInterface
     {
         return MessageFactory::make($this->session, 'notify', $message);
     }
@@ -123,7 +121,7 @@ class Alert
     /**
      * Fetch the sticky alert.
      */
-    public function sticky(string $message = null): MessageInterface
+    public function sticky(?string $message = null): MessageInterface
     {
         return MessageFactory::make($this->session, 'sticky', $message);
     }
@@ -143,7 +141,7 @@ class Alert
         string $type,
         ...$args
     ): MessageInterface {
-        if (!Type::exists($type)) {
+        if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 

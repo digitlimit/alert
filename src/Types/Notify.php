@@ -41,6 +41,7 @@ class Notify extends AbstractMessage implements MessageInterface
     public function centered(string $class = 'top-50 start-50 translate-middle'): self
     {
         $this->position = $class;
+        $this->flash();
 
         return $this;
     }
@@ -51,6 +52,7 @@ class Notify extends AbstractMessage implements MessageInterface
     public function topLeft(string $class = 'top-0 start-0'): self
     {
         $this->position = $class;
+        $this->flash();
 
         return $this;
     }
@@ -61,6 +63,7 @@ class Notify extends AbstractMessage implements MessageInterface
     public function topRight(string $class = 'top-0 end-0'): self
     {
         $this->position = $class;
+        $this->flash();
 
         return $this;
     }
@@ -71,6 +74,7 @@ class Notify extends AbstractMessage implements MessageInterface
     public function topCenter(string $class = 'top-0 start-50 translate-middle-x'): self
     {
         $this->position = $class;
+        $this->flash();
 
         return $this;
     }
@@ -81,6 +85,7 @@ class Notify extends AbstractMessage implements MessageInterface
     public function bottomLeft(string $class = 'bottom-0 start-0'): self
     {
         $this->position = $class;
+        $this->flash();
 
         return $this;
     }
@@ -91,6 +96,7 @@ class Notify extends AbstractMessage implements MessageInterface
     public function bottomRight(string $class = 'bottom-0 end-0'): self
     {
         $this->position = $class;
+        $this->flash();
 
         return $this;
     }
@@ -101,6 +107,7 @@ class Notify extends AbstractMessage implements MessageInterface
     public function bottomCenter(string $class = 'bottom-0 start-50 translate-middle-x'): self
     {
         $this->position = $class;
+        $this->flash();
 
         return $this;
     }
