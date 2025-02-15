@@ -3,13 +3,14 @@
     $tag    = $attributes->get('tag', $defaultTag);
     $sticky = $alert->tagged('sticky', $tag);
     $action = $sticky->action ?? '';
+    $theme  = $attributes->get('theme', 'light');
 @endphp
 @if($sticky)
     @php
         $id = $id ?? $sticky->id;
     @endphp
 
-    <div id="{{$id}}" {{ $attributes->merge(['class' => 'alert alert-dismissible alert-'.$sticky->getLevel()]) }} role="alert">
+    <div data-bs-theme="{{$theme}}" id="{{$id}}" {{ $attributes->merge(['class' => 'alert alert-dismissible alert-'.$sticky->getLevel()]) }} role="alert">
         @if ($slot->isNotEmpty())
             {{ $slot }}
         @else

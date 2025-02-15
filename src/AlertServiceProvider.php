@@ -23,6 +23,8 @@ class AlertServiceProvider extends ServiceProvider
         $this->registerMacros();
 
         $this->bootForConsole();
+
+        $this->registerBladeDirectives();
     }
 
     /**
@@ -96,5 +98,24 @@ class AlertServiceProvider extends ServiceProvider
                 ->sticky()
                 ->forget($tag);
         });
+    }
+
+    /**
+     * Register Blade directives.
+     */
+    public function registerBladeDirectives(): void
+    {
+        $css = asset('vendor/alert/css/alert.css');
+        $js = asset('vendor/alert/js/alert.js');
+
+        Blade::directive(
+            'alertStyles',
+            fn () => '<link rel="stylesheet" href="'.$css.'">'
+        );
+
+        Blade::directive(
+            'alertScripts',
+            fn () => '<script src="'.$js.'"></script>'
+        );
     }
 }

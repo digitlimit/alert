@@ -6,6 +6,7 @@
   $cancel = $modal->cancel ?? '';
   $action = $modal->action ?? '';
   $view   = $modal->view ?? '';
+  $theme  = $attributes->get('theme', 'light');
 @endphp
 
 @props([
@@ -22,7 +23,7 @@
     $hasFooter = isset($footer) && $footer->isNotEmpty();
     $hasTitle  = $hasHeader || $modal->getTitle();
   @endphp
-  <div
+  <div data-bs-theme="{{$theme}}"
     {{ $attributes->merge(['id'       => $id]) }}
     {{ $attributes->merge(['class'    => 'modal']) }}
     {{ $attributes->merge(['tabindex' => '-1']) }}
@@ -100,27 +101,28 @@
       </div>
     </div>
   </div>
- <script>
-  (function ()
-  {
-    var modalId      = '{{$id}}';
-    var modalElement = document.querySelector('#'+modalId);
+  <script>
+      window.onload = function ()
+      {
+          var modalId = '{{$id}}';
+          var modalElement = document.querySelector('#' + modalId);
 
-    if(!modalElement) {
-      console.log('digitlimit alert: bootstrap modal with given ID ' + modalId +' not found');
-      return;
-    }
+          if (!modalElement) {
+              console.log('digitlimit alert: bootstrap modal with given ID ' + modalId + ' not found');
+              return;
+          }
 
-    if(typeof(bootstrap) == 'undefined') {
-      console.log('digitlimit alert: bootstrap is not loaded on the page');
-      return;
-    }
+          modalElement.addEventListener('shown.bs.modal', function () {
+              modalElement.setAttribute('aria-hidden', 'false');
+          });
 
-    var modal = new bootstrap.Modal(modalElement, {
-      keyboard: false
-    });
+          const modal = DigitlimitAlert.Modal.getOrCreateInstance(modalElement, {
+              keyboard: false, // Disable closing the modal with the ESC key
+              backdrop: 'static' // Disable clicking on the backdrop to close the modal
+          });
 
-    modal.show();
-  })();
+          modal.show();
+          modal.focus();
+      };
   </script>
 @endif

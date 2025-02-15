@@ -2,37 +2,46 @@ name: Testing
 
 on:
   push:
-    branches: [ "master", "feature/laravel-10" ]
+    branches: [ "main", "feature/laravel-10" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-version: ['8.1', '8.2']
 
     steps:
     - uses: actions/checkout@v3
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-version }}
 
-    - name: Cache Composer packages
-      id: composer-cache
+    - name: Cache Composer dependencies
       uses: actions/cache@v3
       with:
         path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    - name: Execute tests
+    - name: Show installed packages (for debugging)
+      run: composer show
+
+    - name: Run tests
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
