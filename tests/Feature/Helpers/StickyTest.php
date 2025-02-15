@@ -15,5 +15,4 @@ it('can create a sticky alert  with helper', function () {
         ->toBeInstanceOf(Sticky::class)
         ->and($default->message)
         ->toEqual('Thank you!');
-
 })->group('types', 'types-sticky', 'types-sticky-message');
