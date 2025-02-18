@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert\View\Components\Themes\Classic;
+namespace Digitlimit\Alert\View\Components\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Attribute;
@@ -68,7 +68,7 @@ class Modal extends Component
      */
     public function render(): View
     {
-        return view('alert::components.themes.classic.modal');
+        return view('alert::components.themes.tailwind.modal');
     }
 
     /**

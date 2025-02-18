@@ -34,12 +34,12 @@ it('can get the correct theme based on config', function () {
         ->toBeEmpty();
 
     // set a valid theme
-    config(['alert.theme' => 'classic']);
+    config(['alert.theme' => 'tailwind']);
     expect(Theme::name())
-        ->toEqual('classic')
+        ->toEqual('tailwind')
         ->and(Theme::theme())
         ->toBeArray()
         ->not()->toBeEmpty()
-        ->toEqual(config('alert.themes.classic'));
+        ->toEqual(config('alert.themes.tailwind'));
 
 })->group('theme', 'helpers', 'theme-theme');

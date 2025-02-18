@@ -14,7 +14,7 @@ return [
      |
      */
 
-    'theme' => 'classic',
+    'theme' => 'tailwind',
 
     /*
     |--------------------------------------------------------------------------
@@ -25,43 +25,43 @@ return [
     |
     */
     'themes' => [
-        'classic' => [
-            'components' => 'Digitlimit\Alert\View\Components\Themes\Classic',
+        'tailwind' => [
+            'components' => 'Digitlimit\Alert\View\Components\Themes\Tailwind',
             'types' => [
                 'message' => [
                     'view' => 'alert-message',
                     'alert' => Types\Message::class,
-                    'component' => Themes\Classic\Message::class,
+                    'component' => Themes\Tailwind\Message::class,
                 ],
 
                 'field' => [
                     'view' => 'alert-field',
                     'alert' => Types\Field::class,
-                    'component' => Themes\Classic\Field::class,
+                    'component' => Themes\Tailwind\Field::class,
                 ],
 
                 'bag' => [
                     'view' => 'alert-field',
                     'alert' => Types\FieldBag::class,
-                    'component' => Themes\Classic\Field::class,
+                    'component' => Themes\Tailwind\Field::class,
                 ],
 
                 'modal' => [
                     'view' => 'alert-modal',
                     'alert' => Types\Modal::class,
-                    'component' => Themes\Classic\Modal::class,
+                    'component' => Themes\Tailwind\Modal::class,
                 ],
 
                 'notify' => [
                     'view' => 'alert-notify',
                     'alert' => Types\Notify::class,
-                    'component' => Themes\Classic\Notify::class,
+                    'component' => Themes\Tailwind\Notify::class,
                 ],
 
                 'sticky' => [
                     'view' => 'alert-sticky',
                     'alert' => Types\Sticky::class,
-                    'component' => Themes\Classic\Sticky::class,
+                    'component' => Themes\Tailwind\Sticky::class,
                 ],
             ],
         ],

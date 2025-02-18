@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert\View\Components\Themes\Classic;
+namespace Digitlimit\Alert\View\Components\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Attribute;
@@ -40,7 +40,7 @@ class Sticky extends Component
      */
     public function render(): View
     {
-        return view('alert::components.themes.classic.sticky');
+        return view('alert::components.themes.tailwind.sticky');
     }
 
     /**
