@@ -7,8 +7,8 @@ it('can get the correct theme name', function () {
     $theme = Helper::config()->get('alert.theme');
 
     expect($theme)
-        ->toEqual('bootstrap5')
-        ->and(Theme::name())->toEqual('bootstrap5');
+        ->toEqual('tailwind')
+        ->and(Theme::name())->toEqual('tailwind');
 
 })->group('theme', 'helpers', 'theme-name');
 

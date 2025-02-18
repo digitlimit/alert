@@ -31,25 +31,25 @@ it('can render a default modal with buttons and title', function () {
 })->group('view-component', 'view-component-modal-buttons-title');
 
 it('can render a default modal a the right position', function () {
-    Alert::modal()
+    Alert::modal('Your message has been recieved, you will hear from us soon')
         ->centered('centered');
 
     $view = $this
         ->blade('<x-alert-modal />');
 
     $view
-        ->assertSee('class="modal-dialog  centered "', false);
+        ->assertSee('class="modal-centered "', false);
 })->group('view-component', 'view-component-modal-position');
 
 it('can render a default modal a the right size', function () {
-    Alert::modal()
+    Alert::modal('Your message has been recieved, you will hear from us soon')
         ->small();
 
     $this
         ->blade('<x-alert-modal />')
         ->assertSee('class="modal-dialog modal-sm  "', false);
 
-    Alert::modal()
+    Alert::modal('Your message has been recieved, you will hear from us soon')
         ->large();
 
     $this
