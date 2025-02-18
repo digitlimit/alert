@@ -65,7 +65,7 @@
                      'w-1/4': modalSize === 'sm',        // Small
                      'w-1/2': modalSize === 'md',        // Medium
                      'w-3/4': modalSize === 'lg',        // Large
-                     'w-full h-full': modalSize === 'full' // Full Screen
+                     'w-full h-full': modalSize === 'full', // Full Screen
                       'max-h-[80vh] overflow-y-auto': scrollable // Enables scrolling inside modal
                  }"
                class="bg-white p-6 rounded-lg shadow-lg relative max-w-full">
