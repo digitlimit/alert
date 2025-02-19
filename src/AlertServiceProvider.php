@@ -20,7 +20,7 @@ class AlertServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'alert');
 
-        $this->registerComponents();
+        Theme::theme()->boot();
 
         $this->registerMacros();
 
@@ -66,16 +66,6 @@ class AlertServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../public' => public_path('vendor/alert'),
         ], 'alert.assets');
-    }
-
-    /**
-     * Register alert components.
-     *
-     * @throws Exception
-     */
-    protected function registerComponents(): void
-    {
-        Theme::theme()->register();
     }
 
     /**

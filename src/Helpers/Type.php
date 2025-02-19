@@ -16,9 +16,7 @@ class Type
      */
     public static function types(): array
     {
-        $theme = Theme::theme();
-
-        return $theme['types'] ?? [];
+        return Theme::theme()->types();
     }
 
     /**

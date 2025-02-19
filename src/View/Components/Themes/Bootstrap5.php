@@ -51,11 +51,11 @@ class Bootstrap5 implements ThemeInterface
             ],
         ];
     }
-    
+
     /**
      * Register the alert components
      */
-    public function register(): void
+    public function boot(): void
     {
         Blade::componentNamespace(__NAMESPACE__, 'alert');
 

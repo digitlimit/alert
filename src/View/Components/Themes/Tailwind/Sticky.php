@@ -5,7 +5,7 @@ namespace Digitlimit\Alert\View\Components\Themes\Tailwind;
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Attribute;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
+use Livewire\Component;
 
 class Sticky extends Component
 {
@@ -30,7 +30,7 @@ class Sticky extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(Alert $alert)
+    public function mount(Alert $alert)
     {
         $this->alert = $alert;
     }

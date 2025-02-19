@@ -6,5 +6,5 @@ interface ThemeInterface
 {
     public function types(): array;
 
-    public function register(): void;
+    public function boot(): void;
 }

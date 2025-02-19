@@ -55,7 +55,7 @@ class Tailwind implements ThemeInterface
     /**
      * Register the alert components
      */
-    public function register(): void
+    public function boot(): void
     {
         foreach ($this->types() as $type) {
             Livewire::component($type['view'], $type['component']);

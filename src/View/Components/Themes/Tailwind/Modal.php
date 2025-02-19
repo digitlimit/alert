@@ -5,19 +5,16 @@ namespace Digitlimit\Alert\View\Components\Themes\Tailwind;
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Attribute;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
+use Livewire\Component;
+use Digitlimit\Alert\Types\Modal as AlertModal;
 
 class Modal extends Component
 {
-    /**
-     * Set the default tag.
-     */
+    protected ?AlertModal $modal;
+
     public string $defaultTag = Alert::DEFAULT_TAG;
 
-    /**
-     * Alert instance.
-     */
-    public Alert $alert;
+    public string $tag;
 
     /**
      * Default action button attributes.
@@ -55,12 +52,15 @@ class Modal extends Component
         '@click' => 'modalOpen = false;',
     ];
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(Alert $alert)
+    public function modal(): ?AlertModal
     {
-        $this->alert = $alert;
+        return $this->modal;
+    }
+
+    public function mount(Alert $alert)
+    {modal('modal');
+        $this->tag = $this->tag ?? $this->defaultTag;
+        $this->modal = $alert->tagged('modal', $this->tag);
     }
 
     /**
@@ -74,7 +74,7 @@ class Modal extends Component
     /**
      * Merge and convert array attributes to HTML string attributes.
      */
-    public function actionAttributes(array $attributes): string
+    public function actionAttributes(array $attributes = []): string
     {
         $newAttributes = array_merge(
             $this->actionAttributes,
@@ -87,7 +87,7 @@ class Modal extends Component
     /**
      * Merge and convert array attributes to HTML string attributes.
      */
-    public function cancelAttributes(array $attributes): string
+    public function cancelAttributes(array $attributes = []): string
     {
         $newAttributes = array_merge(
             $this->cancelAttributes,
