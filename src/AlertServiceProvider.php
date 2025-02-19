@@ -6,8 +6,11 @@ use Digitlimit\Alert\Contracts\ConfigInterface;
 use Digitlimit\Alert\Contracts\SessionInterface;
 use Digitlimit\Alert\Helpers\Theme;
 use Exception;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Component;
+use Livewire\Livewire;
+use function Livewire\on;
+use function Livewire\store;
 
 class AlertServiceProvider extends ServiceProvider
 {
@@ -20,7 +23,7 @@ class AlertServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'alert');
 
-        Theme::theme()->boot();
+        $this->bootAlert();
 
         $this->registerMacros();
 
@@ -48,6 +51,32 @@ class AlertServiceProvider extends ServiceProvider
     public function provides(): array
     {
         return ['alert'];
+    }
+
+    /**
+     * Boot the alert.
+     * @throws Exception
+     */
+    protected function bootAlert(): void
+    {
+        Theme::theme()->boot();
+
+        on('dehydrate', function (Component $component) {
+            if (! Livewire::isLivewireRequest()) {
+                return;
+            }
+
+            if (store($component)->has('redirect')) {
+                return;
+            }
+
+            if (count(session()->get('digitlimit') ?? []) <= 0) {
+                return;
+            }
+
+            $component->dispatch('notificationsSent');
+        });
+
     }
 
     /**

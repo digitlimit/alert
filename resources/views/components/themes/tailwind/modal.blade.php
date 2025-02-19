@@ -1,6 +1,7 @@
 <div class="digitlimit-alert">
+    @inject('modal', 'Digitlimit\Alert\Types\Modal')
+
     @php
-        $modal  = $this->modal();
         $header = $header ?? null;
         $body   = $body ?? null;
         $footer = $footer ?? null;
@@ -20,17 +21,17 @@
             $hasTitle  = $hasHeader || $modal->getTitle();
         @endphp
         <div
-            x-data="{
+                x-data="{
                 modalOpen: true,
                 modalSize: '{{ $modal->size }}',
                 scrollable: {{ $modal->scrollable ? 'true' : 'false' }}
             }"
         >
             <div
-                x-show="modalOpen"
-                class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen"
-                x-cloak
-                :inert="!modalOpen"
+                    x-show="modalOpen"
+                    class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen"
+                    x-cloak
+                    :inert="!modalOpen"
             >
 
                 <!-- Background overlay, closes modal when clicked -->
