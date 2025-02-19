@@ -57,8 +57,8 @@ class Modal extends Component
         return $this->modal;
     }
 
-    public function mount(Alert $alert)
-    {modal('modal');
+    public function mount(Alert $alert): void
+    {
         $this->tag = $this->tag ?? $this->defaultTag;
         $this->modal = $alert->tagged('modal', $this->tag);
     }
