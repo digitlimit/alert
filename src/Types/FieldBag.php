@@ -2,10 +2,10 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Contracts\SessionInterface;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\SessionInterface;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator;
 

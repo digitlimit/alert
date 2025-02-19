@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert;
 
+use Digitlimit\Alert\Contracts\ConfigInterface;
 use Illuminate\Config\Repository;
 
 class Config implements ConfigInterface

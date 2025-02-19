@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert;
 
+use Digitlimit\Alert\Contracts\SessionInterface;
 use Illuminate\Support\Facades\Session as Store;
 
 class Session implements SessionInterface

@@ -4,11 +4,11 @@ namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Component\Button;
+use Digitlimit\Alert\Contracts\SessionInterface;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\SessionInterface;
 
 class Sticky extends AbstractMessage implements MessageInterface
 {

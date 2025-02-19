@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert;
+namespace Digitlimit\Alert\Contracts;
 
 interface ConfigInterface
 {

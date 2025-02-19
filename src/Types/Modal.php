@@ -3,10 +3,10 @@
 namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Component\Button;
+use Digitlimit\Alert\Contracts\SessionInterface;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\SessionInterface;
 use Illuminate\View\View;
 
 class Modal extends AbstractMessage implements MessageInterface

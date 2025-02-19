@@ -2,6 +2,8 @@
 
 namespace Digitlimit\Alert;
 
+use Digitlimit\Alert\Contracts\ConfigInterface;
+use Digitlimit\Alert\Contracts\SessionInterface;
 use Digitlimit\Alert\Helpers\Theme;
 use Exception;
 use Illuminate\Support\Facades\Blade;
@@ -73,17 +75,7 @@ class AlertServiceProvider extends ServiceProvider
      */
     protected function registerComponents(): void
     {
-        $theme = Theme::theme();
-
-        if (empty($theme)) {
-            throw new Exception('Invalid alert theme configuration');
-        }
-
-        Blade::componentNamespace($theme['components'], 'alert');
-
-        foreach ($theme['types'] as $type) {
-            Blade::component($type['view'], $type['component']);
-        }
+        Theme::theme()->register();
     }
 
     /**

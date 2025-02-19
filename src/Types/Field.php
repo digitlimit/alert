@@ -2,11 +2,11 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Contracts\SessionInterface;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\SessionInterface;
 
 class Field extends AbstractMessage implements MessageInterface
 {

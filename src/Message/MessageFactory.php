@@ -2,8 +2,8 @@
 
 namespace Digitlimit\Alert\Message;
 
+use Digitlimit\Alert\Contracts\SessionInterface;
 use Digitlimit\Alert\Helpers\Type;
-use Digitlimit\Alert\SessionInterface;
 use Exception;
 
 class MessageFactory

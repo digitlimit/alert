@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert;
 
+use Digitlimit\Alert\Contracts\SessionInterface;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Helpers\Type;
 use Digitlimit\Alert\Message\MessageFactory;

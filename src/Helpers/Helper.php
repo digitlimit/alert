@@ -2,7 +2,7 @@
 
 namespace Digitlimit\Alert\Helpers;
 
-use Digitlimit\Alert\ConfigInterface;
+use Digitlimit\Alert\Contracts\ConfigInterface;
 
 class Helper
 {
