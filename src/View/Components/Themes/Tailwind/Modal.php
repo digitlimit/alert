@@ -4,16 +4,26 @@ namespace Digitlimit\Alert\View\Components\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Attribute;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Digitlimit\Alert\Types\Modal as AlertModal;
 
 class Modal extends Component
 {
+    /**
+     * The alert modal instance.
+     */
     protected ?AlertModal $modal;
 
+    /**
+     * The default alert tag.
+     */
     public string $defaultTag = Alert::DEFAULT_TAG;
 
+    /**
+     * The alert tag.
+     */
     public string $tag;
 
     /**
@@ -52,11 +62,17 @@ class Modal extends Component
         '@click' => 'modalOpen = false;',
     ];
 
+    /**
+     * Get the modal instance.
+     */
     public function modal(): ?AlertModal
     {
         return $this->modal;
     }
 
+    /**
+     * @throws Exception
+     */
     public function mount(Alert $alert): void
     {
         $this->tag = $this->tag ?? $this->defaultTag;
