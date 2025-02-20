@@ -4,6 +4,7 @@ namespace Digitlimit\Alert;
 
 use Digitlimit\Alert\Contracts\ConfigInterface;
 use Digitlimit\Alert\Contracts\SessionInterface;
+use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Helpers\Theme;
 use Exception;
 use Illuminate\Support\ServiceProvider;
@@ -28,6 +29,8 @@ class AlertServiceProvider extends ServiceProvider
         $this->registerMacros();
 
         $this->bootForConsole();
+
+
     }
 
     /**
@@ -70,11 +73,13 @@ class AlertServiceProvider extends ServiceProvider
                 return;
             }
 
-            if (count(session()->get('digitlimit') ?? []) <= 0) {
+            if (count(session()->get(SessionKey::mainKey()) ?? []) <= 0) {
                 return;
             }
 
-            $component->dispatch('notificationsSent');
+            info('dehydrate', ['component' => $component]);
+
+            $component->dispatch('showModal');
         });
 
     }

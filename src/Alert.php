@@ -39,11 +39,8 @@ class Alert
     /**
      * Fetch an alert based on the type and named.
      */
-    public function named(
-        string $type,
-        string $name,
-        ?string $tag = null
-    ): ?MessageInterface {
+    public function named(string $type, string $name, ?string $tag = null): ?MessageInterface
+    {
         if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
@@ -58,10 +55,8 @@ class Alert
     /**
      * Fetch an alert based on the tag name.
      */
-    public function tagged(
-        string $type,
-        string $tag
-    ): ?MessageInterface {
+    public function tagged(string $type, string $tag): ?MessageInterface
+    {
         if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
@@ -80,72 +75,102 @@ class Alert
     /**
      * Fetch the field alert.
      */
-    public function field(?string $name = null, ?string $message = null): MessageInterface
-    {
-        return MessageFactory::make(
-            $this->session,
-            'field',
-            $name,
-            $message
-        );
-    }
-
-    /**
-     * Fetch the field bag alert.
-     */
-    public function fieldBag(
-        Validator|MessageBag|null $bag = null
-    ): MessageInterface {
-        return MessageFactory::make(
-            $this->session,
-            'bag',
-            $bag
-        );
-    }
-
-    /**
-     * Fetch the modal alert.
-     */
-    public function modal(?string $message = null): MessageInterface
-    {
-        return MessageFactory::make($this->session, 'modal', $message);
-    }
-
-    /**
-     * Fetch the notify alert.
-     */
-    public function notify(?string $message = null): MessageInterface
-    {
-        return MessageFactory::make($this->session, 'notify', $message);
-    }
-
-    /**
-     * Fetch the sticky alert.
-     */
-    public function sticky(?string $message = null): MessageInterface
-    {
-        return MessageFactory::make($this->session, 'sticky', $message);
-    }
-
-    /**
-     * Fetch the default alert type, which is the message alert.
-     */
-    public function message(string $message): MessageInterface
-    {
-        return MessageFactory::make($this->session, 'message', $message);
-    }
+//    public function field(?string $name = null, ?string $message = null): MessageInterface
+//    {
+//        return MessageFactory::make(
+//            $this->session,
+//            'field',
+//            $name,
+//            $message
+//        );
+//    }
+//
+//    /**
+//     * Fetch the field bag alert.
+//     */
+//    public function fieldBag(Validator|MessageBag|null $bag = null): MessageInterface
+//    {
+//        return MessageFactory::make(
+//            $this->session,
+//            'bag',
+//            $bag
+//        );
+//    }
 
     /**
      * Fetch an alert from the given alert type.
      */
-    public function from(
-        string $type,
-        ...$args
-    ): MessageInterface {
+    public function from(string $type, ...$args): MessageInterface
+    {
         if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
         return MessageFactory::make($this->session, $type, ...$args);
+    }
+//
+//    /**
+//     * Fetch the modal alert.
+//     */
+//    public function modal(?string $message = null): MessageInterface
+//    {
+//        return MessageFactory::make($this->session, 'modal', $message);
+//    }
+//
+//    /**
+//     * Fetch the notify alert.
+//     */
+//    public function notify(?string $message = null): MessageInterface
+//    {
+//        return MessageFactory::make($this->session, 'notify', $message);
+//    }
+//
+//    /**
+//     * Fetch the sticky alert.
+//     */
+//    public function sticky(?string $message = null): MessageInterface
+//    {
+//        return MessageFactory::make($this->session, 'sticky', $message);
+//    }
+//
+//    /**
+//     * Fetch the default alert type, which is the message alert.
+//     */
+//    public function message(string $message): MessageInterface
+//    {
+//        return MessageFactory::make($this->session, 'message', $message);
+//    }
+
+    /**
+     * Dynamically handle method calls for different alert types.
+     * @throws Exception
+     */
+    public function __call($method, $parameters)
+    {
+        if (Type::exists($method)) {
+            return MessageFactory::make($this->session, $method, ...$parameters);
+        }
+
+        throw new Exception("Method '$method' not found in Alert class.");
+    }
+
+    /**
+     * Fetch all alerts from the session.
+     */
+    public function has(string $type): bool
+    {
+        $types = $this->session->get(SessionKey::typeKey($type)) ?? [];
+
+        return ! empty($types);
+    }
+
+    /**
+     * Fetch all alerts from the session.
+     */
+    public function count(string $type): int
+    {
+        $types = $this->session->get(SessionKey::typeKey($type)) ?? [];
+
+        return count($types);
     }
 }

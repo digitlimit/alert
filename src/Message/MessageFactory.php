@@ -10,6 +10,7 @@ class MessageFactory
 {
     /**
      * Make a new alert instance.
+     * @throws Exception
      */
     public static function make(SessionInterface $session, string $type, ...$args): MessageInterface
     {

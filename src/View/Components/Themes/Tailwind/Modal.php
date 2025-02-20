@@ -64,6 +64,12 @@ class Modal extends Component
         $this->tag = $this->tag ?? $this->defaultTag;
     }
 
+    #[On('refresh')]
+    public function refresh(): void
+    {
+        info('refreshing');
+    }
+
     /**
      * Get the view / contents that represent the component.
      */
@@ -76,7 +82,7 @@ class Modal extends Component
      * Merge and convert array attributes to HTML string attributes.
      */
     public function actionAttributes(array $attributes = []): string
-    {
+    {$this->emit('refresh');
         $newAttributes = array_merge(
             $this->actionAttributes,
             $attributes

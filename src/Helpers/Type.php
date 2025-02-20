@@ -13,6 +13,7 @@ class Type
 
     /**
      * Fetch alert types from the config file.
+     * @throws Exception
      */
     public static function types(): array
     {
