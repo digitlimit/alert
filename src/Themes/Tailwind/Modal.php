@@ -67,18 +67,12 @@ class Modal extends Component
      */
     public function mount(): void
     {
-        info('mount called');
         $this->tag = $this->tag ?? $this->defaultTag;
         $this->data = Alert::tagged('modal', $this->tag)?->toArray() ?? [];
 
         if(empty($this->data)) {
             $this->skipRender();
         }
-
-        info('mount-alert-modal', [
-            'tag' => $this->tag,
-            'alert' => $this->data,
-        ]);
     }
 
     #[On('refresh-alert-modal')]
@@ -90,18 +84,13 @@ class Modal extends Component
 
         $this->data = $data;
         $this->dispatch('open-alert-modal');
-
-        info('refresh-alert-modal', [
-            'tag' => $tag,
-            'alert' => $data,
-        ]);
     }
 
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): View
-    {info('render called');
+    {
         return view('alert::components.themes.tailwind.modal');
     }
 
