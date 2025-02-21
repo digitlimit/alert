@@ -32,6 +32,6 @@ class MessageFactory
             throw new Exception("Alert type '$class' class not found ");
         }
 
-        return $class->fill($alert);
+        return app($class)->fill($alert);
     }
 }

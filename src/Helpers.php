@@ -45,12 +45,16 @@ if (! function_exists('fieldBag')) {
 }
 
 if (! function_exists('modal')) {
-    function modal(string $message, ?string $title = null): mixed
+    function modal(string $message, ?string $title = null, ?string $tag = null): mixed
     {
         $alert = app('alert')->modal($message);
 
         if ($title) {
             $alert->title($title);
+        }
+
+        if ($tag) {
+            $alert->tag($tag);
         }
 
         $alert->flash();

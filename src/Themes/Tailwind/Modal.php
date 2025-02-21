@@ -22,6 +22,11 @@ class Modal extends Component
     public string $tag;
 
     /**
+     * The alert
+     */
+    public array $data = [];
+
+    /**
      * Default action button attributes.
      */
     public array $actionAttributes = [
@@ -62,22 +67,41 @@ class Modal extends Component
      */
     public function mount(): void
     {
+        info('mount called');
         $this->tag = $this->tag ?? $this->defaultTag;
-        // TODO: maybe remove from session pull
+        $this->data = Alert::tagged('modal', $this->tag)?->toArray() ?? [];
+
+        if(empty($this->data)) {
+            $this->skipRender();
+        }
+
+        info('mount-alert-modal', [
+            'tag' => $this->tag,
+            'alert' => $this->data,
+        ]);
     }
 
-    #[On('created')]
-    public function refresh(array $data = []): void
+    #[On('refresh-alert-modal')]
+    public function refresh(string $tag, array $data): void
     {
-        info('refresh', $data);
-        $this->reset();
+        if($this->tag !== $tag) {
+            return;
+        }
+
+        $this->data = $data;
+        $this->dispatch('open-alert-modal');
+
+        info('refresh-alert-modal', [
+            'tag' => $tag,
+            'alert' => $data,
+        ]);
     }
 
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): View
-    {
+    {info('render called');
         return view('alert::components.themes.tailwind.modal');
     }
 

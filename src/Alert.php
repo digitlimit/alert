@@ -48,7 +48,7 @@ class Alert
     /**
      * Fetch an alert based on the tag name.
      */
-    public function tagged(string $type, string $tag): ?MessageInterface
+    public static function tagged(string $type, string $tag): ?MessageInterface
     {
         if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
@@ -68,7 +68,7 @@ class Alert
     /**
      * Fetch an alert from the given alert type.
      */
-    public function from(string $type, ...$args): MessageInterface
+    public static function from(string $type, ...$args): MessageInterface
     {
         if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
@@ -80,7 +80,7 @@ class Alert
     /**
      * @throws Exception
      */
-    public function fromArray(array $alert): MessageInterface
+    public static function fromArray(array $alert): MessageInterface
     {
         $type = $alert['type'] ?? null;
 
@@ -89,19 +89,6 @@ class Alert
         }
 
         return MessageFactory::makeFromArray($alert);
-    }
-
-    /**
-     * Dynamically handle method calls for different alert types.
-     * @throws Exception
-     */
-    public function __call($method, $parameters)
-    {
-        if (Type::exists($method)) {
-            return MessageFactory::make($method, ...$parameters);
-        }
-
-        throw new Exception("Method '$method' not found in Alert class.");
     }
 
     /**
@@ -117,18 +104,43 @@ class Alert
     /**
      * Fetch all alerts from the session.
      */
-    public static function count(string $type): int
+    public static function count(string $type = null): int
     {
-        $types = Session::get(SessionKey::typeKey($type)) ?? [];
+        $types = self::all($type);
 
-        return count($types);
+        if ($type) {
+            return count($types);
+        }
+
+        // count sub arrays
+        $count = 0;
+        foreach ($types as $type) {
+            $count += count($type);
+        }
+
+        return $count;
     }
 
     /**
      * Fetch all alerts from the session.
      */
-    public static function all(): array
+    public static function all(string $type = null): array
     {
-        return Session::get(SessionKey::mainKey()) ?? [];
+        return $type
+            ? Session::get(SessionKey::typeKey($type), [])
+            : Session::get(SessionKey::mainKey(), []);
+    }
+
+    /**
+     * Dynamically handle method calls for different alert types.
+     * @throws Exception
+     */
+    public function __call($method, $parameters)
+    {
+        if (Type::exists($method)) {
+            return MessageFactory::make($method, ...$parameters);
+        }
+
+        throw new Exception("Method '$method' not found in Alert class.");
     }
 }
