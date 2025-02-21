@@ -1,15 +1,15 @@
 <?php
 
-namespace Digitlimit\Alert\Components\Themes;
+namespace Digitlimit\Alert\Themes;
 
+use Digitlimit\Alert\Themes;
 use Digitlimit\Alert\Contracts\ThemeInterface;
+use Digitlimit\Alert\Events;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Types;
-use Digitlimit\Alert\Events;
-use Digitlimit\Alert\Components\Themes;
+use Illuminate\Support\Facades\Event;
 use Livewire\Component;
 use Livewire\Livewire;
-use Illuminate\Support\Facades\Event;
 use function Livewire\on;
 use function Livewire\store;
 

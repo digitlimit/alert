@@ -1,11 +1,11 @@
 <?php
 
-namespace Digitlimit\Alert\Components\Themes;
+namespace Digitlimit\Alert\Themes;
 
+use Digitlimit\Alert\Themes;
 use Digitlimit\Alert\Contracts\ThemeInterface;
 use Digitlimit\Alert\Types;
 use Illuminate\Support\Facades\Blade;
-use Digitlimit\Alert\Components\Themes;
 
 class Bootstrap5 implements ThemeInterface
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Digitlimit\Alert\Components\Themes\Tailwind;
+namespace Digitlimit\Alert\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class Notify extends Component
+class Field extends Component
 {
     /**
      * Set the default tag.
@@ -31,6 +31,6 @@ class Notify extends Component
      */
     public function render(): View
     {
-        return view('alert::components.themes.tailwind.notify');
+        return view('alert::components.themes.tailwind.field');
     }
 }

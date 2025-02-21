@@ -1,10 +1,10 @@
 <?php
 
-namespace Digitlimit\Alert\Components\Themes\Tailwind;
+namespace Digitlimit\Alert\Themes\Bootstrap5;
 
 use Digitlimit\Alert\Alert;
 use Illuminate\Contracts\View\View;
-use Livewire\Component;
+use Illuminate\View\Component;
 
 class Field extends Component
 {
@@ -21,7 +21,7 @@ class Field extends Component
     /**
      * Create a new component instance.
      */
-    public function mount(Alert $alert)
+    public function __construct(Alert $alert)
     {
         $this->alert = $alert;
     }
@@ -31,6 +31,6 @@ class Field extends Component
      */
     public function render(): View
     {
-        return view('alert::components.themes.tailwind.field');
+        return view('alert::components.themes.bootstrap5.field');
     }
 }

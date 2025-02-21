@@ -1,13 +1,13 @@
 <?php
 
-namespace Digitlimit\Alert\Components\Themes\Bootstrap5;
+namespace Digitlimit\Alert\Themes\Bootstrap5;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Attribute;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Modal extends Component
+class Sticky extends Component
 {
     /**
      * Set the default tag.
@@ -20,20 +20,11 @@ class Modal extends Component
     public Alert $alert;
 
     /**
-     * Default action button attributes.
+     * Default action button.
      */
     public array $actionAttributes = [
         'type' => 'button',
-        'class' => 'btn btn-primary',
-    ];
-
-    /**
-     * Default cancel button attributes.
-     */
-    public array $cancelAttributes = [
-        'type' => 'button',
-        'class' => 'btn btn-secondary',
-        'data-bs-dismiss' => 'modal',
+        'class' => 'btn btn-sm btn-primary float-end',
     ];
 
     /**
@@ -49,7 +40,7 @@ class Modal extends Component
      */
     public function render(): View
     {
-        return view('alert::components.themes.bootstrap5.modal');
+        return view('alert::components.themes.bootstrap5.sticky');
     }
 
     /**
@@ -59,19 +50,6 @@ class Modal extends Component
     {
         $newAttributes = array_merge(
             $this->actionAttributes,
-            $attributes
-        );
-
-        return Attribute::toString($newAttributes);
-    }
-
-    /**
-     * Merge and convert array attributes to HTML string attributes.
-     */
-    public function cancelAttributes(array $attributes): string
-    {
-        $newAttributes = array_merge(
-            $this->cancelAttributes,
             $attributes
         );
 

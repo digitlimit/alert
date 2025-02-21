@@ -1,6 +1,6 @@
 <?php
 
-use Digitlimit\Alert\View\Components\Themes;
+use Digitlimit\Alert\Themes;
 
 return [
 
@@ -24,7 +24,7 @@ return [
     |
     */
     'themes' => [
-        'tailwind' => \Digitlimit\Alert\Components\Themes\Tailwind::class,
-        'bootstrap5' => \Digitlimit\Alert\Components\Themes\Bootstrap5::class,
+        'tailwind' => Themes\Tailwind::class,
+        'bootstrap5' => Themes\Bootstrap5::class,
     ],
 ];
