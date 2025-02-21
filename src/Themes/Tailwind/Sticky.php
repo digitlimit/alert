@@ -3,11 +3,12 @@
 namespace Digitlimit\Alert\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
+use Digitlimit\Alert\Contracts\LivewireInterface;
 use Digitlimit\Alert\Helpers\Attribute;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class Sticky extends Component
+class Sticky extends Component implements LivewireInterface
 {
     /**
      * Set the default tag.

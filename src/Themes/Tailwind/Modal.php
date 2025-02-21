@@ -3,13 +3,14 @@
 namespace Digitlimit\Alert\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
+use Digitlimit\Alert\Contracts\LivewireInterface;
 use Digitlimit\Alert\Helpers\Attribute;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class Modal extends Component
+class Modal extends Component implements LivewireInterface
 {
     /**
      * The default alert tag.

@@ -3,10 +3,11 @@
 namespace Digitlimit\Alert\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
+use Digitlimit\Alert\Contracts\LivewireInterface;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class Notify extends Component
+class Notify extends Component implements LivewireInterface
 {
     /**
      * Set the default tag.
