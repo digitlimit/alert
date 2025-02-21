@@ -1,12 +1,12 @@
 <?php
 
-namespace Digitlimit\Alert\View\Components\Themes\Bootstrap5;
+namespace Digitlimit\Alert\Components\Themes\Bootstrap5;
 
 use Digitlimit\Alert\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Message extends Component
+class Field extends Component
 {
     /**
      * Set the default tag.
@@ -31,6 +31,6 @@ class Message extends Component
      */
     public function render(): View
     {
-        return view('alert::components.themes.bootstrap5.message');
+        return view('alert::components.themes.bootstrap5.field');
     }
 }

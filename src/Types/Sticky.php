@@ -4,6 +4,7 @@ namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Component\Button;
+use Digitlimit\Alert\Events\FieldBag\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
@@ -49,16 +50,6 @@ class Sticky extends AbstractMessage implements MessageInterface
     }
 
     /**
-     * Put alert in the store.
-     */
-    public function flash(): void
-    {
-        $sessionKey = SessionKey::key($this->key(), $this->getTag());
-
-        Session::put($sessionKey, $this);
-    }
-
-    /**
      * Remove alert from the store.
      */
     public function forget(?string $tag = null): void
@@ -96,5 +87,16 @@ class Sticky extends AbstractMessage implements MessageInterface
         $sticky->action = Button::fill($alert['action']);
 
         return $sticky;
+    }
+
+    /**
+     * Put alert in the store.
+     */
+    public function flash(): void
+    {
+        $sessionKey = SessionKey::key($this->key(), $this->getTag());
+
+        Session::put($sessionKey, $this);
+        Flashed::dispatch($this);
     }
 }

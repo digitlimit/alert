@@ -7,6 +7,7 @@ use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator;
+use Digitlimit\Alert\Events\FieldBag\Flashed;
 
 class FieldBag extends AbstractMessage implements MessageInterface
 {
@@ -88,5 +89,15 @@ class FieldBag extends AbstractMessage implements MessageInterface
         $bag->id($alert['id']);
         $bag->messages($alert['messages']);
         return $bag;
+    }
+
+    /**
+     * Flash field instance to store.
+     */
+    public function flash(): void
+    {
+        parent::flash();
+
+        Flashed::dispatch($this);
     }
 }

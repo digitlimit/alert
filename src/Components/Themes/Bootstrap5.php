@@ -1,10 +1,11 @@
 <?php
 
-namespace Digitlimit\Alert\View\Components\Themes;
+namespace Digitlimit\Alert\Components\Themes;
 
 use Digitlimit\Alert\Contracts\ThemeInterface;
-use Illuminate\Support\Facades\Blade;
 use Digitlimit\Alert\Types;
+use Illuminate\Support\Facades\Blade;
+use Digitlimit\Alert\Components\Themes;
 
 class Bootstrap5 implements ThemeInterface
 {
@@ -17,37 +18,37 @@ class Bootstrap5 implements ThemeInterface
             'message' => [
                 'view' => 'alert-message',
                 'alert' => Types\Message::class,
-                'component' => Bootstrap5\Message::class,
+                'component' => Themes\Bootstrap5\Message::class,
             ],
 
             'field' => [
                 'view' => 'alert-field',
                 'alert' => Types\Field::class,
-                'component' => Bootstrap5\Field::class,
+                'component' => Themes\Bootstrap5\Field::class,
             ],
 
             'bag' => [
                 'view' => 'alert-field',
                 'alert' => Types\FieldBag::class,
-                'component' => Bootstrap5\Field::class,
+                'component' => Themes\Bootstrap5\Field::class,
             ],
 
             'modal' => [
                 'view' => 'alert-modal',
                 'alert' => Types\Modal::class,
-                'component' => Bootstrap5\Modal::class,
+                'component' => Themes\Bootstrap5\Modal::class,
             ],
 
             'notify' => [
                 'view' => 'alert-notify',
                 'alert' => Types\Notify::class,
-                'component' => Bootstrap5\Notify::class,
+                'component' => Themes\Bootstrap5\Notify::class,
             ],
 
             'sticky' => [
                 'view' => 'alert-sticky',
                 'alert' => Types\Sticky::class,
-                'component' => Bootstrap5\Sticky::class,
+                'component' => Themes\Bootstrap5\Sticky::class,
             ],
         ];
     }

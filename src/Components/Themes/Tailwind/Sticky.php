@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert\View\Components\Themes\Tailwind;
+namespace Digitlimit\Alert\Components\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Attribute;

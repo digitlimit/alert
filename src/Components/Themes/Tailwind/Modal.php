@@ -1,13 +1,13 @@
 <?php
 
-namespace Digitlimit\Alert\View\Components\Themes\Tailwind;
+namespace Digitlimit\Alert\Components\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Attribute;
-use Illuminate\Contracts\View\View;
-use Livewire\Component;
-use Livewire\Attributes\On;
 use Exception;
+use Illuminate\Contracts\View\View;
+use Livewire\Attributes\On;
+use Livewire\Component;
 
 class Modal extends Component
 {

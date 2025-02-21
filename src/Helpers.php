@@ -14,6 +14,8 @@ if (! function_exists('alert')) {
             $alert->title($title);
         }
 
+        $alert->flash();
+
         return $alert;
     }
 }
@@ -27,6 +29,8 @@ if (! function_exists('field')) {
             $alert->tag($tag);
         }
 
+        $alert->flash();
+
         return $alert;
     }
 }
@@ -35,7 +39,8 @@ if (! function_exists('fieldBag')) {
     function fieldBag(Validator|MessageBag $bag): mixed
     {
         return app('alert')
-            ->fieldBag($bag);
+            ->fieldBag($bag)
+            ->flash();
     }
 }
 
@@ -47,6 +52,8 @@ if (! function_exists('modal')) {
         if ($title) {
             $alert->title($title);
         }
+
+        $alert->flash();
 
         return $alert;
     }
@@ -61,6 +68,8 @@ if (! function_exists('notify')) {
             $alert->title($title);
         }
 
+        $alert->flash();
+
         return $alert;
     }
 }
@@ -74,13 +83,14 @@ if (! function_exists('sticky')) {
             $alert->title($title);
         }
 
+        $alert->flash();
+
         return $alert;
     }
 }
 
 if (! function_exists('forgetSticky')) {
-    function forgetSticky(?string $name = null): void
-    {
+    function forgetSticky(?string $name = null): void {
         app('alert')->stickForget($name);
     }
 }

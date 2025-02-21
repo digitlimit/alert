@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Events\Message\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
@@ -44,5 +45,15 @@ class Message extends AbstractMessage implements MessageInterface
     public static function fill(array $alert): MessageInterface
     {
         return new static($alert['message']);
+    }
+
+    /**
+     * Flash field instance to store.
+     */
+    public function flash(): void
+    {
+        parent::flash();
+
+        Flashed::dispatch($this);
     }
 }

@@ -3,6 +3,7 @@
 namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Component\Button;
+use Digitlimit\Alert\Events\Modal\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
@@ -194,5 +195,15 @@ class Modal extends AbstractMessage implements MessageInterface
         $modal->view = $alert['view'];
 
         return $modal;
+    }
+
+    /**
+     * Flash field instance to store.
+     */
+    public function flash(): void
+    {
+        parent::flash();
+
+        Flashed::dispatch($this);
     }
 }

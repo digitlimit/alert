@@ -7,6 +7,7 @@ use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Illuminate\Support\Facades\Session;
+use Digitlimit\Alert\Events\Field\Flashed;
 
 class Field extends AbstractMessage implements MessageInterface
 {
@@ -55,6 +56,7 @@ class Field extends AbstractMessage implements MessageInterface
         }
 
         Session::flash($sessionKey, $this);
+        Flashed::dispatch($this);
     }
 
     /**

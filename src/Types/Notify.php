@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Events\Notify\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
@@ -31,6 +32,16 @@ class Notify extends AbstractMessage implements MessageInterface
     public function key(): string
     {
         return 'notify';
+    }
+
+    /**
+     * Set the position of the notify.
+     */
+    public function position(string $position): self
+    {
+        $this->position = $position;
+
+        return $this;
     }
 
     /**
@@ -123,5 +134,17 @@ class Notify extends AbstractMessage implements MessageInterface
         $notify = new static($alert['message']);
         $notify->id($alert['id']);
         $notify->position($alert['position']);
+
+        return $notify;
+    }
+
+    /**
+     * Flash field instance to store.
+     */
+    public function flash(): void
+    {
+        parent::flash();
+
+        Flashed::dispatch($this);
     }
 }
