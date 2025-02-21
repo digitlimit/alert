@@ -83,42 +83,42 @@ class Tailwind implements ThemeInterface
         Event::listen(Events\Field\Flashed::class, function ($event) {
             info('Field Flashed', [
                 'message' => $event->alert->message,
-                'id' => $event->alert->id(),
+                'id' => $event->alert->getId(),
             ]);
         });
 
         Event::listen(Events\FieldBag\Flashed::class, function ($event) {
             info('Field Bag Flashed', [
                 'message' => $event->alert->message,
-                'id' => $event->alert->id(),
+                'id' => $event->alert->getId(),
             ]);
         });
 
         Event::listen(Events\Message\Flashed::class, function ($event) {
             info('Message Flashed', [
                 'message' => $event->alert->message,
-                'id' => $event->alert->id(),
+                'id' => $event->alert->getId(),
             ]);
         });
 
         Event::listen(Events\Modal\Flashed::class, function ($event) {
             info('Modal Flashed', [
                 'message' => $event->alert->message,
-                'id' => $event->alert->id(),
+                'id' => $event->alert->getId(),
             ]);
         });
 
         Event::listen(Events\Notify\Flashed::class, function ($event) {
             info('Notify Flashed', [
                 'message' => $event->alert->message,
-                'id' => $event->alert->id(),
+                'id' => $event->alert->getId(),
             ]);
         });
 
         Event::listen(Events\Sticky\Flashed::class, function ($event) {
             info('Sticky Flashed', [
                 'message' => $event->alert->message,
-                'id' => $event->alert->id(),
+                'id' => $event->alert->getId(),
             ]);
         });
     }
