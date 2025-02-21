@@ -1,10 +1,11 @@
 <div class="digitlimit-alert">
-    @inject('modal', 'Digitlimit\Alert\Types\Modal')
+    @inject('alert', 'Digitlimit\Alert\Alert')
 
     @php
         $header = $header ?? null;
         $body   = $body ?? null;
         $footer = $footer ?? null;
+        $modal  = $alert->tagged('modal', $tag);
     @endphp
 
     @if($modal)
@@ -147,3 +148,11 @@
         </div>
     @endif
 </div>
+
+@script
+    <script>
+        $wire.on('modal-created', () => {
+            console.log('Modal created');
+        });
+    </script>
+@endscript
