@@ -75,9 +75,9 @@ class Tailwind implements ThemeInterface
     {
         $this->registerComponents();
 
-        $this->listeners();
+        $this->dehydrate();
 
-        $this->hydrate();
+        $this->listeners();
     }
 
     public function registerComponents(): void
@@ -89,6 +89,32 @@ class Tailwind implements ThemeInterface
         Livewire::component($types['modal']['view'], Themes\Tailwind\Modal::class);
         Livewire::component($types['notify']['view'], Themes\Tailwind\Notify::class);
         Livewire::component($types['sticky']['view'], Themes\Tailwind\Sticky::class);
+    }
+
+    public function dehydrate(): void
+    {
+        on('dehydrate', function (Component $component)
+        {
+            if (! Livewire::isLivewireRequest()) {
+                return false;
+            }
+
+            if (store($component)->has('redirect')) {
+                return false;
+            }
+
+            if (count(session()->get(SessionKey::mainKey()) ?? []) <= 0) {
+                return false;
+            }
+
+            if(!is_a($component, Themes\Tailwind\Modal::class)) {
+                foreach(Alert::all('modal') as $tag => $modal) {
+                    $component->dispatch('refresh-alert-modal', $tag, $modal->toArray());
+                }
+            }
+
+            return $component;
+        });
     }
 
     public function listeners(): void
@@ -116,29 +142,5 @@ class Tailwind implements ThemeInterface
 //        Event::listen(Events\Sticky\Flashed::class, function ($event) {
 //            $this->dispatch(self::ALERT_STICKY, $event->alert->toArray());
 //        });
-    }
-
-    public function hydrate(): void
-    {
-        on('dehydrate', function (Component $component)
-        {
-            if (! Livewire::isLivewireRequest()) {
-                return false;
-            }
-
-            if (store($component)->has('redirect')) {
-                return false;
-            }
-
-            if (count(session()->get(SessionKey::mainKey()) ?? []) <= 0) {
-                return false;
-            }
-
-            if(!is_a($component, Themes\Tailwind\Modal::class)) {
-                foreach(Alert::all('modal') as $tag => $modal) {
-                    $component->dispatch('refresh-alert-modal', $tag, $modal->toArray());
-                }
-            }
-        });
     }
 }
