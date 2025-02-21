@@ -77,13 +77,18 @@ class Alert
         return MessageFactory::make($type, ...$args);
     }
 
+    /**
+     * @throws Exception
+     */
     public function fromArray(array $alert): MessageInterface
     {
-        if (! Type::exists($type)) {
+        $type = $alert['type'] ?? null;
+
+        if (!$type || !Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        return MessageFactory::make($type, ...$args);
+        return MessageFactory::makeFromArray($alert);
     }
 
     /**
@@ -102,7 +107,7 @@ class Alert
     /**
      * Fetch all alerts from the session.
      */
-    public function has(string $type): bool
+    public static function has(string $type): bool
     {
         $types = Session::get(SessionKey::typeKey($type)) ?? [];
 
@@ -112,10 +117,18 @@ class Alert
     /**
      * Fetch all alerts from the session.
      */
-    public function count(string $type): int
+    public static function count(string $type): int
     {
         $types = Session::get(SessionKey::typeKey($type)) ?? [];
 
         return count($types);
+    }
+
+    /**
+     * Fetch all alerts from the session.
+     */
+    public static function all(): array
+    {
+        return Session::get(SessionKey::mainKey()) ?? [];
     }
 }
