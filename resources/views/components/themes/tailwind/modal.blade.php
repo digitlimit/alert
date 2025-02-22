@@ -1,4 +1,4 @@
-<div class="digitlimit-alert">
+<div class="digitlimit-alert-modal">
     @inject('alert', 'Digitlimit\Alert\Alert');
     @php
         $modal  = $alert->fromArray($data);
@@ -6,7 +6,6 @@
         $body   = $body ?? null;
         $footer = $footer ?? null;
 
-        info('running');
         $id        = $id ?? $modal->id;
         $cancel    = $modal->cancel ?? '';
         $action    = $modal->action ?? '';

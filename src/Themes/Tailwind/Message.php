@@ -5,26 +5,48 @@ namespace Digitlimit\Alert\Themes\Tailwind;
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
 use Illuminate\Contracts\View\View;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Message extends Component implements LivewireInterface
 {
     /**
-     * Set the default tag.
+     * The default alert tag.
      */
     public string $defaultTag = Alert::DEFAULT_TAG;
 
     /**
-     * Alert instance.
+     * The alert tag.
      */
-    public Alert $alert;
+    public string $tag;
+
+    /**
+     * The alert
+     */
+    public array $data = [];
 
     /**
      * Create a new component instance.
      */
-    public function mount(Alert $alert)
+    public function mount()
     {
-        $this->alert = $alert;
+        $this->tag = $this->tag ?? $this->defaultTag;
+        $this->data = Alert::tagged('modal', $this->tag)?->toArray() ?? [];
+
+        if(empty($this->data)) {
+            $this->skipRender();
+        }
+    }
+
+    #[On('refresh-alert-message')]
+    public function refresh(string $tag, array $data): void
+    {
+        if($this->tag !== $tag) {
+            return;
+        }
+
+        $this->data = $data;
+        $this->dispatch('open-alert-message');
     }
 
     /**

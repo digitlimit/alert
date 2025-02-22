@@ -44,7 +44,17 @@ class Message extends AbstractMessage implements MessageInterface
      */
     public static function fill(array $alert): MessageInterface
     {
-        return new static($alert['message']);
+        $message = new static($alert['message']);
+
+        $message->id($alert['id']);
+        $message->tag($alert['tag']);
+        $message->level($alert['level']);
+        
+        if ($alert['title']) {
+            $message->title($alert['title']);
+        }
+
+        return $message;
     }
 
     /**
