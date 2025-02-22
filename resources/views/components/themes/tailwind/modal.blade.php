@@ -1,5 +1,5 @@
 <div class="digitlimit-alert-modal">
-    @inject('alert', 'Digitlimit\Alert\Alert');
+    @inject('alert', 'Digitlimit\Alert\Alert')
     @php
         $modal  = $alert->fromArray($data);
         $header = $header ?? null;
