@@ -58,7 +58,7 @@ if (! function_exists('modal')) {
         }
 
         $alert->flash();
-
+      
         return $alert;
     }
 }
