@@ -43,30 +43,4 @@ class MessageFactory
 
         return app($class, $alert)->fill($alert);
     }
-
-    /**
-     * Get the constructor arguments for the alert.
-     *
-     * @deprecated use laravel container instead
-     *
-     * @throws ReflectionException
-     */
-    protected static function constructorArgs(array $alert): array
-    {
-        $args = [];
-        $constructor = (new ReflectionClass($class))->getConstructor();
-
-        if (! $constructor) {
-            return $args;
-        }
-
-        $parameters = $constructor->getParameters();
-
-        foreach ($parameters as $parameter) {
-            $name = $parameter->getName();
-            $args[$name] = $alert[$name] ?? null;
-        }
-
-        return $args;
-    }
 }
