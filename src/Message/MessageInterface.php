@@ -20,14 +20,9 @@ interface MessageInterface
     public function title(string $title): self;
 
     /**
-     * Set the alert level.
+     * Flash the alert to the session.
      */
-    public function level(string $level): self;
-
-    /**
-     * Set the alert tag.
-     */
-    public function tag(string $tag): self;
+    public function flash(): void;
 
     /**
      * Set the alert icon.

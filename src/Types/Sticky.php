@@ -5,6 +5,7 @@ namespace Digitlimit\Alert\Types;
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Component\Button;
 use Digitlimit\Alert\Contracts\Levelable;
+use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\FieldBag\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
@@ -13,9 +14,10 @@ use Digitlimit\Alert\Message\MessageInterface;
 use Illuminate\Support\Facades\Session;
 use Digitlimit\Alert\Traits;
 
-class Sticky extends AbstractMessage implements MessageInterface, Levelable
+class Sticky extends AbstractMessage implements MessageInterface, Levelable, Taggable
 {
     use Traits\Levelable;
+    use Traits\Taggable;
 
     /**
      * An instance of action button.
@@ -77,6 +79,8 @@ class Sticky extends AbstractMessage implements MessageInterface, Levelable
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
             'message' => $this->message,
+            'level' => $this->getLevel(),
+            'tag' => $this->getTag(),
             'action' => $this->action->toArray(),
         ]);
     }

@@ -2,10 +2,12 @@
 
 namespace Digitlimit\Alert\Contracts;
 
+use Exception;
+
 interface Positionable
 {
     /**
-     * Position on the center of the screen.
+     * Position in the center of the screen.
      */
     public function centered(): self;
 
@@ -38,4 +40,15 @@ interface Positionable
      * Position on the bottom center of the screen.
      */
     public function bottomCenter(): self;
+
+    /**
+     * Set the position of alert.
+     * @throws Exception
+     */
+    public function position(string $position): self;
+
+    /**
+     * Get the position of the alert.
+     */
+    public function getPosition(): string;
 }

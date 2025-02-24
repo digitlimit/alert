@@ -2,8 +2,16 @@
 
 namespace Digitlimit\Alert\Traits;
 
+use Exception;
+use Illuminate\Support\Str;
+
 trait Sizable
 {
+    /**
+     * The size of the alert
+     */
+    protected string $size = 'medium';
+
     /**
      * Set modal size to small.
      */
@@ -52,5 +60,29 @@ trait Sizable
         $this->size = 'fullscreen';
 
         return $this;
+    }
+
+    /**
+     * Set modal size
+     * @throws Exception
+     */
+    public function size(string $size): self
+    {
+        $method = Str::camel($size);
+
+        // check if function exists
+        if (!method_exists($this, $method)) {
+            throw new Exception("Size {$method} is not supported.");
+        }
+
+        return $this->{$this->size}();
+    }
+
+    /**
+     * Get the size of the alert
+     */
+    public function getSize(): string
+    {
+        return $this->size;
     }
 }

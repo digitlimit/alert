@@ -3,6 +3,7 @@
 namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\Levelable;
+use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
@@ -11,9 +12,10 @@ use Illuminate\Support\Facades\Session;
 use Digitlimit\Alert\Events\Field\Flashed;
 use Digitlimit\Alert\Traits;
 
-class Field extends AbstractMessage implements MessageInterface, Levelable
+class Field extends AbstractMessage implements MessageInterface, Levelable, Taggable
 {
     use Traits\Levelable;
+    use Traits\Taggable;
 
     /**
      * Create a new field alert instance.
@@ -33,6 +35,42 @@ class Field extends AbstractMessage implements MessageInterface, Levelable
     public function key(): string
     {
         return 'field';
+    }
+
+    /**
+     * Set the field name.
+     */
+    public function name(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Set the field message.
+     */
+    public function message(string $message): self
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get the field name.
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Get the field message.
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
     }
 
     /**
@@ -70,9 +108,10 @@ class Field extends AbstractMessage implements MessageInterface, Levelable
     {
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
-            'name' => $this->name,
-            'message' => $this->message,
             'tag' => $this->getTag(),
+            'name' => $this->getName(),
+            'level' => $this->getLevel(),
+            'message' => $this->getMessage(),
         ]);
     }
 
@@ -82,8 +121,10 @@ class Field extends AbstractMessage implements MessageInterface, Levelable
     public static function fill(array $alert): MessageInterface
     {
         $field = new static($alert['name'], $alert['message']);
+
         $field->id($alert['id']);
         $field->tag($alert['tag']);
+        $field->level($alert['level']);
 
         return $field;
     }

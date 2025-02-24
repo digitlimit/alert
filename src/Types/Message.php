@@ -4,15 +4,17 @@ namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\Levelable;
 
+use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Message\Flashed;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Traits;
 
-class Message extends AbstractMessage implements MessageInterface, Levelable
+class Message extends AbstractMessage implements MessageInterface, Levelable, Taggable
 {
     use Traits\Levelable;
+    use Traits\Taggable;
 
     /**
      * Create a new normal alert instance.
@@ -40,7 +42,10 @@ class Message extends AbstractMessage implements MessageInterface, Levelable
     {
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
-            'message' => $this->message,
+            'tag' => $this->getTag(),
+            'message' => $this->getMessage(),
+            'title' => $this->getTitle(),
+            'level' => $this->getLevel(),
         ]);
     }
 

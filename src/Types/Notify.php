@@ -4,6 +4,7 @@ namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Positionable;
+use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Notify\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
@@ -12,10 +13,11 @@ use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Traits;
 use Exception;
 
-class Notify extends AbstractMessage implements MessageInterface, Levelable, Positionable
+class Notify extends AbstractMessage implements MessageInterface, Levelable, Positionable, Taggable
 {
     use Traits\Levelable;
     use Traits\Positionable;
+    use Traits\Taggable;
 
     /**
      * Create a new notify alert instance.
@@ -44,8 +46,10 @@ class Notify extends AbstractMessage implements MessageInterface, Levelable, Pos
     {
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
-            'message' => $this->message,
-            'position' => $this->position,
+            'message' => $this->getMessage(),
+            'tag' => $this->getTag(),
+            'level' => $this->getLevel(),
+            'position' => $this->getPosition(),
         ]);
     }
 
@@ -57,6 +61,13 @@ class Notify extends AbstractMessage implements MessageInterface, Levelable, Pos
     {
         $notify = new static($alert['message']);
         $notify->id($alert['id']);
+
+        if($alert['title']) {
+            $notify->title($alert['title']);
+        }
+
+        $notify->tag($alert['tag']);
+        $notify->level($alert['level']);
         $notify->position($alert['position']);
 
         return $notify;

@@ -5,6 +5,11 @@ namespace Digitlimit\Alert\Traits;
 trait Levelable
 {
     /**
+     * The level of the alert.
+     */
+    protected string $level = 'info';
+
+    /**
      * Success alert level.
      */
     public function success(): self
@@ -42,5 +47,23 @@ trait Levelable
         $this->level = 'warning';
 
         return $this;
+    }
+
+    /**
+     * Set alert level.
+     */
+    public function level(string $level): self
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Fetch the alert level.
+     */
+    public function getLevel(): string
+    {
+        return $this->level;
     }
 }

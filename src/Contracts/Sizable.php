@@ -2,6 +2,8 @@
 
 namespace Digitlimit\Alert\Contracts;
 
+use Exception;
+
 interface Sizable
 {
     /**
@@ -28,4 +30,15 @@ interface Sizable
      * Set modal size to fullscreen.
      */
     public function fullscreen(): self;
+
+    /**
+     * Set modal size
+     * @throws Exception
+     */
+    public function size(string $size): self;
+
+    /**
+     * Get the size of the alert
+     */
+    public function getSize(): string;
 }

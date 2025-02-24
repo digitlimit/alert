@@ -11,4 +11,8 @@ interface Levelable
     public function warning(): self;
 
     public function error(): self;
+
+    public function level(string $level): self;
+
+    public function getLevel(): string;
 }

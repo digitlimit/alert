@@ -7,6 +7,7 @@ use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Scrollable;
 use Digitlimit\Alert\Contracts\Sizable;
 
+use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Modal\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
@@ -15,11 +16,12 @@ use Illuminate\View\View;
 
 use Digitlimit\Alert\Traits;
 
-class Modal extends AbstractMessage implements MessageInterface, Levelable, Scrollable, Sizable
+class Modal extends AbstractMessage implements MessageInterface, Levelable, Scrollable, Sizable, Taggable
 {
     use Traits\Levelable;
     use Traits\Scrollable;
     use Traits\Sizable;
+    use Traits\Taggable;
 
     /**
      * An instance of action button.
@@ -104,12 +106,13 @@ class Modal extends AbstractMessage implements MessageInterface, Levelable, Scro
     {
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
-            'message' => $this->message,
+            'message' => $this->getMessage(),
+            'level' => $this->getLevel(),
+            'tag' => $this->getTag(),
             'action' => $this->action->toArray(),
             'cancel' => $this->cancel->toArray(),
-            'size' => $this->size,
-            'scrollable' => $this->scrollable,
-            'position' => $this->position,
+            'size' => $this->getSize(),
+            'scrollable' => $this->isScrollable(),
             'view' => $this->view,
         ]);
     }
@@ -125,7 +128,6 @@ class Modal extends AbstractMessage implements MessageInterface, Levelable, Scro
         $modal->cancel = Button::fill($alert['cancel']);
         $modal->size = $alert['size'];
         $modal->scrollable = $alert['scrollable'];
-        $modal->position = $alert['position'];
         $modal->view = $alert['view'];
 
         return $modal;

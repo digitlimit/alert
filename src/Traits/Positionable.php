@@ -2,10 +2,18 @@
 
 namespace Digitlimit\Alert\Traits;
 
+use Exception;
+use Illuminate\Support\Str;
+
 trait Positionable
 {
     /**
-     * Position on center of the screen.
+     * The position of the alert.
+     */
+    protected string $position = 'top-right';
+
+    /**
+     * Position in the center of the screen.
      */
     public function centered(): self
     {
@@ -72,5 +80,29 @@ trait Positionable
         $this->position = 'bottom-center';
 
         return $this;
+    }
+
+    /**
+     * Set the position of alert.
+     * @throws Exception
+     */
+    public function position(string $position): self
+    {
+        $method = Str::camel($position);
+
+        // check if function exists
+        if (!method_exists($this, $method)) {
+            throw new Exception("Position method {$method} does not exist.");
+        }
+
+        return $this->{$this->position}();
+    }
+
+    /**
+     * Get the position of the alert.
+     */
+    public function getPosition(): string
+    {
+        return $this->position;
     }
 }
