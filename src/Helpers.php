@@ -10,13 +10,13 @@ use Digitlimit\Alert\Types\Sticky;
 use Digitlimit\Alert\Types\Field;
 use Digitlimit\Alert\Types\FieldBag;
 
-
 if (! function_exists('alert')) {
-    function alert(string $message, ?string $title = null): Message
+    function alert(string $message, ?string $title = null, string $level = 'success'): Message
     {
         $alert = app('alert')
-            ->message($message)
-            ->info();
+            ->message($message);
+
+        $alert->level($level);
 
         if ($title) {
             $alert->title($title);
@@ -29,13 +29,19 @@ if (! function_exists('alert')) {
 }
 
 if (! function_exists('field')) {
-    function field(string $name, string $message, ?string $tag = null): Field
-    {
+    function field(
+        string $name,
+        string $message,
+        ?string $tag = null,
+        string $level = 'success'
+    ): Field {
         $alert = app('alert')->field($name, $message);
 
         if ($tag) {
             $alert->tag($tag);
         }
+
+        $alert->level($level);
 
         $alert->flash();
 
@@ -56,13 +62,19 @@ if (! function_exists('fieldBag')) {
 }
 
 if (! function_exists('modal')) {
-    function modal(string $message, ?string $title = null, ?string $tag = null): Modal
-    {
+    function modal(
+        string $message,
+        ?string $title = null,
+        ?string $tag = null,
+        string $level = 'success'
+    ): Modal {
         $alert = app('alert')->modal($message);
 
         if ($title) {
             $alert->title($title);
         }
+
+        $alert->level($level);
 
         if ($tag) {
             $alert->tag($tag);
@@ -75,13 +87,20 @@ if (! function_exists('modal')) {
 }
 
 if (! function_exists('notify')) {
-    function notify(string $message, ?string $title = null): Notify
-    {
+    function notify(
+        string $message,
+        ?string $title = null,
+        string $level = 'success',
+        string $position = 'top-right'
+    ): Notify{
         $alert = app('alert')->notify($message);
 
         if ($title) {
             $alert->title($title);
         }
+
+        $alert->level($level);
+        $alert->position($position);
 
         $alert->flash();
 
@@ -90,13 +109,18 @@ if (! function_exists('notify')) {
 }
 
 if (! function_exists('sticky')) {
-    function sticky(string $message, ?string $title = null): Sticky
-    {
+    function sticky(
+        string $message,
+        ?string $title = null,
+        string $level = 'success'
+    ): Sticky{
         $alert = app('alert')->sticky($message);
 
         if ($title) {
             $alert->title($title);
         }
+
+        $alert->level($level);
 
         $alert->flash();
 
