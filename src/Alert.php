@@ -23,6 +23,7 @@ class Alert
 
     /**
      * Fetch an alert based on the default tag.
+     * @throws Exception
      */
     public function default(string $type): ?MessageInterface
     {
@@ -47,6 +48,7 @@ class Alert
 
     /**
      * Fetch an alert based on the tag name.
+     * @throws Exception
      */
     public static function tagged(string $type, string $tag): ?MessageInterface
     {
@@ -66,7 +68,48 @@ class Alert
     }
 
     /**
+     * @throws Exception
+     */
+    public static function taggedField(string $tag): ?MessageInterface
+    {
+       return self::tagged('field', $tag);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function taggedMessage(string $tag): ?MessageInterface
+    {
+       return self::tagged('message', $tag);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function taggedModal(string $tag): ?MessageInterface
+    {
+       return self::tagged('modal', $tag);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function taggedNotify(string $tag): ?MessageInterface
+    {
+         return self::tagged('notify', $tag);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function taggedSticky(string $tag): ?MessageInterface
+    {
+        return self::tagged('sticky', $tag);
+    }
+
+    /**
      * Fetch an alert from the given alert type.
+     * @throws Exception
      */
     public static function from(string $type, ...$args): MessageInterface
     {

@@ -4,6 +4,7 @@ namespace Digitlimit\Alert\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -71,11 +72,12 @@ class Message extends Component implements LivewireInterface
 
     /**
      * Create a new component instance.
+     * @throws Exception
      */
     public function mount(): void
     {
         $this->tag = $this->tag ?? $this->defaultTag;
-        $data = Alert::tagged('modal', $this->tag)?->toArray() ?? [];
+        $data = Alert::taggedModal($this->tag)?->toArray() ?? [];
 
         if(empty($data)) {
             $this->skipRender();

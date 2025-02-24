@@ -69,7 +69,7 @@ class Modal extends Component implements LivewireInterface
     public function mount(): void
     {
         $this->tag = $this->tag ?? $this->defaultTag;
-        $this->data = Alert::tagged('modal', $this->tag)?->toArray() ?? [];
+        $this->data = Alert::taggedModal($this->tag)?->toArray() ?? [];
 
         if(empty($this->data)) {
             $this->skipRender();
