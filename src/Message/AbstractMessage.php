@@ -35,17 +35,17 @@ abstract class AbstractMessage implements MessageInterface
     /**
      * The level of the alert.
      */
-    public ?string $level = null;
+    public string $level = 'info';
 
     /**
      * The position of the alert.
      */
-    public ?string $position = null;
+    public ?string $position = 'top-right';
 
     /**
      * The size of the alert
      */
-    public ?string $size = null;
+    public string $size = 'medium';
 
     /**
      * Determine if alert is scrollable.
@@ -84,6 +84,7 @@ abstract class AbstractMessage implements MessageInterface
 
     /**
      * Set the position of the notify.
+     * @throws Exception
      */
     public function position(string $position): self
     {
