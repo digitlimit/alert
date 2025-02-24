@@ -2,14 +2,20 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Contracts\Levelable;
+use Digitlimit\Alert\Contracts\Positionable;
 use Digitlimit\Alert\Events\Notify\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Illuminate\Support\Str;
 
-class Notify extends AbstractMessage implements MessageInterface
+use Digitlimit\Alert\Traits;
+
+class Notify extends AbstractMessage implements MessageInterface, Levelable, Positionable
 {
+    use Traits\Levelable;
+    use Traits\Positionable;
+
     /**
      * The position of the notify.
      */

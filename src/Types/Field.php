@@ -2,15 +2,19 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Illuminate\Support\Facades\Session;
 use Digitlimit\Alert\Events\Field\Flashed;
+use Digitlimit\Alert\Traits;
 
-class Field extends AbstractMessage implements MessageInterface
+class Field extends AbstractMessage implements MessageInterface, Levelable
 {
+    use Traits\Levelable;
+
     /**
      * Create a new field alert instance.
      *
@@ -80,5 +84,7 @@ class Field extends AbstractMessage implements MessageInterface
         $field = new static($alert['name'], $alert['message']);
         $field->id($alert['id']);
         $field->tag($alert['tag']);
+
+        return $field;
     }
 }

@@ -10,5 +10,5 @@ interface Levelable
 
     public function warning(): self;
 
-    public function danger(): self;
+    public function error(): self;
 }
