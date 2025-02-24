@@ -3,6 +3,8 @@
 namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\HasButton;
+use Digitlimit\Alert\Contracts\HasMessage;
+use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\HasView;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Scrollable;
@@ -16,14 +18,18 @@ use Digitlimit\Alert\Traits;
 use Exception;
 use Throwable;
 
-class Modal extends AbstractMessage implements HasButton, HasView, Levelable, MessageInterface, Scrollable, Sizable, Taggable
+class Modal extends AbstractMessage implements HasButton, HasView, Levelable, MessageInterface, Scrollable, Sizable, Taggable, HasTitle, HasMessage
 {
     use Traits\Levelable;
     use Traits\Scrollable;
     use Traits\Sizable;
     use Traits\Taggable;
-    use Traits\WithButton;
     use Traits\WithView;
+    use Traits\WithTitle;
+    use Traits\WithButton;
+    use Traits\WithActionButton;
+    use Traits\WithCancelButton;
+    use Traits\WithMessage;
 
     /**
      * Create a new modal alert instance.
@@ -31,7 +37,7 @@ class Modal extends AbstractMessage implements HasButton, HasView, Levelable, Me
      * @return void
      */
     public function __construct(
-        public ?string $message
+        protected string $message
     ) {
         $this->id($this->key().'-'.Helper::randomString());
     }
@@ -45,26 +51,6 @@ class Modal extends AbstractMessage implements HasButton, HasView, Levelable, Me
     }
 
     /**
-     * Set the action button.
-     */
-    public function action(string $label, ?string $link = null, array $attributes = []): self
-    {
-        $this->button('action', $label, $link, $attributes);
-
-        return $this;
-    }
-
-    /**
-     * Set the cancel button.
-     */
-    public function cancel(string $label, ?string $link = null, array $attributes = []): self
-    {
-        $this->button('cancel', $label, $link, $attributes);
-
-        return $this;
-    }
-
-    /**
      * Convert the modal alert to an array.
      */
     public function toArray(): array
@@ -72,6 +58,8 @@ class Modal extends AbstractMessage implements HasButton, HasView, Levelable, Me
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
             'level' => $this->getLevel(),
+            'title' => $this->getTitle(),
+            'message' => $this->getMessage(),
             'tag' => $this->getTag(),
             'size' => $this->getSize(),
             'scrollable' => $this->isScrollable(),

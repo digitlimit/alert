@@ -2,6 +2,8 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Contracts\HasMessage;
+use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Field\Flashed;
@@ -12,19 +14,22 @@ use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Traits;
 use Illuminate\Support\Facades\Session;
 
-class Field extends AbstractMessage implements Levelable, MessageInterface, Taggable
+class Field extends AbstractMessage implements Levelable, MessageInterface, Taggable, HasTitle, HasMessage
 {
     use Traits\Levelable;
     use Traits\Taggable;
+    use Traits\WithTitle;
+    use Traits\WithMessage;
 
     /**
      * Create a new field alert instance.
      *
-     * @return void
+     * @param string $name
+     * @param string $message
      */
     public function __construct(
         public string $name,
-        public string $message
+        protected string $message
     ) {
         $this->id($this->key().'-'.Helper::randomString());
     }
@@ -48,29 +53,11 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
     }
 
     /**
-     * Set the field message.
-     */
-    public function message(string $message): self
-    {
-        $this->message = $message;
-
-        return $this;
-    }
-
-    /**
      * Get the field name.
      */
     public function getName(): string
     {
         return $this->name;
-    }
-
-    /**
-     * Get the field message.
-     */
-    public function getMessage(): string
-    {
-        return $this->message;
     }
 
     /**
@@ -111,6 +98,7 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
             'tag' => $this->getTag(),
             'level' => $this->getLevel(),
             'name' => $this->getName(),
+            'title' => $this->getTitle(),
             'message' => $this->getMessage(),
         ]);
     }
@@ -125,6 +113,10 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
         $field->id($alert['id']);
         $field->tag($alert['tag']);
         $field->level($alert['level']);
+
+        if ($alert['title']) {
+            $field->title($alert['title']);
+        }
 
         return $field;
     }

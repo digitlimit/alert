@@ -2,6 +2,8 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Contracts\HasMessage;
+use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Message\Flashed;
@@ -10,10 +12,12 @@ use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Traits;
 
-class Message extends AbstractMessage implements Levelable, MessageInterface, Taggable
+class Message extends AbstractMessage implements Levelable, MessageInterface, Taggable, HasTitle, HasMessage
 {
     use Traits\Levelable;
     use Traits\Taggable;
+    use Traits\WithTitle;
+    use Traits\WithMessage;
 
     /**
      * Create a new normal alert instance.
@@ -21,7 +25,7 @@ class Message extends AbstractMessage implements Levelable, MessageInterface, Ta
      * @return void
      */
     public function __construct(
-        public string $message
+        protected string $message
     ) {
         $this->id($this->key().'-'.Helper::randomString());
     }

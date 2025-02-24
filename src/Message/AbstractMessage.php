@@ -6,9 +6,7 @@ use Digitlimit\Alert\Helpers\SessionKey;
 use Illuminate\Support\Facades\Session;
 
 /**
- * @property string $title
  * @property string $message
- * @property string $level
  */
 abstract class AbstractMessage implements MessageInterface
 {
@@ -33,47 +31,11 @@ abstract class AbstractMessage implements MessageInterface
     }
 
     /**
-     * Set alert message.
-     */
-    public function message(string $message): self
-    {
-        $this->message = $message;
-
-        return $this;
-    }
-
-    /**
-     * Set the alert title.
-     */
-    public function title(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
      * Fetch the alert ID.
      */
     public function getId(): string|int
     {
         return $this->id;
-    }
-
-    /**
-     * Fetch the alert title.
-     */
-    public function getTitle(): ?string
-    {
-        return $this->title ?? null;
-    }
-
-    /**
-     * Fetch the alert message.
-     */
-    public function getMessage(): ?string
-    {
-        return $this->message ?? null;
     }
 
     /**
@@ -98,8 +60,6 @@ abstract class AbstractMessage implements MessageInterface
     {
         return [
             'id' => $this->getId(),
-            'title' => $this->getTitle(),
-            'message' => $this->getMessage(),
         ];
     }
 }

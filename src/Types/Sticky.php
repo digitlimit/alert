@@ -3,39 +3,17 @@
 namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Alert;
-use Digitlimit\Alert\Component\Button;
-use Digitlimit\Alert\Contracts\Levelable;
-use Digitlimit\Alert\Contracts\Taggable;
+use Digitlimit\Alert\Contracts\HasButton;
 use Digitlimit\Alert\Events\FieldBag\Flashed;
-use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
-use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\Traits;
 use Illuminate\Support\Facades\Session;
+use Digitlimit\Alert\Traits;
 
-class Sticky extends AbstractMessage implements Levelable, MessageInterface, Taggable
+class Sticky extends Message implements HasButton
 {
-    use Traits\Levelable;
-    use Traits\Taggable;
-
-    /**
-     * An instance of action button.
-     */
-    public Button $action;
-
-    /**
-     * Create a new sticky alert instance.
-     *
-     * @return void
-     */
-    public function __construct(
-        public ?string $message
-    ) {
-        $this->id($this->key().'-'.Helper::randomString());
-
-        $this->action = new Button;
-    }
+    use Traits\WithButton;
+    use Traits\WithActionButton;
 
     /**
      * Message store key for the sticky alert.
@@ -43,16 +21,6 @@ class Sticky extends AbstractMessage implements Levelable, MessageInterface, Tag
     public function key(): string
     {
         return 'sticky';
-    }
-
-    /**
-     * Set the action button.
-     */
-    public function action(string $label, ?string $link = null, array $attributes = []): self
-    {
-        $this->action = new Button($label, $link, $attributes);
-
-        return $this;
     }
 
     /**
@@ -78,10 +46,11 @@ class Sticky extends AbstractMessage implements Levelable, MessageInterface, Tag
     {
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
+            'title' => $this->getTitle(),
             'message' => $this->getMessage(),
             'level' => $this->getLevel(),
             'tag' => $this->getTag(),
-            'action' => $this->action->toArray(),
+            'buttons' => $this->getButtons(),
         ]);
     }
 
@@ -94,8 +63,11 @@ class Sticky extends AbstractMessage implements Levelable, MessageInterface, Tag
         $sticky->id($alert['id']);
         $sticky->level($alert['level']);
         $sticky->tag($alert['tag']);
+        $sticky->buttons($alert['buttons'] ?? []);
 
-        $sticky->action = Button::fill($alert['action']);
+        if ($alert['title']) {
+            $sticky->title($alert['title']);
+        }
 
         return $sticky;
     }
