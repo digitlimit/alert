@@ -43,9 +43,9 @@ class Message extends AbstractMessage implements MessageInterface, Levelable, Ta
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
             'tag' => $this->getTag(),
+            'level' => $this->getLevel(),
             'message' => $this->getMessage(),
             'title' => $this->getTitle(),
-            'level' => $this->getLevel(),
         ]);
     }
 

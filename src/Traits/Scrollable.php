@@ -24,4 +24,11 @@ trait Scrollable
     {
         return $this->scrollable;
     }
+
+    public function setScrollable(bool $scrollable): self
+    {
+        $this->scrollable = $scrollable;
+
+        return $this;
+    }
 }

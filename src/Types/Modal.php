@@ -2,7 +2,8 @@
 
 namespace Digitlimit\Alert\Types;
 
-use Digitlimit\Alert\Component\Button;
+use Digitlimit\Alert\Contracts\HasButton;
+use Digitlimit\Alert\Contracts\HasView;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Scrollable;
 use Digitlimit\Alert\Contracts\Sizable;
@@ -12,31 +13,18 @@ use Digitlimit\Alert\Events\Modal\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Illuminate\View\View;
-
+use Exception;
 use Digitlimit\Alert\Traits;
+use Throwable;
 
-class Modal extends AbstractMessage implements MessageInterface, Levelable, Scrollable, Sizable, Taggable
+class Modal extends AbstractMessage implements MessageInterface, Levelable, Scrollable, Sizable, Taggable, HasButton, HasView
 {
     use Traits\Levelable;
     use Traits\Scrollable;
     use Traits\Sizable;
     use Traits\Taggable;
-
-    /**
-     * An instance of action button.
-     */
-    public Button $action;
-
-    /**
-     * An instance of cancel button.
-     */
-    public Button $cancel;
-
-    /**
-     * The view HTML string if given.
-     */
-    public ?string $view = null;
+    use Traits\WithButton;
+    use Traits\WithView;
 
     /**
      * Create a new modal alert instance.
@@ -47,8 +35,6 @@ class Modal extends AbstractMessage implements MessageInterface, Levelable, Scro
         public ?string $message
     ) {
         $this->id($this->key().'-'.Helper::randomString());
-        $this->action = new Button;
-        $this->cancel = new Button;
     }
 
     /**
@@ -64,7 +50,7 @@ class Modal extends AbstractMessage implements MessageInterface, Levelable, Scro
      */
     public function action(string $label, ?string $link = null, array $attributes = []): self
     {
-        $this->action = new Button($label, $link, $attributes);
+        $this->button('action', $label, $link, $attributes);
 
         return $this;
     }
@@ -74,27 +60,7 @@ class Modal extends AbstractMessage implements MessageInterface, Levelable, Scro
      */
     public function cancel(string $label, ?string $link = null, array $attributes = []): self
     {
-        $this->cancel = new Button($label, $link, $attributes);
-
-        return $this;
-    }
-
-    /**
-     * Set a view for the modal.
-     */
-    public function view(View $view): self
-    {
-        $this->view = $view->render();
-
-        return $this;
-    }
-
-    /**
-     * Set HTML string for the modal.
-     */
-    public function html(string $html): self
-    {
-        $this->view = $html;
+        $this->button('cancel', $label, $link, $attributes);
 
         return $this;
     }
@@ -106,29 +72,34 @@ class Modal extends AbstractMessage implements MessageInterface, Levelable, Scro
     {
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
-            'message' => $this->getMessage(),
             'level' => $this->getLevel(),
             'tag' => $this->getTag(),
-            'action' => $this->action->toArray(),
-            'cancel' => $this->cancel->toArray(),
             'size' => $this->getSize(),
             'scrollable' => $this->isScrollable(),
+            'buttons' => $this->getButtons(),
             'view' => $this->view,
         ]);
     }
 
     /**
      * Fill the modal alert from an array.
+     * @throws Exception
+     * @throws Throwable
      */
     public static function fill(array $alert): MessageInterface
     {
         $modal = new static($alert['message']);
+
         $modal->id($alert['id']);
-        $modal->action = Button::fill($alert['action']);
-        $modal->cancel = Button::fill($alert['cancel']);
-        $modal->size = $alert['size'];
-        $modal->scrollable = $alert['scrollable'];
-        $modal->view = $alert['view'];
+        $modal->title($alert['title']);
+        $modal->size($alert['size']);
+        $modal->level($alert['level']);
+        $modal->setScrollable($alert['scrollable'] ?? false);
+        $modal->buttons($alert['buttons'] ?? []);
+
+        if(isset($alert['view']) && $alert['view']) {
+            $modal->setView($alert['view']);
+        }
 
         return $modal;
     }

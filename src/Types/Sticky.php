@@ -78,7 +78,7 @@ class Sticky extends AbstractMessage implements MessageInterface, Levelable, Tag
     {
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
-            'message' => $this->message,
+            'message' => $this->getMessage(),
             'level' => $this->getLevel(),
             'tag' => $this->getTag(),
             'action' => $this->action->toArray(),
@@ -92,6 +92,9 @@ class Sticky extends AbstractMessage implements MessageInterface, Levelable, Tag
     {
         $sticky = new static($alert['message']);
         $sticky->id($alert['id']);
+        $sticky->level($alert['level']);
+        $sticky->tag($alert['tag']);
+
         $sticky->action = Button::fill($alert['action']);
 
         return $sticky;

@@ -78,12 +78,12 @@ class Field extends AbstractMessage implements MessageInterface, Levelable, Tagg
      */
     public function getTag(): string
     {
-        if ($this->name) {
+        if ($this->getName()) {
             //e.g default.firstname
-            return $this->tag.'.'.$this->name;
+            return $this->getTag().'.'.$this->getName();
         }
 
-        return $this->tag;
+        return $this->getTag();
     }
 
     /**
@@ -109,8 +109,8 @@ class Field extends AbstractMessage implements MessageInterface, Levelable, Tagg
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
             'tag' => $this->getTag(),
-            'name' => $this->getName(),
             'level' => $this->getLevel(),
+            'name' => $this->getName(),
             'message' => $this->getMessage(),
         ]);
     }
