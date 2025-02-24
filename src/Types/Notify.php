@@ -10,16 +10,12 @@ use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 
 use Digitlimit\Alert\Traits;
+use Exception;
 
 class Notify extends AbstractMessage implements MessageInterface, Levelable, Positionable
 {
     use Traits\Levelable;
     use Traits\Positionable;
-
-    /**
-     * The position of the notify.
-     */
-    public ?string $position = null;
 
     /**
      * Create a new notify alert instance.
@@ -55,6 +51,7 @@ class Notify extends AbstractMessage implements MessageInterface, Levelable, Pos
 
     /**
      * Fill the notify alert from an array.
+     * @throws Exception
      */
     public static function fill(array $alert): MessageInterface
     {
