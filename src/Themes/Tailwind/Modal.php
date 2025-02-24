@@ -71,7 +71,7 @@ class Modal extends Component implements LivewireInterface
         $this->tag = $this->tag ?? $this->defaultTag;
         $this->data = Alert::taggedModal($this->tag)?->toArray() ?? [];
 
-        if(empty($this->data)) {
+        if (empty($this->data)) {
             $this->skipRender();
         }
     }
@@ -79,7 +79,7 @@ class Modal extends Component implements LivewireInterface
     #[On('refresh-alert-modal')]
     public function refresh(string $tag, array $data): void
     {
-        if($this->tag !== $tag) {
+        if ($this->tag !== $tag) {
             return;
         }
 

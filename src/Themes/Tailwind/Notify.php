@@ -36,6 +36,7 @@ class Notify extends Component implements LivewireInterface
 
     /**
      * Create a new component instance.
+     *
      * @throws Exception
      */
     public function mount(): void
@@ -43,8 +44,9 @@ class Notify extends Component implements LivewireInterface
         $this->tag = $this->tag ?? $this->defaultTag;
         $data = Alert::taggedNotify($this->tag)?->toArray() ?? [];
 
-        if(empty($data)) {
+        if (empty($data)) {
             $this->skipRender();
+
             return;
         }
 
@@ -54,7 +56,7 @@ class Notify extends Component implements LivewireInterface
     #[On('refresh-alert-notify')]
     public function refresh(string $tag, array $data): void
     {
-        if($this->tag !== $tag || empty($data)) {
+        if ($this->tag !== $tag || empty($data)) {
             return;
         }
 

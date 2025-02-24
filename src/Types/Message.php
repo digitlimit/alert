@@ -3,15 +3,14 @@
 namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\Levelable;
-
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Message\Flashed;
+use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Traits;
 
-class Message extends AbstractMessage implements MessageInterface, Levelable, Taggable
+class Message extends AbstractMessage implements Levelable, MessageInterface, Taggable
 {
     use Traits\Levelable;
     use Traits\Taggable;

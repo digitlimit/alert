@@ -7,24 +7,16 @@ use Digitlimit\Alert\Contracts\HasView;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Scrollable;
 use Digitlimit\Alert\Contracts\Sizable;
-
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Modal\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Exception;
 use Digitlimit\Alert\Traits;
+use Exception;
 use Throwable;
 
-class Modal extends AbstractMessage
-    implements MessageInterface,
-    Levelable,
-    Scrollable,
-    Sizable,
-    Taggable,
-    HasButton,
-    HasView
+class Modal extends AbstractMessage implements HasButton, HasView, Levelable, MessageInterface, Scrollable, Sizable, Taggable
 {
     use Traits\Levelable;
     use Traits\Scrollable;
@@ -90,6 +82,7 @@ class Modal extends AbstractMessage
 
     /**
      * Fill the modal alert from an array.
+     *
      * @throws Exception
      * @throws Throwable
      */
@@ -104,7 +97,7 @@ class Modal extends AbstractMessage
         $modal->setScrollable($alert['scrollable'] ?? false);
         $modal->buttons($alert['buttons'] ?? []);
 
-        if(isset($alert['view']) && $alert['view']) {
+        if (isset($alert['view']) && $alert['view']) {
             $modal->setView($alert['view']);
         }
 

@@ -64,6 +64,7 @@ trait Sizable
 
     /**
      * Set modal size
+     *
      * @throws Exception
      */
     public function size(string $size): self
@@ -71,7 +72,7 @@ trait Sizable
         $method = Str::camel($size);
 
         // check if function exists
-        if (!method_exists($this, $method)) {
+        if (! method_exists($this, $method)) {
             throw new Exception("Size {$method} is not supported.");
         }
 

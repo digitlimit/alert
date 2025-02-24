@@ -5,10 +5,6 @@ namespace Digitlimit\Alert;
 use Digitlimit\Alert\Helpers\Theme;
 use Exception;
 use Illuminate\Support\ServiceProvider;
-use Livewire\Component;
-use Livewire\Livewire;
-use function Livewire\on;
-use function Livewire\store;
 
 class AlertServiceProvider extends ServiceProvider
 {
@@ -50,6 +46,7 @@ class AlertServiceProvider extends ServiceProvider
 
     /**
      * Boot the alert.
+     *
      * @throws Exception
      */
     protected function bootAlert(): void

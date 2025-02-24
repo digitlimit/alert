@@ -11,10 +11,10 @@ use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Illuminate\Support\Facades\Session;
 use Digitlimit\Alert\Traits;
+use Illuminate\Support\Facades\Session;
 
-class Sticky extends AbstractMessage implements MessageInterface, Levelable, Taggable
+class Sticky extends AbstractMessage implements Levelable, MessageInterface, Taggable
 {
     use Traits\Levelable;
     use Traits\Taggable;

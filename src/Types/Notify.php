@@ -9,11 +9,10 @@ use Digitlimit\Alert\Events\Notify\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-
 use Digitlimit\Alert\Traits;
 use Exception;
 
-class Notify extends AbstractMessage implements MessageInterface, Levelable, Positionable, Taggable
+class Notify extends AbstractMessage implements Levelable, MessageInterface, Positionable, Taggable
 {
     use Traits\Levelable;
     use Traits\Positionable;
@@ -55,6 +54,7 @@ class Notify extends AbstractMessage implements MessageInterface, Levelable, Pos
 
     /**
      * Fill the notification alert from an array.
+     *
      * @throws Exception
      */
     public static function fill(array $alert): MessageInterface
@@ -62,7 +62,7 @@ class Notify extends AbstractMessage implements MessageInterface, Levelable, Pos
         $notify = new static($alert['message']);
         $notify->id($alert['id']);
 
-        if($alert['title']) {
+        if ($alert['title']) {
             $notify->title($alert['title']);
         }
 

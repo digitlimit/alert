@@ -4,15 +4,15 @@ namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
+use Digitlimit\Alert\Events\Field\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
-use Illuminate\Support\Facades\Session;
-use Digitlimit\Alert\Events\Field\Flashed;
 use Digitlimit\Alert\Traits;
+use Illuminate\Support\Facades\Session;
 
-class Field extends AbstractMessage implements MessageInterface, Levelable, Taggable
+class Field extends AbstractMessage implements Levelable, MessageInterface, Taggable
 {
     use Traits\Levelable;
     use Traits\Taggable;

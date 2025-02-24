@@ -58,7 +58,7 @@ if (! function_exists('modal')) {
         }
 
         $alert->flash();
-      
+
         return $alert;
     }
 }
@@ -94,7 +94,8 @@ if (! function_exists('sticky')) {
 }
 
 if (! function_exists('forgetSticky')) {
-    function forgetSticky(?string $name = null): void {
+    function forgetSticky(?string $name = null): void
+    {
         app('alert')->stickForget($name);
     }
 }

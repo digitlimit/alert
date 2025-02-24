@@ -22,6 +22,7 @@ class Button
     public function name(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -31,6 +32,7 @@ class Button
     public function label(string $label): self
     {
         $this->label = $label;
+
         return $this;
     }
 
@@ -40,6 +42,7 @@ class Button
     public function link(string $link): self
     {
         $this->link = $link;
+
         return $this;
     }
 
@@ -49,6 +52,7 @@ class Button
     public function attributes(array $attributes): self
     {
         $this->attributes = $attributes;
+
         return $this;
     }
 

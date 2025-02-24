@@ -7,10 +7,8 @@ use Digitlimit\Alert\Helpers\Type;
 use Digitlimit\Alert\Message\MessageFactory;
 use Digitlimit\Alert\Message\MessageInterface;
 use Exception;
-use Illuminate\Support\MessageBag;
-use Illuminate\Support\Traits\Macroable;
-use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Traits\Macroable;
 
 class Alert
 {
@@ -23,6 +21,7 @@ class Alert
 
     /**
      * Fetch an alert based on the default tag.
+     *
      * @throws Exception
      */
     public function default(string $type): ?MessageInterface
@@ -48,6 +47,7 @@ class Alert
 
     /**
      * Fetch an alert based on the tag name.
+     *
      * @throws Exception
      */
     public static function tagged(string $type, string $tag): ?MessageInterface
@@ -72,7 +72,7 @@ class Alert
      */
     public static function taggedField(string $tag): ?MessageInterface
     {
-       return self::tagged('field', $tag);
+        return self::tagged('field', $tag);
     }
 
     /**
@@ -80,7 +80,7 @@ class Alert
      */
     public static function taggedMessage(string $tag): ?MessageInterface
     {
-       return self::tagged('message', $tag);
+        return self::tagged('message', $tag);
     }
 
     /**
@@ -88,7 +88,7 @@ class Alert
      */
     public static function taggedModal(string $tag): ?MessageInterface
     {
-       return self::tagged('modal', $tag);
+        return self::tagged('modal', $tag);
     }
 
     /**
@@ -96,7 +96,7 @@ class Alert
      */
     public static function taggedNotify(string $tag): ?MessageInterface
     {
-         return self::tagged('notify', $tag);
+        return self::tagged('notify', $tag);
     }
 
     /**
@@ -109,6 +109,7 @@ class Alert
 
     /**
      * Fetch an alert from the given alert type.
+     *
      * @throws Exception
      */
     public static function from(string $type, ...$args): MessageInterface
@@ -127,7 +128,7 @@ class Alert
     {
         $type = $alert['type'] ?? null;
 
-        if (!$type || !Type::exists($type)) {
+        if (! $type || ! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
@@ -147,7 +148,7 @@ class Alert
     /**
      * Fetch all alerts from the session.
      */
-    public static function count(string $type = null): int
+    public static function count(?string $type = null): int
     {
         $types = self::all($type);
 
@@ -167,7 +168,7 @@ class Alert
     /**
      * Fetch all alerts from the session.
      */
-    public static function all(string $type = null): array
+    public static function all(?string $type = null): array
     {
         return $type
             ? Session::get(SessionKey::typeKey($type), [])
@@ -176,6 +177,7 @@ class Alert
 
     /**
      * Dynamically handle method calls for different alert types.
+     *
      * @throws Exception
      */
     public function __call($method, $parameters)

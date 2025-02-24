@@ -33,6 +33,7 @@ interface Sizable
 
     /**
      * Set modal size
+     *
      * @throws Exception
      */
     public function size(string $size): self;

@@ -9,6 +9,7 @@ interface HasView
 {
     /**
      * Set a view for the alert.
+     *
      * @throws Throwable
      */
     public function view(View $view): self;

@@ -14,6 +14,7 @@ trait WithView
 
     /**
      * Set a view for the modal.
+     *
      * @throws Throwable
      */
     public function view(View $view): self

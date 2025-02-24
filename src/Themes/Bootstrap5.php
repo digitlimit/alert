@@ -2,8 +2,8 @@
 
 namespace Digitlimit\Alert\Themes;
 
-use Digitlimit\Alert\Themes;
 use Digitlimit\Alert\Contracts\ThemeInterface;
+use Digitlimit\Alert\Themes;
 use Digitlimit\Alert\Types;
 use Illuminate\Support\Facades\Blade;
 

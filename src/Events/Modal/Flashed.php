@@ -2,14 +2,12 @@
 
 namespace Digitlimit\Alert\Events\Modal;
 
+use Digitlimit\Alert\Types\Modal;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Digitlimit\Alert\Types\Modal;
 
 class Flashed
 {
@@ -20,8 +18,7 @@ class Flashed
      */
     public function __construct(
         public Modal $alert
-    ){
-    }
+    ) {}
 
     /**
      * Get the channels the event should broadcast on.

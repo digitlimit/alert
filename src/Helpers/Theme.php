@@ -3,8 +3,8 @@
 namespace Digitlimit\Alert\Helpers;
 
 use Digitlimit\Alert\Contracts\ThemeInterface;
-use Illuminate\Support\Facades\Config;
 use Exception;
+use Illuminate\Support\Facades\Config;
 
 class Theme
 {
@@ -28,7 +28,7 @@ class Theme
 
         $theme = $themes[$name] ?? null;
 
-        if (!$theme) {
+        if (! $theme) {
             throw new Exception("Theme {$name} not found");
         }
 

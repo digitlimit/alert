@@ -43,6 +43,7 @@ interface Positionable
 
     /**
      * Set the position of alert.
+     *
      * @throws Exception
      */
     public function position(string $position): self;

@@ -6,7 +6,7 @@ trait Scrollable
 {
     protected bool $scrollable = false;
 
-    public function scrollable(): self 
+    public function scrollable(): self
     {
         $this->scrollable = true;
 

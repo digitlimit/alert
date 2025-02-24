@@ -2,12 +2,12 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Events\FieldBag\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator;
-use Digitlimit\Alert\Events\FieldBag\Flashed;
 
 class FieldBag extends AbstractMessage implements MessageInterface
 {
@@ -49,6 +49,7 @@ class FieldBag extends AbstractMessage implements MessageInterface
     public function messages(MessageBag $messages): self
     {
         $this->messages = $messages;
+
         return $this;
     }
 
@@ -58,6 +59,7 @@ class FieldBag extends AbstractMessage implements MessageInterface
     public function errors(Validator $validator): self
     {
         $this->messages = $validator->errors();
+
         return $this;
     }
 
@@ -88,6 +90,7 @@ class FieldBag extends AbstractMessage implements MessageInterface
         $bag = new static;
         $bag->id($alert['id']);
         $bag->messages($alert['messages']);
+
         return $bag;
     }
 

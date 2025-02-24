@@ -13,6 +13,7 @@ class MessageFactory
 {
     /**
      * Make a new alert instance.
+     *
      * @throws Exception
      */
     public static function make(string $type, ...$args): MessageInterface
@@ -28,6 +29,7 @@ class MessageFactory
 
     /**
      * Make a new alert instance from an array.
+     *
      * @throws Exception
      */
     public static function makeFromArray(array $alert): MessageInterface
@@ -44,10 +46,9 @@ class MessageFactory
 
     /**
      * Get the constructor arguments for the alert.
+     *
      * @deprecated use laravel container instead
      *
-     * @param array $alert
-     * @return array
      * @throws ReflectionException
      */
     protected static function constructorArgs(array $alert): array
@@ -55,7 +56,7 @@ class MessageFactory
         $args = [];
         $constructor = (new ReflectionClass($class))->getConstructor();
 
-        if(! $constructor) {
+        if (! $constructor) {
             return $args;
         }
 

@@ -84,6 +84,7 @@ trait Positionable
 
     /**
      * Set the position of alert.
+     *
      * @throws Exception
      */
     public function position(string $position): self
@@ -91,7 +92,7 @@ trait Positionable
         $method = Str::camel($position);
 
         // check if function exists
-        if (!method_exists($this, $method)) {
+        if (! method_exists($this, $method)) {
             throw new Exception("Position method {$method} does not exist.");
         }
 
