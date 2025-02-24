@@ -47,7 +47,7 @@ return [
 
             'field' => [
                 'view' => 'alert-field',
-//                'alert' => Types\Field::class,
+                'alert' => Types\Field::class,
                 'component' => Themes\Tailwind\Field::class,
             ],
 

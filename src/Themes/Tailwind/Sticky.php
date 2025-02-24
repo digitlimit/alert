@@ -88,7 +88,7 @@ class Sticky extends Message implements LivewireInterface
         $this->setUp($data);
     }
 
-    #[On('refresh-alert-message')]
+    #[On('refresh-alert-sticky')]
     public function refresh(string $tag, array $data): void
     {
         if ($this->tag !== $tag || empty($data)) {
@@ -96,7 +96,7 @@ class Sticky extends Message implements LivewireInterface
         }
 
         $this->setUp($data);
-        $this->dispatch('open-alert-message');
+        $this->dispatch('open-alert-sticky');
     }
 
     /**
@@ -104,6 +104,6 @@ class Sticky extends Message implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::components.themes.tailwind.message');
+        return view('alert::components.themes.tailwind.sticky');
     }
 }
