@@ -96,7 +96,7 @@ trait Positionable
             throw new Exception("Position method {$method} does not exist.");
         }
 
-        return $this->{$this->position}();
+        return $this->{$method}();
     }
 
     /**

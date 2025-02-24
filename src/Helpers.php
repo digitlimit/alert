@@ -11,8 +11,11 @@ use Digitlimit\Alert\Types\Field;
 use Digitlimit\Alert\Types\FieldBag;
 
 if (! function_exists('alert')) {
-    function alert(string $message, ?string $title = null, string $level = 'success'): Message
-    {
+    function alert(
+        string $message,
+        ?string $title = null,
+        string $level = 'success'
+    ): Message{
         $alert = app('alert')
             ->message($message);
 
