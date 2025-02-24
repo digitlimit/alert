@@ -17,7 +17,14 @@ use Exception;
 use Digitlimit\Alert\Traits;
 use Throwable;
 
-class Modal extends AbstractMessage implements MessageInterface, Levelable, Scrollable, Sizable, Taggable, HasButton, HasView
+class Modal extends AbstractMessage
+    implements MessageInterface,
+    Levelable,
+    Scrollable,
+    Sizable,
+    Taggable,
+    HasButton,
+    HasView
 {
     use Traits\Levelable;
     use Traits\Scrollable;
