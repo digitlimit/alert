@@ -48,7 +48,7 @@ abstract class AbstractMessage implements MessageInterface
     public string $size = 'medium';
 
     /**
-     * Determine if alert is scrollable.
+     * Determine if the alert is scrollable.
      */
     public bool $scrollable = false;
 

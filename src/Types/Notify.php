@@ -50,7 +50,7 @@ class Notify extends AbstractMessage implements MessageInterface, Levelable, Pos
     }
 
     /**
-     * Fill the notify alert from an array.
+     * Fill the notification alert from an array.
      * @throws Exception
      */
     public static function fill(array $alert): MessageInterface
