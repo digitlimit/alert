@@ -2,13 +2,18 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Contracts\Levelable;
+
 use Digitlimit\Alert\Events\Message\Flashed;
-use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
+use Digitlimit\Alert\Helpers\Helper;
+use Digitlimit\Alert\Traits;
 
-class Message extends AbstractMessage implements MessageInterface
+class Message extends AbstractMessage implements MessageInterface, Levelable
 {
+    use Traits\Levelable;
+
     /**
      * Create a new normal alert instance.
      *
@@ -49,7 +54,7 @@ class Message extends AbstractMessage implements MessageInterface
         $message->id($alert['id']);
         $message->tag($alert['tag']);
         $message->level($alert['level']);
-        
+
         if ($alert['title']) {
             $message->title($alert['title']);
         }

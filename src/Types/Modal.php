@@ -3,14 +3,24 @@
 namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Component\Button;
+use Digitlimit\Alert\Contracts\Levelable;
+use Digitlimit\Alert\Contracts\Scrollable;
+use Digitlimit\Alert\Contracts\Sizable;
+
 use Digitlimit\Alert\Events\Modal\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Illuminate\View\View;
 
-class Modal extends AbstractMessage implements MessageInterface
+use Digitlimit\Alert\Traits;
+
+class Modal extends AbstractMessage implements MessageInterface, Levelable, Scrollable, Sizable
 {
+    use Traits\Levelable;
+    use Traits\Scrollable;
+    use Traits\Sizable;
+
     /**
      * An instance of action button.
      */
@@ -20,21 +30,6 @@ class Modal extends AbstractMessage implements MessageInterface
      * An instance of cancel button.
      */
     public Button $cancel;
-
-    /**
-     * The modal size.
-     */
-    public ?string $size = null;
-
-    /**
-     * The scrollable class for modal if given.
-     */
-    public ?string $scrollable = null;
-
-    /**
-     * The position of the modal on the screen if given.
-     */
-    public ?string $position = null;
 
     /**
      * The view HTML string if given.
@@ -78,67 +73,6 @@ class Modal extends AbstractMessage implements MessageInterface
     public function cancel(string $label, ?string $link = null, array $attributes = []): self
     {
         $this->cancel = new Button($label, $link, $attributes);
-
-        return $this;
-    }
-
-    /**
-     * Set modal to scrollable.
-     */
-    public function scrollable(
-        string $class = 'modal-dialog-scrollable'
-    ): self {
-        $this->scrollable = $class;
-
-        return $this;
-    }
-
-    /**
-     * Set modal size to small.
-     */
-    public function small(string $class = 'modal-sm'): self
-    {
-        $this->size = $class;
-
-        return $this;
-    }
-
-    /**
-     * Set modal size to large.
-     */
-    public function large(string $class = 'modal-lg'): self
-    {
-        $this->size = $class;
-
-        return $this;
-    }
-
-    /**
-     * Set modal size to extra-large.
-     */
-    public function extraLarge(string $class = 'modal-xl'): self
-    {
-        $this->size = $class;
-
-        return $this;
-    }
-
-    /**
-     * Set modal size to fullscreen.
-     */
-    public function fullscreen(string $class = 'modal-fullscreen'): self
-    {
-        $this->size = $class;
-
-        return $this;
-    }
-
-    /**
-     * Set modal position to center.
-     */
-    public function centered(string $class = 'modal-dialog-centered'): self
-    {
-        $this->position = $class;
 
         return $this;
     }

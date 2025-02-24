@@ -4,15 +4,19 @@ namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Component\Button;
+use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Events\FieldBag\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Illuminate\Support\Facades\Session;
+use Digitlimit\Alert\Traits;
 
-class Sticky extends AbstractMessage implements MessageInterface
+class Sticky extends AbstractMessage implements MessageInterface, Levelable
 {
+    use Traits\Levelable;
+
     /**
      * An instance of action button.
      */

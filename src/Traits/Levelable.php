@@ -5,26 +5,6 @@ namespace Digitlimit\Alert\Traits;
 trait Levelable
 {
     /**
-     * Primary alert level.
-     */
-    public function primary(): self
-    {
-        $this->level = 'primary';
-
-        return $this;
-    }
-
-    /**
-     * Secondary alert level.
-     */
-    public function secondary(): self
-    {
-        $this->level = 'secondary';
-
-        return $this;
-    }
-
-    /**
      * Success alert level.
      */
     public function success(): self
@@ -60,26 +40,6 @@ trait Levelable
     public function warning(): self
     {
         $this->level = 'warning';
-
-        return $this;
-    }
-
-    /**
-     * Light alert level.
-     */
-    public function light(): self
-    {
-        $this->level = 'light';
-
-        return $this;
-    }
-
-    /**
-     * Dark alert level.
-     */
-    public function dark(): self
-    {
-        $this->level = 'dark';
 
         return $this;
     }

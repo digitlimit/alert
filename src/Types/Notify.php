@@ -6,6 +6,7 @@ use Digitlimit\Alert\Events\Notify\Flashed;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
+use Illuminate\Support\Str;
 
 class Notify extends AbstractMessage implements MessageInterface
 {
@@ -32,86 +33,6 @@ class Notify extends AbstractMessage implements MessageInterface
     public function key(): string
     {
         return 'notify';
-    }
-
-    /**
-     * Set the position of the notify.
-     */
-    public function position(string $position): self
-    {
-        $this->position = $position;
-
-        return $this;
-    }
-
-    /**
-     * Position notify on center of the screen.
-     */
-    public function centered(string $class = 'top-50 start-50 translate-middle'): self
-    {
-        $this->position = $class;
-
-        return $this;
-    }
-
-    /**
-     * Position notify on the center of the screen.
-     */
-    public function topLeft(string $class = 'top-0 start-0'): self
-    {
-        $this->position = $class;
-
-        return $this;
-    }
-
-    /**
-     * Position notify on the top right of the screen.
-     */
-    public function topRight(string $class = 'top-0 end-0'): self
-    {
-        $this->position = $class;
-
-        return $this;
-    }
-
-    /**
-     * Position notify on the top center of the screen.
-     */
-    public function topCenter(string $class = 'top-0 start-50 translate-middle-x'): self
-    {
-        $this->position = $class;
-
-        return $this;
-    }
-
-    /**
-     * Position notify on the bottom left of the screen.
-     */
-    public function bottomLeft(string $class = 'bottom-0 start-0'): self
-    {
-        $this->position = $class;
-
-        return $this;
-    }
-
-    /**
-     * Position notify on the bottom right of the screen.
-     */
-    public function bottomRight(string $class = 'bottom-0 end-0'): self
-    {
-        $this->position = $class;
-
-        return $this;
-    }
-
-    /**
-     * Position notify on the bottom center of the screen.
-     */
-    public function bottomCenter(string $class = 'bottom-0 start-50 translate-middle-x'): self
-    {
-        $this->position = $class;
-
-        return $this;
     }
 
     /**

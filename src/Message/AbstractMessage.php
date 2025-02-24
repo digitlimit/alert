@@ -5,7 +5,10 @@ namespace Digitlimit\Alert\Message;
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Traits\Levelable;
+use Digitlimit\Alert\Traits\Positionable;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+use Exception;
 
 /**
  * @property string $title
@@ -20,9 +23,34 @@ abstract class AbstractMessage implements MessageInterface
     use Levelable;
 
     /**
+     * Import the alert positions from trait.
+     */
+    use Positionable;
+
+    /**
      * Alert unique ID.
      */
     public string|int $id;
+
+    /**
+     * The level of the alert.
+     */
+    public ?string $level = null;
+
+    /**
+     * The position of the alert.
+     */
+    public ?string $position = null;
+
+    /**
+     * The size of the alert
+     */
+    public ?string $size = null;
+
+    /**
+     * Determine if alert is scrollable.
+     */
+    public bool $scrollable = false;
 
     /**
      * Alert tag.
@@ -52,6 +80,21 @@ abstract class AbstractMessage implements MessageInterface
         $this->level = $level;
 
         return $this;
+    }
+
+    /**
+     * Set the position of the notify.
+     */
+    public function position(string $position): self
+    {
+        $method = Str::camel($position);
+
+        // check if function exists
+        if (!method_exists($this, $method)) {
+            throw new Exception("Position method {$method} does not exist.");
+        }
+
+        return $this->{$this->position}();
     }
 
     /**

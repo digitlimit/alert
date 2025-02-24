@@ -66,7 +66,8 @@ class Notify extends Component implements LivewireInterface
     public function setUp(array $data): void
     {
         $this->data = $data;
-//        $this->classes = $this->levels[$data['level']]['classes'];
+        dd($data);
+        $this->classes = $this->levels[$data['level']]['classes'];
     }
 
     /**
