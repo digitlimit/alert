@@ -41,7 +41,7 @@ return [
         'types' => [
             'message' => [
                 'view' => 'alert-message',
-//                'alert' => Types\Message::class,
+                'alert' => Types\Message::class,
                 'component' => Themes\Tailwind\Message::class,
             ],
 
@@ -53,25 +53,25 @@ return [
 
             'bag' => [
                 'view' => 'alert-field',
-//                'alert' => Types\FieldBag::class,
+                'alert' => Types\FieldBag::class,
                 'component' => Themes\Tailwind\Field::class,
             ],
 
             'modal' => [
                 'view' => 'alert-modal',
-//                'alert' => Types\Modal::class,
+                'alert' => Types\Modal::class,
                 'component' => Themes\Tailwind\Modal::class,
             ],
 
             'notify' => [
                 'view' => 'alert-notify',
-//                'alert' => Types\Notify::class,
+                'alert' => Types\Notify::class,
                 'component' => Themes\Tailwind\Notify::class,
             ],
 
             'sticky' => [
                 'view' => 'alert-sticky',
-//                'alert' => Types\Sticky::class,
+                'alert' => Types\Sticky::class,
                 'component' => Themes\Tailwind\Sticky::class,
             ],
         ]
