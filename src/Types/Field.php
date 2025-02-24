@@ -80,10 +80,10 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
     {
         if ($this->getName()) {
             //e.g default.firstname
-            return $this->getTag().'.'.$this->getName();
+            return $this->tag.'.'.$this->getName();
         }
 
-        return $this->getTag();
+        return $this->tag;
     }
 
     /**

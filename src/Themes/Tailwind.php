@@ -23,43 +23,7 @@ class Tailwind implements ThemeInterface
      */
     public function types(): array
     {
-        return [
-            'message' => [
-                'view' => 'alert-message',
-                'alert' => Types\Message::class,
-                'component' => Themes\Tailwind\Message::class,
-            ],
-
-            'field' => [
-                'view' => 'alert-field',
-                'alert' => Types\Field::class,
-                'component' => Themes\Tailwind\Field::class,
-            ],
-
-            'bag' => [
-                'view' => 'alert-field',
-                'alert' => Types\FieldBag::class,
-                'component' => Themes\Tailwind\Field::class,
-            ],
-
-            'modal' => [
-                'view' => 'alert-modal',
-                'alert' => Types\Modal::class,
-                'component' => Themes\Tailwind\Modal::class,
-            ],
-
-            'notify' => [
-                'view' => 'alert-notify',
-                'alert' => Types\Notify::class,
-                'component' => Themes\Tailwind\Notify::class,
-            ],
-
-            'sticky' => [
-                'view' => 'alert-sticky',
-                'alert' => Types\Sticky::class,
-                'component' => Themes\Tailwind\Sticky::class,
-            ],
-        ];
+        return config('alert.tailwind.types');
     }
 
     /**
@@ -78,11 +42,9 @@ class Tailwind implements ThemeInterface
     {
         $types = $this->types();
 
-        Livewire::component($types['message']['view'], Themes\Tailwind\Message::class);
-        Livewire::component($types['field']['view'], Themes\Tailwind\Field::class);
-        Livewire::component($types['modal']['view'], Themes\Tailwind\Modal::class);
-        Livewire::component($types['notify']['view'], Themes\Tailwind\Notify::class);
-        Livewire::component($types['sticky']['view'], Themes\Tailwind\Sticky::class);
+        foreach($types as $type) {
+            Livewire::component($type['view'], $type['component']);
+        }
     }
 
     public function dehydrate(): void

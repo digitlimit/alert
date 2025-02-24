@@ -4,7 +4,6 @@ namespace Digitlimit\Alert\Message;
 
 use Digitlimit\Alert\Helpers\Type;
 use Exception;
-use ReflectionClass;
 
 /**
  * Alert message factory.

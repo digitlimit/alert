@@ -15,7 +15,7 @@ class SessionKey
     }
 
     /**
-     * Get session key for a given type and tag.
+     * Get a session key for a given type and tag.
      */
     public static function key(string $type, string $tag): string
     {
