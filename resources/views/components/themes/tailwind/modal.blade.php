@@ -5,10 +5,6 @@
         $header = $header ?? null;
         $body   = $body ?? null;
         $footer = $footer ?? null;
-
-        $id        = $id ?? $modal->id;
-        $view      = $modal->view ?? '';
-
         $hasBody   = !is_null($body);
         $hasHeader = !is_null($header);
         $hasFooter = !is_null($footer);
@@ -16,6 +12,7 @@
         $hasTitle  = $hasHeader || $modal->getTitle();
     @endphp
     <div
+        id="{{ $modal->getId() }}"
         x-data="{
             show: true,
             modalSize: '{{ $modal->getSize() }}',
@@ -63,7 +60,8 @@
                      'w-full h-full': modalSize === 'full', // Full Screen
                       'max-h-[80vh] overflow-y-auto': scrollable // Enables scrolling inside modal
                  }"
-                 class="bg-white p-6 rounded-lg shadow-lg relative max-w-full">
+                 class="bg-white p-6 rounded-lg shadow-lg relative max-w-full"
+            >
 
                 <!-- Modal header -->
                 @if ($hasHeader)
@@ -82,9 +80,8 @@
                     </div>
                 @endif
 
-                <!-- Modal body -->
-                @if($view)
-                    {!! $view !!}
+                @if($modal->hasView())
+                    {!! $modal->getView() !!}
                 @else
                     <div class="relative w-auto pb-8">
                         @if($hasBody)
