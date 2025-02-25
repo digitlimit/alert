@@ -31,6 +31,7 @@ class Alert
 
     /**
      * Fetch an alert based on the type and named.
+     * @throws Exception
      */
     public function named(string $type, string $name, ?string $tag = null): ?MessageInterface
     {
@@ -73,6 +74,14 @@ class Alert
     public static function taggedField(string $tag): ?MessageInterface
     {
         return self::tagged('field', $tag);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function namedField(string $name, string $tag): ?MessageInterface
+    {
+        return self::named('field', $name, $tag);
     }
 
     /**

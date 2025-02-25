@@ -1,37 +1,25 @@
-@php
-    $name  = $attributes->get('name');
-    $tag   = $attributes->get('tag', $defaultTag);
-    $field = $alert->named('field', $name, $tag) ?? $alert->tagged('field', $tag);
-    $bag   = $alert->tagged('bag', $tag);
-    $theme = $attributes->get('theme', 'light');
-@endphp
-
-@if($slot->isNotEmpty())
-    {{ $slot }}
-@elseif($field && $field->name == $name)
-    <div data-bs-theme="{{$theme}}" {{ $attributes->merge(['class' => 'form-text text-'.$field->getLevel()]) }}>
-        {{ $error ?? $field->getMessage() }}
-    </div>
-@elseif($bag && $bag->messageFor($name))
-    <div data-bs-theme="{{$theme}}" {{ $attributes->merge(['class' => 'form-text text-'.$bag->getLevel()]) }}>
-        {{ $bag->messageFor($name) }}
-    </div>
-@elseif(isset($errors))
+<div class="digitlimit-alert-field">
+    @inject('alert', 'Digitlimit\Alert\Alert')
     @php
-        $level = $field->getLevel() ?? 'danger';
+        $field  = $alert->fromArray($data);
+        $bag    = $alert->taggedBag($tag);
+
+        $level = null;
+        $message = null;
+
+        if ($field->name == $name) {
+            $level = $field->getLevel();
+            $message = $field->getMessage();
+        } elseif($bag && $bag->messageFor($name)) {
+            $level = $bag->getLevel();
+            $message = $bag->messageFor($name);
+        }
     @endphp
 
-    @error($name, $tag)
-        <div data-bs-theme="{{$theme}}" {{ $attributes->merge(['class' => 'form-text text-'.$level ]) }}>
-            {{ $errors->$tag->first($name) }}
+    @if($level && $message)
+        <div class="{{ $levels[$level]['classes']['main'] }}">
+            {{ $message }}
+{{--                <strong>Success:</strong>--}}
         </div>
-    @enderror
-
-    @if(empty($tag))
-        @error($name)
-            <div data-bs-theme="{{$theme}}" {{ $attributes->merge(['class' => 'form-text text-'.$level ]) }}>
-                {{ $errors->first($name) }}
-            </div>
-        @enderror
     @endif
-@endif
+</div>
