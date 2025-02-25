@@ -48,7 +48,7 @@ class Modal extends Component implements LivewireInterface
     /**
      * Default action button attributes.
      */
-    public array $linkActionAttributes = [
+    public array $actionLinkAttributes = [
         'type' => 'button',
         'class' => 'inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 bg-neutral-950 hover:bg-neutral-900',
         '@click' => 'modalOpen = false;',
@@ -57,7 +57,7 @@ class Modal extends Component implements LivewireInterface
     /**
      * Default cancel button attributes.
      */
-    public array $linkCancelAttributes = [
+    public array $cancelLinkAttributes = [
         'type' => 'button',
         'class' => 'inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-100 focus:ring-offset-2',
         '@click' => 'modalOpen = false;',
@@ -115,6 +115,32 @@ class Modal extends Component implements LivewireInterface
     {
         $newAttributes = array_merge(
             $this->cancelAttributes,
+            $attributes
+        );
+
+        return Attribute::toString($newAttributes);
+    }
+
+    /**
+     * Merge and convert array attributes to HTML string attributes.
+     */
+    public function actionLinkAttributes(array $attributes = []): string
+    {
+        $newAttributes = array_merge(
+            $this->actionLinkAttributes,
+            $attributes
+        );
+
+        return Attribute::toString($newAttributes);
+    }
+
+    /**
+     * Merge and convert array attributes to HTML string attributes.
+     */
+    public function cancelLinkAttributes(array $attributes = []): string
+    {
+        $newAttributes = array_merge(
+            $this->cancelLinkAttributes,
             $attributes
         );
 

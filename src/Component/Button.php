@@ -56,24 +56,60 @@ class Button
         return $this;
     }
 
+    /**
+     * Get the button name.
+     */
     public function getName(): string
     {
         return $this->name;
     }
 
+    /**
+     * Get the button attributes.
+     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
+    /**
+     * Get the button link.
+     */
     public function getLink(): string
     {
         return $this->link;
     }
 
+    /**
+     * Get the button label.
+     */
     public function getLabel(): string
     {
         return $this->label;
+    }
+
+    /**
+     * Check if button is link button.
+     */
+    public function isLink(): bool
+    {
+        return !empty($this->link);
+    }
+
+    /**
+     * Check if button is action button.
+     */
+    public function isAction(): bool
+    {
+        return $this->getName() === 'action';
+    }
+
+    /**
+     * Check if button is cancel button.
+     */
+    public function isCancel(): bool
+    {
+        return $this->getName() === 'cancel';
     }
 
     /**

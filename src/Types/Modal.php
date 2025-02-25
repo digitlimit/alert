@@ -79,11 +79,14 @@ class Modal extends AbstractMessage implements HasButton, HasView, Levelable, Me
         $modal = new static($alert['message']);
 
         $modal->id($alert['id']);
-        $modal->title($alert['title']);
         $modal->size($alert['size']);
         $modal->level($alert['level']);
         $modal->setScrollable($alert['scrollable'] ?? false);
         $modal->buttons($alert['buttons'] ?? []);
+
+        if (isset($alert['title']) && $alert['title']) {
+            $modal->title($alert['title']);
+        }
 
         if (isset($alert['view']) && $alert['view']) {
             $modal->setView($alert['view']);

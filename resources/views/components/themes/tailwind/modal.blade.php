@@ -7,8 +7,6 @@
         $footer = $footer ?? null;
 
         $id        = $id ?? $modal->id;
-        $cancel    = $modal->cancel ?? '';
-        $action    = $modal->action ?? '';
         $view      = $modal->view ?? '';
 
         $hasBody   = !is_null($body);
@@ -20,8 +18,8 @@
     <div
         x-data="{
             show: true,
-            modalSize: '{{ $modal->size }}',
-            scrollable: {{ $modal->scrollable ? 'true' : 'false' }}
+            modalSize: '{{ $modal->getSize() }}',
+            scrollable: {{ $modal->isScrollable() }}
         }"
 
         x-init="() => {
@@ -97,54 +95,41 @@
                     </div>
                 @endif
 
-                <!-- Modal footer -->
                 <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-                    <button @click="show = false;"
-                            type="button"
-                            class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-100 focus:ring-offset-2">
-                        Cancel
-                    </button>
-                    <button @click="show = false;"
-                            type="button"
-                            class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 bg-neutral-950 hover:bg-neutral-900">
-                        Continue
-                    </button>
-                </div>
-                @if( $action->label || $cancel->label && $hasFooter )
-
-                    <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-                        @if($hasFooter)
-                            {{ $footer }}
+                    @foreach($modal->getButtons() as $button)
+                        @if($button->isAction())
+                           @if($button->isLink())
+                                <a href="{{ $button->getLink() }}" {!! $actionLinkAttributes($button->getAttributes()) !!}>
+                                    {{ $button->getLabel() }}
+                                </a>
+                            @else
+                                <button {!! $actionAttributes($button->getAttributes()) !!}>
+                                    {{ $button->getLabel() }}
+                                </button>
+                            @endif
+                        @elseif($button->isCancel())
+                            @if($button->isLink())
+                                <a href="{{ $button->getLink() }}" {!! $cancelLinkAttributes($button->getAttributes()) !!}>
+                                    {{ $button->getLabel() }}
+                                </a>
+                            @else
+                                <button {!! $cancelAttributes($button->getAttributes()) !!}>
+                                    {{ $button->getLabel() }}
+                                </button>
+                            @endif
                         @else
-
-                            @if($cancel->label)
-                                @if($cancel->link)
-                                    <a href="{{ $cancel->link }}" {!! $linkCancelAttributes($cancel->attributes) !!}>
-                                        {{ $cancel->label }}
-                                    </a>
-                                @else
-                                    <button {!! $cancelAttributes($cancel->attributes) !!}>
-                                        {{ $cancel->label }}
-                                    </button>
-                                @endif
+                            @if($button->isLink())
+                                <a href="{{ $button->getLink() }}" {!! $button->getAttributes() !!}>
+                                    {{ $button->getLabel() }}
+                                </a>
+                            @else
+                                <button {!! $button->getAttributes() !!}>
+                                    {{ $button->getLabel() }}
+                                </button>
                             @endif
-
-                            @if($action->label)
-                                @if($action->link)
-                                    <a href="{{ $action->link }}" {!! $linkActionAttributes($action->attributes) !!}>
-                                        {{ $action->label }}
-                                    </a>
-                                @else
-                                    <button {!! $actionAttributes($action->attributes) !!}>
-                                        {{ $action->label }}
-                                    </button>
-                                @endif
-                            @endif
-
                         @endif
-                    </div>
-
-                @endif
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
