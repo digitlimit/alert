@@ -17,7 +17,7 @@
     @endphp
 
     @if($level && $message)
-        <div class="{{ $levels[$level]['classes']['main'] }}">
+        <div class="{{ config('alert.tailwind.classes.field.levels.' . $level) }}">
             {{ $message }}
         </div>
     @endif

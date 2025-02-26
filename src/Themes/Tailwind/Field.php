@@ -28,40 +28,9 @@ class Field extends Component implements LivewireInterface
     public string $tag;
 
     /**
-     * The default alert class.
-     */
-    public array $classes;
-
-    /**
      * The alert
      */
     public array $data = [];
-
-    /**
-     * The alert levels.
-     */
-    public array $levels = [
-        'success' => [
-            'classes' => [
-                'main' => 'p-3 border-l-4 rounded-md bg-green-100 border-green-500 text-green-800',
-            ],
-        ],
-        'error' => [
-            'classes' => [
-                'main' => 'p-3 border-l-4 rounded-md bg-red-100 border-red-500 text-red-800',
-            ],
-        ],
-        'warning' => [
-            'classes' => [
-                'main' => 'p-3 border-l-4 rounded-md bg-yellow-100 border-yellow-500 text-yellow-800',
-            ],
-        ],
-        'info' => [
-            'classes' => [
-                'main' => 'p-3 border-l-4 rounded-md bg-blue-100 border-blue-500 text-blue-800',
-            ],
-        ],
-    ];
 
     /**
      * Set data for the alert.

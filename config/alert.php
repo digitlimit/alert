@@ -108,7 +108,18 @@ return [
                     '@click' => 'show = false;',
                 ],
             ],
-        ]
+        ],
+        'classes' => [
+           'field' => [
+               'levels' => [
+                   'success' => 'p-3 border-l-4 rounded-md bg-green-100 border-green-500 text-green-800',
+                   'error' => 'p-3 border-l-4 rounded-md bg-red-100 border-red-500 text-red-800',
+                   'warning' => 'p-3 border-l-4 rounded-md bg-yellow-100 border-yellow-500 text-yellow-800',
+                   'info' => 'p-3 border-l-4 rounded-md bg-blue-100 border-blue-500 text-blue-800',
+               ],
+           ]
+        ],
+
     ],
 
     'bootstrap5' => [
