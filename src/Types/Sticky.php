@@ -77,10 +77,6 @@ class Sticky extends Message implements HasButton
      */
     public function flash(): void
     {
-        if(empty($this->id)) {
-            $this->autoSetId();
-        }
-
         $sessionKey = SessionKey::key($this->key(), $this->getTag());
 
         Session::put($sessionKey, $this);

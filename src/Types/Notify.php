@@ -30,6 +30,7 @@ class Notify extends AbstractMessage implements Levelable, MessageInterface, Pos
     public function __construct(
        protected string $message
     ) {
+        parent::__construct();
     }
 
     /**

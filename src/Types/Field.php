@@ -30,6 +30,7 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
         public string $name,
         protected string $message
     ) {
+        parent::__construct();
     }
 
     /**
@@ -76,10 +77,6 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
      */
     public function flash(): void
     {
-        if(!$this->getId()) {
-            $this->autoSetId();
-        }
-
         $sessionKey = SessionKey::key($this->key(), $this->getTag());
 
         if (empty($this->name) || empty($this->message)) {

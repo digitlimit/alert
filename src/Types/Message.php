@@ -27,6 +27,7 @@ class Message extends AbstractMessage implements Levelable, MessageInterface, Ta
     public function __construct(
         protected string $message
     ) {
+        parent::__construct();
     }
 
     /**

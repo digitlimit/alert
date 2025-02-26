@@ -39,6 +39,7 @@ class Modal extends AbstractMessage implements HasButton, HasView, Levelable, Me
     public function __construct(
         protected string $message
     ) {
+        parent::__construct();
     }
 
     /**

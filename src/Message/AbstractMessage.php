@@ -21,6 +21,10 @@ abstract class AbstractMessage implements MessageInterface
      */
     abstract public function key(): string;
 
+    public function __construct() {
+        $this->autoSetId();
+    }
+
     /**
      * Set alert ID.
      */
@@ -53,10 +57,6 @@ abstract class AbstractMessage implements MessageInterface
      */
     public function flash(): void
     {
-        if(!$this->getId()) {
-            $this->autoSetId();
-        }
-
         $sessionKey = SessionKey::key($this->key(), $this->getTag());
 
         if (empty($sessionKey)) {
