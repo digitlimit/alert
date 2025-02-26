@@ -34,7 +34,7 @@ trait Levelable
      */
     public function error(): self
     {
-        $this->level = 'danger';
+        $this->level = 'error';
 
         return $this;
     }
