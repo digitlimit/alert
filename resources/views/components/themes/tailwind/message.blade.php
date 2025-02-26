@@ -20,12 +20,12 @@
     <div
         id="{{ $id }}"
 
-        class="{{ $classes['main'] }}"
+        class="{{ config("alert.tailwind.classes.message.levels.$level.container") }}"
 
         x-transition.duration.300ms
 
         x-data="{
-            show: true,
+            show: true
         }"
 
         x-show="show"
@@ -53,7 +53,7 @@
         <button
             @click="show = false"
             type="button"
-            class="{{ $classes['close'] }}"
+            class="{{ config("alert.tailwind.classes.message.levels.$level.close") }}"
             aria-label="Close"
         >
             <span class="sr-only">Close</span>
