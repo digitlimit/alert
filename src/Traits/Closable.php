@@ -4,7 +4,7 @@ namespace Digitlimit\Alert\Traits;
 
 trait Closable
 {
-    protected bool $closable = false;
+    protected bool $closable = true;
 
     public function closable(): self
     {

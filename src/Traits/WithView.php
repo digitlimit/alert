@@ -10,7 +10,7 @@ trait WithView
     /**
      * The view HTML string if given.
      */
-    public ?string $view = null;
+    protected ?string $view = null;
 
     /**
      * Set a view for the modal.

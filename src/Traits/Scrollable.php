@@ -4,7 +4,7 @@ namespace Digitlimit\Alert\Traits;
 
 trait Scrollable
 {
-    protected bool $scrollable = false;
+    protected bool $scrollable = true;
 
     public function scrollable(): self
     {
