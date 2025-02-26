@@ -2,6 +2,7 @@
     @inject('alert', 'Digitlimit\Alert\Alert')
     @php
         $message  = $alert->fromArray($data);
+        $level    = $message->getLevel();
     @endphp
     <div
         id="{{ $message->getId() }}"
