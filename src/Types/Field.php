@@ -7,7 +7,6 @@ use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Field\Flashed;
-use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
@@ -31,7 +30,6 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
         public string $name,
         protected string $message
     ) {
-        $this->id($this->key().'-'.Helper::randomString());
     }
 
     /**
@@ -78,6 +76,10 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
      */
     public function flash(): void
     {
+        if(!$this->getId()) {
+            $this->autoSetId();
+        }
+
         $sessionKey = SessionKey::key($this->key(), $this->getTag());
 
         if (empty($this->name) || empty($this->message)) {

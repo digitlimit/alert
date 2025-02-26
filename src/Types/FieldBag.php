@@ -24,8 +24,6 @@ class FieldBag extends AbstractMessage implements MessageInterface
     public function __construct(
         Validator|MessageBag|null $bag = null
     ) {
-        $this->id($this->key().'-'.Helper::randomString());
-
         if (is_a($bag, Validator::class)) {
             $this->errors($bag);
         } elseif (is_a($bag, MessageBag::class)) {

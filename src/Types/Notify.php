@@ -30,8 +30,6 @@ class Notify extends AbstractMessage implements Levelable, MessageInterface, Pos
     public function __construct(
        protected string $message
     ) {
-        $this->id($this->key().'-'.Helper::randomString());
-        $this->bottomRight();
     }
 
     /**

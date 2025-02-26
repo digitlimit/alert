@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert\Message;
 
+use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Illuminate\Support\Facades\Session;
 
@@ -26,7 +27,15 @@ abstract class AbstractMessage implements MessageInterface
     public function id(string|int $id): self
     {
         $this->id = $id;
+        return $this;
+    }
 
+    /**
+     * Set alert ID to auto generate.
+     */
+    public function autoSetId(): self
+    {
+        $this->id =  $this->key().'-'.Helper::randomString();
         return $this;
     }
 
@@ -44,6 +53,10 @@ abstract class AbstractMessage implements MessageInterface
      */
     public function flash(): void
     {
+        if(!$this->getId()) {
+            $this->autoSetId();
+        }
+
         $sessionKey = SessionKey::key($this->key(), $this->getTag());
 
         if (empty($sessionKey)) {
