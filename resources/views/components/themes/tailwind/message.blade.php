@@ -30,10 +30,6 @@
 
         x-show="show"
 
-        x-init="() => {
-           show = true;
-        }"
-
         @open-alert-message.window="show = true"
 
         role="alert"
