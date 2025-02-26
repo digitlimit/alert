@@ -65,7 +65,7 @@
 
                 <!-- Modal header -->
                 <div class="flex items-center justify-between pb-3 {{ $modal->getLevel() ? 'text-' . $modal->getLevel() : '' }}">
-                    @if($modal->getTitle)
+                    @if($modal->hasTitle())
                         <h3 class="text-lg font-semibold">{{ $modal->getTitle() }}</h3>
                     @endif
                     <button x-ref="modalCloseButton"
