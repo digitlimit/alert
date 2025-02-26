@@ -51,10 +51,11 @@
                  x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
 
                  :class="{
-                     'w-1/4': modalSize === 'sm',        // Small
-                     'w-1/2': modalSize === 'md',        // Medium
-                     'w-3/4': modalSize === 'lg',        // Large
-                     'w-full h-full': modalSize === 'full', // Full Screen
+                     'w-1/4': modalSize === 'small',        // Small
+                     'w-1/2': modalSize === 'medium',        // Medium
+                     'w-3/4': modalSize === 'large',        // Large
+                     'w-4/5': modalSize === 'extra-large',        // Large
+                     'w-full h-full': modalSize === 'fullscreen', // Full Screen
                       'max-h-[80vh] overflow-y-auto': scrollable // Enables scrolling inside modal
                  }"
                  class="bg-white p-6 rounded-lg shadow-lg relative max-w-full"
