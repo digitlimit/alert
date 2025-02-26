@@ -19,7 +19,6 @@
     @if($level && $message)
         <div class="{{ $levels[$level]['classes']['main'] }}">
             {{ $message }}
-{{--                <strong>Success:</strong>--}}
         </div>
     @endif
 </div>
