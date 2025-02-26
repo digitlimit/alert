@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Contracts;
 
+/**
+ * The alert-scrollable contract.
+ */
 interface Scrollable
 {
     public function scrollable(): self;

@@ -4,6 +4,9 @@ namespace Digitlimit\Alert\Contracts;
 
 use Exception;
 
+/**
+ * The alert size contract.
+ */
 interface Sizable
 {
     /**

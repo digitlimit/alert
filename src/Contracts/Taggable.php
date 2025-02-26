@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Contracts;
 
+/**
+ * The alert tag contract.
+ */
 interface Taggable
 {
     /**
