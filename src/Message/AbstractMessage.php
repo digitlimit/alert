@@ -13,8 +13,9 @@ abstract class AbstractMessage implements MessageInterface
 {
     /**
      * Alert unique ID.
+     * The ID is set automatically if not provided.
      */
-    public string|int $id;
+    protected string|int $id;
 
     /**
      * Abstract alert key method should return alert key.
