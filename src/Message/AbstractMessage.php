@@ -35,7 +35,7 @@ abstract class AbstractMessage implements MessageInterface
      */
     public function autoSetId(): self
     {
-        $this->id =  $this->key().'-'.Helper::randomString();
+        $this->id($this->key().'-'.Helper::randomString());
         return $this;
     }
 

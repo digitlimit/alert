@@ -77,7 +77,7 @@ class Sticky extends Message implements HasButton
      */
     public function flash(): void
     {
-        if(!$this->getId()) {
+        if(empty($this->id)) {
             $this->autoSetId();
         }
 
