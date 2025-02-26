@@ -23,4 +23,9 @@ trait WithTitle
     {
         return $this->title ?? null;
     }
+
+    public function hasTitle(): bool
+    {
+        return !is_null($this->title);
+    }
 }

@@ -15,4 +15,9 @@ interface HasTitle
      * Fetch the alert title.
      */
     public function getTitle(): ?string;
+
+    /**
+     * Determine if the alert has a title.
+     */
+    public function hasTitle(): bool;
 }
