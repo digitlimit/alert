@@ -5,10 +5,10 @@ namespace Digitlimit\Alert\Themes\Tailwind;
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
 use Digitlimit\Alert\Helpers\Attribute;
-use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Exception;
 
 class Modal extends Component implements LivewireInterface
 {
@@ -100,8 +100,12 @@ class Modal extends Component implements LivewireInterface
      */
     public function actionAttributes(array $attributes = []): string
     {
+        $button = config('alert.tailwind.buttons.primary');
+        $buttonAttributes = config('alert.tailwind.attributes.buttons.action');
+        $buttonAttributes['class'] = $button;
+
         $newAttributes = array_merge(
-            $this->actionAttributes,
+            $buttonAttributes,
             $attributes
         );
 
@@ -113,8 +117,12 @@ class Modal extends Component implements LivewireInterface
      */
     public function cancelAttributes(array $attributes = []): string
     {
+        $button = config('alert.tailwind.buttons.secondary');
+        $buttonAttributes = config('alert.tailwind.attributes.buttons.cancel');
+        $buttonAttributes['class'] = $button;
+
         $newAttributes = array_merge(
-            $this->cancelAttributes,
+            $buttonAttributes,
             $attributes
         );
 
@@ -126,8 +134,12 @@ class Modal extends Component implements LivewireInterface
      */
     public function actionLinkAttributes(array $attributes = []): string
     {
+        $button = config('alert.tailwind.buttons.primary');
+        $linkAttributes = config('alert.tailwind.attributes.links.action');
+        $linkAttributes['class'] = $button;
+
         $newAttributes = array_merge(
-            $this->actionLinkAttributes,
+            $linkAttributes,
             $attributes
         );
 
@@ -139,8 +151,12 @@ class Modal extends Component implements LivewireInterface
      */
     public function cancelLinkAttributes(array $attributes = []): string
     {
+        $button = config('alert.tailwind.buttons.secondary');
+        $linkAttributes = config('alert.tailwind.attributes.links.cancel');
+        $linkAttributes['class'] = $button;
+
         $newAttributes = array_merge(
-            $this->cancelLinkAttributes,
+            $linkAttributes,
             $attributes
         );
 
