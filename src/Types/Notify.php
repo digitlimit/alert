@@ -8,12 +8,14 @@ use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Positionable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Notify\Flashed;
-use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Traits;
 use Exception;
 
+/**
+ * Notify alert class.
+ */
 class Notify extends AbstractMessage implements Levelable, MessageInterface, Positionable, Taggable, HasTitle, HasMessage
 {
     use Traits\Levelable;

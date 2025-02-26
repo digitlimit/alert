@@ -13,6 +13,9 @@ use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Traits;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Field alert class.
+ */
 class Field extends AbstractMessage implements Levelable, MessageInterface, Taggable, HasTitle, HasMessage
 {
     use Traits\Levelable;

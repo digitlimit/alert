@@ -7,11 +7,13 @@ use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Message\Flashed;
-use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Traits;
 
+/**
+ * Message alert class.
+ */
 class Message extends AbstractMessage implements Levelable, MessageInterface, Taggable, HasTitle, HasMessage
 {
     use Traits\Levelable;

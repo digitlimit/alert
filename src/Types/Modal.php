@@ -18,6 +18,9 @@ use Digitlimit\Alert\Traits;
 use Exception;
 use Throwable;
 
+/**
+ * Modal alert class.
+ */
 class Modal extends AbstractMessage implements HasButton, HasView, Levelable, MessageInterface, Scrollable, Sizable, Taggable, HasTitle, HasMessage
 {
     use Traits\Levelable;

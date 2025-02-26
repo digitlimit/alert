@@ -2,23 +2,9 @@
     @inject('alert', 'Digitlimit\Alert\Alert')
     @php
         $message  = $alert->fromArray($data);
-        $header = $header ?? null;
-        $body   = $body ?? null;
-        $footer = $footer ?? null;
-
-        $id        = $id ?? $message->id;
-        $cancel    = $message->cancel ?? '';
-        $action    = $message->action ?? '';
-        $view      = $message->view ?? '';
-
-        $hasBody   = !is_null($body);
-        $hasHeader = !is_null($header);
-        $hasFooter = !is_null($footer);
-
-        $hasTitle  = $hasHeader || $message->getTitle();
     @endphp
     <div
-        id="{{ $id }}"
+        id="{{ $message->getId() }}"
 
         class="{{ config("alert.tailwind.classes.message.levels.$level.container") }}"
 
@@ -43,7 +29,7 @@
         {{ $slot ?? '' }}
 
         <div class="ms-3 text-sm font-medium">
-            @if($hasTitle)
+            @if($message->hasTitle())
                 <h3 class="text-lg font-semibold">{{ $message->getTitle() }}</h3>
             @endif
 
