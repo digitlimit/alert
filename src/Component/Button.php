@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Component;
 
+/**
+ * The button component.
+ */
 class Button
 {
     /**
@@ -10,10 +13,10 @@ class Button
      * @return void
      */
     public function __construct(
-        public string $name,
-        public ?string $label = null,
-        public ?string $link = null,
-        public array $attributes = []
+        protected string $name,
+        protected ?string $label = null,
+        protected ?string $link = null,
+        protected array $attributes = []
     ) {}
 
     /**
