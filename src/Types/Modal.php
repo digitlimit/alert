@@ -63,8 +63,8 @@ class Modal extends AbstractMessage implements HasButton, HasView, Levelable, Me
             'tag' => $this->getTag(),
             'size' => $this->getSize(),
             'scrollable' => $this->isScrollable(),
-            'buttons' => $this->getButtons(),
-            'view' => $this->view,
+            'buttons' => $this->buttonsToArray(),
+            'view' => $this->getView(),
         ]);
     }
 
@@ -83,6 +83,10 @@ class Modal extends AbstractMessage implements HasButton, HasView, Levelable, Me
         $modal->level($alert['level']);
         $modal->setScrollable($alert['scrollable'] ?? false);
         $modal->buttons($alert['buttons'] ?? []);
+
+        if (isset($alert['tag']) && $alert['tag']) {
+            $modal->tag($alert['tag']);
+        }
 
         if (isset($alert['title']) && $alert['title']) {
             $modal->title($alert['title']);

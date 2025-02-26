@@ -78,7 +78,7 @@ class Button
     /**
      * Get the button link.
      */
-    public function getLink(): string
+    public function getLink(): ?string
     {
         return $this->link;
     }
@@ -86,7 +86,7 @@ class Button
     /**
      * Get the button label.
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }

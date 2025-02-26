@@ -2,6 +2,8 @@
 
 namespace Digitlimit\Alert\Contracts;
 
+use Illuminate\Support\Collection;
+
 interface HasButton
 {
     /**
@@ -17,5 +19,10 @@ interface HasButton
     /**
      * Get the buttons for the alert.
      */
-    public function getButtons(): array;
+    public function getButtons(): Collection;
+
+    /**
+     * Convert the buttons to an array.
+     */
+    public function buttonsToArray(): array;
 }
