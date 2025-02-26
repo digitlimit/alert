@@ -12,24 +12,24 @@
         $hasTitle  = $hasHeader || $modal->getTitle();
     @endphp
     <div
-        id="{{ $modal->getId() }}"
-        x-data="{
+            id="{{ $modal->getId() }}"
+            x-data="{
             show: true,
             modalSize: '{{ $modal->getSize() }}',
             scrollable: {{ $modal->isScrollable() }}
         }"
 
-        x-init="() => {
+            x-init="() => {
            show = true;
         }"
 
-        @open-alert-modal.window="show = true"
+            @open-alert-modal.window="show = true"
     >
         <div
-            x-show="show"
-            class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen"
-            x-cloak
-            :inert="!show"
+                x-show="show"
+                class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen"
+                x-cloak
+                :inert="!show"
         >
 
             <!-- Background overlay, closes modal when clicked -->
@@ -78,7 +78,7 @@
                     </button>
                 </div>
 
-            @if($modal->hasView())
+                @if($modal->hasView())
                     {!! $modal->getView() !!}
                 @else
                     <div class="relative w-auto pb-8">
@@ -93,22 +93,22 @@
                 <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
                     @foreach($modal->getButtons() as $button)
                         @if($button->isAction())
-                           @if($button->isLink())
-                                <a href="{{ $button->getLink() }}" {!! $actionLinkAttributes($button->getAttributes()) !!}>
+                            @if($button->isLink())
+                                <a href="{{ $button->getLink() }}" {!! $this->actionLinkAttributes($button->getAttributes()) !!}>
                                     {{ $button->getLabel() }}
                                 </a>
                             @else
-                                <button {!! $actionAttributes($button->getAttributes()) !!}>
+                                <button {!! $this->actionAttributes($button->getAttributes()) !!}>
                                     {{ $button->getLabel() }}
                                 </button>
                             @endif
                         @elseif($button->isCancel())
                             @if($button->isLink())
-                                <a href="{{ $button->getLink() }}" {!! $cancelLinkAttributes($button->getAttributes()) !!}>
+                                <a href="{{ $button->getLink() }}" {!! $this->cancelLinkAttributes($button->getAttributes()) !!}>
                                     {{ $button->getLabel() }}
                                 </a>
                             @else
-                                <button {!! $cancelAttributes($button->getAttributes()) !!}>
+                                <button {!! $this->cancelAttributes($button->getAttributes()) !!}>
                                     {{ $button->getLabel() }}
                                 </button>
                             @endif
