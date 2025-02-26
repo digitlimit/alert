@@ -16,11 +16,7 @@
             x-data="{
             show: true,
             modalSize: '{{ $modal->getSize() }}',
-            scrollable: {{ $modal->isScrollable() }}
-        }"
-
-            x-init="() => {
-           show = true;
+            scrollable: {{ $modal->isScrollable() ? 'true' : 'false' }}
         }"
 
             @open-alert-modal.window="show = true"
