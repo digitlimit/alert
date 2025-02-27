@@ -6,7 +6,6 @@ use Digitlimit\Alert\Types\Message;
 
 use Digitlimit\Alert\Types\Modal;
 use Digitlimit\Alert\Types\Notify;
-use Digitlimit\Alert\Types\Sticky;
 use Digitlimit\Alert\Types\Field;
 use Digitlimit\Alert\Types\FieldBag;
 
