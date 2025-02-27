@@ -105,7 +105,7 @@ class Tailwind extends AbstractTheme implements ThemeInterface
         $event = 'refresh-alert-'.$alert->key();
 
         if ($alert instanceof HasName) {
-            $event .= '.'.$alert->getName();
+            $event .= '-'.$alert->getName();
         }
 
         $component->dispatch(

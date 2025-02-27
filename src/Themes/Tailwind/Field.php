@@ -72,7 +72,7 @@ class Field extends Component implements LivewireInterface
         }
 
         $this->setUp($data);
-        $this->dispatch('open-alert-field');
+        $this->dispatch('open-alert-field-'.$data['name']);
     }
 
     /**

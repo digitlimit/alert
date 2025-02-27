@@ -17,7 +17,21 @@
     @endphp
 
     @if($level && $message)
-        <div class="{{ config("alert.tailwind.classes.field.levels.$level.container") }}">
+        <div
+            id="{{ $field->getId() }}"
+
+            class="{{ config("alert.tailwind.classes.field.levels.$level.container") }}"
+
+            x-transition.duration.300ms
+
+            x-data="{show: true}"
+
+            x-show="show"
+
+            @open-alert-field-{{ $field->getName() }}.window="show = true"
+
+            role="alert"
+        >
             {{ $message }}
         </div>
     @endif
