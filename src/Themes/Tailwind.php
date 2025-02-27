@@ -3,6 +3,7 @@
 namespace Digitlimit\Alert\Themes;
 
 use Digitlimit\Alert\Alert;
+use Digitlimit\Alert\Contracts\HasName;
 use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Contracts\LivewireInterface;
 use Digitlimit\Alert\Contracts\ThemeInterface;
@@ -100,9 +101,15 @@ class Tailwind extends AbstractTheme implements ThemeInterface
     protected function dispatch(
         Component $component,
         MessageInterface|Taggable $alert
-    ): void{
+    ): void {
+        $event = 'refresh-alert-'.$alert->key();
+
+        if ($alert instanceof HasName) {
+            $event .= '.'.$alert->getName();
+        }
+
         $component->dispatch(
-            'refresh-alert-'.$alert->key(),
+            $event,
             $alert->getTag(),
             $alert->toArray()
         );

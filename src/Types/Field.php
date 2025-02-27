@@ -3,6 +3,7 @@
 namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\HasMessage;
+use Digitlimit\Alert\Contracts\HasName;
 use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
@@ -16,12 +17,13 @@ use Illuminate\Support\Facades\Session;
 /**
  * Field alert class.
  */
-class Field extends AbstractMessage implements Levelable, MessageInterface, Taggable, HasTitle, HasMessage
+class Field extends AbstractMessage implements Levelable, MessageInterface, Taggable, HasTitle, HasMessage, HasName
 {
     use Traits\Levelable;
     use Traits\Taggable;
     use Traits\WithTitle;
     use Traits\WithMessage;
+    use Traits\WithName;
 
     /**
      * Create a new field alert instance.
@@ -30,7 +32,7 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
      * @param string $message
      */
     public function __construct(
-        public string $name,
+        protected string $name,
         protected string $message
     ) {
         parent::__construct();
@@ -42,24 +44,6 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
     public function key(): string
     {
         return 'field';
-    }
-
-    /**
-     * Set the field name.
-     */
-    public function name(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get the field name.
-     */
-    public function getName(): string
-    {
-        return $this->name;
     }
 
     /**
