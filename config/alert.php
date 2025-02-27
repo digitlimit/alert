@@ -68,12 +68,6 @@ return [
                 'alert' => Types\Notify::class,
                 'component' => Themes\Tailwind\Notify::class,
             ],
-
-            'sticky' => [
-                'view' => 'alert-sticky',
-                'alert' => Types\Sticky::class,
-                'component' => Themes\Tailwind\Sticky::class,
-            ],
         ],
         'buttons' => [
             'primary' => 'inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 bg-neutral-950 hover:bg-neutral-900',
@@ -198,12 +192,6 @@ return [
                     'bottom-center' => 'bottom-0 start-50 translate-middle-x',
                     'center' => 'top-50 start-50 translate-middle',
                 ]
-            ],
-
-            'sticky' => [
-                'view' => 'alert-sticky',
-                'alert' => Types\Sticky::class,
-                'component' => Themes\Bootstrap5\Sticky::class,
             ],
         ]
     ],
