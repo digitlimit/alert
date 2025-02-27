@@ -26,7 +26,7 @@ class Alert
      *
      * @throws Exception
      */
-    public function default(string $type): Taggable
+    public function default(string $type): ?Taggable
     {
         return self::tagged($type, self::DEFAULT_TAG);
     }
@@ -73,7 +73,7 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function taggedField(string $tag): Taggable
+    public static function taggedField(string $tag): ?Taggable
     {
         return self::tagged('field', $tag);
     }
@@ -89,7 +89,7 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function fieldBag(string $tag): Taggable
+    public static function fieldBag(string $tag): ?Taggable
     {
         return self::tagged('bag', $tag);
     }
@@ -97,7 +97,7 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function taggedMessage(string $tag): Taggable
+    public static function taggedMessage(string $tag): ?Taggable
     {
         return self::tagged('message', $tag);
     }
@@ -105,7 +105,7 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function taggedModal(string $tag): Taggable
+    public static function taggedModal(string $tag): ?Taggable
     {
         return self::tagged('modal', $tag);
     }
@@ -113,17 +113,9 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function taggedNotify(string $tag): Taggable
+    public static function taggedNotify(string $tag): ?Taggable
     {
         return self::tagged('notify', $tag);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function taggedSticky(string $tag): Taggable
-    {
-        return self::tagged('sticky', $tag);
     }
 
     /**
