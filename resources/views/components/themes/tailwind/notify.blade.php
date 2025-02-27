@@ -2,7 +2,7 @@
     @inject('alert', 'Digitlimit\Alert\Alert')
     @php
         $notify    = $alert->fromArray($data);
-        $positon   = config('alert.tailwind.classes.notify.position.' . $notify->getPosition());
+        $position   = config('alert.tailwind.classes.notify.position.' . $notify->getPosition());
         $container = config('alert.tailwind.classes.notify.levels.' . $notify->getLevel() . '.container');
     @endphp
     <div
@@ -54,7 +54,7 @@
 
             x-cloak
 
-            class="absolute {{ $positon }} px-2 mt-3 overflow-x-hidden z-50"
+            class="absolute {{ $position }} px-2 mt-3 overflow-x-hidden z-50"
     >
         <template x-for="notify in notifications" :key="notify.id">
             <div
