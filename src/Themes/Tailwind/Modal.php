@@ -10,6 +10,10 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Exception;
 
+/**
+ * Class Modal
+ * @package Digitlimit\Alert\Themes\Tailwind
+ */
 class Modal extends Component implements LivewireInterface
 {
     /**

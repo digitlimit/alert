@@ -10,6 +10,10 @@ use Illuminate\Support\MessageBag;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
+/**
+ * Class Field
+ * @package Digitlimit\Alert\Themes\Tailwind
+ */
 class Field extends Component implements LivewireInterface
 {
     /**

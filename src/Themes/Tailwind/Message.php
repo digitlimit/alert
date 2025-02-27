@@ -9,6 +9,10 @@ use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
+/**
+ * Class Message
+ * @package Digitlimit\Alert\Themes\Tailwind
+ */
 class Message extends Component implements LivewireInterface
 {
     /**
