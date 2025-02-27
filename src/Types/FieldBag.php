@@ -2,15 +2,18 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\FieldBag\Flashed;
-use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Message\AbstractMessage;
 use Digitlimit\Alert\Message\MessageInterface;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator;
+use Digitlimit\Alert\Traits;
 
-class FieldBag extends AbstractMessage implements MessageInterface
+class FieldBag extends AbstractMessage implements MessageInterface, Taggable
 {
+    use Traits\Taggable;
+
     /**
      * Field message back.
      */
@@ -25,7 +28,11 @@ class FieldBag extends AbstractMessage implements MessageInterface
         Validator|MessageBag|null $bag = null
     ) {
         parent::__construct();
+        $this->setBag($bag);
+    }
 
+    public function setBag(Validator|MessageBag|null $bag = null): self
+    {
         if (is_a($bag, Validator::class)) {
             $this->errors($bag);
         } elseif (is_a($bag, MessageBag::class)) {
@@ -33,6 +40,8 @@ class FieldBag extends AbstractMessage implements MessageInterface
         } else {
             $this->messages = new MessageBag;
         }
+
+        return $this;
     }
 
     /**

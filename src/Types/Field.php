@@ -51,12 +51,15 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
      */
     public function getTag(): string
     {
-        if ($this->getName()) {
-            //e.g default.firstname
-            return $this->tag.'.'.$this->getName();
-        }
-
         return $this->tag;
+    }
+
+    /**
+     * Get the named tag for the field alert.
+     */
+    public function getNamedTag(): string
+    {
+        return $this->tag.'.'.$this->getName();
     }
 
     /**
@@ -81,9 +84,10 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
     {
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
-            'tag' => $this->getTag(),
-            'level' => $this->getLevel(),
             'name' => $this->getName(),
+            'tag' => $this->getTag(),
+            'named_tag' => $this->getNamedTag(),
+            'level' => $this->getLevel(),
             'title' => $this->getTitle(),
             'message' => $this->getMessage(),
         ]);

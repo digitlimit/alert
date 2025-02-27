@@ -17,9 +17,9 @@ use Livewire\Component;
 class Field extends Component implements LivewireInterface
 {
     /**
-     * The default alert tag.
+     * The alias for named alert.
      */
-    public string $defaultTag = Alert::DEFAULT_TAG;
+    public string $for;
 
     /**
      * The alert name
@@ -29,7 +29,7 @@ class Field extends Component implements LivewireInterface
     /**
      * The alert tag.
      */
-    public string $tag;
+    public string $tag = Alert::DEFAULT_TAG;
 
     /**
      * The alert
@@ -51,10 +51,16 @@ class Field extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $this->tag = $this->tag ?? $this->defaultTag;
-        $field = Alert::namedField($this->name, $this->tag) ?? Alert::taggedField($this->tag);
+        if (!empty($this->for)) {
+            $this->name = $this->for;
+        }
 
-        $data = $field?->toArray();
+        if (empty($this->name) || empty($this->tag)) {
+            $this->skipRender();
+            return;
+        }
+
+        $sata = Alert::namedField($this->name, $this->tag)?->toArray();
 
         if (empty($data)) {
             $this->skipRender();
@@ -67,7 +73,7 @@ class Field extends Component implements LivewireInterface
     #[On('refresh-alert-field')]
     public function refresh(string $tag, array $data): void
     {
-        if (empty($data)) {
+        if (empty($data) || empty($this->name)) {
             return;
         }
 
@@ -76,7 +82,7 @@ class Field extends Component implements LivewireInterface
         }
 
         $this->setUp($data);
-        $this->dispatch('open-alert-field-'.$data['name']);
+        $this->dispatch('open-alert-field');
     }
 
     /**
@@ -96,7 +102,7 @@ class Field extends Component implements LivewireInterface
      */
     public function getTaggedViewErrors(string $tag): MessageBag
     {
-        return $this->errors()->{$tag} ?? new MessageBag();
+        return $this->getViewErrors()->{$tag} ?? new MessageBag();
     }
 
     public function getViewFieldError(string $name, string $tag): ?string
@@ -121,6 +127,8 @@ class Field extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::components.themes.tailwind.field');
+        return view('alert::components.themes.tailwind.field', [
+            'error' => $this->getViewFieldError($this->name, $this->tag)
+        ]);
     }
 }

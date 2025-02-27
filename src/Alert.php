@@ -2,6 +2,8 @@
 
 namespace Digitlimit\Alert;
 
+use Digitlimit\Alert\Contracts\HasName;
+use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Helpers\Type;
 use Digitlimit\Alert\Message\MessageFactory;
@@ -24,7 +26,7 @@ class Alert
      *
      * @throws Exception
      */
-    public function default(string $type): MessageInterface|null
+    public function default(string $type): Taggable
     {
         return self::tagged($type, self::DEFAULT_TAG);
     }
@@ -33,13 +35,13 @@ class Alert
      * Fetch an alert based on the type and named.
      * @throws Exception
      */
-    public function named(string $type, string $name, ?string $tag = null): ?MessageInterface
+    public static function named(string $type, string $name, string $tag): ?HasName
     {
         if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $tag = ($tag ?? self::DEFAULT_TAG).'.'.$name;
+        $tag = $tag . '.' . $name;
 
         return Session::get(
             SessionKey::key($type, $tag)
@@ -51,7 +53,7 @@ class Alert
      *
      * @throws Exception
      */
-    public static function tagged(string $type, string $tag): ?MessageInterface
+    public static function tagged(string $type, string $tag): ?Taggable
     {
         if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
@@ -71,7 +73,7 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function taggedField(string $tag): ?MessageInterface
+    public static function taggedField(string $tag): Taggable
     {
         return self::tagged('field', $tag);
     }
@@ -87,7 +89,15 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function taggedMessage(string $tag): ?MessageInterface
+    public static function fieldBag(string $tag): Taggable
+    {
+        return self::tagged('bag', $tag);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function taggedMessage(string $tag): Taggable
     {
         return self::tagged('message', $tag);
     }
@@ -95,7 +105,7 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function taggedModal(string $tag): ?MessageInterface
+    public static function taggedModal(string $tag): Taggable
     {
         return self::tagged('modal', $tag);
     }
@@ -103,7 +113,7 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function taggedNotify(string $tag): ?MessageInterface
+    public static function taggedNotify(string $tag): Taggable
     {
         return self::tagged('notify', $tag);
     }
@@ -111,7 +121,7 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function taggedSticky(string $tag): ?MessageInterface
+    public static function taggedSticky(string $tag): Taggable
     {
         return self::tagged('sticky', $tag);
     }
@@ -165,7 +175,6 @@ class Alert
             return count($types);
         }
 
-        // count sub arrays
         $count = 0;
         foreach ($types as $type) {
             $count += count($type);
