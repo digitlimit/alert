@@ -62,20 +62,6 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
         return $this->tag.'.'.$this->getName();
     }
 
-    /**
-     * Flash field instance to store.
-     */
-    public function flash(): void
-    {
-        $sessionKey = SessionKey::key($this->key(), $this->getTag());
-
-        if (empty($this->name) || empty($this->message)) {
-            return;
-        }
-
-        Session::flash($sessionKey, $this);
-        Flashed::dispatch($this);
-    }
 
     /**
      * Get the field alert as an array.
@@ -109,5 +95,23 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
         }
 
         return $field;
+    }
+
+    /**
+     * Flash field instance to store.
+     */
+    public function flash(): void
+    {
+        if (empty($this->name) || empty($this->message)) {
+            return;
+        }
+
+        $sessionKey = SessionKey::key(
+            $this->key(),
+            $this->getNamedTag()
+        );
+
+        Session::flash($sessionKey, $this);
+        Flashed::dispatch($this);
     }
 }

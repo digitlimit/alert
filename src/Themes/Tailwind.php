@@ -82,7 +82,6 @@ class Tailwind extends AbstractTheme implements ThemeInterface
                         $this->dispatch($component, $alert);
                         continue;
                     }
-
                     // For multiple alerts, usually from a field
                     foreach ($alert as $field) {
                         $this->dispatch($component, $field);

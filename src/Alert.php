@@ -135,8 +135,12 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function fromArray(array $alert): MessageInterface
+    public static function fromArray(array $alert): ?MessageInterface
     {
+        if (empty($alert)) {
+            return null;
+        }
+
         $type = $alert['type'] ?? null;
 
         if (! $type || ! Type::exists($type)) {

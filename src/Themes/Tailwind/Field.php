@@ -60,7 +60,7 @@ class Field extends Component implements LivewireInterface
             return;
         }
 
-        $sata = Alert::namedField($this->name, $this->tag)?->toArray();
+        $data = Alert::namedField($this->name, $this->tag)?->toArray();
 
         if (empty($data)) {
             $this->skipRender();
