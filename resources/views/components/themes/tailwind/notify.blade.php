@@ -54,7 +54,7 @@
 
             x-cloak
 
-            class="absolute {{ $position }} px-2 mt-3 overflow-x-hidden z-50"
+            class="fixed {{ $position }} px-2 mt-3 overflow-x-hidden z-50"
     >
         <template x-for="notify in notifications" :key="notify.id">
             <div
