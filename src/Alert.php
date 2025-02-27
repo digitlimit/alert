@@ -24,7 +24,7 @@ class Alert
      *
      * @throws Exception
      */
-    public function default(string $type): ?MessageInterface
+    public function default(string $type): MessageInterface|null
     {
         return self::tagged($type, self::DEFAULT_TAG);
     }

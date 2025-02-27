@@ -2,7 +2,8 @@
 
 use Digitlimit\Alert\Component\Button;
 
-it('can create button component', function () {
+it('can create button component', function ()
+{
     $button = new Button(
         'submit',
         'Submit',

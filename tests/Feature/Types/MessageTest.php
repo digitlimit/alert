@@ -13,7 +13,7 @@ it('can create a default alert', function () {
         ->toBeInstanceOf(MessageInterface::class)
         ->and($default)
         ->toBeInstanceOf(Message::class)
-        ->and($default->message)
+        ->and($default->getMessage())
         ->toEqual('Thank you!');
 
 })->group('types', 'types-default', 'types-message');
