@@ -1,54 +1,71 @@
 <div class="digitlimit-alert-notify">
+    @inject('alert', 'Digitlimit\Alert\Alert')
+    @php
+        $notify    = $alert->fromArray($data);
+        $positon   = config('alert.tailwind.classes.notify.position.' . $notify->getPosition());
+        $container = config('alert.tailwind.classes.notify.levels.' . $notify->getLevel() . '.container');
+    @endphp
     <div
-        x-data="{
+
+            x-data="{
             position: 'top-right',
-            notifications: [],
+            notifications: $store.notifications?.list || [],
             counter: 0,
-            createNotification(message, type = 'info', position = 'top-left', timer = 2000) {
+            createNotification(message, type = 'info', timer = 2000) {
                 const index = this.notifications.length;
                 let totalVisible = this.notifications.filter(notify => notify.visible).length + 1;
+
                 this.notifications.push({
                     id: this.counter++,
                     message,
                     type,
-                    position,
                     timeOut: timer * totalVisible,
                     visible: true
                 });
+
                 setTimeout(() => {
                     this.destroyNotification(index);
                 }, timer * totalVisible);
             },
+
             destroyNotification(index) {
-                this.notifications[index].visible = false;
+                 this.notifications[index].visible = false;
+            },
+
+            closeNotification(id) {
+                const notification = this.notifications.find(notify => notify.id === id);
+                if (notification) {
+                    notification.visible = false;
+                }
             }
         }"
 
-        x-init="
+            x-init="
             $store.notifications = $data;
-            createNotification('Hello World', 'success', 2000);
+
+            createNotification(
+                '{{ $notify->getMessage() }}',
+                '{{ $notify->getLevel() }}',
+                2000
+            );
         "
 
-        @open-alert-notify.window="show = true"
+            @open-alert-notify.window="createNotification('{{ $notify->getMessage() }}', '{{ $notify->getLevel() }}', 2000)"
 
-        x-cloak class="absolute top-0 right-0 px-2 mt-3 overflow-x-hidden z-50 max-w-xs"
+            x-cloak
+
+            class="absolute {{ $positon }} px-2 mt-3 overflow-x-hidden z-50"
     >
         <template x-for="notify in notifications" :key="notify.id">
             <div
-                x-show="notify.visible"
-                x-transition:enter="transition ease-in duration-200"
-                x-transition:enter-start="transform opacity-0 translate-y-2"
-                x-transition:enter-end="transform opacity-100"
-                x-transition:leave="transition ease-out duration-500"
-                x-transition:leave-start="transform translate-x-0 opacity-100"
-                x-transition:leave-end="transform -translate-y-2 opacity-0"
-                class="bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 shadow-lg flex items-center"
-                :class="{
-                    'from-blue-400 to-blue-500': notify.type === 'info',
-                    'from-green-400 to-green-500': notify.type === 'success',
-                    'from-yellow-400 to-yellow-500': notify.type === 'warning',
-                    'from-red-400 to-pink-500': notify.type === 'error',
-                }"
+                    x-show="notify.visible"
+                    x-transition:enter="transition ease-in duration-200"
+                    x-transition:enter-start="transform opacity-0 translate-y-2"
+                    x-transition:enter-end="transform opacity-100"
+                    x-transition:leave="transition ease-out duration-500"
+                    x-transition:leave-start="transform translate-x-0 opacity-100"
+                    x-transition:leave-end="transform -translate-y-2 opacity-0"
+                    class="{{ $container }}"
             >
                 <div class="flex flex-col w-full">
                     <div class="flex items-center w-full px-1 my-2">
@@ -70,7 +87,7 @@
                         <div x-text="notify.message"></div>
 
                         <div class="self-start px-1">
-                            <button type="button" class="pt-0 px-1" @click="destroyNotification(index)">
+                            <button type="button" class="pt-0 px-1" @click="closeNotification(notify.id)">
                                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
@@ -78,10 +95,15 @@
                         </div>
                     </div>
                     <progress
-                        x-data="{ value : 0 }"
-                        x-init="setInterval(() => { if(value == 100) clearInterval(); else value+=1 }, notify.timeOut / 100)" max="100"
-                        :value="value"
-                        class="w-full h-1 p-0">
+                            x-data="{ value : 0 }"
+                            x-init="
+                            setInterval(() => {
+                                if(value == 100) clearInterval(); else value+=1
+                            }, notify.timeOut / 100)
+                        "
+                            max="100"
+                            :value="value"
+                            class="w-full h-1 p-0">
                     </progress>
                 </div>
             </div>

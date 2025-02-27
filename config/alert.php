@@ -104,22 +104,49 @@ return [
             ],
         ],
         'classes' => [
-           'field' => [
-               'levels' => [
-                   'success' => [
-                       'container' => 'p-3 border-l-4 rounded-md bg-green-100 border-green-500 text-green-800',
-                   ],
-                   'error' => [
-                       'container' => 'p-3 border-l-4 rounded-md bg-red-100 border-red-500 text-red-800',
-                   ],
-                   'warning' => [
-                       'container' => 'p-3 border-l-4 rounded-md bg-yellow-100 border-yellow-500 text-yellow-800',
-                   ],
-                   'info' => [
-                       'container' => 'p-3 border-l-4 rounded-md bg-blue-100 border-blue-500 text-blue-800',
-                   ],
-               ],
-           ],
+            'field' => [
+                'levels' => [
+                    'success' => [
+                        'container' => 'p-3 text-green-800',
+                    ],
+                    'error' => [
+                        'container' => 'p-3 text-red-800',
+                    ],
+                    'warning' => [
+                        'container' => 'p-3 text-yellow-800',
+                    ],
+                    'info' => [
+                        'container' => 'p-3 text-blue-800',
+                    ],
+                ],
+            ],
+
+            'notify' => [
+                'levels' => [
+                    'success' => [
+                        'container' => 'bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 shadow-lg flex items-center from-green-400 to-green-500',
+                    ],
+                    'error' => [
+                        'container' => 'bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 shadow-lg flex items-center from-red-400 to-pink-500',
+                    ],
+                    'warning' => [
+                        'container' => 'bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 shadow-lg flex items-center from-yellow-400 to-yellow-500',
+                    ],
+                    'info' => [
+                        'container' => 'bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 shadow-lg flex items-center from-blue-400 to-blue-500',
+                    ],
+                ],
+
+                'position' => [
+                    'top-right' => 'top-0 right-0',
+                    'top-left' => 'top-0 left-0',
+                    'bottom-right' => 'bottom-0 right-0',
+                    'bottom-left' => 'bottom-0 left-0',
+                    'top-center' => 'top-0 left-1/2 transform -translate-x-1/2',
+                    'bottom-center' => 'bottom-0 left-1/2 transform -translate-x-1/2',
+                    'center' => 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2',
+                ]
+            ],
 
             'message' => [
                 'levels' => [

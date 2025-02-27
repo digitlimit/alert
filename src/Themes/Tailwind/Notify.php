@@ -16,14 +16,9 @@ use Livewire\Component;
 class Notify extends Component implements LivewireInterface
 {
     /**
-     * The default alert tag.
-     */
-    public string $defaultTag = Alert::DEFAULT_TAG;
-
-    /**
      * The alert tag.
      */
-    public string $tag;
+    public string $tag = Alert::DEFAULT_TAG;
 
     /**
      * The alert
@@ -45,12 +40,10 @@ class Notify extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $this->tag = $this->tag ?? $this->defaultTag;
         $data = Alert::taggedNotify($this->tag)?->toArray() ?? [];
 
         if (empty($data)) {
             $this->skipRender();
-
             return;
         }
 
