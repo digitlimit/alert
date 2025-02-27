@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert\Message;
 
+use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Illuminate\Support\Facades\Session;
@@ -65,6 +66,24 @@ abstract class AbstractMessage implements MessageInterface
         }
 
         Session::flash($sessionKey, $this);
+    }
+
+    /**
+     * Remove alert from the store.
+     */
+    public function forget(?string $tag = null): self
+    {
+        if(empty($tag)) {
+            $tag = !empty($this->tag)
+                ? $this->tag
+                : Alert::DEFAULT_TAG;
+        }
+
+        $sessionKey = SessionKey::key($this->key(), $tag);
+
+        Session::forget($sessionKey);
+
+        return $this;
     }
 
     /**

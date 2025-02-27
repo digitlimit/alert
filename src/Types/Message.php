@@ -3,6 +3,7 @@
 namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\HasMessage;
+use Digitlimit\Alert\Contracts\HasSticky;
 use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
@@ -14,12 +15,13 @@ use Digitlimit\Alert\Traits;
 /**
  * Message alert class.
  */
-class Message extends AbstractMessage implements Levelable, MessageInterface, Taggable, HasTitle, HasMessage
+class Message extends AbstractMessage implements Levelable, MessageInterface, Taggable, HasTitle, HasMessage, HasSticky
 {
     use Traits\Levelable;
     use Traits\Taggable;
     use Traits\WithTitle;
     use Traits\WithMessage;
+    use Traits\WithSticky;
 
     /**
      * Create a new normal alert instance.
@@ -77,8 +79,12 @@ class Message extends AbstractMessage implements Levelable, MessageInterface, Ta
      */
     public function flash(): void
     {
-        parent::flash();
+        if ($this->isSticky()) {
+            $this->flashSticky();
+            return;
+        }
 
+        parent::flash();
         Flashed::dispatch($this);
     }
 }
