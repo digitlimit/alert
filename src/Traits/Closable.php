@@ -13,7 +13,7 @@ trait Closable
         return $this;
     }
 
-    public function unClosable(): self
+    public function notClosable(): self
     {
         $this->closable = false;
 

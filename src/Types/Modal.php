@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Contracts\Closable;
 use Digitlimit\Alert\Contracts\HasButton;
 use Digitlimit\Alert\Contracts\HasMessage;
 use Digitlimit\Alert\Contracts\HasTitle;
@@ -21,10 +22,11 @@ use Throwable;
 /**
  * Modal alert class.
  */
-class Modal extends AbstractMessage implements HasButton, HasView, Levelable, MessageInterface, Scrollable, Sizable, Taggable, HasTitle, HasMessage
+class Modal extends AbstractMessage implements HasButton, HasView, Levelable, Closable, MessageInterface, Scrollable, Sizable, Taggable, HasTitle, HasMessage
 {
     use Traits\Levelable;
     use Traits\Scrollable;
+    use Traits\Closable;
     use Traits\Sizable;
     use Traits\Taggable;
     use Traits\WithView;

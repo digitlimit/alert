@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Contracts\Closable;
 use Digitlimit\Alert\Contracts\HasMessage;
 use Digitlimit\Alert\Contracts\HasSticky;
 use Digitlimit\Alert\Contracts\HasTitle;
@@ -15,13 +16,14 @@ use Digitlimit\Alert\Traits;
 /**
  * Message alert class.
  */
-class Message extends AbstractMessage implements Levelable, MessageInterface, Taggable, HasTitle, HasMessage, HasSticky
+class Message extends AbstractMessage implements Levelable, Closable, MessageInterface, Taggable, HasTitle, HasMessage, HasSticky
 {
     use Traits\Levelable;
     use Traits\Taggable;
     use Traits\WithTitle;
     use Traits\WithMessage;
     use Traits\WithSticky;
+    use Traits\Closable;
 
     /**
      * Create a new normal alert instance.

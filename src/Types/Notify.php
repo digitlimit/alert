@@ -2,6 +2,7 @@
 
 namespace Digitlimit\Alert\Types;
 
+use Digitlimit\Alert\Contracts\Closable;
 use Digitlimit\Alert\Contracts\HasMessage;
 use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\HasTimeout;
@@ -17,9 +18,10 @@ use Exception;
 /**
  * Notify alert class.
  */
-class Notify extends AbstractMessage implements Levelable, MessageInterface, Positionable, Taggable, HasTitle, HasMessage, HasTimeout
+class Notify extends AbstractMessage implements Levelable, Closable, MessageInterface, Positionable, Taggable, HasTitle, HasMessage, HasTimeout
 {
     use Traits\Levelable;
+    use Traits\Closable;
     use Traits\Positionable;
     use Traits\Taggable;
     use Traits\WithTitle;
