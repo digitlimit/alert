@@ -4,6 +4,9 @@ namespace Digitlimit\Alert\Contracts;
 
 use Illuminate\Support\Collection;
 
+/**
+ * Alert button contract
+ */
 interface HasButton
 {
     /**

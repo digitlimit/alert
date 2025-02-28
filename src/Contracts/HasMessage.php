@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Contracts;
 
+/**
+ * Alert message contract
+ */
 interface HasMessage
 {
     /**
