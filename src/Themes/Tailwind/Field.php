@@ -55,19 +55,13 @@ class Field extends Component implements LivewireInterface
             $this->name = $this->for;
         }
 
-        if (empty($this->name) || empty($this->tag)) {
-            $this->skipRender();
-            return;
+        if (! empty($this->name) && ! empty($this->tag)) {
+            $data = Alert::namedField($this->name, $this->tag)?->toArray();
+
+            if (! empty($data)) {
+                $this->setUp($data);
+            }
         }
-
-        $data = Alert::namedField($this->name, $this->tag)?->toArray();
-
-        if (empty($data)) {
-            $this->skipRender();
-            return;
-        }
-
-        $this->setUp($data);
     }
 
     #[On('refresh-alert-field')]
