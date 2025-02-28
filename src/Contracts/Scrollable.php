@@ -7,7 +7,7 @@ namespace Digitlimit\Alert\Contracts;
  */
 interface Scrollable
 {
-    public function scrollable(): self;
+    public function scrollable(bool $scrollable): self;
 
     public function notScrollable(): self;
 

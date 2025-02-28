@@ -60,6 +60,7 @@ class Notify extends AbstractMessage implements Levelable, Closable, MessageInte
             'tag' => $this->getTag(),
             'level' => $this->getLevel(),
             'position' => $this->getPosition(),
+            'closable' => $this->isClosable(),
         ]);
     }
 
@@ -80,6 +81,8 @@ class Notify extends AbstractMessage implements Levelable, Closable, MessageInte
         $notify->tag($alert['tag']);
         $notify->level($alert['level']);
         $notify->position($alert['position']);
+        $notify->timeout($alert['timeout']);
+        $notify->closable($alert['closable']);
 
         return $notify;
     }

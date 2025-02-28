@@ -16,7 +16,7 @@ use Digitlimit\Alert\Traits;
 /**
  * Message alert class.
  */
-class Message extends AbstractMessage implements Levelable, Closable, MessageInterface, Taggable, HasTitle, HasMessage, HasSticky
+class Message extends AbstractMessage implements MessageInterface, Levelable, Closable, Taggable, HasTitle, HasMessage, HasSticky
 {
     use Traits\Levelable;
     use Traits\Taggable;
@@ -55,6 +55,8 @@ class Message extends AbstractMessage implements Levelable, Closable, MessageInt
             'level' => $this->getLevel(),
             'message' => $this->getMessage(),
             'title' => $this->getTitle(),
+            'closable' => $this->isClosable(),
+            'sticky' => $this->isSticky(),
         ]);
     }
 
@@ -68,6 +70,8 @@ class Message extends AbstractMessage implements Levelable, Closable, MessageInt
         $message->id($alert['id']);
         $message->tag($alert['tag']);
         $message->level($alert['level']);
+        $message->closable($alert['closable'] ?? false);
+        $message->sticky($alert['sticky'] ?? false);
 
         if ($alert['title']) {
             $message->title($alert['title']);

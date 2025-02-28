@@ -6,9 +6,9 @@ trait Closable
 {
     protected bool $closable = true;
 
-    public function closable(): self
+    public function closable(bool $closable): self
     {
-        $this->closable = true;
+        $this->closable = $closable;
 
         return $this;
     }

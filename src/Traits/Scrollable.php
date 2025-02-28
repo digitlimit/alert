@@ -6,9 +6,9 @@ trait Scrollable
 {
     protected bool $scrollable = true;
 
-    public function scrollable(): self
+    public function scrollable(bool $scrollable): self
     {
-        $this->scrollable = true;
+        $this->scrollable = $scrollable;
 
         return $this;
     }
@@ -23,12 +23,5 @@ trait Scrollable
     public function isScrollable(): bool
     {
         return $this->scrollable;
-    }
-
-    public function setScrollable(bool $scrollable): self
-    {
-        $this->scrollable = $scrollable;
-
-        return $this;
     }
 }

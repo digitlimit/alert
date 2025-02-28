@@ -12,7 +12,7 @@ interface Closable
      *
      * @return $this
      */
-    public function closable(): self;
+    public function closable(bool $closable): self;
 
     /**
      * Set the alert to be not closable
