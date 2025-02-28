@@ -2,11 +2,10 @@
     @inject('alert', 'Digitlimit\Alert\Alert')
     @php
         $notify    = $alert->fromArray($data);
-        $position   = config('alert.tailwind.classes.notify.position.' . $notify->getPosition());
+        $position  = config('alert.tailwind.classes.notify.position.' . $notify->getPosition());
         $container = config('alert.tailwind.classes.notify.levels.' . $notify->getLevel() . '.container');
     @endphp
     <div
-
             x-data="{
             position: 'top-right',
             notifications: $store.notifications?.list || [],
@@ -46,11 +45,11 @@
             createNotification(
                 '{{ $notify->getMessage() }}',
                 '{{ $notify->getLevel() }}',
-                2000
+                {{ $notify->getTimeOut() }}
             );
         "
 
-        @open-alert-notify.window="createNotification('{{ $notify->getMessage() }}', '{{ $notify->getLevel() }}', 2000)"
+        @open-alert-notify.window="createNotification('{{ $notify->getMessage() }}', '{{ $notify->getLevel() }}', {{ $notify->getTimeOut() }})"
 
         x-cloak
 
