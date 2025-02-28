@@ -50,11 +50,11 @@
             );
         "
 
-            @open-alert-notify.window="createNotification('{{ $notify->getMessage() }}', '{{ $notify->getLevel() }}', 2000)"
+        @open-alert-notify.window="createNotification('{{ $notify->getMessage() }}', '{{ $notify->getLevel() }}', 2000)"
 
-            x-cloak
+        x-cloak
 
-            class="fixed {{ $position }} px-2 mt-3 overflow-x-hidden z-50"
+        class="fixed {{ $position }} px-2 mt-3 overflow-x-hidden z-50"
     >
         <template x-for="notify in notifications" :key="notify.id">
             <div

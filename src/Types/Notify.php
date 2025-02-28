@@ -4,6 +4,7 @@ namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\HasMessage;
 use Digitlimit\Alert\Contracts\HasTitle;
+use Digitlimit\Alert\Contracts\HasTimeout;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Positionable;
 use Digitlimit\Alert\Contracts\Taggable;
@@ -16,13 +17,14 @@ use Exception;
 /**
  * Notify alert class.
  */
-class Notify extends AbstractMessage implements Levelable, MessageInterface, Positionable, Taggable, HasTitle, HasMessage
+class Notify extends AbstractMessage implements Levelable, MessageInterface, Positionable, Taggable, HasTitle, HasMessage, HasTimeout
 {
     use Traits\Levelable;
     use Traits\Positionable;
     use Traits\Taggable;
     use Traits\WithTitle;
     use Traits\WithMessage;
+    use Traits\WithTimeout;
 
     /**
      * Create a new notify alert instance.
@@ -51,6 +53,7 @@ class Notify extends AbstractMessage implements Levelable, MessageInterface, Pos
         return array_merge(parent::toArray(), [
             'type' => $this->key(),
             'title' => $this->getTitle(),
+            'timeout' => $this->getTimeout(),
             'message' => $this->getMessage(),
             'tag' => $this->getTag(),
             'level' => $this->getLevel(),
