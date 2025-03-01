@@ -1,18 +1,17 @@
 <?php
 
-namespace Digitlimit\Alert\Themes\Tailwind;
+namespace Digitlimit\Alert\Themes\Tailwind\Types;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
 use Digitlimit\Alert\Helpers\Attribute;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use Exception;
 
 /**
  * Class Modal
- * @package Digitlimit\Alert\Themes\Tailwind
  */
 class Modal extends Component implements LivewireInterface
 {

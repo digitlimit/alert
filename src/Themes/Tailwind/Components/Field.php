@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert\Themes\Tailwind;
+namespace Digitlimit\Alert\Themes\Tailwind\Types;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
@@ -12,7 +12,6 @@ use Livewire\Component;
 
 /**
  * Class Field
- * @package Digitlimit\Alert\Themes\Tailwind
  */
 class Field extends Component implements LivewireInterface
 {
@@ -51,7 +50,7 @@ class Field extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        if (!empty($this->for)) {
+        if (! empty($this->for)) {
             $this->name = $this->for;
         }
 
@@ -88,7 +87,7 @@ class Field extends Component implements LivewireInterface
 
         return $errors instanceof MessageBag
             ? $errors
-            : new MessageBag();
+            : new MessageBag;
     }
 
     /**
@@ -96,20 +95,20 @@ class Field extends Component implements LivewireInterface
      */
     public function getTaggedViewErrors(string $tag): MessageBag
     {
-        return $this->getViewErrors()->{$tag} ?? new MessageBag();
+        return $this->getViewErrors()->{$tag} ?? new MessageBag;
     }
 
     public function getViewFieldError(string $name, string $tag): ?string
     {
         $taggedErrors = $this->getTaggedViewErrors($tag);
 
-        if($taggedErrors->has($name)) {
+        if ($taggedErrors->has($name)) {
             return $taggedErrors->first($name);
         }
 
         $viewErrors = $this->getViewErrors();
 
-        if($viewErrors->has($name)) {
+        if ($viewErrors->has($name)) {
             return $viewErrors->first($name);
         }
 
@@ -122,7 +121,7 @@ class Field extends Component implements LivewireInterface
     public function render(): View
     {
         return view('alert::components.themes.tailwind.field', [
-            'error' => $this->getViewFieldError($this->name, $this->tag)
+            'error' => $this->getViewFieldError($this->name, $this->tag),
         ]);
     }
 }

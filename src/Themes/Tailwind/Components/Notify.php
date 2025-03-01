@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert\Themes\Tailwind;
+namespace Digitlimit\Alert\Themes\Tailwind\Types;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
@@ -10,20 +10,14 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 
 /**
- * Class Message
- * @package Digitlimit\Alert\Themes\Tailwind
+ * Class Notify
  */
-class Message extends Component implements LivewireInterface
+class Notify extends Component implements LivewireInterface
 {
-    /**
-     * The default alert tag.
-     */
-    public string $defaultTag = Alert::DEFAULT_TAG;
-
     /**
      * The alert tag.
      */
-    public string $tag;
+    public string $tag = Alert::DEFAULT_TAG;
 
     /**
      * The alert
@@ -45,8 +39,7 @@ class Message extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $this->tag = $this->tag ?? $this->defaultTag;
-        $data = Alert::taggedModal($this->tag)?->toArray() ?? [];
+        $data = Alert::taggedNotify($this->tag)?->toArray() ?? [];
 
         if (empty($data)) {
             $this->skipRender();
@@ -57,7 +50,7 @@ class Message extends Component implements LivewireInterface
         $this->setUp($data);
     }
 
-    #[On('refresh-alert-message')]
+    #[On('refresh-alert-notify')]
     public function refresh(string $tag, array $data): void
     {
         if ($this->tag !== $tag || empty($data)) {
@@ -65,7 +58,7 @@ class Message extends Component implements LivewireInterface
         }
 
         $this->setUp($data);
-        $this->dispatch('open-alert-message');
+        $this->dispatch('open-alert-notify');
     }
 
     /**
@@ -73,6 +66,6 @@ class Message extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::components.themes.tailwind.message');
+        return view('alert::components.themes.tailwind.notify');
     }
 }
