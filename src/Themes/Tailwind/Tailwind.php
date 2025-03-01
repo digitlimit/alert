@@ -11,6 +11,7 @@ use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Livewire\Component;
 use Livewire\Livewire;
+
 use function Livewire\on;
 use function Livewire\store;
 

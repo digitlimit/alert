@@ -11,15 +11,11 @@ class Css
 {
     /**
      * The classes
-     *
-     * @var array
      */
     protected array $classes;
 
     /**
      * The cache key
-     *
-     * @var string
      */
     protected string $cacheKey = 'digitlimit_alert_unique_tailwind_classes';
 
@@ -30,9 +26,6 @@ class Css
 
     /**
      * Set the classes
-     *
-     * @param array $classes
-     * @return Css
      */
     public function setClasses(array $classes): self
     {
@@ -49,11 +42,8 @@ class Css
         Session::forget($this->cacheKey);
     }
 
-
     /**
      * Retrieve unique Tailwind classes with caching
-     *
-     * @return array
      */
     public function uniqueClasses(): array
     {
@@ -69,9 +59,6 @@ class Css
 
     /**
      * Recursively extract unique Tailwind classes from the provided array
-     *
-     * @param array $array
-     * @return array
      */
     protected function extractUniqueClasses(array $array): array
     {
