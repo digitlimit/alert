@@ -1,4 +1,4 @@
-<div class="digitlimit-alert-field">
+<div wire:ignore class="digitlimit-alert-field">
         @inject('alert', 'Digitlimit\Alert\Alert')
         @php
                 $field   = $data ? $alert->fromArray($data) : null;

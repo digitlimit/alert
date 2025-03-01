@@ -1,4 +1,4 @@
-<div class="digitlimit-alert-message">
+<div wire:ignore class="digitlimit-alert-message">
     @inject('alert', 'Digitlimit\Alert\Alert')
     @php
         $message   = $alert->fromArray($data);
@@ -14,8 +14,8 @@
             x-transition.duration.300ms
 
             x-data="{
-            show: true
-        }"
+                show: true
+            }"
 
             x-show="show"
 

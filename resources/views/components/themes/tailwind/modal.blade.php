@@ -1,4 +1,4 @@
-<div class="digitlimit-alert-modal">
+<div wire:ignore class="digitlimit-alert-modal">
     @inject('alert', 'Digitlimit\Alert\Alert')
     @php
         $modal  = $alert->fromArray($data);
