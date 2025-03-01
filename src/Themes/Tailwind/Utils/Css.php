@@ -2,16 +2,26 @@
 
 namespace Digitlimit\Alert\Themes\Tailwind\Utils;
 
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Class Css
  */
 class Css
 {
+    /**
+     * The classes
+     *
+     * @var array
+     */
     protected array $classes;
 
-    protected string $cacheKey = 'alert_unique_tailwind_classes';
+    /**
+     * The cache key
+     *
+     * @var string
+     */
+    protected string $cacheKey = 'digitlimit_alert_unique_tailwind_classes';
 
     public function __construct(array $classes = [])
     {
@@ -34,9 +44,9 @@ class Css
     /**
      * Flush the cache
      */
-    public function flushCache(): void
+    public function forgetCache(): void
     {
-        Cache::forget($this->cacheKey);
+        Session::forget($this->cacheKey);
     }
 
 
@@ -47,9 +57,14 @@ class Css
      */
     public function uniqueClasses(): array
     {
-        return Cache::rememberForever($this->cacheKey, function () {
-            return $this->extractUniqueClasses($this->classes);
-        });
+        if (Session::has($this->cacheKey)) {
+            return Session::get($this->cacheKey);
+        }
+
+        $uniqueClasses = $this->extractUniqueClasses($this->classes);
+        Session::put('alert_unique_tailwind_classes', $uniqueClasses);
+
+        return $uniqueClasses;
     }
 
     /**
