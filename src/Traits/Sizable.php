@@ -5,6 +5,9 @@ namespace Digitlimit\Alert\Traits;
 use Exception;
 use Illuminate\Support\Str;
 
+/**
+ * Sizable trait.
+ */
 trait Sizable
 {
     /**

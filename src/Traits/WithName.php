@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Traits;
 
+/**
+ * WithName trait.
+ */
 trait WithName
 {
     protected string $name;

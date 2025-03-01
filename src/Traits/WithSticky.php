@@ -2,11 +2,11 @@
 
 namespace Digitlimit\Alert\Traits;
 
-use Digitlimit\Alert\Events\FieldBag\Flashed;
-use Digitlimit\Alert\Helpers\SessionKey;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
+use Digitlimit\Alert\Events\Field\Flashed;
+use Digitlimit\Alert\Helpers\SessionKey;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 
 trait WithSticky
 {

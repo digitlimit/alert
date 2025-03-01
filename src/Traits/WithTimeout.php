@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Traits;
 
+/**
+ * WithTimeout trait.
+ */
 trait WithTimeout
 {
     /**

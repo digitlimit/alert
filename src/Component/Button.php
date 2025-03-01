@@ -96,7 +96,7 @@ class Button
      */
     public function isLink(): bool
     {
-        return !empty($this->link);
+        return ! empty($this->link);
     }
 
     /**

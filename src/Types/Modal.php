@@ -12,9 +12,8 @@ use Digitlimit\Alert\Contracts\Scrollable;
 use Digitlimit\Alert\Contracts\Sizable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Modal\Flashed;
-use Digitlimit\Alert\Helpers\Helper;
-use Digitlimit\Alert\Message\AbstractMessage;
-use Digitlimit\Alert\Message\MessageInterface;
+use Digitlimit\Alert\Foundation\AbstractAlert;
+use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Traits;
 use Exception;
 use Throwable;
@@ -22,19 +21,19 @@ use Throwable;
 /**
  * Modal alert class.
  */
-class Modal extends AbstractMessage implements HasButton, HasView, Levelable, Closable, MessageInterface, Scrollable, Sizable, Taggable, HasTitle, HasMessage
+class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton, HasMessage, HasTitle, HasView, Levelable, Scrollable, Sizable, Taggable
 {
+    use Traits\Closable;
     use Traits\Levelable;
     use Traits\Scrollable;
-    use Traits\Closable;
     use Traits\Sizable;
     use Traits\Taggable;
-    use Traits\WithView;
-    use Traits\WithTitle;
-    use Traits\WithButton;
     use Traits\WithActionButton;
+    use Traits\WithButton;
     use Traits\WithCancelButton;
     use Traits\WithMessage;
+    use Traits\WithTitle;
+    use Traits\WithView;
 
     /**
      * Create a new modal alert instance.
@@ -80,7 +79,7 @@ class Modal extends AbstractMessage implements HasButton, HasView, Levelable, Cl
      * @throws Exception
      * @throws Throwable
      */
-    public static function fill(array $alert): MessageInterface
+    public static function fill(array $alert): AlertInterface
     {
         $modal = new static($alert['message']);
 

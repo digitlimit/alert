@@ -2,8 +2,6 @@
 
 namespace Digitlimit\Alert\Contracts;
 
-use Exception;
-
 interface HasTitle
 {
     /**

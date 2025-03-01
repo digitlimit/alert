@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Traits;
 
+/**
+ * WithActionButton trait.
+ */
 trait WithActionButton
 {
     /**

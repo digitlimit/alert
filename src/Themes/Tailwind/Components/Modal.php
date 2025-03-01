@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert\Themes\Tailwind\Types;
+namespace Digitlimit\Alert\Themes\Tailwind\Components;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
@@ -67,7 +67,7 @@ class Modal extends Component implements LivewireInterface
      */
     public function actionAttributes(array $attributes = []): string
     {
-        $button = config('alert.tailwind.buttons.primary');
+        $button = config('alert.tailwind.classes.buttons.primary');
         $buttonAttributes = config('alert.tailwind.attributes.buttons.action');
         $buttonAttributes['class'] = $button;
 
@@ -84,7 +84,7 @@ class Modal extends Component implements LivewireInterface
      */
     public function cancelAttributes(array $attributes = []): string
     {
-        $button = config('alert.tailwind.buttons.secondary');
+        $button = config('alert.tailwind.classes.buttons.secondary');
         $buttonAttributes = config('alert.tailwind.attributes.buttons.cancel');
         $buttonAttributes['class'] = $button;
 
@@ -101,7 +101,7 @@ class Modal extends Component implements LivewireInterface
      */
     public function actionLinkAttributes(array $attributes = []): string
     {
-        $button = config('alert.tailwind.buttons.primary');
+        $button = config('alert.tailwind.classes.buttons.primary');
         $linkAttributes = config('alert.tailwind.attributes.links.action');
         $linkAttributes['class'] = $button;
 
@@ -118,7 +118,7 @@ class Modal extends Component implements LivewireInterface
      */
     public function cancelLinkAttributes(array $attributes = []): string
     {
-        $button = config('alert.tailwind.buttons.secondary');
+        $button = config('alert.tailwind.classes.buttons.secondary');
         $linkAttributes = config('alert.tailwind.attributes.links.cancel');
         $linkAttributes['class'] = $button;
 

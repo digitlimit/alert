@@ -1,7 +1,7 @@
 <?php
 
 use Digitlimit\Alert\Facades\Alert;
-use Digitlimit\Alert\Message\MessageInterface;
+use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Types\Modal;
 
 it('can create a modal alert with helper', function () {
@@ -10,7 +10,7 @@ it('can create a modal alert with helper', function () {
     $default = Alert::default('modal');
 
     expect($default)
-        ->toBeInstanceOf(MessageInterface::class)
+        ->toBeInstanceOf(AlertInterface::class)
         ->and($default)
         ->toBeInstanceOf(Modal::class)
         ->and($default->message)

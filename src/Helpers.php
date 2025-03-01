@@ -1,20 +1,19 @@
 <?php
 
-use Illuminate\Support\MessageBag;
-use Illuminate\Validation\Validator;
-use Digitlimit\Alert\Types\Message;
-
-use Digitlimit\Alert\Types\Modal;
-use Digitlimit\Alert\Types\Notify;
+use Digitlimit\Alert\Types\Alert;
 use Digitlimit\Alert\Types\Field;
 use Digitlimit\Alert\Types\FieldBag;
+use Digitlimit\Alert\Types\Modal;
+use Digitlimit\Alert\Types\Notify;
+use Illuminate\Support\MessageBag;
+use Illuminate\Validation\Validator;
 
 if (! function_exists('alert')) {
     function alert(
         string $message,
         ?string $title = null,
         string $level = 'success'
-    ): Message{
+    ): Alert {
         $alert = app('alert')
             ->message($message);
 
@@ -94,7 +93,7 @@ if (! function_exists('notify')) {
         ?string $title = null,
         string $level = 'success',
         string $position = 'top-right'
-    ): Notify{
+    ): Notify {
         $alert = app('alert')->notify($message);
 
         if ($title) {
@@ -115,7 +114,7 @@ if (! function_exists('sticky')) {
         string $message,
         ?string $title = null,
         string $level = 'success'
-    ): Sticky{
+    ): Sticky {
         $alert = app('alert')->sticky($message);
 
         if ($title) {

@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Facade;
  * @method static error(string $string)
  * @method static warning(string $string)
  * @method static info(string $string)
- *
  */
 class Alert extends Facade
 {

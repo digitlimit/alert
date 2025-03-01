@@ -4,6 +4,9 @@ namespace Digitlimit\Alert\Traits;
 
 use Digitlimit\Alert\Alert;
 
+/**
+ * Taggable trait.
+ */
 trait Taggable
 {
     protected string $tag = Alert::DEFAULT_TAG;

@@ -4,6 +4,9 @@ namespace Digitlimit\Alert\Helpers;
 
 use Exception;
 
+/**
+ * Alert type helper.
+ */
 class Type
 {
     /**

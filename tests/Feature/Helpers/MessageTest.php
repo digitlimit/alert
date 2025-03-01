@@ -1,8 +1,8 @@
 <?php
 
 use Digitlimit\Alert\Facades\Alert;
-use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\Types\Message;
+use Digitlimit\Alert\Foundation\AlertInterface;
+use Digitlimit\Alert\Types\Alert;
 
 it('can create a default alert with helper', function () {
     alert('Thank you!');
@@ -10,9 +10,9 @@ it('can create a default alert with helper', function () {
     $default = Alert::default('message');
 
     expect($default)
-        ->toBeInstanceOf(MessageInterface::class)
+        ->toBeInstanceOf(AlertInterface::class)
         ->and($default)
-        ->toBeInstanceOf(Message::class)
+        ->toBeInstanceOf(Alert::class)
         ->and($default->message)
         ->toEqual('Thank you!');
 

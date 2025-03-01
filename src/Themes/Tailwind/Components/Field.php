@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert\Themes\Tailwind\Types;
+namespace Digitlimit\Alert\Themes\Tailwind\Components;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;

@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Traits;
 
+/**
+ * Scrollable trait.
+ */
 trait Scrollable
 {
     protected bool $scrollable = true;

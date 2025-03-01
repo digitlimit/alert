@@ -1,21 +1,22 @@
 <?php
 
-namespace Digitlimit\Alert\Message;
+namespace Digitlimit\Alert\Factory;
 
+use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\Type;
 use Exception;
 
 /**
  * Alert message factory.
  */
-class MessageFactory
+class AlertFactory
 {
     /**
      * Make a new alert instance.
      *
      * @throws Exception
      */
-    public static function make(string $type, ...$args): MessageInterface
+    public static function make(string $type, ...$args): AlertInterface
     {
         $class = Type::classname($type);
 
@@ -31,7 +32,7 @@ class MessageFactory
      *
      * @throws Exception
      */
-    public static function makeFromArray(array $alert): MessageInterface
+    public static function makeFromArray(array $alert): AlertInterface
     {
         $type = $alert['type'];
         $class = Type::classname($type);

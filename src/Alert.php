@@ -4,10 +4,10 @@ namespace Digitlimit\Alert;
 
 use Digitlimit\Alert\Contracts\HasName;
 use Digitlimit\Alert\Contracts\Taggable;
+use Digitlimit\Alert\Factory\AlertFactory;
+use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Helpers\Type;
-use Digitlimit\Alert\Message\MessageFactory;
-use Digitlimit\Alert\Message\MessageInterface;
 use Exception;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Traits\Macroable;
@@ -33,6 +33,7 @@ class Alert
 
     /**
      * Fetch an alert based on the type and named.
+     *
      * @throws Exception
      */
     public static function named(string $type, string $name, string $tag): ?HasName
@@ -41,7 +42,7 @@ class Alert
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $tag = $tag . '.' . $name;
+        $tag = $tag.'.'.$name;
 
         return Session::get(
             SessionKey::key($type, $tag)
@@ -81,7 +82,7 @@ class Alert
     /**
      * @throws Exception
      */
-    public static function namedField(string $name, string $tag): ?MessageInterface
+    public static function namedField(string $name, string $tag): ?AlertInterface
     {
         return self::named('field', $name, $tag);
     }
@@ -123,19 +124,19 @@ class Alert
      *
      * @throws Exception
      */
-    public static function from(string $type, ...$args): MessageInterface
+    public static function from(string $type, ...$args): AlertInterface
     {
         if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        return MessageFactory::make($type, ...$args);
+        return AlertFactory::make($type, ...$args);
     }
 
     /**
      * @throws Exception
      */
-    public static function fromArray(array $alert): ?MessageInterface
+    public static function fromArray(array $alert): ?AlertInterface
     {
         if (empty($alert)) {
             return null;
@@ -147,7 +148,7 @@ class Alert
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        return MessageFactory::makeFromArray($alert);
+        return AlertFactory::makeFromArray($alert);
     }
 
     /**
@@ -197,7 +198,7 @@ class Alert
     public function __call($method, $parameters)
     {
         if (Type::exists($method)) {
-            return MessageFactory::make($method, ...$parameters);
+            return AlertFactory::make($method, ...$parameters);
         }
 
         throw new Exception("Method '$method' not found in Alert class.");

@@ -2,7 +2,7 @@
 
 namespace Digitlimit\Alert\Events\Message;
 
-use Digitlimit\Alert\Types\Message;
+use Digitlimit\Alert\Types\Alert;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -17,7 +17,7 @@ class Flashed
      * Create a new event instance.
      */
     public function __construct(
-        public Message $alert
+        public Alert $alert
     ) {}
 
     /**

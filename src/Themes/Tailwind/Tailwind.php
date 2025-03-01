@@ -1,17 +1,16 @@
 <?php
 
-namespace Digitlimit\Alert\Themes;
+namespace Digitlimit\Alert\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
-use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Contracts\LivewireInterface;
-use Digitlimit\Alert\Contracts\ThemeInterface;
 use Digitlimit\Alert\Contracts\Taggable;
-use Digitlimit\Alert\Events;
+use Digitlimit\Alert\Contracts\ThemeInterface;
+use Digitlimit\Alert\Foundation\AbstractTheme;
+use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Livewire\Component;
 use Livewire\Livewire;
-
 use function Livewire\on;
 use function Livewire\store;
 
@@ -42,7 +41,7 @@ class Tailwind extends AbstractTheme implements ThemeInterface
     {
         $types = $this->types();
 
-        foreach($types as $type) {
+        foreach ($types as $type) {
             Livewire::component($type['view'], $type['component']);
         }
     }
@@ -80,6 +79,7 @@ class Tailwind extends AbstractTheme implements ThemeInterface
                     // For single alert example message, modal
                     if (! is_array($alert)) {
                         $this->dispatch($component, $alert);
+
                         continue;
                     }
                     // For multiple alerts, usually from a field
@@ -98,7 +98,7 @@ class Tailwind extends AbstractTheme implements ThemeInterface
      */
     protected function dispatch(
         Component $component,
-        MessageInterface|Taggable $alert
+        AlertInterface|Taggable $alert
     ): Component {
         $event = 'refresh-alert-'.$alert->key();
 

@@ -4,29 +4,29 @@ namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\Closable;
 use Digitlimit\Alert\Contracts\HasMessage;
-use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\HasTimeout;
+use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Positionable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Notify\Flashed;
-use Digitlimit\Alert\Message\AbstractMessage;
-use Digitlimit\Alert\Message\MessageInterface;
+use Digitlimit\Alert\Foundation\AbstractAlert;
+use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Traits;
 use Exception;
 
 /**
  * Notify alert class.
  */
-class Notify extends AbstractMessage implements Levelable, Closable, MessageInterface, Positionable, Taggable, HasTitle, HasMessage, HasTimeout
+class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasTimeout, HasTitle, Levelable, Positionable, Taggable
 {
-    use Traits\Levelable;
     use Traits\Closable;
+    use Traits\Levelable;
     use Traits\Positionable;
     use Traits\Taggable;
-    use Traits\WithTitle;
     use Traits\WithMessage;
     use Traits\WithTimeout;
+    use Traits\WithTitle;
 
     /**
      * Create a new notify alert instance.
@@ -34,7 +34,7 @@ class Notify extends AbstractMessage implements Levelable, Closable, MessageInte
      * @return void
      */
     public function __construct(
-       protected string $message
+        protected string $message
     ) {
         parent::__construct();
     }
@@ -69,7 +69,7 @@ class Notify extends AbstractMessage implements Levelable, Closable, MessageInte
      *
      * @throws Exception
      */
-    public static function fill(array $alert): MessageInterface
+    public static function fill(array $alert): AlertInterface
     {
         $notify = new static($alert['message']);
         $notify->id($alert['id']);

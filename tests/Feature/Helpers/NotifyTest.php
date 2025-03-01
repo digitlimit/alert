@@ -1,7 +1,7 @@
 <?php
 
 use Digitlimit\Alert\Facades\Alert;
-use Digitlimit\Alert\Message\MessageInterface;
+use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Types\Notify;
 
 it('can create a notify alert  with helper', function () {
@@ -10,7 +10,7 @@ it('can create a notify alert  with helper', function () {
     $default = Alert::default('notify');
 
     expect($default)
-        ->toBeInstanceOf(MessageInterface::class)
+        ->toBeInstanceOf(AlertInterface::class)
         ->and($default)
         ->toBeInstanceOf(Notify::class)
         ->and($default->message)

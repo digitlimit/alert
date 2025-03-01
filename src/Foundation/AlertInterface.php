@@ -1,8 +1,8 @@
 <?php
 
-namespace Digitlimit\Alert\Message;
+namespace Digitlimit\Alert\Foundation;
 
-interface MessageInterface
+interface AlertInterface
 {
     /**
      * Set the alert ID.

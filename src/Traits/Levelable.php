@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Traits;
 
+/**
+ * Levelable trait.
+ */
 trait Levelable
 {
     /**

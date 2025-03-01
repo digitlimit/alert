@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Traits;
 
+/**
+ * WithTitle trait.
+ */
 trait WithTitle
 {
     protected ?string $title = null;
@@ -26,6 +29,6 @@ trait WithTitle
 
     public function hasTitle(): bool
     {
-        return !is_null($this->title);
+        return ! is_null($this->title);
     }
 }

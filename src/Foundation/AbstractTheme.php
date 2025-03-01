@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert\Themes;
+namespace Digitlimit\Alert\Foundation;
 
 use Digitlimit\Alert\Contracts\ThemeInterface;
 

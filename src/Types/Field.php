@@ -8,28 +8,25 @@ use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Field\Flashed;
+use Digitlimit\Alert\Foundation\AbstractAlert;
+use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\SessionKey;
-use Digitlimit\Alert\Message\AbstractMessage;
-use Digitlimit\Alert\Message\MessageInterface;
 use Digitlimit\Alert\Traits;
 use Illuminate\Support\Facades\Session;
 
 /**
  * Field alert class.
  */
-class Field extends AbstractMessage implements Levelable, MessageInterface, Taggable, HasTitle, HasMessage, HasName
+class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName, HasTitle, Levelable, Taggable
 {
     use Traits\Levelable;
     use Traits\Taggable;
-    use Traits\WithTitle;
     use Traits\WithMessage;
     use Traits\WithName;
+    use Traits\WithTitle;
 
     /**
      * Create a new field alert instance.
-     *
-     * @param string $name
-     * @param string $message
      */
     public function __construct(
         protected string $name,
@@ -62,7 +59,6 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
         return $this->tag.'.'.$this->getName();
     }
 
-
     /**
      * Get the field alert as an array.
      */
@@ -82,7 +78,7 @@ class Field extends AbstractMessage implements Levelable, MessageInterface, Tagg
     /**
      * Fill the field alert from an array.
      */
-    public static function fill(array $alert): MessageInterface
+    public static function fill(array $alert): AlertInterface
     {
         $field = new static($alert['name'], $alert['message']);
 

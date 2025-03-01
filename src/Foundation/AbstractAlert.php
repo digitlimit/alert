@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert\Message;
+namespace Digitlimit\Alert\Foundation;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Helper;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 /**
  * @property string $message
  */
-abstract class AbstractMessage implements MessageInterface
+abstract class AbstractAlert implements AlertInterface
 {
     /**
      * Alert unique ID.
@@ -23,7 +23,8 @@ abstract class AbstractMessage implements MessageInterface
      */
     abstract public function key(): string;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->autoSetId();
     }
 
@@ -33,6 +34,7 @@ abstract class AbstractMessage implements MessageInterface
     public function id(string|int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -42,6 +44,7 @@ abstract class AbstractMessage implements MessageInterface
     public function autoSetId(): self
     {
         $this->id($this->key().'-'.Helper::randomString());
+
         return $this;
     }
 
@@ -73,8 +76,8 @@ abstract class AbstractMessage implements MessageInterface
      */
     public function forget(?string $tag = null): self
     {
-        if(empty($tag)) {
-            $tag = !empty($this->tag)
+        if (empty($tag)) {
+            $tag = ! empty($this->tag)
                 ? $this->tag
                 : Alert::DEFAULT_TAG;
         }

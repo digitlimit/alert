@@ -6,6 +6,9 @@ use Digitlimit\Alert\Contracts\ThemeInterface;
 use Exception;
 use Illuminate\Support\Facades\Config;
 
+/**
+ * Theme helper class.
+ */
 class Theme
 {
     public static function name(): string

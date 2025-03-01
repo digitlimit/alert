@@ -5,6 +5,9 @@ namespace Digitlimit\Alert\Traits;
 use Illuminate\View\View;
 use Throwable;
 
+/**
+ * WithView trait.
+ */
 trait WithView
 {
     /**

@@ -23,8 +23,6 @@ interface Closable
 
     /**
      * Check if the alert is closable
-     *
-     * @return bool
      */
     public function isClosable(): bool;
 }

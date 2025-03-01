@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Helpers;
 
+/**
+ * Session key helper class.
+ */
 class SessionKey
 {
     /**

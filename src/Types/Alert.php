@@ -9,21 +9,21 @@ use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Message\Flashed;
-use Digitlimit\Alert\Message\AbstractMessage;
-use Digitlimit\Alert\Message\MessageInterface;
+use Digitlimit\Alert\Foundation\AbstractAlert;
+use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Traits;
 
 /**
  * Message alert class.
  */
-class Message extends AbstractMessage implements MessageInterface, Levelable, Closable, Taggable, HasTitle, HasMessage, HasSticky
+class Alert extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasSticky, HasTitle, Levelable, Taggable
 {
+    use Traits\Closable;
     use Traits\Levelable;
     use Traits\Taggable;
-    use Traits\WithTitle;
     use Traits\WithMessage;
     use Traits\WithSticky;
-    use Traits\Closable;
+    use Traits\WithTitle;
 
     /**
      * Create a new normal alert instance.
@@ -63,7 +63,7 @@ class Message extends AbstractMessage implements MessageInterface, Levelable, Cl
     /**
      * Fill the message alert from an array.
      */
-    public static function fill(array $alert): MessageInterface
+    public static function fill(array $alert): AlertInterface
     {
         $message = new static($alert['message']);
 
@@ -87,6 +87,7 @@ class Message extends AbstractMessage implements MessageInterface, Levelable, Cl
     {
         if ($this->isSticky()) {
             $this->flashSticky();
+
             return;
         }
 

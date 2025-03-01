@@ -1,6 +1,5 @@
 <?php
 
-use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\Theme;
 use Illuminate\Support\Facades\Config;
 

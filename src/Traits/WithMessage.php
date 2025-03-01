@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Traits;
 
+/**
+ * WithMessage trait.
+ */
 trait WithMessage
 {
     /**

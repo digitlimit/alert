@@ -2,6 +2,9 @@
 
 namespace Digitlimit\Alert\Traits;
 
+/**
+ * Closable trait.
+ */
 trait Closable
 {
     protected bool $closable = true;

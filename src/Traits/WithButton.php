@@ -67,7 +67,7 @@ trait WithButton
     public function buttonsToArray(): array
     {
         return $this->getButtons()
-            ->map(fn($button) => $button->toArray())
+            ->map(fn ($button) => $button->toArray())
             ->toArray();
     }
 }
