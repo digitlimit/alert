@@ -72,4 +72,20 @@ class Css
 
         return array_values(array_unique($allClasses));
     }
+
+    /**
+     * Convert the classes to a string
+     */
+    public function toString(): string
+    {
+        return implode(' ', $this->uniqueClasses());
+    }
+
+    /**
+     * Convert the classes to a string
+     */
+    public function __toString(): string
+    {
+        return $this->toString();
+    }
 }

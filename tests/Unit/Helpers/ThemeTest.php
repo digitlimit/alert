@@ -1,5 +1,6 @@
 <?php
 
+use Digitlimit\Alert\Contracts\ThemeInterface;
 use Digitlimit\Alert\Helpers\Theme;
 use Illuminate\Support\Facades\Config;
 
@@ -23,23 +24,24 @@ it('can get all themes', function () {
 
 })->group('theme', 'helpers', 'theme-all');
 
-it('can get the correct theme based on config', function () {
+it('can throw exception if theme is not found', function () {
     // set a non-existent theme
     config(['alert.theme' => 'none']);
 
     expect(Theme::name())
         ->toEqual('none')
-        ->and(Theme::theme())
-        ->toBeArray()
-        ->toBeEmpty();
+        ->and(Theme::theme());
+})->throws(
+    Exception::class,
+    'Theme none not found'
+)->group('theme', 'helpers', 'theme-not-found');
 
+it('can get the correct theme instance', function () {
     // set a valid theme
     config(['alert.theme' => 'tailwind']);
     expect(Theme::name())
         ->toEqual('tailwind')
         ->and(Theme::theme())
-        ->toBeArray()
-        ->not()->toBeEmpty()
-        ->toEqual(config('alert.themes.tailwind'));
+        ->toBeInstanceOf(ThemeInterface::class);
 
-})->group('theme', 'helpers', 'theme-theme');
+})->group('theme', 'helpers', 'theme-instance');

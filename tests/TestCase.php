@@ -3,27 +3,31 @@
 namespace Digitlimit\Alert\Tests;
 
 use Digitlimit\Alert\AlertServiceProvider;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
+use Illuminate\Support\Facades\Facade;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Livewire;
 
 class TestCase extends BaseTestCase
 {
     use InteractsWithViews;
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             AlertServiceProvider::class,
+            Livewire\LivewireServiceProvider::class,
         ];
     }
 
     /**
      * Override application aliases.
      *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return array<string, class-string<\Illuminate\Support\Facades\Facade>>
+     * @param  Application  $app
+     * @return array<string, class-string<Facade>>
      */
-    protected function getPackageAliases($app)
+    protected function getPackageAliases($app): array
     {
         return [
 
@@ -35,7 +39,7 @@ class TestCase extends BaseTestCase
         // perform environment setup
     }
 
-    public function packagePath(string $path = '')
+    public function packagePath(string $path = ''): string
     {
         return __DIR__.'/../'.$path;
     }
