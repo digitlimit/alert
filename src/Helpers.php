@@ -1,8 +1,7 @@
 <?php
 
-use Digitlimit\Alert\Types\Alert;
+use Digitlimit\Alert\Types\Message;
 use Digitlimit\Alert\Types\Field;
-use Digitlimit\Alert\Types\FieldBag;
 use Digitlimit\Alert\Types\Modal;
 use Digitlimit\Alert\Types\Notify;
 use Illuminate\Support\MessageBag;
@@ -13,7 +12,7 @@ if (! function_exists('alert')) {
         string $message,
         ?string $title = null,
         string $level = 'success'
-    ): Alert {
+    ): Message {
         $alert = app('alert')
             ->message($message);
 
