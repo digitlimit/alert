@@ -55,7 +55,6 @@ class TailwindServiceProvider extends ServiceProvider
         $this->publishes([
             realpath(__DIR__.'/../../../../resources/css/themes/tailwind/alerts.css') => public_path('vendor/alert/alerts.css'),
         ], 'alert-css');
-    }
 
     /**
      * Register directives
