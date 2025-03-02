@@ -59,9 +59,9 @@ class Modal extends Component implements LivewireInterface
      */
     public function actionAttributes(array $attributes = []): string
     {
-        $button = config('alert.tailwind.classes.buttons.primary');
+//        $button = config('alert.tailwind.classes.buttons.primary');
         $buttonAttributes = config('alert.tailwind.attributes.buttons.action');
-        $buttonAttributes['class'] = $button;
+        $buttonAttributes['class'] = 'modal-action-button';
 
         $newAttributes = array_merge(
             $buttonAttributes,
@@ -76,9 +76,9 @@ class Modal extends Component implements LivewireInterface
      */
     public function cancelAttributes(array $attributes = []): string
     {
-        $button = config('alert.tailwind.classes.buttons.secondary');
+//        $button = config('alert.tailwind.classes.buttons.secondary');
         $buttonAttributes = config('alert.tailwind.attributes.buttons.cancel');
-        $buttonAttributes['class'] = $button;
+        $buttonAttributes['class'] = 'modal-cancel-button';
 
         $newAttributes = array_merge(
             $buttonAttributes,
@@ -93,9 +93,9 @@ class Modal extends Component implements LivewireInterface
      */
     public function actionLinkAttributes(array $attributes = []): string
     {
-        $button = config('alert.tailwind.classes.buttons.primary');
+//        $button = config('alert.tailwind.classes.buttons.primary');
         $linkAttributes = config('alert.tailwind.attributes.links.action');
-        $linkAttributes['class'] = $button;
+        $linkAttributes['class'] = 'modal-action-button';
 
         $newAttributes = array_merge(
             $linkAttributes,
@@ -110,9 +110,9 @@ class Modal extends Component implements LivewireInterface
      */
     public function cancelLinkAttributes(array $attributes = []): string
     {
-        $button = config('alert.tailwind.classes.buttons.secondary');
+//        $button = config('alert.tailwind.classes.buttons.secondary');
         $linkAttributes = config('alert.tailwind.attributes.links.cancel');
-        $linkAttributes['class'] = $button;
+        $linkAttributes['class'] = 'modal-cancel-button';;
 
         $newAttributes = array_merge(
             $linkAttributes,

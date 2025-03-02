@@ -12,15 +12,15 @@
         $hasTitle  = $hasHeader || $modal->getTitle();
     @endphp
     <div
-        id="{{ $modal->getId() }}"
+            id="{{ $modal->getId() }}"
 
-        x-data="{
-            show: true,
-            modalSize: '{{ $modal->getSize() }}',
-            scrollable: {{ $modal->isScrollable() ? 'true' : 'false' }}
-        }"
+            x-data="{
+                show: true,
+                modalSize: '{{ $modal->getSize() }}',
+                scrollable: {{ $modal->isScrollable() ? 'true' : 'false' }}
+            }"
 
-        @open-alert-modal.window="show = true"
+            @open-alert-modal.window="show = true"
     >
         <div
                 x-show="show"
