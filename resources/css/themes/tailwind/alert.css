@@ -138,6 +138,10 @@
   @apply w-3 h-3;
 }
 
+.alert-message .close .sr-only-close {
+  @apply sr-only;
+}
+
 .alert-notify {
   @apply bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 py-3 shadow-lg flex items-center;
 }

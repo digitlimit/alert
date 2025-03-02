@@ -43,7 +43,7 @@
                 class="close {{ $level }}"
                 aria-label="Close"
         >
-            <span class="sr-only">Close</span>
+            <span class="sr-only-close">Close</span>
             <svg class="close-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                 <path
                         stroke="currentColor"
