@@ -27,7 +27,7 @@
   }
 
   .message {
-    @apply ms-3 text-sm font-medium;
+    @apply ms-3 text-sm font-medium flex items-center gap-2;
 
     .title {
         @apply text-lg font-semibold;

@@ -111,7 +111,7 @@
 }
 
 .alert-message .message {
-  @apply ms-3 text-sm font-medium;
+  @apply ms-3 text-sm font-medium flex items-center gap-2;
 }
 
 .alert-message .message .title {

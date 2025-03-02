@@ -86,7 +86,7 @@
   @apply shrink-0 w-4 h-4;
 }
 .alert-message .message {
-  @apply ms-3 text-sm font-medium;
+  @apply ms-3 text-sm font-medium flex items-center gap-2;
 }
 .alert-message .message .title {
   @apply text-lg font-semibold;
