@@ -1,0 +1,31 @@
+.alert-notify-position {
+  @apply fixed px-2 mt-3 overflow-x-hidden z-50;
+
+  &.top-right {
+    @apply top-0 right-0;
+  }
+
+  &.top-left {
+    @apply top-0 left-0;
+  }
+
+  &.bottom-right {
+    @apply bottom-0 right-0;
+  }
+
+  &.bottom-left {
+    @apply bottom-0 left-0;
+  }
+
+  &.top-center {
+    @apply top-0 left-1/2 transform -translate-x-1/2;
+  }
+
+  &.bottom-center {
+    @apply bottom-0 left-1/2 transform -translate-x-1/2;
+  }
+
+  &.center {
+    @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+}

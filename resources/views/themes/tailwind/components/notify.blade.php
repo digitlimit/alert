@@ -2,10 +2,7 @@
     @inject('alert', 'Digitlimit\Alert\Alert')
     @php
         $notify    = $alert->fromArray($data);
-        $position  = config('alert.tailwind.classes.notify.position.' . $notify->getPosition());
-        $container = config('alert.tailwind.classes.notify.levels.' . $notify->getLevel() . '.container');
     @endphp
-    <span  class="hidden {{ $css->toString() }}" />
     <div
             x-data="{
             position: 'top-right',
@@ -54,7 +51,7 @@
 
             x-cloak
 
-            class="fixed {{ $position }} px-2 mt-3 overflow-x-hidden z-50"
+            class="alert-notify-position {{ $notify->getPosition() }}"
     >
         <template x-for="notify in notifications" :key="notify.id">
             <div
@@ -65,7 +62,7 @@
                     x-transition:leave="transition ease-out duration-500"
                     x-transition:leave-start="transform translate-x-0 opacity-100"
                     x-transition:leave-end="transform -translate-y-2 opacity-0"
-                    class="{{ $container }}"
+                    class="alert-notify {{ $notify->getLevel() }}"
             >
                 <div class="flex flex-col w-full">
                     <div class="flex items-center w-full px-1 my-2">
