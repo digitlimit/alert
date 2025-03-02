@@ -1,0 +1,23 @@
+.alert-modal {
+  @apply fixed inset-0 flex items-center justify-center p-4 bg-black bg-opacity-50;
+
+  .modal-content {
+    @apply bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg;
+  }
+
+  .modal-header {
+    @apply flex justify-between items-center pb-4 border-b;
+  }
+
+  .modal-body {
+    @apply p-4;
+  }
+
+  .modal-footer {
+    @apply flex justify-end space-x-2 pt-4 border-t;
+  }
+
+  .close-button {
+    @apply text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400;
+  }
+}

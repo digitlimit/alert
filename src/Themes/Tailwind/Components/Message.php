@@ -72,6 +72,6 @@ class Message extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::components.themes.tailwind.message');
+        return view('alert::themes.tailwind.components.message');
     }
 }

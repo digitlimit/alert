@@ -1,10 +1,12 @@
 <div wire:ignore class="digitlimit-alert-notify">
     @inject('alert', 'Digitlimit\Alert\Alert')
+    @inject('css', 'Digitlimit\Alert\Themes\Tailwind\Utils\Css')
     @php
         $notify    = $alert->fromArray($data);
         $position  = config('alert.tailwind.classes.notify.position.' . $notify->getPosition());
         $container = config('alert.tailwind.classes.notify.levels.' . $notify->getLevel() . '.container');
     @endphp
+    <span  class="hidden {{ $css->toString() }}" />
     <div
             x-data="{
             position: 'top-right',

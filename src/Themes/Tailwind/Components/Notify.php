@@ -66,6 +66,6 @@ class Notify extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::components.themes.tailwind.notify');
+        return view('alert::themes.tailwind.components.notify');
     }
 }

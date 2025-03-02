@@ -55,14 +55,6 @@ class Modal extends Component implements LivewireInterface
     }
 
     /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View
-    {
-        return view('alert::components.themes.tailwind.modal');
-    }
-
-    /**
      * Merge and convert array attributes to HTML string attributes.
      */
     public function actionAttributes(array $attributes = []): string
@@ -129,4 +121,13 @@ class Modal extends Component implements LivewireInterface
 
         return Attribute::toString($newAttributes);
     }
+
+    /**
+     * Get the view / contents that represent the component.
+     */
+    public function render(): View
+    {
+        return view('alert::themes.tailwind.components.modal');
+    }
+
 }

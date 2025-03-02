@@ -1,11 +1,13 @@
 <div wire:ignore class="digitlimit-alert-message">
     @inject('alert', 'Digitlimit\Alert\Alert')
+    @inject('css', 'Digitlimit\Alert\Themes\Tailwind\Utils\Css')
     @php
         $message   = $alert->fromArray($data);
         $level     = $message->getLevel();
         $close     = config("alert.tailwind.classes.message.levels.$level.close");
         $container = config("alert.tailwind.classes.message.levels.$level.container");
     @endphp
+    <span  class="hidden {{ $css->toString() }}" />
     <div
             id="{{ $message->getId() }}"
 

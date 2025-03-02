@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./components/field";
+@import "./components/message";
+@import "./components/notify";
+@import "./components/modal";

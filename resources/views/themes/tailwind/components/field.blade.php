@@ -1,5 +1,8 @@
-<div wire:ignore class="digitlimit-alert-field">
+<div class="p-3" wire:ignore class="digitlimit-alert-field">
         @inject('alert', 'Digitlimit\Alert\Alert')
+        @inject('css', 'Digitlimit\Alert\Themes\Tailwind\Utils\Css')
+
+        <span  class="hidden {{ $css->toString() }}" />
         @php
                 $field   = $data ? $alert->fromArray($data) : null;
                 $bag     = $data ? $alert->fieldBag($tag): null;

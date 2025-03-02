@@ -120,7 +120,7 @@ class Field extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::components.themes.tailwind.field', [
+        return view('alert::themes.tailwind.components.field', [
             'error' => $this->getViewFieldError($this->name, $this->tag),
         ]);
     }
