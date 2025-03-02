@@ -1,6 +1,5 @@
 <div wire:ignore class="digitlimit-alert-modal">
     @inject('alert', 'Digitlimit\Alert\Alert')
-    @inject('css', 'Digitlimit\Alert\Themes\Tailwind\Utils\Css')
     @php
         $modal  = $alert->fromArray($data);
         $header = $header ?? null;
@@ -12,7 +11,6 @@
 
         $hasTitle  = $hasHeader || $modal->getTitle();
     @endphp
-    <span  class="hidden {{ $css->toString() }}" />
     <div
         id="{{ $modal->getId() }}"
 
