@@ -18,19 +18,9 @@ use function Livewire\store;
 class Tailwind extends AbstractTheme implements ThemeInterface
 {
     /**
-     * Register the alert components
-     */
-    public function boot(): void
-    {
-        $this->registerComponents();
-
-        $this->dehydrate();
-    }
-
-    /**
      *  Register the alert types
      */
-    public function types(): array
+    public static function types(): array
     {
         return config('alert.tailwind.types');
     }
@@ -38,9 +28,9 @@ class Tailwind extends AbstractTheme implements ThemeInterface
     /**
      * Register the alert components
      */
-    public function registerComponents(): void
+    public static function registerComponents(): void
     {
-        $types = $this->types();
+        $types = self::types();
 
         foreach ($types as $type) {
             Livewire::component($type['view'], $type['component']);
@@ -50,7 +40,7 @@ class Tailwind extends AbstractTheme implements ThemeInterface
     /**
      * Dehydrate the alert to the component
      */
-    public function dehydrate(): void
+    public static function dehydrate(): void
     {
         on('dehydrate', function (Component $component) {
             if (! Livewire::isLivewireRequest()) {
@@ -79,13 +69,13 @@ class Tailwind extends AbstractTheme implements ThemeInterface
 
                     // For single alert example message, modal
                     if (! is_array($alert)) {
-                        $this->dispatch($component, $alert);
+                        self::dispatch($component, $alert);
 
                         continue;
                     }
                     // For multiple alerts, usually from a field
                     foreach ($alert as $field) {
-                        $this->dispatch($component, $field);
+                        self::dispatch($component, $field);
                     }
                 }
             }
@@ -97,10 +87,8 @@ class Tailwind extends AbstractTheme implements ThemeInterface
     /**
      * Dispatch the alert to the component
      */
-    protected function dispatch(
-        Component $component,
-        AlertInterface|Taggable $alert
-    ): Component {
+    protected static function dispatch(Component $component, AlertInterface|Taggable $alert): Component
+    {
         $event = 'refresh-alert-'.$alert->key();
 
         $component->dispatch(

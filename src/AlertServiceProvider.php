@@ -2,7 +2,6 @@
 
 namespace Digitlimit\Alert;
 
-use Digitlimit\Alert\Helpers\Theme;
 use Exception;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,8 +15,6 @@ class AlertServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'alert');
-
-        $this->bootAlert();
 
         $this->registerMacros();
 
@@ -34,6 +31,8 @@ class AlertServiceProvider extends ServiceProvider
         });
 
         $this->mergeConfigFrom(__DIR__.'/../config/alert.php', 'alert');
+
+        $this->app->register(Themes\Tailwind\TailwindServiceProvider::class);
     }
 
     /**
@@ -42,16 +41,6 @@ class AlertServiceProvider extends ServiceProvider
     public function provides(): array
     {
         return ['alert'];
-    }
-
-    /**
-     * Boot the alert.
-     *
-     * @throws Exception
-     */
-    protected function bootAlert(): void
-    {
-        Theme::theme()->boot();
     }
 
     /**

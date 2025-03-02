@@ -7,10 +7,6 @@ interface ThemeInterface
     /**
      * Alert types.
      */
-    public function types(): array;
+    public static function types(): array;
 
-    /**
-     * Boot the theme.
-     */
-    public function boot(): void;
 }
