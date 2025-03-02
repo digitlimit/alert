@@ -24,6 +24,8 @@ class TailwindServiceProvider extends ServiceProvider
         Tailwind::dehydrate();
 
         $this->bootForConsole();
+
+        $this->registerDirectives();
     }
 
     /**
