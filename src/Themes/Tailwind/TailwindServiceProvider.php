@@ -56,7 +56,7 @@ class TailwindServiceProvider extends ServiceProvider
 
         // Define publishable compiled CSS
         $this->publishes([
-            __DIR__ . '/../../../resources/css/themes/tailwind/alerts.css' => public_path('vendor/alert/alerts.css'),
+            __DIR__ . '/../../../resources/css/themes/tailwind/alert.css' => public_path('vendor/alert/alerts.css'),
         ], 'alert-css');
     }
 
