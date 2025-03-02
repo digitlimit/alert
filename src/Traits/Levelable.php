@@ -10,7 +10,7 @@ trait Levelable
     /**
      * The level of the alert.
      */
-    protected string $level = 'info';
+    protected string $level = '';
 
     /**
      * Success alert level.

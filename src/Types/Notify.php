@@ -28,6 +28,8 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessa
     use Traits\WithTimeout;
     use Traits\WithTitle;
 
+    protected string $defaultLevel = 'info';
+
     /**
      * Create a new notify alert instance.
      *
@@ -37,6 +39,18 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessa
         protected string $message
     ) {
         parent::__construct();
+    }
+
+    /**
+     * Fetch the alert level.
+     */
+    public function getLevel(): string
+    {
+        if (empty($this->level)) {
+            return $this->defaultLevel;
+        }
+
+        return $this->level;
     }
 
     /**

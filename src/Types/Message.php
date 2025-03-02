@@ -16,7 +16,7 @@ use Digitlimit\Alert\Traits;
 /**
  * Message alert class.
  */
-class Alert extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasSticky, HasTitle, Levelable, Taggable
+class Message extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasSticky, HasTitle, Levelable, Taggable
 {
     use Traits\Closable;
     use Traits\Levelable;
@@ -24,6 +24,11 @@ class Alert extends AbstractAlert implements AlertInterface, Closable, HasMessag
     use Traits\WithMessage;
     use Traits\WithSticky;
     use Traits\WithTitle;
+
+    /**
+     * The default level of the alert.
+     */
+    protected string $defaultLevel = 'info';
 
     /**
      * Create a new normal alert instance.
@@ -42,6 +47,18 @@ class Alert extends AbstractAlert implements AlertInterface, Closable, HasMessag
     public function key(): string
     {
         return 'message';
+    }
+
+    /**
+     * Fetch the alert level.
+     */
+    public function getLevel(): string
+    {
+        if (empty($this->level)) {
+            return $this->defaultLevel;
+        }
+
+        return $this->level;
     }
 
     /**

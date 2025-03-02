@@ -26,6 +26,11 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
     use Traits\WithTitle;
 
     /**
+     * The default level of the alert.
+     */
+    protected string $defaultLevel = 'error';
+
+    /**
      * Create a new field alert instance.
      */
     public function __construct(
@@ -33,6 +38,18 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
         protected string $message
     ) {
         parent::__construct();
+    }
+
+    /**
+     * Fetch the alert level.
+     */
+    public function getLevel(): string
+    {
+        if (empty($this->level)) {
+            return $this->defaultLevel;
+        }
+
+        return $this->level;
     }
 
     /**

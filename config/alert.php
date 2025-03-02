@@ -40,7 +40,7 @@ return [
         'types' => [
             'message' => [
                 'view' => 'alert-message',
-                'alert' => Types\Alert::class,
+                'alert' => Types\Message::class,
                 'component' => Themes\Tailwind\Components\Message::class,
             ],
 
