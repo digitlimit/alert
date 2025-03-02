@@ -6,3 +6,4 @@ composer.lock
 .idea/php.xml
 .idea/workspace.xml
 .phpunit.cache
+workbench

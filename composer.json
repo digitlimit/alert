@@ -1,6 +1,6 @@
 {
     "name": "digitlimit/alert",
-    "description": "An easy way of flashing messages in Laravel Application",
+    "description": "An easy way of flashing messages in Laravel Application, with support for Livewire, Inertia, TailwindCSS, and Bootstrap.",
     "license": "MIT",
     "authors": [
         {
@@ -21,18 +21,9 @@
     ],
     "require": {
         "ext-json": "*",
-        "php": "^8.0",
-        "illuminate/contracts": "^7.20|^8.19|^9.0|^10.0|^11.0",
-        "illuminate/support": "^7.20|^8.19|^9.0|^10.0|^11.0"
-    },
-    "require-dev": {
-        "guzzlehttp/guzzle": "^7.3",
-        "laravel/framework": "^7.20|^8.19|^9.0|^10.0|^11.0",
-        "phpunit/phpunit": "^10.0",
-        "orchestra/testbench": "^8.5",
-        "nunomaduro/collision": "^7.5",
-        "pestphp/pest": "^2.5",
-        "laravel/pint": "^1.10"
+        "php": "^8.2",
+        "laravel/framework": "^10.0 || ^11.0 || ^12.0",
+        "livewire/livewire": "^2.12 || ^3.6"
     },
     "autoload": {
         "psr-4": {
@@ -44,7 +35,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Digitlimit\\Alert\\Tests\\": "tests"
+            "Digitlimit\\Alert\\Tests\\": "tests",
+            "App\\": "workbench/app/",
+            "Database\\Factories\\": "workbench/database/factories/",
+            "Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "extra": {
@@ -57,16 +51,38 @@
             }
         }
     },
-    "scripts": {
-        "post-autoload-dump": [
-            "@php vendor/bin/testbench package:discover --ansi"
-        ]
-    },
     "config": {
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "composer/installers": true
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require-dev": {
+        "laravel/pint": "^1.21",
+        "pestphp/pest": "^3.7",
+        "orchestra/testbench": "^10.0"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ],
+        "lint": [
+            "@php vendor/bin/pint --ansi"
+        ],
+        "test": [
+            "@clear",
+            "@php vendor/bin/pest"
+        ]
+    }
 }

@@ -5,6 +5,7 @@
       <data directive="@alertScripts" />
       <data directive="@alertStyles" />
       <data directive="@append" />
+      <data directive="@assets" />
       <data directive="@auth" injection="true" prefix="&lt;?php&#10;if(auth()-&gt;guard(" suffix=")-&gt;check()): ?&gt;" />
       <data directive="@aware" injection="true" prefix="&lt;?php $attributes = $attributes-&gt;exceptProps(" suffix="); ?&gt;" />
       <data directive="@break" injection="true" prefix="&lt;?php&#10;if(" suffix=") break; ?&gt;" />
@@ -32,6 +33,7 @@
       <data directive="@elseguest" injection="true" prefix="&lt;?php&#10;elseif(auth()-&gt;guard(" suffix=")-&gt;guest()): ?&gt;" />
       <data directive="@elseif" injection="true" prefix="&lt;?php&#10;elseif(" suffix="): ?&gt;" />
       <data directive="@empty" injection="true" prefix="&lt;?php&#10;if(empty(" suffix=")): ?&gt;" />
+      <data directive="@endassets" />
       <data directive="@endauth" />
       <data directive="@endcan" />
       <data directive="@endcanany" />
@@ -51,6 +53,7 @@
       <data directive="@endisset" />
       <data directive="@endlang" />
       <data directive="@endonce" />
+      <data directive="@endpersist" />
       <data directive="@endphp" />
       <data directive="@endprepend" />
       <data directive="@endprependonce" />
@@ -58,13 +61,16 @@
       <data directive="@endpush" />
       <data directive="@endpushif" />
       <data directive="@endpushonce" />
+      <data directive="@endscript" />
       <data directive="@endsection" />
       <data directive="@endsession" />
       <data directive="@endslot" />
       <data directive="@endswitch" />
+      <data directive="@endteleport" />
       <data directive="@endunless" />
       <data directive="@endverbatim" />
       <data directive="@endwhile" />
+      <data directive="@entangle" injection="true" prefix="&lt;?php \print_r(" suffix="); ?&gt;" />
       <data directive="@env" injection="true" prefix="&lt;?php&#10;if(app()-&gt;environment(" suffix=")): ?&gt;" />
       <data directive="@error" injection="true" prefix="&lt;?php&#10;$__errorArgs = [" suffix="];&#10;$__bag = $errors-&gt;getBag($__errorArgs[1] ?? 'default');&#10;if ($__bag-&gt;has($__errorArgs[0])) :&#10;if (isset($message)) { $__messageOriginal = $message; }&#10;$message = $__bag-&gt;first($__errorArgs[0]); ?&gt;" />
       <data directive="@extends" injection="true" prefix="&lt;?php&#10;echo $__env-&gt;make(" suffix=", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))-&gt;render(); ?&gt;" />
@@ -84,11 +90,16 @@
       <data directive="@js" injection="true" prefix="&lt;?php _bladeDirective(" suffix="); ?&gt;" />
       <data directive="@json" injection="true" prefix="&lt;?php&#10;echo json_encode(" suffix=") ?&gt;" />
       <data directive="@lang" injection="true" prefix="&lt;?php&#10;echo app('translator')-&gt;get(" suffix="); ?&gt;" />
+      <data directive="@livewire" injection="true" prefix="&lt;?php \Livewire\Livewire::mount(" suffix="); ?&gt;" />
+      <data directive="@livewireScriptConfig" />
+      <data directive="@livewireScripts" />
+      <data directive="@livewireStyles" />
       <data directive="@measure" />
       <data directive="@method" injection="true" prefix="&lt;?php&#10;echo method_field(" suffix="); ?&gt;" />
       <data directive="@once" />
       <data directive="@overwrite" />
       <data directive="@parent" />
+      <data directive="@persist" injection="true" prefix="&lt;?php echo e(" suffix="); ?&gt;" />
       <data directive="@php" injection="true" prefix="&lt;?php&#10;(" suffix="); ?&gt;" />
       <data directive="@prepend" injection="true" prefix="&lt;?php&#10;$__env-&gt;startPrepend(" suffix="); ?&gt;" />
       <data directive="@prependonce" injection="true" prefix="&lt;?php&#10;$___phpstorm_prepend_once_params = [" suffix="]; if (! $__env-&gt;hasRenderedOnce($___phpstorm_prepend_once_params[1])): $__env-&gt;markAsRenderedOnce($___phpstorm_prepend_once_params); $__env-&gt;startPrepend($___phpstorm_prepend_once_params[0]); ?&gt;" />
@@ -100,6 +111,7 @@
       <data directive="@ray" injection="true" prefix="&lt;?php ray(" suffix="); ?&gt;" />
       <data directive="@readonly" injection="true" prefix="&lt;?php&#10;if(" suffix="): echo 'readonly'; endif; ?&gt;" />
       <data directive="@required" injection="true" prefix="&lt;?php&#10;if(" suffix="): echo 'required'; endif; ?&gt;" />
+      <data directive="@script" />
       <data directive="@section" injection="true" prefix="&lt;?php&#10;$__env-&gt;startSection(" suffix="); ?&gt;" />
       <data directive="@sectionMissing" injection="true" prefix="&lt;?php&#10;if (empty(trim($__env-&gt;yieldContent(" suffix=")))): ?&gt;" />
       <data directive="@selected" injection="true" prefix="&lt;?php if(" suffix=") {echo 'selected';}?&gt;" />
@@ -110,6 +122,8 @@
       <data directive="@stop" />
       <data directive="@style" injection="true" prefix="class=&quot;&lt;?php echo \Illuminate\Support\Arr::toCssStyles(" suffix=")?&gt;&quot;" />
       <data directive="@switch" injection="true" prefix="&lt;?php&#10;switch(" suffix="): ?&gt;" />
+      <data directive="@teleport" injection="true" prefix="&lt;?php echo e(" suffix="); ?&gt;" />
+      <data directive="@this" />
       <data directive="@unless" injection="true" prefix="&lt;?php&#10;if (! (" suffix=")): ?&gt;" />
       <data directive="@unset" injection="true" prefix="&lt;?php&#10;unset(" suffix="); ?&gt;" />
       <data directive="@verbatim" />

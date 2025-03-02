@@ -2,44 +2,38 @@
 
 namespace Digitlimit\Alert\Types;
 
-use Digitlimit\Alert\Component\Button;
-use Digitlimit\Alert\Helpers\Helper;
-use Digitlimit\Alert\Message\AbstractMessage;
-use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\SessionInterface;
-use Illuminate\View\View;
+use Digitlimit\Alert\Contracts\Closable;
+use Digitlimit\Alert\Contracts\HasButton;
+use Digitlimit\Alert\Contracts\HasMessage;
+use Digitlimit\Alert\Contracts\HasTitle;
+use Digitlimit\Alert\Contracts\HasView;
+use Digitlimit\Alert\Contracts\Levelable;
+use Digitlimit\Alert\Contracts\Scrollable;
+use Digitlimit\Alert\Contracts\Sizable;
+use Digitlimit\Alert\Contracts\Taggable;
+use Digitlimit\Alert\Events\Modal\Flashed;
+use Digitlimit\Alert\Foundation\AbstractAlert;
+use Digitlimit\Alert\Foundation\AlertInterface;
+use Digitlimit\Alert\Traits;
+use Exception;
+use Throwable;
 
-class Modal extends AbstractMessage implements MessageInterface
+/**
+ * Modal alert class.
+ */
+class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton, HasMessage, HasTitle, HasView, Levelable, Scrollable, Sizable, Taggable
 {
-    /**
-     * An instance of action button.
-     */
-    public Button $action;
-
-    /**
-     * An instance of cancel button.
-     */
-    public Button $cancel;
-
-    /**
-     * The modal size.
-     */
-    public ?string $size = null;
-
-    /**
-     * The scrollable class for modal if given.
-     */
-    public ?string $scrollable = null;
-
-    /**
-     * The position of the modal on the screen if given.
-     */
-    public ?string $position = null;
-
-    /**
-     * The view HTML string if given.
-     */
-    public ?string $view = null;
+    use Traits\Closable;
+    use Traits\Levelable;
+    use Traits\Scrollable;
+    use Traits\Sizable;
+    use Traits\Taggable;
+    use Traits\WithActionButton;
+    use Traits\WithButton;
+    use Traits\WithCancelButton;
+    use Traits\WithMessage;
+    use Traits\WithTitle;
+    use Traits\WithView;
 
     /**
      * Create a new modal alert instance.
@@ -47,12 +41,9 @@ class Modal extends AbstractMessage implements MessageInterface
      * @return void
      */
     public function __construct(
-        protected SessionInterface $session,
-        public ?string $message
+        protected string $message
     ) {
-        $this->id($this->key().'-'.Helper::randomString());
-        $this->action = new Button();
-        $this->cancel = new Button();
+        parent::__construct();
     }
 
     /**
@@ -64,113 +55,63 @@ class Modal extends AbstractMessage implements MessageInterface
     }
 
     /**
-     * Set the action button.
+     * Convert the modal alert to an array.
      */
-    public function action(string $label, ?string $link = null, array $attributes = []): self
+    public function toArray(): array
     {
-        $this->action = new Button($label, $link, $attributes);
-        $this->flash();
-
-        return $this;
+        return array_merge(parent::toArray(), [
+            'type' => $this->key(),
+            'level' => $this->getLevel(),
+            'title' => $this->getTitle(),
+            'message' => $this->getMessage(),
+            'tag' => $this->getTag(),
+            'size' => $this->getSize(),
+            'scrollable' => $this->isScrollable(),
+            'closable' => $this->isClosable(),
+            'buttons' => $this->buttonsToArray(),
+            'view' => $this->getView(),
+        ]);
     }
 
     /**
-     * Set the cancel button.
+     * Fill the modal alert from an array.
+     *
+     * @throws Exception
+     * @throws Throwable
      */
-    public function cancel(string $label, ?string $link = null, array $attributes = []): self
+    public static function fill(array $alert): AlertInterface
     {
-        $this->cancel = new Button($label, $link, $attributes);
-        $this->flash();
+        $modal = new static($alert['message']);
 
-        return $this;
+        $modal->id($alert['id']);
+        $modal->size($alert['size']);
+        $modal->level($alert['level']);
+        $modal->scrollable($alert['scrollable'] ?? false);
+        $modal->closable($alert['closable'] ?? false);
+        $modal->buttons($alert['buttons'] ?? []);
+
+        if (isset($alert['tag']) && $alert['tag']) {
+            $modal->tag($alert['tag']);
+        }
+
+        if (isset($alert['title']) && $alert['title']) {
+            $modal->title($alert['title']);
+        }
+
+        if (isset($alert['view']) && $alert['view']) {
+            $modal->setView($alert['view']);
+        }
+
+        return $modal;
     }
 
     /**
-     * Set modal to scrollable.
+     * Flash field instance to store.
      */
-    public function scrollable(
-        string $class = 'modal-dialog-scrollable'
-    ): self {
-        $this->scrollable = $class;
-        $this->flash();
-
-        return $this;
-    }
-
-    /**
-     * Set modal size to small.
-     */
-    public function small(string $class = 'modal-sm'): self
+    public function flash(): void
     {
-        $this->size = $class;
-        $this->flash();
+        parent::flash();
 
-        return $this;
-    }
-
-    /**
-     * Set modal size to large.
-     */
-    public function large(string $class = 'modal-lg'): self
-    {
-        $this->size = $class;
-        $this->flash();
-
-        return $this;
-    }
-
-    /**
-     * Set modal size to extra-large.
-     */
-    public function extraLarge(string $class = 'modal-xl'): self
-    {
-        $this->size = $class;
-        $this->flash();
-
-        return $this;
-    }
-
-    /**
-     * Set modal size to fullscreen.
-     */
-    public function fullscreen(string $class = 'modal-fullscreen'): self
-    {
-        $this->size = $class;
-        $this->flash();
-
-        return $this;
-    }
-
-    /**
-     * Set modal position to center.
-     */
-    public function centered(string $class = 'modal-dialog-centered'): self
-    {
-        $this->position = $class;
-        $this->flash();
-
-        return $this;
-    }
-
-    /**
-     * Set a view for the modal.
-     */
-    public function view(View $view): self
-    {
-        $this->view = $view->render();
-        $this->flash();
-
-        return $this;
-    }
-
-    /**
-     * Set HTML string for the modal.
-     */
-    public function html(string $html): self
-    {
-        $this->view = $html;
-        $this->flash();
-
-        return $this;
+        Flashed::dispatch($this);
     }
 }

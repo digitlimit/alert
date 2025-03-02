@@ -2,23 +2,43 @@
 
 namespace Digitlimit\Alert\Types;
 
-use Digitlimit\Alert\Helpers\Helper;
-use Digitlimit\Alert\Message\AbstractMessage;
-use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\SessionInterface;
+use Digitlimit\Alert\Contracts\Closable;
+use Digitlimit\Alert\Contracts\HasMessage;
+use Digitlimit\Alert\Contracts\HasSticky;
+use Digitlimit\Alert\Contracts\HasTitle;
+use Digitlimit\Alert\Contracts\Levelable;
+use Digitlimit\Alert\Contracts\Taggable;
+use Digitlimit\Alert\Events\Message\Flashed;
+use Digitlimit\Alert\Foundation\AbstractAlert;
+use Digitlimit\Alert\Foundation\AlertInterface;
+use Digitlimit\Alert\Traits;
 
-class Message extends AbstractMessage implements MessageInterface
+/**
+ * Message alert class.
+ */
+class Message extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasSticky, HasTitle, Levelable, Taggable
 {
+    use Traits\Closable;
+    use Traits\Levelable;
+    use Traits\Taggable;
+    use Traits\WithMessage;
+    use Traits\WithSticky;
+    use Traits\WithTitle;
+
+    /**
+     * The default level of the alert.
+     */
+    protected string $defaultLevel = 'info';
+
     /**
      * Create a new normal alert instance.
      *
      * @return void
      */
     public function __construct(
-        protected SessionInterface $session,
-        public string $message
+        protected string $message
     ) {
-        $this->id($this->key().'-'.Helper::randomString());
+        parent::__construct();
     }
 
     /**
@@ -27,5 +47,68 @@ class Message extends AbstractMessage implements MessageInterface
     public function key(): string
     {
         return 'message';
+    }
+
+    /**
+     * Fetch the alert level.
+     */
+    public function getLevel(): string
+    {
+        if (empty($this->level)) {
+            return $this->defaultLevel;
+        }
+
+        return $this->level;
+    }
+
+    /**
+     * Convert the message instance to an array.
+     */
+    public function toArray(): array
+    {
+        return array_merge(parent::toArray(), [
+            'type' => $this->key(),
+            'tag' => $this->getTag(),
+            'level' => $this->getLevel(),
+            'message' => $this->getMessage(),
+            'title' => $this->getTitle(),
+            'closable' => $this->isClosable(),
+            'sticky' => $this->isSticky(),
+        ]);
+    }
+
+    /**
+     * Fill the message alert from an array.
+     */
+    public static function fill(array $alert): AlertInterface
+    {
+        $message = new static($alert['message']);
+
+        $message->id($alert['id']);
+        $message->tag($alert['tag']);
+        $message->level($alert['level']);
+        $message->closable($alert['closable'] ?? false);
+        $message->sticky($alert['sticky'] ?? false);
+
+        if ($alert['title']) {
+            $message->title($alert['title']);
+        }
+
+        return $message;
+    }
+
+    /**
+     * Flash field instance to store.
+     */
+    public function flash(): void
+    {
+        if ($this->isSticky()) {
+            $this->flashSticky();
+
+            return;
+        }
+
+        parent::flash();
+        Flashed::dispatch($this);
     }
 }

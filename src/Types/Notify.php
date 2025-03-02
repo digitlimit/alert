@@ -2,17 +2,33 @@
 
 namespace Digitlimit\Alert\Types;
 
-use Digitlimit\Alert\Helpers\Helper;
-use Digitlimit\Alert\Message\AbstractMessage;
-use Digitlimit\Alert\Message\MessageInterface;
-use Digitlimit\Alert\SessionInterface;
+use Digitlimit\Alert\Contracts\Closable;
+use Digitlimit\Alert\Contracts\HasMessage;
+use Digitlimit\Alert\Contracts\HasTimeout;
+use Digitlimit\Alert\Contracts\HasTitle;
+use Digitlimit\Alert\Contracts\Levelable;
+use Digitlimit\Alert\Contracts\Positionable;
+use Digitlimit\Alert\Contracts\Taggable;
+use Digitlimit\Alert\Events\Notify\Flashed;
+use Digitlimit\Alert\Foundation\AbstractAlert;
+use Digitlimit\Alert\Foundation\AlertInterface;
+use Digitlimit\Alert\Traits;
+use Exception;
 
-class Notify extends AbstractMessage implements MessageInterface
+/**
+ * Notify alert class.
+ */
+class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasTimeout, HasTitle, Levelable, Positionable, Taggable
 {
-    /**
-     * The position of the notify.
-     */
-    public ?string $position = null;
+    use Traits\Closable;
+    use Traits\Levelable;
+    use Traits\Positionable;
+    use Traits\Taggable;
+    use Traits\WithMessage;
+    use Traits\WithTimeout;
+    use Traits\WithTitle;
+
+    protected string $defaultLevel = 'info';
 
     /**
      * Create a new notify alert instance.
@@ -20,11 +36,21 @@ class Notify extends AbstractMessage implements MessageInterface
      * @return void
      */
     public function __construct(
-        protected SessionInterface $session,
-        public ?string $message
+        protected string $message
     ) {
-        $this->id($this->key().'-'.Helper::randomString());
-        $this->bottomRight();
+        parent::__construct();
+    }
+
+    /**
+     * Fetch the alert level.
+     */
+    public function getLevel(): string
+    {
+        if (empty($this->level)) {
+            return $this->defaultLevel;
+        }
+
+        return $this->level;
     }
 
     /**
@@ -36,79 +62,52 @@ class Notify extends AbstractMessage implements MessageInterface
     }
 
     /**
-     * Position notify on center of the screen.
+     * Convert the notify alert to an array.
      */
-    public function centered(string $class = 'top-50 start-50 translate-middle'): self
+    public function toArray(): array
     {
-        $this->position = $class;
-        $this->flash();
-
-        return $this;
+        return array_merge(parent::toArray(), [
+            'type' => $this->key(),
+            'title' => $this->getTitle(),
+            'timeout' => $this->getTimeout(),
+            'message' => $this->getMessage(),
+            'tag' => $this->getTag(),
+            'level' => $this->getLevel(),
+            'position' => $this->getPosition(),
+            'closable' => $this->isClosable(),
+        ]);
     }
 
     /**
-     * Position notify on the center of the screen.
+     * Fill the notification alert from an array.
+     *
+     * @throws Exception
      */
-    public function topLeft(string $class = 'top-0 start-0'): self
+    public static function fill(array $alert): AlertInterface
     {
-        $this->position = $class;
-        $this->flash();
+        $notify = new static($alert['message']);
+        $notify->id($alert['id']);
 
-        return $this;
+        if ($alert['title']) {
+            $notify->title($alert['title']);
+        }
+
+        $notify->tag($alert['tag']);
+        $notify->level($alert['level']);
+        $notify->position($alert['position']);
+        $notify->timeout($alert['timeout']);
+        $notify->closable($alert['closable']);
+
+        return $notify;
     }
 
     /**
-     * Position notify on the top right of the screen.
+     * Flash field instance to store.
      */
-    public function topRight(string $class = 'top-0 end-0'): self
+    public function flash(): void
     {
-        $this->position = $class;
-        $this->flash();
+        parent::flash();
 
-        return $this;
-    }
-
-    /**
-     * Position notify on the top center of the screen.
-     */
-    public function topCenter(string $class = 'top-0 start-50 translate-middle-x'): self
-    {
-        $this->position = $class;
-        $this->flash();
-
-        return $this;
-    }
-
-    /**
-     * Position notify on the bottom left of the screen.
-     */
-    public function bottomLeft(string $class = 'bottom-0 start-0'): self
-    {
-        $this->position = $class;
-        $this->flash();
-
-        return $this;
-    }
-
-    /**
-     * Position notify on the bottom right of the screen.
-     */
-    public function bottomRight(string $class = 'bottom-0 end-0'): self
-    {
-        $this->position = $class;
-        $this->flash();
-
-        return $this;
-    }
-
-    /**
-     * Position notify on the bottom center of the screen.
-     */
-    public function bottomCenter(string $class = 'bottom-0 start-50 translate-middle-x'): self
-    {
-        $this->position = $class;
-        $this->flash();
-
-        return $this;
+        Flashed::dispatch($this);
     }
 }

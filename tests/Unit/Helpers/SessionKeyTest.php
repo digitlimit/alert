@@ -7,4 +7,4 @@ it('can generate a session key from tag name and alert type', function () {
 
     expect($key)
         ->toEqual(SessionKey::MAIN_KEY.'.notify.contact-form-1');
-})->name('helpers', 'helpers-session-key');
+})->group('helpers', 'helpers-session-key');

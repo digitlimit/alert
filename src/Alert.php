@@ -2,14 +2,15 @@
 
 namespace Digitlimit\Alert;
 
+use Digitlimit\Alert\Contracts\HasName;
+use Digitlimit\Alert\Contracts\Taggable;
+use Digitlimit\Alert\Factory\AlertFactory;
+use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Helpers\Type;
-use Digitlimit\Alert\Message\MessageFactory;
-use Digitlimit\Alert\Message\MessageInterface;
 use Exception;
-use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Traits\Macroable;
-use Illuminate\Validation\Validator;
 
 class Alert
 {
@@ -21,52 +22,45 @@ class Alert
     const DEFAULT_TAG = 'default';
 
     /**
-     * Create a new alert instance.
-     */
-    public function __construct(
-        protected SessionInterface $session
-    ) {
-    }
-
-    /**
      * Fetch an alert based on the default tag.
+     *
+     * @throws Exception
      */
-    public function default(string $type): ?MessageInterface
+    public function default(string $type): ?Taggable
     {
         return self::tagged($type, self::DEFAULT_TAG);
     }
 
     /**
      * Fetch an alert based on the type and named.
+     *
+     * @throws Exception
      */
-    public function named(
-        string $type,
-        string $name,
-        ?string $tag = null
-    ): ?MessageInterface {
-        if (!Type::exists($type)) {
+    public static function named(string $type, string $name, string $tag): ?HasName
+    {
+        if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $tag = ($tag ?? self::DEFAULT_TAG).'.'.$name;
+        $tag = $tag.'.'.$name;
 
-        return $this->session->get(
+        return Session::get(
             SessionKey::key($type, $tag)
         );
     }
 
     /**
      * Fetch an alert based on the tag name.
+     *
+     * @throws Exception
      */
-    public function tagged(
-        string $type,
-        string $tag
-    ): ?MessageInterface {
-        if (!Type::exists($type)) {
+    public static function tagged(string $type, string $tag): ?Taggable
+    {
+        if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $tagged = $this->session->get(
+        $tagged = Session::get(
             SessionKey::key($type, $tag)
         );
 
@@ -78,74 +72,135 @@ class Alert
     }
 
     /**
-     * Fetch the field alert.
+     * @throws Exception
      */
-    public function field(?string $name = null, ?string $message = null): MessageInterface
+    public static function taggedField(string $tag): ?Taggable
     {
-        return MessageFactory::make(
-            $this->session,
-            'field',
-            $name,
-            $message
-        );
+        return self::tagged('field', $tag);
     }
 
     /**
-     * Fetch the field bag alert.
+     * @throws Exception
      */
-    public function fieldBag(
-        Validator|MessageBag|null $bag = null
-    ): MessageInterface {
-        return MessageFactory::make(
-            $this->session,
-            'bag',
-            $bag
-        );
+    public static function namedField(string $name, string $tag): ?AlertInterface
+    {
+        return self::named('field', $name, $tag);
     }
 
     /**
-     * Fetch the modal alert.
+     * @throws Exception
      */
-    public function modal(?string $message = null): MessageInterface
+    public static function fieldBag(string $tag): ?Taggable
     {
-        return MessageFactory::make($this->session, 'modal', $message);
+        return self::tagged('bag', $tag);
     }
 
     /**
-     * Fetch the notify alert.
+     * @throws Exception
      */
-    public function notify(?string $message = null): MessageInterface
+    public static function taggedMessage(string $tag): ?Taggable
     {
-        return MessageFactory::make($this->session, 'notify', $message);
+        return self::tagged('message', $tag);
     }
 
     /**
-     * Fetch the sticky alert.
+     * @throws Exception
      */
-    public function sticky(?string $message = null): MessageInterface
+    public static function taggedModal(string $tag): ?Taggable
     {
-        return MessageFactory::make($this->session, 'sticky', $message);
+        return self::tagged('modal', $tag);
     }
 
     /**
-     * Fetch the default alert type, which is the message alert.
+     * @throws Exception
      */
-    public function message(string $message): MessageInterface
+    public static function taggedNotify(string $tag): ?Taggable
     {
-        return MessageFactory::make($this->session, 'message', $message);
+        return self::tagged('notify', $tag);
     }
 
     /**
      * Fetch an alert from the given alert type.
+     *
+     * @throws Exception
      */
-    public function from(
-        string $type,
-        ...$args
-    ): MessageInterface {
-        if (!Type::exists($type)) {
+    public static function from(string $type, ...$args): AlertInterface
+    {
+        if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        return MessageFactory::make($this->session, $type, ...$args);
+        return AlertFactory::make($type, ...$args);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function fromArray(array $alert): ?AlertInterface
+    {
+        if (empty($alert)) {
+            return null;
+        }
+
+        $type = $alert['type'] ?? null;
+
+        if (! $type || ! Type::exists($type)) {
+            throw new Exception("Invalid alert type '$type'. Check the alert config");
+        }
+
+        return AlertFactory::makeFromArray($alert);
+    }
+
+    /**
+     * Fetch all alerts from the session.
+     */
+    public static function has(string $type): bool
+    {
+        $types = Session::get(SessionKey::typeKey($type)) ?? [];
+
+        return ! empty($types);
+    }
+
+    /**
+     * Fetch all alerts from the session.
+     */
+    public static function count(?string $type = null): int
+    {
+        $types = self::all($type);
+
+        if ($type) {
+            return count($types);
+        }
+
+        $count = 0;
+        foreach ($types as $type) {
+            $count += count($type);
+        }
+
+        return $count;
+    }
+
+    /**
+     * Fetch all alerts from the session.
+     */
+    public static function all(?string $type = null): array
+    {
+        return $type
+            ? Session::get(SessionKey::typeKey($type), [])
+            : Session::get(SessionKey::mainKey(), []);
+    }
+
+    /**
+     * Dynamically handle method calls for different alert types.
+     *
+     * @throws Exception
+     */
+    public function __call($method, $parameters)
+    {
+        if (Type::exists($method)) {
+            return AlertFactory::make($method, ...$parameters);
+        }
+
+        throw new Exception("Method '$method' not found in Alert class.");
     }
 }

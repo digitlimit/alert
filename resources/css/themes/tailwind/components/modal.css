@@ -1,0 +1,63 @@
+.alert-modal {
+  @apply fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen;
+}
+.alert-modal .modal-overlay {
+  @apply absolute inset-0 w-full h-full bg-white backdrop-blur-sm bg-opacity-70;
+}
+.alert-modal .modal-content {
+  @apply bg-white p-6 rounded-lg shadow-lg relative max-w-full;
+}
+.alert-modal .modal-content.small {
+  @apply w-1/4;
+}
+.alert-modal .modal-content.medium {
+  @apply w-1/2;
+}
+.alert-modal .modal-content.large {
+  @apply w-3/4;
+}
+.alert-modal .modal-content.extra-large {
+  @apply w-4/5;
+}
+.alert-modal .modal-content.fullscreen {
+  @apply w-full h-full;
+}
+.alert-modal .modal-content.scrollable {
+  @apply max-h-[80vh] overflow-y-auto;
+}
+.alert-modal .modal-header {
+  @apply flex items-center justify-between pb-3;
+}
+.alert-modal .modal-header.text-success {
+  @apply text-green-500;
+}
+.alert-modal .modal-header.text-error {
+  @apply text-red-500;
+}
+.alert-modal .modal-header.text-warning {
+  @apply text-yellow-500;
+}
+.alert-modal .modal-header.text-info {
+  @apply text-blue-500;
+}
+.alert-modal .modal-header .modal-title {
+  @apply text-lg font-semibold;
+}
+.alert-modal .modal-header .modal-close {
+  @apply absolute top-0 right-0 flex items-center justify-center w-8 h-8 mt-5 mr-5 text-gray-600 rounded-full hover:text-gray-800 hover:bg-gray-50;
+}
+.alert-modal .modal-header .modal-close-icon {
+  @apply w-5 h-5;
+}
+.alert-modal .modal-body {
+  @apply relative w-auto pb-8;
+}
+.alert-modal .modal-footer {
+  @apply flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2;
+}
+.alert-modal .modal-footer .modal-action-button {
+  @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 bg-neutral-950 hover:bg-neutral-900;
+}
+.alert-modal .modal-footer .modal-cancel-button {
+  @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-100 focus:ring-offset-2;
+}

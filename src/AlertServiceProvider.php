@@ -2,9 +2,7 @@
 
 namespace Digitlimit\Alert;
 
-use Digitlimit\Alert\Helpers\Theme;
 use Exception;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AlertServiceProvider extends ServiceProvider
@@ -18,13 +16,9 @@ class AlertServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'alert');
 
-        $this->registerComponents();
-
         $this->registerMacros();
 
         $this->bootForConsole();
-
-        $this->registerBladeDirectives();
     }
 
     /**
@@ -32,14 +26,13 @@ class AlertServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(SessionInterface::class, Session::class);
-        $this->app->bind(ConfigInterface::class, Config::class);
-
         $this->app->singleton('alert', function ($app) {
             return $app->make(Alert::class);
         });
 
         $this->mergeConfigFrom(__DIR__.'/../config/alert.php', 'alert');
+
+        $this->app->register(Themes\Tailwind\TailwindServiceProvider::class);
     }
 
     /**
@@ -69,26 +62,6 @@ class AlertServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register alert components.
-     *
-     * @throws Exception
-     */
-    protected function registerComponents(): void
-    {
-        $theme = Theme::theme();
-
-        if (empty($theme)) {
-            throw new Exception('Invalid alert theme configuration');
-        }
-
-        Blade::componentNamespace($theme['components'], 'alert');
-
-        foreach ($theme['types'] as $type) {
-            Blade::component($type['view'], $type['component']);
-        }
-    }
-
-    /**
      * Register some helper macros.
      */
     protected function registerMacros(): void
@@ -98,24 +71,5 @@ class AlertServiceProvider extends ServiceProvider
                 ->sticky()
                 ->forget($tag);
         });
-    }
-
-    /**
-     * Register Blade directives.
-     */
-    public function registerBladeDirectives(): void
-    {
-        $css = asset('vendor/alert/css/alert.css');
-        $js = asset('vendor/alert/js/alert.js');
-
-        Blade::directive(
-            'alertStyles',
-            fn () => '<link rel="stylesheet" href="'.$css.'">'
-        );
-
-        Blade::directive(
-            'alertScripts',
-            fn () => '<script src="'.$js.'"></script>'
-        );
     }
 }

@@ -1,0 +1,17 @@
+.alert-field {
+  &.success {
+    @apply p-3 text-green-800;
+  }
+
+  &.error {
+    @apply p-3 text-red-800;
+  }
+
+  &.warning {
+    @apply p-3 text-yellow-800;
+  }
+
+  &.info {
+    @apply p-3 text-blue-800;
+  }
+}

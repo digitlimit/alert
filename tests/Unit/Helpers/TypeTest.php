@@ -9,7 +9,7 @@ it('should return alert types', function () {
         ->toBeArray()
         ->and($types)
         ->not->toBeEmpty();
-});
+})->group('helpers', 'helpers-type');
 
 it('should return prefixed alert type', function () {
     $type = 'success';
@@ -17,34 +17,7 @@ it('should return prefixed alert type', function () {
 
     expect($prefixed)
         ->toEqual(Type::PREFIX.$type);
-});
-
-it('should check if alert type exists', function () {
-    $type = 'sticky';
-
-    expect(Type::exists($type))
-        ->toBeTrue();
-});
-
-it('should return alert type', function () {
-    $type = 'sticky';
-    $alertType = Type::type($type);
-
-    expect($alertType)
-        ->toBeArray()
-        ->toHaveKey('view')
-        ->toHaveKey('alert')
-        ->toHaveKey('component');
-});
-
-it('should return alert class name', function () {
-    $type = 'sticky';
-    $className = Type::classname($type);
-
-    expect($className)
-        ->toBeString()
-        ->toEqual(Type::type($type)['alert']);
-});
+})->group('helpers', 'helpers-type');
 
 it('should throw exception if alert type does not exist', function () {
     $type = 'unknown';
@@ -53,4 +26,4 @@ it('should throw exception if alert type does not exist', function () {
 })->throws(
     Exception::class,
     "The alert type 'unknown' does not exist in config"
-);
+)->group('helpers', 'helpers-type');

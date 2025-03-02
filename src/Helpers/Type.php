@@ -4,6 +4,9 @@ namespace Digitlimit\Alert\Helpers;
 
 use Exception;
 
+/**
+ * Alert type helper.
+ */
 class Type
 {
     /**
@@ -13,12 +16,12 @@ class Type
 
     /**
      * Fetch alert types from the config file.
+     *
+     * @throws Exception
      */
     public static function types(): array
     {
-        $theme = Theme::theme();
-
-        return $theme['types'] ?? [];
+        return Theme::theme()->types();
     }
 
     /**
@@ -54,7 +57,7 @@ class Type
      */
     public static function classname(string $type): string
     {
-        if (!self::exists($type)) {
+        if (! self::exists($type)) {
             throw new Exception("The alert type '$type' does not exist in config");
         }
 

@@ -5,7 +5,7 @@ namespace Digitlimit\Alert\Helpers;
 class Attribute
 {
     /**
-     * Convert attributes array to HTML string attributes.
+     * Convert an attribute array to HTML string attributes.
      */
     public static function toString(array $attributes): string
     {

@@ -2,23 +2,39 @@
 
 namespace Digitlimit\Alert\Helpers;
 
+use Digitlimit\Alert\Contracts\ThemeInterface;
+use Exception;
+use Illuminate\Support\Facades\Config;
+
+/**
+ * Theme helper class.
+ */
 class Theme
 {
     public static function name(): string
     {
-        return Helper::config()->get('alert.theme');
+        return Config::get('alert.theme');
     }
 
     public static function all(): array
     {
-        return Helper::config()->get('alert.themes');
+        return Config::get('alert.themes');
     }
 
-    public static function theme(): array
+    /**
+     * @throws Exception
+     */
+    public static function theme(): ThemeInterface
     {
         $name = self::name();
         $themes = self::all();
 
-        return $themes[$name] ?? [];
+        $theme = $themes[$name] ?? null;
+
+        if (! $theme) {
+            throw new Exception("Theme {$name} not found");
+        }
+
+        return app($theme);
     }
 }

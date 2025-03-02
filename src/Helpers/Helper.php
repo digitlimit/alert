@@ -2,8 +2,6 @@
 
 namespace Digitlimit\Alert\Helpers;
 
-use Digitlimit\Alert\ConfigInterface;
-
 class Helper
 {
     /**
@@ -12,10 +10,5 @@ class Helper
     public static function randomString(int $length = 10): string
     {
         return substr(md5(mt_rand()), 0, $length);
-    }
-
-    public static function config(): ConfigInterface
-    {
-        return app(ConfigInterface::class);
     }
 }
