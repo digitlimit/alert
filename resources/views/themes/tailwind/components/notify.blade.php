@@ -81,7 +81,7 @@
                             </svg>
                         </div>
 
-                        <div x-text="notify.message"></div>
+                        <div class="py-3" x-text="notify.message"></div>
 
                         <div class="self-start px-1">
                             <button type="button" class="pt-0 px-1" @click="closeNotification(notify.id)">
