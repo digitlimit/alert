@@ -7,6 +7,9 @@ use Exception;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Tailwind service provider.
+ */
 class TailwindServiceProvider extends ServiceProvider
 {
     /**
