@@ -51,12 +51,12 @@ class TailwindServiceProvider extends ServiceProvider
     {
         // Define publishable SCSS assets
         $this->publishes([
-            realpath(__DIR__ . '/../../resources/scss/themes/tailwind') => resource_path('scss/alert'),
+            __DIR__ . '/../../../resources/scss/themes/tailwind' => resource_path('scss/alert'),
         ], 'alert-scss');
 
         // Define publishable compiled CSS
         $this->publishes([
-            realpath(__DIR__ . '/../../resources/css/themes/tailwind/alerts.css') => public_path('vendor/alert/alerts.css'),
+            __DIR__ . '/../../../resources/css/themes/tailwind/alerts.css' => public_path('vendor/alert/alerts.css'),
         ], 'alert-css');
     }
 
