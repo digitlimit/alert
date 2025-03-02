@@ -2,7 +2,7 @@
 
   @apply flex items-center p-4 mb-4 rounded-lg;
 
-  .sr-only {
+  .sr-only-fix {
     @apply sr-only;
   }
 
@@ -57,7 +57,7 @@
       @apply w-3 h-3;
     }
 
-    .sr-only {
+    .sr-only-fix {
       @apply sr-only;
     }
 

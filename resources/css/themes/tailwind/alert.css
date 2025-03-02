@@ -86,7 +86,7 @@
   @apply flex items-center p-4 mb-4 rounded-lg;
 }
 
-.alert-message .sr-only {
+.alert-message .sr-only-fix {
   @apply sr-only;
 }
 
@@ -142,7 +142,7 @@
   @apply w-3 h-3;
 }
 
-.alert-message .close .sr-only {
+.alert-message .close .sr-only-fix {
   @apply sr-only;
 }
 
