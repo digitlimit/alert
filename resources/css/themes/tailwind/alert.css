@@ -143,7 +143,7 @@
 }
 
 .alert-notify {
-  @apply bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 py-3 shadow-lg flex items-center;
+  @apply bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 shadow-lg flex items-center;
 }
 
 .alert-notify.success {
