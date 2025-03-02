@@ -20,7 +20,7 @@
                 <div
                         id="{{ $field->getId() }}"
 
-                        class="{{ config("alert.tailwind.classes.field.levels.$level.container") }}"
+                        class="alert-field {{ $level }}"
 
                         x-transition.duration.300ms
 
@@ -36,7 +36,7 @@
                 </div>
         @elseif($errors->has($name))
                 <div
-                        class="{{ config("alert.tailwind.classes.field.levels.error.container") }}"
+                        class="alert-field error"
 
                         x-transition.duration.300ms
 
