@@ -1,23 +1,39 @@
 .alert-modal {
-  @apply fixed inset-0 flex items-center justify-center p-4 bg-black bg-opacity-50;
+  .modal-overlay {
+    @apply fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen bg-white backdrop-blur-sm bg-opacity-70;
+  }
 
   .modal-content {
-    @apply bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg;
+    @apply bg-white p-6 rounded-lg shadow-lg relative max-w-full;
+
+    &.small { @apply w-1/4; }
+    &.medium { @apply w-1/2; }
+    &.large { @apply w-3/4; }
+    &.extra-large { @apply w-4/5; }
+    &.fullscreen { @apply w-full h-full; }
   }
 
   .modal-header {
-    @apply flex justify-between items-center pb-4 border-b;
+    @apply flex items-center justify-between pb-3;
+  }
+
+  .modal-title {
+    @apply text-lg font-semibold;
+  }
+
+  .modal-close {
+    @apply absolute top-0 right-0 flex items-center justify-center w-8 h-8 mt-5 mr-5 text-gray-600 rounded-full hover:text-gray-800 hover:bg-gray-50;
   }
 
   .modal-body {
-    @apply p-4;
+    @apply relative w-auto pb-8;
   }
 
   .modal-footer {
-    @apply flex justify-end space-x-2 pt-4 border-t;
+    @apply flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2;
   }
 
-  .close-button {
-    @apply text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400;
+  .button-action {
+    @apply px-4 py-2 rounded-lg;
   }
 }

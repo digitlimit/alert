@@ -3,13 +3,11 @@
     @php
         $message   = $alert->fromArray($data);
         $level     = $message->getLevel();
-        $close     = config("alert.tailwind.classes.message.levels.$level.close");
-        $container = config("alert.tailwind.classes.message.levels.$level.container");
     @endphp
     <div
             id="{{ $message->getId() }}"
 
-            class="{{ $container }}"
+            class="alert-message {{ $level }}"
 
             x-transition.duration.300ms
 
@@ -42,7 +40,7 @@
         <button
                 @click="show = false"
                 type="button"
-                class="{{ $close }}"
+                class="close {{ $level }}"
                 aria-label="Close"
         >
             <span class="sr-only">Close</span>

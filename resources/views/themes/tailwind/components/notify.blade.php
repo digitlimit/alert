@@ -1,9 +1,7 @@
 <div wire:ignore class="digitlimit-alert-notify">
     @inject('alert', 'Digitlimit\Alert\Alert')
     @php
-        $notify    = $alert->fromArray($data);
-        $position  = config('alert.tailwind.classes.notify.position.' . $notify->getPosition());
-        $container = config('alert.tailwind.classes.notify.levels.' . $notify->getLevel() . '.container');
+        $notify = $alert->fromArray($data);
     @endphp
     <div
             x-data="{
@@ -49,11 +47,11 @@
             );
         "
 
-        @open-alert-notify.window="createNotification('{{ $notify->getMessage() }}', '{{ $notify->getLevel() }}', {{ $notify->getTimeOut() }})"
+            @open-alert-notify.window="createNotification('{{ $notify->getMessage() }}', '{{ $notify->getLevel() }}', {{ $notify->getTimeOut() }})"
 
-        x-cloak
+            x-cloak
 
-        class="fixed {{ $position }} px-2 mt-3 overflow-x-hidden z-50"
+            class="fixed {{ $notify->getPosition() }} px-2 mt-3 overflow-x-hidden z-50"
     >
         <template x-for="notify in notifications" :key="notify.id">
             <div
@@ -64,7 +62,7 @@
                     x-transition:leave="transition ease-out duration-500"
                     x-transition:leave-start="transform translate-x-0 opacity-100"
                     x-transition:leave-end="transform -translate-y-2 opacity-0"
-                    class="{{ $container }}"
+                    class="alert-notify {{ $notify->getLevel() }}"
             >
                 <div class="flex flex-col w-full">
                     <div class="flex items-center w-full px-1 my-2">
