@@ -15,14 +15,9 @@ use Livewire\Component;
 class Message extends Component implements LivewireInterface
 {
     /**
-     * The default alert tag.
-     */
-    public string $defaultTag = Alert::DEFAULT_TAG;
-
-    /**
      * The alert tag.
      */
-    public string $tag;
+    public string $tag = Alert::DEFAULT_TAG;
 
     /**
      * The alert
