@@ -41,6 +41,8 @@ class Modal extends Component implements LivewireInterface
         if (empty($this->data)) {
             $this->skipRender();
         }
+
+        $this->dispatch('open-alert-modal');
     }
 
     #[On('refresh-alert-modal')]
@@ -125,5 +127,4 @@ class Modal extends Component implements LivewireInterface
     {
         return view('alert::themes.tailwind.components.modal');
     }
-
 }
