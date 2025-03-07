@@ -59,7 +59,6 @@ class Modal extends Component implements LivewireInterface
      */
     public function actionAttributes(array $attributes = []): string
     {
-//        $button = config('alert.tailwind.classes.buttons.primary');
         $buttonAttributes = config('alert.tailwind.attributes.buttons.action');
         $buttonAttributes['class'] = 'modal-action-button';
 
@@ -76,7 +75,6 @@ class Modal extends Component implements LivewireInterface
      */
     public function cancelAttributes(array $attributes = []): string
     {
-//        $button = config('alert.tailwind.classes.buttons.secondary');
         $buttonAttributes = config('alert.tailwind.attributes.buttons.cancel');
         $buttonAttributes['class'] = 'modal-cancel-button';
 
