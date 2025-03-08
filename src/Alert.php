@@ -22,16 +22,6 @@ class Alert
     const DEFAULT_TAG = 'default';
 
     /**
-     * Fetch an alert based on the default tag.
-     *
-     * @throws Exception
-     */
-    public function default(string $type): ?Taggable
-    {
-        return self::tagged($type, self::DEFAULT_TAG);
-    }
-
-    /**
      * Fetch an alert based on the type and named.
      *
      * @throws Exception
@@ -72,54 +62,6 @@ class Alert
     }
 
     /**
-     * @throws Exception
-     */
-    public static function taggedField(string $tag): ?Taggable
-    {
-        return self::tagged('field', $tag);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function namedField(string $name, string $tag): ?AlertInterface
-    {
-        return self::named('field', $name, $tag);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function fieldBag(string $tag): ?Taggable
-    {
-        return self::tagged('bag', $tag);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function taggedMessage(string $tag): ?Taggable
-    {
-        return self::tagged('message', $tag);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function taggedModal(string $tag): ?Taggable
-    {
-        return self::tagged('modal', $tag);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function taggedNotify(string $tag): ?Taggable
-    {
-        return self::tagged('notify', $tag);
-    }
-
-    /**
      * Fetch an alert from the given alert type.
      *
      * @throws Exception
@@ -131,6 +73,51 @@ class Alert
         }
 
         return AlertFactory::make($type, ...$args);
+    }
+
+    public static function forget(string $type, string $tag = Alert::DEFAULT_TAG): void
+    {
+        Session::forget(SessionKey::key($type, $tag));
+    }
+
+    /**
+     * Fetch an alert based on the type and named.
+     *
+     * @throws Exception
+     */
+    public static function getField(string $name, string $tag = Alert::DEFAULT_TAG): ?HasName
+    {
+        return self::named('field', $name, $tag);
+    }
+
+    /**
+     * Fetch an alert based on the type and named.
+     *
+     * @throws Exception
+     */
+    public static function getMessage(string $tag = Alert::DEFAULT_TAG): ?Taggable
+    {
+        return self::tagged('message', $tag);
+    }
+
+    /**
+     * Fetch an alert based on the type and named.
+     *
+     * @throws Exception
+     */
+    public static function getModal(string $tag = Alert::DEFAULT_TAG): ?Taggable
+    {
+        return self::tagged('modal', $tag);
+    }
+
+    /**
+     * Fetch an alert based on the type and named.
+     *
+     * @throws Exception
+     */
+    public static function getNotify(string $tag = Alert::DEFAULT_TAG): ?Taggable
+    {
+        return self::tagged('notify', $tag);
     }
 
     /**

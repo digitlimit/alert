@@ -55,7 +55,7 @@ class Field extends Component implements LivewireInterface
         }
 
         if (! empty($this->name) && ! empty($this->tag)) {
-            $data = Alert::namedField($this->name, $this->tag)?->toArray();
+            $data = Alert::getField($this->name, $this->tag)?->toArray() ?? [];
 
             if (! empty($data)) {
                 $this->setUp($data);

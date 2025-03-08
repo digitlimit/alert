@@ -30,13 +30,11 @@ class Modal extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $this->data = Alert::taggedModal($this->tag)?->toArray() ?? [];
+        $this->data = Alert::getModal($this->tag)?->toArray() ?? [];
 
         if (empty($this->data)) {
             $this->skipRender();
         }
-
-        $this->dispatch('open-alert-modal');
     }
 
     #[On('refresh-alert-modal')]

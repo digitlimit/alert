@@ -66,9 +66,8 @@ class AlertServiceProvider extends ServiceProvider
      */
     protected function registerMacros(): void
     {
-        Alert::macro('stickForget', function (?string $tag = null) {
+        Alert::macro('forget', function (string $tag = Alert::DEFAULT_TAG) {
             app(Alert::class)
-                ->sticky()
                 ->forget($tag);
         });
     }

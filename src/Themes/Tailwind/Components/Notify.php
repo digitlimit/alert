@@ -39,7 +39,7 @@ class Notify extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $data = Alert::taggedNotify($this->tag)?->toArray() ?? [];
+        $data = Alert::getNotify($this->tag)?->toArray() ?? [];
 
         if (empty($data)) {
             $this->skipRender();
