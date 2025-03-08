@@ -39,7 +39,7 @@ class Message extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $data = Alert::getModal($this->tag)?->toArray() ?? [];
+        $data = Alert::getMessage($this->tag)?->toArray() ?? [];
 
         if (empty($data)) {
             $this->skipRender();
