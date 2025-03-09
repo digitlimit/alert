@@ -28,6 +28,13 @@ return [
         'tailwind' => Themes\Tailwind\Tailwind::class,
     ],
 
+    'icons' => [
+        'success' => \Digitlimit\Alert\Component\Icons\Success::class,
+        'error' => \Digitlimit\Alert\Component\Icons\Error::class,
+        'warning' => \Digitlimit\Alert\Component\Icons\Warning::class,
+        'info' => \Digitlimit\Alert\Component\Icons\Info::class,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Themes Settings
@@ -62,6 +69,7 @@ return [
                 'component' => Themes\Tailwind\Components\Notify::class,
             ],
         ],
+
         'attributes' => [
             'buttons' => [
                 'action' => [

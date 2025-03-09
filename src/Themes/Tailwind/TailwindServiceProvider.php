@@ -19,11 +19,6 @@ class TailwindServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::anonymousComponentPath(
-            __DIR__.'/../../../themes/tailwind/icons',
-            'alert-icons'
-        );
-
         Tailwind::registerComponents();
 
         Tailwind::dehydrate();
