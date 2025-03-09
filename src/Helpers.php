@@ -63,6 +63,21 @@ if (! function_exists('toastr')) {
     }
 }
 
+if (! function_exists('notify')) {
+    function notify(string $message, ?string $title = null,): Toastr
+    {
+        $alert = app('alert')->notify($message);
+
+        if ($title) {
+            $alert->title($title);
+        }
+
+        $alert->flash();
+
+        return $alert;
+    }
+}
+
 if (! function_exists('forgetAlert')) {
     function forgetAlert(string $type, string $tag = Alert::DEFAULT_TAG): void
     {
