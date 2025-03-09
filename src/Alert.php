@@ -121,6 +121,16 @@ class Alert
     }
 
     /**
+     * Fetch an alert based on the type and named.
+     *
+     * @throws Exception
+     */
+    public static function getNotify(string $tag = Alert::DEFAULT_TAG): ?Taggable
+    {
+        return self::tagged('notify', $tag);
+    }
+
+    /**
      * @throws Exception
      */
     public static function fromArray(array $alert): ?AlertInterface
