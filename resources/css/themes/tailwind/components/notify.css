@@ -1,0 +1,60 @@
+.notify-container {
+  @apply pointer-events-none fixed bottom-0 left-1/2 z-[100] flex w-full -translate-x-1/2 flex-col items-center space-y-4 transition-all will-change-transform -translate-y-10;
+}
+
+.notify {
+  @apply relative z-50 w-full max-w-[400px] opacity-100 transform translate-y-0;
+}
+
+.notify-content {
+  @apply py-2 bg-gray-800 pointer-events-auto relative flex min-h-12 w-full items-center justify-between gap-4 overflow-hidden rounded-xl pl-3 pr-2 shadow-xxl;
+}
+
+.notify-icon {
+  @apply relative flex flex-1 items-center gap-3;
+}
+
+.notify-message {
+  @apply text-gray-300;
+}
+
+.notify-button {
+  @apply cursor-default relative isolate inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap focus:outline-none disabled:opacity-50 px-4 min-h-8 border-transparent;
+}
+
+.notify-button.reset {
+  @apply bg-gray-600 text-white hover:bg-gray-500;
+}
+
+.notify-button.save {
+  @apply bg-blue-500 text-white hover:bg-blue-400;
+}
+
+.notify-progress {
+  @apply absolute inset-0 bg-gray-700;
+  animation: progress-bar 5s linear forwards;
+}
+
+@keyframes progress-bar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.notify.success {
+  @apply from-green-400 to-green-500;
+}
+
+.notify.error {
+  @apply from-red-400 to-pink-500;
+}
+
+.notify.warning {
+  @apply from-yellow-400 to-yellow-500;
+}
+
+.notify.info {
+  @apply from-blue-400 to-blue-500;
+}
