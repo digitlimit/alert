@@ -1,22 +1,16 @@
 <?php
 
+use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Types\Message;
 use Digitlimit\Alert\Types\Field;
 use Digitlimit\Alert\Types\Modal;
 use Digitlimit\Alert\Types\Toastr;
-use Illuminate\Support\MessageBag;
-use Illuminate\Validation\Validator;
 
 if (! function_exists('alert')) {
-    function alert(
-        string $message,
-        ?string $title = null,
-        string $level = 'success'
-    ): Message {
+    function alert(string $message, ?string $title = null): Message
+    {
         $alert = app('alert')
             ->message($message);
-
-        $alert->level($level);
 
         if ($title) {
             $alert->title($title);
@@ -29,19 +23,9 @@ if (! function_exists('alert')) {
 }
 
 if (! function_exists('field')) {
-    function field(
-        string $name,
-        string $message,
-        ?string $tag = null,
-        string $level = 'success'
-    ): Field {
+    function field(string $name, string $message,): Field
+    {
         $alert = app('alert')->field($name, $message);
-
-        if ($tag) {
-            $alert->tag($tag);
-        }
-
-        $alert->level($level);
 
         $alert->flash();
 
@@ -49,35 +33,13 @@ if (! function_exists('field')) {
     }
 }
 
-if (! function_exists('fieldBag')) {
-    function fieldBag(Validator|MessageBag $bag): FieldBag
-    {
-        $bag = app('alert')
-            ->fieldBag($bag);
-
-        $bag->flash();
-
-        return $bag;
-    }
-}
-
 if (! function_exists('modal')) {
-    function modal(
-        string $message,
-        ?string $title = null,
-        ?string $tag = null,
-        string $level = 'success'
-    ): Modal {
+    function modal(string $message, ?string $title = null,): Modal
+    {
         $alert = app('alert')->modal($message);
 
         if ($title) {
             $alert->title($title);
-        }
-
-        $alert->level($level);
-
-        if ($tag) {
-            $alert->tag($tag);
         }
 
         $alert->flash();
@@ -87,50 +49,23 @@ if (! function_exists('modal')) {
 }
 
 if (! function_exists('toastr')) {
-    function toastr(
-        string $message,
-        ?string $title = null,
-        string $level = 'success',
-        string $position = 'top-right'
-    ): Toastr {
+    function toastr(string $message, ?string $title = null,): Toastr
+    {
         $alert = app('alert')->toastr($message);
 
         if ($title) {
             $alert->title($title);
         }
 
-        $alert->level($level);
-        $alert->position($position);
-
         $alert->flash();
 
         return $alert;
     }
 }
 
-if (! function_exists('sticky')) {
-    function sticky(
-        string $message,
-        ?string $title = null,
-        string $level = 'success'
-    ): Sticky {
-        $alert = app('alert')->sticky($message);
-
-        if ($title) {
-            $alert->title($title);
-        }
-
-        $alert->level($level);
-
-        $alert->flash();
-
-        return $alert;
-    }
-}
-
-if (! function_exists('forgetSticky')) {
-    function forgetSticky(?string $name = null): void
+if (! function_exists('forgetAlert')) {
+    function forgetAlert(string $type, string $tag = Alert::DEFAULT_TAG): void
     {
-        app('alert')->stickForget($name);
+        app('alert')->forget($type, $tag);
     }
 }
