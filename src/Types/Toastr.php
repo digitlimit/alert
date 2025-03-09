@@ -9,16 +9,16 @@ use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Positionable;
 use Digitlimit\Alert\Contracts\Taggable;
-use Digitlimit\Alert\Events\Notify\Flashed;
+use Digitlimit\Alert\Events\Toastr\Flashed;
 use Digitlimit\Alert\Foundation\AbstractAlert;
 use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Traits;
 use Exception;
 
 /**
- * Notify alert class.
+ * Toastr alert class.
  */
-class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasTimeout, HasTitle, Levelable, Positionable, Taggable
+class Toastr extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasTimeout, HasTitle, Levelable, Positionable, Taggable
 {
     use Traits\Closable;
     use Traits\Levelable;
@@ -31,7 +31,7 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessa
     protected string $defaultLevel = 'info';
 
     /**
-     * Create a new notify alert instance.
+     * Create a new toastr alert instance.
      *
      * @return void
      */
@@ -54,15 +54,15 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessa
     }
 
     /**
-     * Message store key for the notify alert.
+     * Message store key for the toastr alert.
      */
     public function key(): string
     {
-        return 'notify';
+        return 'toastr';
     }
 
     /**
-     * Convert the notify alert to an array.
+     * Convert the toastr alert to an array.
      */
     public function toArray(): array
     {
@@ -85,20 +85,20 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessa
      */
     public static function fill(array $alert): AlertInterface
     {
-        $notify = new static($alert['message']);
-        $notify->id($alert['id']);
+        $toastr = new static($alert['message']);
+        $toastr->id($alert['id']);
 
         if ($alert['title']) {
-            $notify->title($alert['title']);
+            $toastr->title($alert['title']);
         }
 
-        $notify->tag($alert['tag']);
-        $notify->level($alert['level']);
-        $notify->position($alert['position']);
-        $notify->timeout($alert['timeout']);
-        $notify->closable($alert['closable']);
+        $toastr->tag($alert['tag']);
+        $toastr->level($alert['level']);
+        $toastr->position($alert['position']);
+        $toastr->timeout($alert['timeout']);
+        $toastr->closable($alert['closable']);
 
-        return $notify;
+        return $toastr;
     }
 
     /**

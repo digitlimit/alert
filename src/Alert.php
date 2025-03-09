@@ -115,9 +115,9 @@ class Alert
      *
      * @throws Exception
      */
-    public static function getNotify(string $tag = Alert::DEFAULT_TAG): ?Taggable
+    public static function getToastr(string $tag = Alert::DEFAULT_TAG): ?Taggable
     {
-        return self::tagged('notify', $tag);
+        return self::tagged('toastr', $tag);
     }
 
     /**

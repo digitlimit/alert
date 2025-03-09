@@ -10,9 +10,9 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 
 /**
- * Class Notify
+ * Class Toastr
  */
-class Notify extends Component implements LivewireInterface
+class Toastr extends Component implements LivewireInterface
 {
     /**
      * The alert tag.
@@ -39,7 +39,7 @@ class Notify extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $data = Alert::getNotify($this->tag)?->toArray() ?? [];
+        $data = Alert::getToastr($this->tag)?->toArray() ?? [];
 
         if (empty($data)) {
             $this->skipRender();
@@ -50,7 +50,7 @@ class Notify extends Component implements LivewireInterface
         $this->setUp($data);
     }
 
-    #[On('refresh-alert-notify')]
+    #[On('refresh-alert-toastr')]
     public function refresh(string $tag, array $data): void
     {
         if ($this->tag !== $tag || empty($data)) {
@@ -58,7 +58,7 @@ class Notify extends Component implements LivewireInterface
         }
 
         $this->setUp($data);
-        $this->dispatch('open-alert-notify');
+        $this->dispatch('open-alert-toastr');
     }
 
     /**
@@ -66,6 +66,6 @@ class Notify extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::themes.tailwind.components.notify');
+        return view('alert::themes.tailwind.components.toastr');
     }
 }

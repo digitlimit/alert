@@ -63,10 +63,10 @@ return [
                 'component' => Themes\Tailwind\Components\Modal::class,
             ],
 
-            'notify' => [
-                'view' => 'alert-notify',
-                'alert' => Types\Notify::class,
-                'component' => Themes\Tailwind\Components\Notify::class,
+            'toastr' => [
+                'view' => 'alert-toastr',
+                'alert' => Types\Toastr::class,
+                'component' => Themes\Tailwind\Components\Toastr::class,
             ],
         ],
 

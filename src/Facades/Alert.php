@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static named(string $string, string $string1)
  * @method static message(string $string)
  * @method static modal(string $string)
- * @method static notify(string $string)
+ * @method static toastr(string $string)
  * @method static sticky(string $string)
  * @method static field(string $name, string $message)
  * @method static form(string $string, string $string1)

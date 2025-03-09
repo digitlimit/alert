@@ -3,7 +3,7 @@
 use Digitlimit\Alert\Types\Message;
 use Digitlimit\Alert\Types\Field;
 use Digitlimit\Alert\Types\Modal;
-use Digitlimit\Alert\Types\Notify;
+use Digitlimit\Alert\Types\Toastr;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator;
 
@@ -86,14 +86,14 @@ if (! function_exists('modal')) {
     }
 }
 
-if (! function_exists('notify')) {
-    function notify(
+if (! function_exists('toastr')) {
+    function toastr(
         string $message,
         ?string $title = null,
         string $level = 'success',
         string $position = 'top-right'
-    ): Notify {
-        $alert = app('alert')->notify($message);
+    ): Toastr {
+        $alert = app('alert')->toastr($message);
 
         if ($title) {
             $alert->title($title);

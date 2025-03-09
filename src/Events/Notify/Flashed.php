@@ -1,8 +1,8 @@
 <?php
 
-namespace Digitlimit\Alert\Events\Notify;
+namespace Digitlimit\Alert\Events\Toastr;
 
-use Digitlimit\Alert\Types\Notify;
+use Digitlimit\Alert\Types\Toastr;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -17,7 +17,7 @@ class Flashed
      * Create a new event instance.
      */
     public function __construct(
-        public Notify $alert
+        public Toastr $alert
     ) {}
 
     /**
