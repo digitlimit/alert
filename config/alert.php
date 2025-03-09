@@ -68,6 +68,12 @@ return [
                 'alert' => Types\Toastr::class,
                 'component' => Themes\Tailwind\Components\Toastr::class,
             ],
+
+            'notify' => [
+                'view' => 'alert-notify',
+                'alert' => Types\Notify::class,
+                'component' => Themes\Tailwind\Components\Notify::class,
+            ],
         ],
 
         'attributes' => [
