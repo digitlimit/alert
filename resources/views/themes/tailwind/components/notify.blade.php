@@ -1,17 +1,18 @@
 <div wire:ignore class="digitlimit-alert-notify">
     @inject('alert', 'Digitlimit\Alert\Alert')
     @php
-        $notify    = $alert->fromArray($data);
+        $notify = $alert->fromArray($data);
+
     @endphp
 
-    <div x-data="{ show: false, message: '', type: 'info', timeout: 5000 }"
+    <div x-data="{ show: true, message: '{{$notify->getMessage()}}', type: '{{$notify->getLevel()}}', timeout: 5000 }"
          x-init="$watch('show', value => { if (value) setTimeout(() => show = false, timeout) })"
-         class="toastr-container">
+         class="notify-container">
 
         <!-- Toast Notification -->
         <template x-if="show">
-            <div :class="'toastr ' + type" class="toastr-content">
-                <div class="toastr-icon">
+            <div :class="'notify ' + type" class="notify-content">
+                <div class="notify-icon">
                     <template x-if="type === 'success'">
                         <svg class="size-6 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="12" cy="12" r="11" stroke="#11FFB6" stroke-opacity="0.231373" stroke-width="2"></circle>
@@ -26,17 +27,17 @@
                         </svg>
                     </template>
                 </div>
-                <div class="toastr-message" x-text="message"></div>
-                <button @click="show = false" class="toastr-button reset">Close</button>
+                <div class="notify-message" x-text="message"></div>
+                <button @click="show = false" class="notify-button reset">Close</button>
             </div>
         </template>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            Livewire.on('toastr', ({ message, type = 'info', timeout = 5000 }) => {
-                Alpine.store('toastr', { show: true, message, type, timeout });
-            });
-        });
-    </script>
+    {{--    <script>--}}
+    {{--        document.addEventListener('DOMContentLoaded', () => {--}}
+    {{--            Livewire.on('notify', ({ message, type = 'info', timeout = 5000 }) => {--}}
+    {{--                Alpine.store('notify', { show: true, message, type, timeout });--}}
+    {{--            });--}}
+    {{--        });--}}
+    {{--    </script>--}}
 </div>
