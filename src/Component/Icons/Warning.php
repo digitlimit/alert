@@ -9,11 +9,18 @@ use Illuminate\View\Component;
 class Warning extends Component
 {
     /**
-     * Create a new component instance.
+     * The alert icon is circled.
      */
-    public function __construct()
+    public bool $circled = true;
+
+    /**
+     * Check if the alert icon is circled.
+     *
+     * @return bool
+     */
+    public function isCircled(): bool
     {
-        //
+        return $this->circled;
     }
 
     /**
