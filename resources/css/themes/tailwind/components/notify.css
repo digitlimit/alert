@@ -7,7 +7,7 @@
 }
 
 .notify-content {
-  @apply py-2 bg-gray-800 pointer-events-auto relative flex min-h-12 w-full items-center justify-between gap-4 overflow-hidden rounded-xl pl-3 pr-2 shadow-xxl;
+  @apply py-2 bg-gray-800 pointer-events-auto relative flex min-h-12 w-full items-center justify-between gap-4 overflow-hidden rounded-xl pl-3 pr-2 shadow-2xl;
 }
 
 .notify-icon {
