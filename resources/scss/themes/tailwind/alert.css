@@ -1,35 +1,27 @@
 .alert-button.primary {
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 bg-neutral-950 hover:bg-neutral-900;
 }
-
 .alert-button.secondary {
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-100 focus:ring-offset-2;
 }
-
 .alert-button.success {
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 bg-green-600 hover:bg-green-700;
 }
-
 .alert-button.error {
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2 bg-red-600 hover:bg-red-700;
 }
-
 .alert-button.warning {
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-black transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2 bg-yellow-400 hover:bg-yellow-500;
 }
-
 .alert-button.info {
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2 bg-blue-600 hover:bg-blue-700;
 }
-
 .alert-button.light {
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-black transition-colors border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 bg-white hover:bg-gray-100;
 }
-
 .alert-button.dark {
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 bg-gray-800 hover:bg-gray-900;
 }
-
 .alert-button.link {
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-blue-600 transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:underline;
 }
@@ -37,31 +29,24 @@
 .alert-toastr-position {
   @apply fixed px-2 mt-3 overflow-x-hidden z-50;
 }
-
 .alert-toastr-position.top-right {
   @apply top-0 right-0;
 }
-
 .alert-toastr-position.top-left {
   @apply top-0 left-0;
 }
-
 .alert-toastr-position.bottom-right {
   @apply bottom-0 right-0;
 }
-
 .alert-toastr-position.bottom-left {
   @apply bottom-0 left-0;
 }
-
 .alert-toastr-position.top-center {
   @apply top-0 left-1/2 transform -translate-x-1/2;
 }
-
 .alert-toastr-position.bottom-center {
   @apply bottom-0 left-1/2 transform -translate-x-1/2;
 }
-
 .alert-toastr-position.center {
   @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
 }
@@ -69,15 +54,12 @@
 .alert-field.success {
   @apply p-3 text-green-800;
 }
-
 .alert-field.error {
   @apply p-3 text-red-800;
 }
-
 .alert-field.warning {
   @apply p-3 text-yellow-800;
 }
-
 .alert-field.info {
   @apply p-3 text-blue-800;
 }
@@ -85,63 +67,48 @@
 .alert-message {
   @apply flex items-center p-4 mb-4 rounded-lg;
 }
-
 .alert-message .sr-only-fix {
   @apply sr-only;
 }
-
 .alert-message.success {
   @apply text-green-800 bg-green-50 dark:bg-gray-800 dark:text-green-400;
 }
-
 .alert-message.error {
   @apply text-red-800 bg-red-50 dark:bg-gray-800 dark:text-red-400;
 }
-
 .alert-message.warning {
   @apply text-yellow-800 bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300;
 }
-
 .alert-message.info {
   @apply text-blue-800 bg-blue-50 dark:bg-gray-800 dark:text-blue-400;
 }
-
 .alert-message .icon {
   @apply shrink-0 w-4 h-4;
 }
-
 .alert-message .message {
   @apply ms-3 text-sm font-medium flex items-center gap-2;
 }
-
 .alert-message .message .title {
   @apply text-lg font-semibold;
 }
-
 .alert-message .close {
   @apply ms-auto -mx-1.5 -my-1.5 p-1.5 inline-flex items-center justify-center h-8 w-8 rounded-lg focus:ring-2;
 }
-
 .alert-message .close.success {
   @apply bg-blue-50 text-blue-500 focus:ring-blue-400 hover:bg-blue-200 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700;
 }
-
 .alert-message .close.error {
   @apply bg-red-50 text-red-500 focus:ring-red-400 hover:bg-red-200 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700;
 }
-
 .alert-message .close.warning {
   @apply bg-yellow-50 text-yellow-500 focus:ring-yellow-400 hover:bg-yellow-200 dark:bg-gray-800 dark:text-yellow-400 dark:hover:bg-gray-700;
 }
-
 .alert-message .close.info {
   @apply bg-blue-50 text-blue-500 focus:ring-blue-400 hover:bg-blue-200 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700;
 }
-
 .alert-message .close .close-icon {
   @apply w-3 h-3;
 }
-
 .alert-message .close .sr-only-fix {
   @apply sr-only;
 }
@@ -149,51 +116,39 @@
 .alert-toastr {
   @apply bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 shadow-lg flex items-center;
 }
-
 .alert-toastr.success {
   @apply from-green-400 to-green-500;
 }
-
 .alert-toastr.error {
   @apply from-red-400 to-pink-500;
 }
-
 .alert-toastr.warning {
   @apply from-yellow-400 to-yellow-500;
 }
-
 .alert-toastr.info {
   @apply from-blue-400 to-blue-500;
 }
-
 .alert-toastr.top-right {
   @apply top-0 right-0;
 }
-
 .alert-toastr.top-left {
   @apply top-0 left-0;
 }
-
 .alert-toastr.bottom-right {
   @apply bottom-0 right-0;
 }
-
 .alert-toastr.bottom-left {
   @apply bottom-0 left-0;
 }
-
 .alert-toastr.top-center {
   @apply top-0 left-1/2 transform -translate-x-1/2;
 }
-
 .alert-toastr.bottom-center {
   @apply bottom-0 left-1/2 transform -translate-x-1/2;
 }
-
 .alert-toastr.center {
   @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
 }
-
 @keyframes progress-bar {
   from {
     width: 0%;
@@ -262,85 +217,65 @@
 .alert-modal {
   @apply fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen;
 }
-
 .alert-modal .modal-overlay {
   @apply absolute inset-0 w-full h-full bg-white backdrop-blur-sm bg-opacity-70;
 }
-
 .alert-modal .modal-content {
   @apply bg-white p-6 rounded-lg shadow-lg relative max-w-full;
 }
-
 .alert-modal .modal-content.small {
   @apply w-1/4;
 }
-
 .alert-modal .modal-content.medium {
   @apply w-1/2;
 }
-
 .alert-modal .modal-content.large {
   @apply w-3/4;
 }
-
 .alert-modal .modal-content.extra-large {
   @apply w-4/5;
 }
-
 .alert-modal .modal-content.fullscreen {
   @apply w-full h-full;
 }
-
 .alert-modal .modal-content.scrollable {
   @apply max-h-[80vh] overflow-y-auto;
 }
-
 .alert-modal .modal-header {
   @apply flex items-center justify-between pb-3;
 }
-
 .alert-modal .modal-header.text-success {
   @apply text-green-500;
 }
-
 .alert-modal .modal-header.text-error {
   @apply text-red-500;
 }
-
 .alert-modal .modal-header.text-warning {
   @apply text-yellow-500;
 }
-
 .alert-modal .modal-header.text-info {
   @apply text-blue-500;
 }
-
 .alert-modal .modal-header .modal-title {
   @apply text-lg font-semibold;
 }
-
 .alert-modal .modal-header .modal-close {
   @apply absolute top-0 right-0 flex items-center justify-center w-8 h-8 mt-5 mr-5 text-gray-600 rounded-full hover:text-gray-800 hover:bg-gray-50;
 }
-
 .alert-modal .modal-header .modal-close-icon {
   @apply w-5 h-5;
 }
-
 .alert-modal .modal-body {
   @apply relative w-auto pb-8;
 }
-
 .alert-modal .modal-footer {
   @apply flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2;
 }
-
 .alert-modal .modal-footer .modal-action-button {
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-white transition-colors border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 bg-neutral-950 hover:bg-neutral-900;
 }
-
 .alert-modal .modal-footer .modal-cancel-button {
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-100 focus:ring-offset-2;
 }
 
-
+/*# sourceMappingURL=alert.css.map */

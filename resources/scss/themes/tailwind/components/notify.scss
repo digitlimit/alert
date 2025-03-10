@@ -7,7 +7,7 @@
 }
 
 .notify-content {
-  @apply py-2 bg-gray-800 pointer-events-auto relative flex min-h-12 w-full items-center justify-between gap-4 overflow-hidden rounded-xl pl-3 pr-2 shadow-xxl;
+  @apply py-2 bg-gray-800 pointer-events-auto relative flex min-h-12 w-full items-center justify-between gap-4 overflow-hidden rounded-xl pl-3 pr-2 shadow-2xl;
 }
 
 .notify-icon {
@@ -19,15 +19,7 @@
 }
 
 .notify-button {
-  @apply cursor-default relative isolate inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap focus:outline-none disabled:opacity-50 px-4 min-h-8 border-transparent;
-}
-
-.notify-button.reset {
-  @apply bg-gray-600 text-white hover:bg-gray-500;
-}
-
-.notify-button.save {
-  @apply bg-blue-500 text-white hover:bg-blue-400;
+  @apply cursor-default relative isolate inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap focus:outline-none disabled:opacity-50 px-4 min-h-8 border-transparent bg-gray-600 text-white hover:bg-gray-500;
 }
 
 .notify-progress {
