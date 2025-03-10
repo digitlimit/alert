@@ -19,7 +19,7 @@
     removeNotification(id) {
         this.notifications = this.notifications.filter(n => n.id !== id);
     }
-}" class="notify-container" @open-alert-toastr.window="addNotification('{{ $toastr->getMessage() }}', '{{ $toastr->getLevel() }}', {{ $toastr->getTimeOut() }})">
+}" class="notify-container" @open-alert-notify.window="addNotification('{{ $notify->getMessage() }}', '{{ $notify->getLevel() }}', {{ $notify->getTimeOut() }})">
 
         <template x-for="notification in notifications" :key="notification.id">
             <div :class="'notify ' + notification.type" class="notify-content">
