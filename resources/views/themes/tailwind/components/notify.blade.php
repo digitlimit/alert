@@ -48,7 +48,7 @@
                             <div class="notify-message" x-text="notification.message" />
                         </div>
                     </div>
-                    <div class="notify-actions">
+                    <div class="notify-buttons">
                         <button class="cancel-button" @click="removeNotification(notification.id)">
                             Reset
                         </button>
