@@ -1,5 +1,6 @@
 <div wire:ignore class="digitlimit-alert-notify">
     @inject('alert', 'Digitlimit\Alert\Alert')
+    @inject('attributeHelper', 'Digitlimit\Alert\Helpers\Attribute')
     @php
         $notify = $alert->fromArray($data);
     @endphp
@@ -62,21 +63,21 @@
                         @foreach($notify->getButtons() as $button)
                             @if($button->isAction())
                                 @if($button->isLink())
-                                    <a href="{{ $button->getLink() }}" {!! $this->actionLinkAttributes($button->getAttributes()) !!}>
+                                    <a href="{{ $button->getLink() }}" class="modal-action-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
                                         {{ $button->getLabel() }}
                                     </a>
                                 @else
-                                    <button {!! $this->actionAttributes($button->getAttributes()) !!}>
+                                    <button  class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
                                         {{ $button->getLabel() }}
                                     </button>
                                 @endif
                             @elseif($button->isCancel())
                                 @if($button->isLink())
-                                    <a href="{{ $button->getLink() }}" {!! $this->cancelLinkAttributes($button->getAttributes()) !!}>
+                                    <a href="{{ $button->getLink() }}" class="modal-action-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
                                         {{ $button->getLabel() }}
                                     </a>
                                 @else
-                                    <button {!! $this->cancelAttributes($button->getAttributes()) !!}>
+                                    <button  class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
                                         {{ $button->getLabel() }}
                                     </button>
                                 @endif

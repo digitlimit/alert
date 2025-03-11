@@ -3,6 +3,7 @@
 namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\Closable;
+use Digitlimit\Alert\Contracts\HasButton;
 use Digitlimit\Alert\Contracts\HasMessage;
 use Digitlimit\Alert\Contracts\HasTimeout;
 use Digitlimit\Alert\Contracts\HasTitle;
@@ -18,7 +19,7 @@ use Exception;
 /**
  * Notify alert class.
  */
-class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasTimeout, HasTitle, Levelable, Positionable, Taggable
+class Notify extends AbstractAlert implements AlertInterface, Closable, HasButton, HasMessage, HasTimeout, HasTitle, Levelable, Positionable, Taggable
 {
     use Traits\Closable;
     use Traits\Levelable;
@@ -27,6 +28,9 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessa
     use Traits\WithMessage;
     use Traits\WithTimeout;
     use Traits\WithTitle;
+    use Traits\WithActionButton;
+    use Traits\WithButton;
+    use Traits\WithCancelButton;
 
     protected string $defaultLevel = 'info';
 
