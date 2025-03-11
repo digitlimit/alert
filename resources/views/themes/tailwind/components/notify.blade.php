@@ -3,10 +3,8 @@
     @php
         $notify = $alert->fromArray($data);
     @endphp
-
     <div
             class="notify-container"
-
             x-data="{
                 notifications: [],
                 init() {
@@ -59,10 +57,44 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.667 8.333L10 11.667l3.333-3.334"></path>
                             </svg>
                         </button>
+
+
+                        @foreach($notify->getButtons() as $button)
+                            @if($button->isAction())
+                                @if($button->isLink())
+                                    <a href="{{ $button->getLink() }}" {!! $this->actionLinkAttributes($button->getAttributes()) !!}>
+                                        {{ $button->getLabel() }}
+                                    </a>
+                                @else
+                                    <button {!! $this->actionAttributes($button->getAttributes()) !!}>
+                                        {{ $button->getLabel() }}
+                                    </button>
+                                @endif
+                            @elseif($button->isCancel())
+                                @if($button->isLink())
+                                    <a href="{{ $button->getLink() }}" {!! $this->cancelLinkAttributes($button->getAttributes()) !!}>
+                                        {{ $button->getLabel() }}
+                                    </a>
+                                @else
+                                    <button {!! $this->cancelAttributes($button->getAttributes()) !!}>
+                                        {{ $button->getLabel() }}
+                                    </button>
+                                @endif
+                            @else
+                                @if($button->isLink())
+                                    <a href="{{ $button->getLink() }}" {!! $button->getAttributes() !!}>
+                                        {{ $button->getLabel() }}
+                                    </a>
+                                @else
+                                    <button {!! $button->getAttributes() !!}>
+                                        {{ $button->getLabel() }}
+                                    </button>
+                                @endif
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
         </template>
-
     </div>
 </div>

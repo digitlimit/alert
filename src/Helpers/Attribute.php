@@ -9,6 +9,10 @@ class Attribute
      */
     public static function toString(array $attributes): string
     {
+        if (empty($attributes)) {
+            return '';
+        }
+
         $newAttributes = array_map(function ($key) use ($attributes) {
             $key = htmlspecialchars($key);
             $value = htmlspecialchars($attributes[$key]) ?? '';
