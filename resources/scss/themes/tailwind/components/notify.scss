@@ -1,35 +1,41 @@
 .notify-container {
   @apply pointer-events-none fixed bottom-0 left-1/2 z-[100] flex w-full -translate-x-1/2 flex-col items-center space-y-4 transition-all will-change-transform -translate-y-10;
-}
 
-.notifies {
-  @apply relative z-50 w-full max-w-[400px];
-}
-
-.notify {
-  @apply py-2 bg-gray-800 pointer-events-auto relative flex min-h-12 w-full items-center justify-between gap-4 overflow-hidden rounded-xl pl-3 pr-2 shadow-2xl;
-}
-
-.notify-progress {
-  @apply absolute inset-0 animate-width bg-gray-700;
-}
-
-.notify-content {
-  @apply relative flex flex-1 items-center gap-3;
-}
-
-.notify-message {
-  @apply text-gray-300;
-}
-
-.notify-buttons {
-  @apply flex items-center gap-3;
-
-  .cancel-button {
-    @apply cursor-default relative isolate inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap focus:outline-none disabled:opacity-50 px-4 min-h-8 border-transparent bg-gray-600 text-white hover:bg-gray-500;
+  .notifies {
+    @apply relative z-50 w-full max-w-[400px];
   }
 
-  .action-button {
-    @apply cursor-default relative isolate inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap focus:outline-none disabled:opacity-50 px-4 min-h-8 border-transparent bg-blue-500 text-white hover:bg-blue-400;
+  .notify {
+    @apply py-2 bg-gray-800 pointer-events-auto relative flex min-h-12 w-full items-center justify-between gap-4 overflow-hidden rounded-xl pl-3 pr-2 shadow-2xl;
+  }
+
+  .notify-content {
+    @apply relative flex flex-1 items-center gap-3;
+  }
+
+  .notify-message {
+    @apply text-gray-300;
+  }
+
+  .notify-buttons {
+    @apply flex items-center gap-3;
+
+    .cancel-button {
+      @apply cursor-default relative isolate inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap focus:outline-none disabled:opacity-50 px-4 min-h-8 border-transparent bg-gray-600 text-white hover:bg-gray-500;
+    }
+
+    .action-button {
+      @apply cursor-default relative isolate inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap focus:outline-none disabled:opacity-50 px-4 min-h-8 border-transparent bg-blue-500 text-white hover:bg-blue-400;
+    }
+  }
+
+  @keyframes progress-bar {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  .notify-progress {
+    @apply absolute inset-0 animate-width bg-gray-700;
+    animation: progress-bar 5s linear forwards;
   }
 }
