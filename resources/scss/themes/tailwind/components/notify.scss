@@ -64,7 +64,6 @@
 
   .notify-progress {
     @apply absolute inset-0 animate-width bg-gray-700;
-    animation: progress-bar 5s linear forwards;
+    animation: progress-bar 10s linear forwards;
   }
-
 }
