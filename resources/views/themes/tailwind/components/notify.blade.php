@@ -59,7 +59,6 @@
                             </svg>
                         </button>
 
-
                         @foreach($notify->getButtons() as $button)
                             @if($button->isAction())
                                 @if($button->isLink())
@@ -67,7 +66,7 @@
                                         {{ $button->getLabel() }}
                                     </a>
                                 @else
-                                    <button  class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
+                                    <button @click="removeNotification(notification.id)" class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
                                         {{ $button->getLabel() }}
                                     </button>
                                 @endif
@@ -77,7 +76,7 @@
                                         {{ $button->getLabel() }}
                                     </a>
                                 @else
-                                    <button  class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
+                                    <button @click="removeNotification(notification.id)" class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
                                         {{ $button->getLabel() }}
                                     </button>
                                 @endif

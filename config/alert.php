@@ -75,5 +75,28 @@ return [
                 'component' => Themes\Tailwind\Components\Notify::class,
             ],
         ],
+
+        'attributes' => [
+            'buttons' => [
+                'action' => [
+                    'type' => 'button',
+                    '@click' => 'show = false;',
+                ],
+                'cancel' => [
+                    'type' => 'button',
+                    '@click' => 'show = false;',
+                ],
+            ],
+            'links' => [
+                'action' => [
+                    'type' => 'button',
+                    '@click' => 'show = false;',
+                ],
+                'cancel' => [
+                    'type' => 'button',
+                    '@click' => 'show = false;',
+                ],
+            ],
+        ],
     ],
 ];

@@ -90,7 +90,7 @@
                                     {{ $button->getLabel() }}
                                 </a>
                             @else
-                                <button  class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
+                                <button @click="show = false" class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
                                     {{ $button->getLabel() }}
                                 </button>
                             @endif
@@ -100,7 +100,7 @@
                                     {{ $button->getLabel() }}
                                 </a>
                             @else
-                                <button  class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
+                                <button @click="show = false" class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
                                     {{ $button->getLabel() }}
                                 </button>
                             @endif
