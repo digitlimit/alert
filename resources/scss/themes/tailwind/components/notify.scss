@@ -7,6 +7,34 @@
 
   .notify {
     @apply py-2 bg-gray-800 pointer-events-auto relative flex min-h-12 w-full items-center justify-between gap-4 overflow-hidden rounded-xl pl-3 pr-2 shadow-2xl;
+
+    &.top-right {
+      @apply top-0 right-0;
+    }
+
+    &.top-left {
+      @apply top-0 left-0;
+    }
+
+    &.bottom-right {
+      @apply bottom-0 right-0;
+    }
+
+    &.bottom-left {
+      @apply bottom-0 left-0;
+    }
+
+    &.top-center {
+      @apply top-0 left-1/2 transform -translate-x-1/2;
+    }
+
+    &.bottom-center {
+      @apply bottom-0 left-1/2 transform -translate-x-1/2;
+    }
+
+    &.center {
+      @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+    }
   }
 
   .notify-content {
@@ -38,4 +66,5 @@
     @apply absolute inset-0 animate-width bg-gray-700;
     animation: progress-bar 5s linear forwards;
   }
+
 }

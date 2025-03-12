@@ -170,6 +170,27 @@
 .notify-container .notify {
   @apply py-2 bg-gray-800 pointer-events-auto relative flex min-h-12 w-full items-center justify-between gap-4 overflow-hidden rounded-xl pl-3 pr-2 shadow-2xl;
 }
+.notify-container .notify.top-right {
+  @apply top-0 right-0;
+}
+.notify-container .notify.top-left {
+  @apply top-0 left-0;
+}
+.notify-container .notify.bottom-right {
+  @apply bottom-0 right-0;
+}
+.notify-container .notify.bottom-left {
+  @apply bottom-0 left-0;
+}
+.notify-container .notify.top-center {
+  @apply top-0 left-1/2 transform -translate-x-1/2;
+}
+.notify-container .notify.bottom-center {
+  @apply bottom-0 left-1/2 transform -translate-x-1/2;
+}
+.notify-container .notify.center {
+  @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
 .notify-container .notify-content {
   @apply relative flex flex-1 items-center gap-3;
 }
