@@ -79,6 +79,7 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasButto
             'level' => $this->getLevel(),
             'position' => $this->getPosition(),
             'closable' => $this->isClosable(),
+            'buttons' => $this->buttonsToArray(),
         ]);
     }
 
@@ -101,6 +102,7 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasButto
         $notify->position($alert['position']);
         $notify->timeout($alert['timeout']);
         $notify->closable($alert['closable']);
+        $notify->buttons($alert['buttons'] ?? []);
 
         return $notify;
     }
