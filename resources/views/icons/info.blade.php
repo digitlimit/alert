@@ -1,4 +1,4 @@
-@if($this->isCircled())
+@if($circled)
     <svg class="size-6 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="11" stroke="#0080F1" stroke-opacity="0.25" stroke-width="2"></circle>
         <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v5"></path>

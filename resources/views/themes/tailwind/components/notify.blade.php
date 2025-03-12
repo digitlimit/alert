@@ -9,11 +9,16 @@
             x-data="{
                 notifications: [],
                 init() {
-                    this.addNotification('Welcome! Page loaded successfully.', 'info', 5000, true);
+                    this.addNotification(
+                        '{{ $notify->getMessage() }}',
+                        '{{ $notify->getLevel() }}',
+                         {{ $notify->getTimeOut() }},
+                        '{{ $notify->hasTimeOut() }}'
+                    );
                 },
-                addNotification(message, type = 'info', timeout = 5000, autoClose = true) {
+                addNotification(message, level = 'info', timeout = 5000, autoClose = true) {
                     let id = Date.now();
-                    this.notifications.push({ id, message, type, timeout, autoClose });
+                    this.notifications.push({ id, message, level, timeout, autoClose });
                     if (autoClose) {
                         setTimeout(() => { this.removeNotification(id); }, timeout);
                     }
@@ -38,12 +43,18 @@
                     </template>
 
                     <div class="notify-content">
-                        <svg class="size-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="11" stroke="#FF9500" stroke-opacity="0.25" stroke-width="2"></circle>
-                            <circle cx="12" cy="12" r="9" fill="#FF9500" fill-opacity="0.25" stroke="#FFB224" stroke-width="2"></circle>
-                            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v5"></path>
-                            <path fill="#fff" stroke="#fff" d="M12.5 16.5a.5.5 0 11-1 0 .5.5 0 011 0z"></path>
-                        </svg>
+                        <template x-if="notification.level === 'info'">
+                            <x-alert-icon::info />
+                        </template>
+                        <template x-if="notification.level === 'success'">
+                            <x-alert-icon::success />
+                        </template>
+                        <template x-if="notification.level === 'warning'">
+                            <x-alert-icon::warning />
+                        </template>
+                        <template x-if="notification.level === 'error'">
+                            <x-alert-icon::error />
+                        </template>
                         <div>
                             <div class="notify-message" x-text="notification.message" />
                         </div>
