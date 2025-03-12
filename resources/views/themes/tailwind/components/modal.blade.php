@@ -90,13 +90,13 @@
                                     {{ $button->getLabel() }}
                                 </a>
                             @else
-                                <button @click="show = false" class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
+                                <button @click="show = false" class="modal-action-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
                                     {{ $button->getLabel() }}
                                 </button>
                             @endif
                         @elseif($button->isCancel())
                             @if($button->isLink())
-                                <a href="{{ $button->getLink() }}" class="modal-action-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
+                                <a href="{{ $button->getLink() }}" class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
                                     {{ $button->getLabel() }}
                                 </a>
                             @else
