@@ -49,16 +49,6 @@
                         </div>
                     </div>
                     <div class="notify-buttons">
-                        <button class="cancel-button" @click="removeNotification(notification.id)">
-                            Reset
-                        </button>
-                        <button class="action-button" type="button" aria-haspopup="menu" aria-expanded="false" data-state="closed">
-                            <span>Save</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" class="size-4 ml-2">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.667 8.333L10 11.667l3.333-3.334"></path>
-                            </svg>
-                        </button>
-
                         @foreach($notify->getButtons() as $button)
                             @if($button->isAction())
                                 @if($button->isLink())
