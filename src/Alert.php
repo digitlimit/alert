@@ -9,6 +9,7 @@ use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Helpers\Type;
 use Exception;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Traits\Macroable;
 
@@ -20,6 +21,21 @@ class Alert
      * The name of the default type tag.
      */
     const DEFAULT_TAG = 'default';
+
+    const MAIN_KEY = 'digitlimit.alert';
+
+    public static function key(string $type, string $tag): string
+    {
+        return self::mainKey()
+            .'.'.$type
+            .'.'.$tag;
+    }
+
+    public static function typeKey(string $type): string
+    {
+        return self::mainKey()
+            .'.'.$type;
+    }
 
     /**
      * Fetch an alert based on the type and named.
@@ -44,21 +60,17 @@ class Alert
      *
      * @throws Exception
      */
-    public static function tagged(string $type, string $tag): ?Taggable
+    public static function tagged(string $type, string $tag): Collection
     {
         if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $tagged = Session::get(
+        $alerts = Session::get(
             SessionKey::key($type, $tag)
-        );
+        ) ?? [];
 
-        if (is_array($tagged)) {
-            return null;
-        }
-
-        return $tagged;
+        return collect($alerts);
     }
 
     /**
@@ -95,7 +107,7 @@ class Alert
      *
      * @throws Exception
      */
-    public static function getMessage(string $tag = Alert::DEFAULT_TAG): ?Taggable
+    public static function getMessage(string $tag = Alert::DEFAULT_TAG): Collection
     {
         return self::tagged('message', $tag);
     }
@@ -105,7 +117,7 @@ class Alert
      *
      * @throws Exception
      */
-    public static function getModal(string $tag = Alert::DEFAULT_TAG): ?Taggable
+    public static function getModal(string $tag = Alert::DEFAULT_TAG): Collection
     {
         return self::tagged('modal', $tag);
     }
@@ -115,7 +127,7 @@ class Alert
      *
      * @throws Exception
      */
-    public static function getToastr(string $tag = Alert::DEFAULT_TAG): ?Taggable
+    public static function getToastr(string $tag = Alert::DEFAULT_TAG): Collection
     {
         return self::tagged('toastr', $tag);
     }
@@ -125,7 +137,7 @@ class Alert
      *
      * @throws Exception
      */
-    public static function getNotify(string $tag = Alert::DEFAULT_TAG): ?Taggable
+    public static function getNotify(string $tag = Alert::DEFAULT_TAG): Collection
     {
         return self::tagged('notify', $tag);
     }

@@ -6,6 +6,7 @@ use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
 use Exception;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -51,13 +52,13 @@ class Message extends Component implements LivewireInterface
     }
 
     #[On('refresh-alert-message')]
-    public function refresh(string $tag, array $data): void
+    public function refresh(string $tag, Collection $alerts): void
     {
-        if ($this->tag !== $tag || empty($data)) {
+        if ($this->tag !== $tag || $alerts->isEmpty()) {
             return;
         }
 
-        $this->setUp($data);
+        $this->alerts = $alerts;
         $this->dispatch('open-alert-message');
     }
 

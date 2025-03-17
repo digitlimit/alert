@@ -69,14 +69,6 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
     }
 
     /**
-     * Get the named tag for the field alert.
-     */
-    public function getNamedTag(): string
-    {
-        return $this->tag.'.'.$this->getName();
-    }
-
-    /**
      * Get the field alert as an array.
      */
     public function toArray(): array
@@ -110,6 +102,14 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
         return $field;
     }
 
+    /**
+     * Get the named tag for the field alert.
+     */
+    public function getNamedTag(): string
+    {
+        return $this->tag . '.' . $this->getName();
+    }
+    
     /**
      * Flash field instance to store.
      */

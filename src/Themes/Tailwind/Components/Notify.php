@@ -6,6 +6,7 @@ use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
 use Exception;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -20,17 +21,9 @@ class Notify extends Component implements LivewireInterface
     public string $tag = Alert::DEFAULT_TAG;
 
     /**
-     * The alert
+     * The alerts
      */
-    public array $data = [];
-
-    /**
-     * Set data for the alert.
-     */
-    public function setUp(array $data): void
-    {
-        $this->data = $data;
-    }
+    protected Collection $alerts;
 
     /**
      * Create a new component instance.
@@ -39,25 +32,17 @@ class Notify extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $data = Alert::getNotify($this->tag)?->toArray() ?? [];
-
-        if (empty($data)) {
-            $this->skipRender();
-
-            return;
-        }
-
-        $this->setUp($data);
+        $this->alerts = Alert::getNotify($this->tag);
     }
 
     #[On('refresh-alert-notify')]
-    public function refresh(string $tag, array $data): void
+    public function refresh(string $tag, Collection $alerts): void
     {
-        if ($this->tag !== $tag || empty($data)) {
+        if ($this->tag !== $tag || $alerts->isEmpty()) {
             return;
         }
 
-        $this->setUp($data);
+        $this->alerts = $alerts;
         $this->dispatch('open-alert-notify');
     }
 
@@ -66,6 +51,13 @@ class Notify extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::themes.tailwind.components.notify');
+        $alerts = $this->alerts->map(function ($alert) {
+            return $alert->toArray();
+        })->values()->toJson();
+        
+        return view(
+            'alert::themes.tailwind.components.notify',
+            compact('alerts')
+        );
     }
 }

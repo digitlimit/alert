@@ -13,8 +13,10 @@ use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Notify\Flashed;
 use Digitlimit\Alert\Foundation\AbstractAlert;
 use Digitlimit\Alert\Foundation\AlertInterface;
+use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Traits;
 use Exception;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Notify alert class.
@@ -76,6 +78,7 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasButto
             'timeout' => $this->getTimeout(),
             'message' => $this->getMessage(),
             'tag' => $this->getTag(),
+            'id_tag' => $this->getIdTag(),
             'level' => $this->getLevel(),
             'position' => $this->getPosition(),
             'closable' => $this->isClosable(),
@@ -108,12 +111,30 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasButto
     }
 
     /**
+     * Get the named tag for the field alert.
+     */
+    public function getIdTag(): string
+    {
+        return $this->tag
+            . '.'
+            . $this->getId();
+    }
+
+    /**
      * Flash field instance to store.
      */
     public function flash(): void
     {
-        parent::flash();
+        if (empty($this->id) || empty($this->message)) {
+            return;
+        }
 
+        $sessionKey = SessionKey::key(
+            $this->key(),
+            $this->getIdTag()
+        );
+
+        Session::flash($sessionKey, $this);
         Flashed::dispatch($this);
     }
 }

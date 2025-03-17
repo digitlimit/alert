@@ -6,6 +6,7 @@ use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
 use Exception;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -37,13 +38,13 @@ class Modal extends Component implements LivewireInterface
     }
 
     #[On('refresh-alert-modal')]
-    public function refresh(string $tag, array $data): void
+    public function refresh(string $tag, Collection $alerts): void
     {
-        if ($this->tag !== $tag) {
+        if ($this->tag !== $tag || $alerts->isEmpty()) {
             return;
         }
 
-        $this->data = $data;
+        $this->alerts = $alerts;
         $this->dispatch('open-alert-modal');
     }
 
