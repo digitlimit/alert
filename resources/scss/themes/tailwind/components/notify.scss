@@ -42,10 +42,12 @@
   }
 
   .notify-message {
+
     @apply text-gray-300;
   }
 
   .notify-buttons {
+
     @apply flex items-center gap-3;
 
     .cancel-button {
