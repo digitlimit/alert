@@ -1,123 +1,150 @@
 <div wire:ignore class="digitlimit-alert-modal">
-    @inject('alert', 'Digitlimit\Alert\Alert')
-    @inject('attributeHelper', 'Digitlimit\Alert\Helpers\Attribute')
-    @php
-        $modal  = $alert->fromArray($data);
-        $header = $header ?? null;
-        $body   = $body ?? null;
-        $footer = $footer ?? null;
-        $hasBody   = !is_null($body);
-        $hasHeader = !is_null($header);
-        $hasFooter = !is_null($footer);
-
-        $hasTitle  = $hasHeader || $modal->getTitle();
-    @endphp
     <div
-            id="{{ $modal->getId() }}"
-
+            class="modal-container"
             x-data="{
-                show: true,
-                modalSize: '{{ $modal->getSize() }}',
-                scrollable: {{ $modal->isScrollable() ? 'true' : 'false' }}
-            }"
+            modals: [],
+            alerts: {{ $alerts }},
+            addAlerts() {
+                this.alerts.forEach(modal => {
+                    modal.scrollable = modal.scrollable ?? false;
+                    modal.size = modal.size ?? 'md';
+                    modal.buttons = Array.isArray(modal.buttons) ? modal.buttons : [];
 
-            @open-alert-modal.window="show = true"
+                    modal.buttons.forEach(button => {
+                        button.id = Math.random().toString(36);
+                    });
 
+                    modal.actionButton = modal.buttons.find(button => button.name === 'action') ?? null;
+                    modal.cancelButton = modal.buttons.find(button => button.name === 'cancel') ?? null;
+                    modal.customButtons = modal.buttons.filter(button => !['action', 'cancel'].includes(button.name));
+
+                    modal.hasActionButton = modal.actionButton !== null;
+                    modal.hasCancelButton = modal.cancelButton !== null;
+                    modal.hasCustomButtons = modal.customButtons.length > 0;
+
+                    this.modals.push(modal);
+                });
+            },
+            init() {
+                this.addAlerts();
+            },
+            dismiss(id) {
+                this.modals = this.modals.filter(n => n.id !== id);
+            }
+        }"
+            @open-alert-modal.window="addAlerts()"
             x-cloak
     >
-        <div
-                x-show="show"
-                class="alert-modal"
-                x-cloak
-                :inert="!show"
-        >
+        <template x-for="modal in modals" :key="modal.id">
+            <div class="alert-modal" x-cloak>
+                <!-- Background Overlay -->
+                <div
+                        class="modal-overlay"
+                        x-transition:enter="ease-out duration-300"
+                        x-transition:enter-start="opacity-0"
+                        x-transition:enter-end="opacity-100"
+                        x-transition:leave="ease-in duration-300"
+                        x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                        @click="dismiss(modal.id)"
+                ></div>
 
-            <!-- Background overlay, closes modal when clicked -->
-            <div x-show="show"
-                 x-transition:enter="ease-out duration-300"
-                 x-transition:enter-start="opacity-0"
-                 x-transition:enter-end="opacity-100"
-                 x-transition:leave="ease-in duration-300"
-                 x-transition:leave-start="opacity-100"
-                 x-transition:leave-end="opacity-0"
-                 class="modal-overlay">
-            </div>
-
-            <!-- Modal content -->
-            <div x-show="show"
-                 x-trap="show"
-                 x-transition:enter="ease-out duration-300"
-                 x-transition:enter-start="opacity-0 -translate-y-2 sm:scale-95"
-                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                 x-transition:leave="ease-in duration-200"
-                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                 x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
-                 class="modal-content {{ $modal->getSize() }} {{ $modal->isScrollable() ? 'scrollable' : '' }}"
-            >
-
-                <!-- Modal header -->
-                <div class="modal-header {{ 'text-' . $modal->getLevel()}}">
-                    @if($modal->hasTitle())
-                        <h3 class="modal-title">{{ $modal->getTitle() }}</h3>
-                    @endif
-                    <button x-ref="modalCloseButton"
-                            @click="show = false;"
-                            class="modal-close"
-                    >
-                        <svg class="modal-close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-
-                @if($modal->hasView())
-                    {!! $modal->getView() !!}
-                @else
-                    <div class="modal-body">
-                        @if($hasBody)
-                            {{ $body }}
-                        @elseif($modal->getMessage())
-                            {{ $modal->getMessage() }}
-                        @endif
+                <!-- Modal Content -->
+                <div
+                        class="modal-content"
+                        :class="{ 'scrollable': modal.scrollable, [modal.size]: true }"
+                        x-trap="true"
+                        x-transition:enter="ease-out duration-300"
+                        x-transition:enter-start="opacity-0 -translate-y-2 sm:scale-95"
+                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave="ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
+                >
+                    <!-- Modal Header -->
+                    <div class="modal-header" :class="'text-' + modal.level">
+                        <h3 class="modal-title" x-show="modal.title" x-text="modal.title"></h3>
+                        <button class="modal-close" @click="dismiss(modal.id)">
+                            <svg class="modal-close-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
                     </div>
-                @endif
 
-                <div class="modal-footer">
-                    @foreach($modal->getButtons() as $button)
-                        @if($button->isAction())
-                            @if($button->isLink())
-                                <a href="{{ $button->getLink() }}" class="modal-action-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
-                                    {{ $button->getLabel() }}
-                                </a>
-                            @else
-                                <button @click="show = false" class="modal-action-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
-                                    {{ $button->getLabel() }}
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <template x-if="modal.view">
+                            <div x-html="modal.view"></div>
+                        </template>
+                        <template x-if="!modal.view && modal.message">
+                            <div x-text="modal.message"></div>
+                        </template>
+                    </div>
+
+                    <!-- Modal Footer Buttons -->
+                    <div class="modal-footer">
+                        <a
+                                x-show="modal.hasActionButton && modal.actionButton.link !== null"
+                                :href="modal.actionButton.link"
+                                @click="dismiss(modal.id)"
+                                class="modal-action-button"
+                                x-bind="modal.actionButton.attributes"
+                        >
+                            <span x-text="modal.actionButton.label"></span>
+                        </a>
+
+                        <button
+                                x-show="modal.hasActionButton && modal.actionButton.link === null"
+                                @click="dismiss(modal.id)"
+                                class="modal-action-button"
+                                x-bind="modal.actionButton.attributes"
+                        >
+                            <span x-text="modal.actionButton.label"></span>
+                        </button>
+
+                        <a
+                                x-show="modal.hasCancelButton && modal.cancelButton.link !== null"
+                                :href="modal.cancelButton.link"
+                                @click="dismiss(modal.id)"
+                                class="modal-cancel-button"
+                                x-bind="modal.cancelButton.attributes"
+                        >
+                            <span x-text="modal.cancelButton.label"></span>
+                        </a>
+
+                        <button
+                                x-show="modal.hasCancelButton && modal.cancelButton.link === null"
+                                @click="dismiss(modal.id)"
+                                class="modal-cancel-button"
+                                x-bind="modal.cancelButton.attributes"
+                        >
+                            <span x-text="modal.cancelButton.label"></span>
+                        </button>
+
+                        <template x-for="button in modal.customButtons" :key="button.id">
+                            <template x-if="button.link === null">
+                                <button
+                                        @click="dismiss(modal.id)"
+                                        x-bind="button.attributes"
+                                >
+                                    <span x-text="button.label"></span>
                                 </button>
-                            @endif
-                        @elseif($button->isCancel())
-                            @if($button->isLink())
-                                <a href="{{ $button->getLink() }}" class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
-                                    {{ $button->getLabel() }}
+                            </template>
+                            <template x-if="button.link !== null">
+                                <a
+                                        :href="button.link"
+                                        @click="dismiss(modal.id)"
+                                        x-bind="button.attributes"
+                                >
+                                    <span x-text="button.label"></span>
                                 </a>
-                            @else
-                                <button @click="show = false" class="modal-cancel-button" {!! $attributeHelper->toString($button->getAttributes()) !!}>
-                                    {{ $button->getLabel() }}
-                                </button>
-                            @endif
-                        @else
-                            @if($button->isLink())
-                                <a href="{{ $button->getLink() }}" {!! $button->getAttributes() !!}>
-                                    {{ $button->getLabel() }}
-                                </a>
-                            @else
-                                <button {!! $button->getAttributes() !!}>
-                                    {{ $button->getLabel() }}
-                                </button>
-                            @endif
-                        @endif
-                    @endforeach
+                            </template>
+                        </template>
+                    </div>
                 </div>
             </div>
-        </div>
+        </template>
     </div>
 </div>
