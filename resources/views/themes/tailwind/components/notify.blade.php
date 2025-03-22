@@ -5,16 +5,13 @@
                     notifications: [],
                     alerts: {{ $alerts }},
                     addAlerts() {
+
                         this.alerts.forEach(notify => {
                         notify.autoClose = notify.timeout > 0;
                         notify.buttons = Array.isArray(notify.buttons) ? notify.buttons : [];
 
-                        // fix attributes
                         notify.buttons.forEach(button => {
-                            button.id = Math.random().toString(36).substring(7);
-                            if (Array.isArray(notify.buttons) && !button.attributes.length) {
-                                button.attributes = {};
-                            }
+                            button.id = Math.random().toString(36);
                         });
 
                         notify.actionButton = notify.buttons.filter(button => button.name === 'action')[0] ?? null;
