@@ -54,7 +54,11 @@ class Notify extends Component implements LivewireInterface
         $alerts = $this->alerts->map(function ($alert) {
             return $alert->toArray();
         })->values()->toJson();
-        
+
+        $this->alerts->each(function ($alert) {
+            $alert->forget();
+        });
+
         return view(
             'alert::themes.tailwind.components.notify',
             compact('alerts')

@@ -3,7 +3,6 @@
 namespace Digitlimit\Alert;
 
 use Digitlimit\Alert\Contracts\HasName;
-use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Factory\AlertFactory;
 use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\SessionKey;

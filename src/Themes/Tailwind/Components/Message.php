@@ -55,6 +55,10 @@ class Message extends Component implements LivewireInterface
             return $alert->toArray();
         })->values()->toJson();
 
+        $this->alerts->each(function ($alert) {
+            $alert->forget();
+        });
+
         return view(
             'alert::themes.tailwind.components.message',
             compact('alerts')

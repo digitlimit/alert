@@ -100,9 +100,9 @@ abstract class AbstractAlert implements AlertInterface
      */
     public function forget(?string $tag = null): self
     {
-        if (empty($tag)) {
-            $tag = ! empty($this->tag) ? $this->tag : Alert::DEFAULT_TAG;
-        }
+        $tag = $tag
+            ? $tag . '.' . $this->getId()
+            : $this->getIdTag();
 
         $sessionKey = SessionKey::key($this->key(), $tag);
 

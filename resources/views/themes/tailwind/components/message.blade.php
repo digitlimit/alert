@@ -16,7 +16,7 @@
                 this.messages = this.messages.filter(n => n.id !== id);
             }
         }"
-            @open-alert-message.window="addAlerts()"
+        @open-alert-message.window="addAlerts()"
     >
         <template x-for="message in messages" :key="message.id">
             <div class="alert-message" :class="message.level" x-transition.duration.300ms role="alert">
