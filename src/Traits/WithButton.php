@@ -70,4 +70,14 @@ trait WithButton
             ->map(fn ($button) => $button->toArray())
             ->toArray();
     }
+
+    /**
+     * Execute a callback and return the instance.
+     */
+    public function tap(callable $callback)
+    {
+        $callback($this);
+
+        return $this;
+    }
 }
