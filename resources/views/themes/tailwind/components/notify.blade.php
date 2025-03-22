@@ -68,20 +68,20 @@
 
                     <div class="notify-buttons float-right">
                         <button
-                                x-show="notification.hasActionButton && notification.actionButton.link === null"
-                                @click="dismiss(notification.id)"
-                                class="action-button"
-                                x-bind="notification.actionButton.attributes"
+                            x-show="notification.hasActionButton && notification.actionButton.link === null"
+                            @click="dismiss(notification.id)"
+                            class="action-button"
+                            x-bind="notification.actionButton.attributes"
                         >
                             <span x-text="notification.actionButton.label"></span>
                         </button>
 
                         <a
-                                x-show="notification.hasActionButton && notification.actionButton.link !== null"
-                                :href="notification.actionButton.link"
-                                @click="dismiss(notification.id)"
-                                class="action-button cursor-default relative isolate inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap focus:outline-none disabled:opacity-50 px-4 min-h-8 border-transparent bg-blue-500 text-white hover:bg-blue-400"
-                                x-bind="notification.actionButton.attributes"
+                            x-show="notification.hasActionButton && notification.actionButton.link !== null"
+                            :href="notification.actionButton.link"
+                            @click="dismiss(notification.id)"
+                            class="action-button"
+                            x-bind="notification.actionButton.attributes"
                         >
                             <span x-text="notification.actionButton.label"></span>
                         </a>
