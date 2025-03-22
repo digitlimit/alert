@@ -1,22 +1,33 @@
 <div wire:ignore class="digitlimit-alert-notify">
     <div
-        class="notify-container"
-        x-data="{
+            class="notify-container"
+            x-data="{
                     notifications: [],
                     alerts: {{ $alerts }},
                     addAlerts() {
-                        this.alerts.forEach(alert => {
-                        alert.autoClose = alert.timeout > 0;
-                        alert.buttons = Array.isArray(alert.buttons) ? alert.buttons : [];
+                        this.alerts.forEach(notify => {
+                        notify.autoClose = notify.timeout > 0;
+                        notify.buttons = Array.isArray(notify.buttons) ? notify.buttons : [];
 
-                        alert.buttons.forEach(button => {
-                            button.attributes = {};
+                        // fix attributes
+                        notify.buttons.forEach(button => {
+                            if (Array.isArray(notify.buttons) && !button.attributes.length) {
+                                button.attributes = {};
+                            }
                         });
+                        console.log(notify);
 
-                        this.notifications.push(alert);
+                        notify.actionButton = notify.buttons.filter(button => button.name === 'action')[0] ?? null;
+                        notify.closeButton = notify.buttons.filter(button => button.name === 'cancel')[0] ?? null;
+                        notify.customButtons = notify.buttons.filter(button => !['action', 'cancel'].includes(button.name));
+                        notify.hasActionButton = notify.actionButton !== null;
+                        notify.hasCloseButton = notify.closeButton.length !== null;
+                        notify.hasCustomButtons = notify.customButtons.length > 0;
 
-                        if (alert.autoClose) {
-                            setTimeout(() => { this.dismiss(alert.id); }, alert.timeout);
+                        this.notifications.push(notify);
+
+                        if (notify.autoClose) {
+                            setTimeout(() => { this.dismiss(notify.id); }, notify.timeout);
                         }
                     });
                 },
@@ -28,11 +39,10 @@
                 }
             }"
 
-        @open-alert-notify.window="addAlerts()"
+            @open-alert-notify.window="addAlerts()"
     >
         <template x-for="notification in notifications" :key="notification.id">
             <div class="notifies" style="opacity: 1; transform: translateY(0px);">
-
                 <div class="notify">
                     <template x-if="notification.autoClose">
                         <div class="notify-progress" :style="'animation-duration: ' + notification.timeout + 'ms;'"></div>
@@ -56,77 +66,25 @@
                         </div>
                     </div>
 
-                    <div class="notify-buttons">
-                        <template x-for="button in notification.buttons">
-                            <template x-if="button.name === 'action'">
-                                <template x-if="button.link">
-                                    <a
-                                        x-show="true"
-                                        :href="button.link"
-                                        class="action-button"
-                                        x-bind="button.attributes ?? {}"
-                                        x-text="button.label"
-                                        style="background: #1d0002; padding: 10px;"
-                                    >
-                                        hhh
-                                    </a>
-                                </template>
-                                <template x-if="!button.link">
-                                    <button
-                                        x-show="true"
-                                        @click="dismiss(notification.id)"
-                                        class="action-button"
-                                        x-bind="button.attributes ?? {}"
-                                        x-text="button.label"
-                                        style="background: #1d0002; padding: 10px;"
-                                    >
-                                        66
-                                    </button>
-                                </template>
-                            </template>
+                    <div class="notify-buttons float-right">
+                        <button
+                                x-show="notification.hasActionButton && notification.actionButton.link === null"
+                                @click="dismiss(notification.id)"
+                                class="action-button"
+                                x-bind="notification.actionButton.attributes"
+                        >
+                            <span x-text="notification.actionButton.label"></span>
+                        </button>
 
-                            <template x-show="button.name === 'cancel'">
-                                <template x-if="button.link">
-                                    999
-                                    <a
-                                        :href="button.link"
-                                        class="cancel-button"
-                                        x-bind="button.attributes ?? {}"
-                                        x-text="button.label"
-                                        style="background: #1d0002; padding: 10px;"
-                                    ></a>
-                                </template>
-                                <template x-if="!button.link">
-                                    <button
-                                        @click="dismiss(notification.id)"
-                                        class="cancel-button"
-                                        x-bind="button.attributes ?? {}"
-                                        x-text="button.label"
-                                        style="background: #1d0002; padding: 10px;"
-                                    ></button>
-                                </template>
-                            </template>
-
-                            <template x-show="!['action', 'cancel'].includes(button.name)">
-                                <template x-if="button.link">
-                                    <a
-                                        :href="button.link"
-                                        x-bind="button.attributes ?? {}"
-                                        x-text="button.label"
-                                        style="background: #1d0002; padding: 10px;"
-                                    >
-                                    </a>
-                                </template>
-                                <template x-if="!button.link">
-                                    <button
-                                        x-bind="button.attributes ?? {}"
-                                        x-text="button.label"
-                                        style="background: #1d0002; padding: 10px;"
-                                    >
-                                    </button>
-                                </template>
-                            </template>
-                        </template>
+                        <a
+                                x-show="notification.hasActionButton && notification.actionButton.link !== null"
+                                :href="notification.actionButton.link"
+                                @click="dismiss(notification.id)"
+                                class="action-button cursor-default relative isolate inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap focus:outline-none disabled:opacity-50 px-4 min-h-8 border-transparent bg-blue-500 text-white hover:bg-blue-400"
+                                x-bind="notification.actionButton.attributes"
+                        >
+                            <span x-text="notification.actionButton.label"></span>
+                        </a>
                     </div>
                 </div>
             </div>
