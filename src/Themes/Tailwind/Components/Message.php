@@ -21,17 +21,9 @@ class Message extends Component implements LivewireInterface
     public string $tag = Alert::DEFAULT_TAG;
 
     /**
-     * The alert
+     * The alerts
      */
-    public array $data = [];
-
-    /**
-     * Set data for the alert.
-     */
-    public function setUp(array $data): void
-    {
-        $this->data = $data;
-    }
+    protected Collection $alerts;
 
     /**
      * Create a new component instance.
@@ -40,15 +32,7 @@ class Message extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $data = Alert::getMessage($this->tag)?->toArray() ?? [];
-
-        if (empty($data)) {
-            $this->skipRender();
-
-            return;
-        }
-
-        $this->setUp($data);
+        $this->alerts = Alert::getMessage($this->tag);
     }
 
     #[On('refresh-alert-message')]
@@ -67,6 +51,13 @@ class Message extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::themes.tailwind.components.message');
+        $alerts = $this->alerts->map(function ($alert) {
+            return $alert->toArray();
+        })->values()->toJson();
+
+        return view(
+            'alert::themes.tailwind.components.message',
+            compact('alerts')
+        );
     }
 }
