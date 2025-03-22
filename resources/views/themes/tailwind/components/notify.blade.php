@@ -68,22 +68,41 @@
 
                     <div class="notify-buttons ml-auto">
                         <button
-                                x-show="notification.hasActionButton && notification.actionButton.link === null"
-                                @click="dismiss(notification.id)"
-                                class="action-button"
-                                x-bind="notification.actionButton.attributes"
+                            x-show="notification.hasActionButton && notification.actionButton.link === null"
+                            @click="dismiss(notification.id)"
+                            class="action-button"
+                            x-bind="notification.actionButton.attributes"
                         >
                             <span x-text="notification.actionButton.label"></span>
                         </button>
 
                         <a
-                                x-show="notification.hasActionButton && notification.actionButton.link !== null"
-                                :href="notification.actionButton.link"
-                                @click="dismiss(notification.id)"
-                                class="action-button"
-                                x-bind="notification.actionButton.attributes"
+                            x-show="notification.hasActionButton && notification.actionButton.link !== null"
+                            :href="notification.actionButton.link"
+                            @click="dismiss(notification.id)"
+                            class="action-button"
+                            x-bind="notification.actionButton.attributes"
                         >
                             <span x-text="notification.actionButton.label"></span>
+                        </a>
+
+                        <button
+                            x-show="notification.hasCancelButton && notification.cancelButton.link === null"
+                            @click="dismiss(notification.id)"
+                            class="cancel-button"
+                            x-bind="notification.cancelButton.attributes"
+                        >
+                            <span x-text="notification.cancelButton.label"></span>
+                        </button>
+
+                        <a
+                            x-show="notification.hasCancelButton && notification.cancelButton.link !== null"
+                            :href="notification.cancelButton.link"
+                            @click="dismiss(notification.id)"
+                            class="cancel-button"
+                            x-bind="notification.cancelButton.attributes"
+                        >
+                            <span x-text="notification.cancelButton.label"></span>
                         </a>
                     </div>
                 </div>
