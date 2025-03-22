@@ -18,10 +18,10 @@
                         console.log(notify);
 
                         notify.actionButton = notify.buttons.filter(button => button.name === 'action')[0] ?? null;
-                        notify.closeButton = notify.buttons.filter(button => button.name === 'cancel')[0] ?? null;
+                        notify.cancelButton = notify.buttons.filter(button => button.name === 'cancel')[0] ?? null;
                         notify.customButtons = notify.buttons.filter(button => !['action', 'cancel'].includes(button.name));
                         notify.hasActionButton = notify.actionButton !== null;
-                        notify.hasCloseButton = notify.closeButton.length !== null;
+                        notify.hasCancelButton = notify.cancelButton.length !== null;
                         notify.hasCustomButtons = notify.customButtons.length > 0;
 
                         this.notifications.push(notify);
