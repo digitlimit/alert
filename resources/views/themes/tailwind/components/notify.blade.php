@@ -15,8 +15,7 @@
                                 button.attributes = {};
                             }
                         });
-                        console.log(notify);
-
+                       
                         notify.actionButton = notify.buttons.filter(button => button.name === 'action')[0] ?? null;
                         notify.cancelButton = notify.buttons.filter(button => button.name === 'cancel')[0] ?? null;
                         notify.customButtons = notify.buttons.filter(button => !['action', 'cancel'].includes(button.name));
