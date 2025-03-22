@@ -21,20 +21,18 @@ class Modal extends Component implements LivewireInterface
     public string $tag = Alert::DEFAULT_TAG;
 
     /**
-     * The alert
+     * The alerts
      */
-    public array $data = [];
+    protected Collection $alerts;
 
     /**
+     * Create a new component instance.
+     *
      * @throws Exception
      */
     public function mount(): void
     {
-        $this->data = Alert::getModal($this->tag)?->toArray() ?? [];
-
-        if (empty($this->data)) {
-            $this->skipRender();
-        }
+        $this->alerts = Alert::getModal($this->tag);
     }
 
     #[On('refresh-alert-modal')]
@@ -53,6 +51,17 @@ class Modal extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::themes.tailwind.components.modal');
+        $alerts = $this->alerts->map(function ($alert) {
+            return $alert->toArray();
+        })->values()->toJson();
+
+        $this->alerts->each(function ($alert) {
+            $alert->forget();
+        });
+
+        return view(
+            'alert::themes.tailwind.components.modal',
+            compact('alerts')
+        );
     }
 }
