@@ -61,9 +61,7 @@
                         <template x-if="notification.level === 'error'">
                             <x-alert-icon::error />
                         </template>
-                        <div>
-                            <div class="notify-message" x-text="notification.message" />
-                        </div>
+                        <div class="notify-message" x-text="notification.message" />
                     </div>
 
                     <div class="notify-buttons float-right">
