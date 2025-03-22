@@ -48,38 +48,40 @@
                         <div class="notify-progress" :style="'animation-duration: ' + notification.timeout + 'ms;'"></div>
                     </template>
 
-                    <div class="notify-content">
-                        <template x-if="notification.level === 'info'">
-                            <x-alert-icon::info />
-                        </template>
-                        <template x-if="notification.level === 'success'">
-                            <x-alert-icon::success />
-                        </template>
-                        <template x-if="notification.level === 'warning'">
-                            <x-alert-icon::warning />
-                        </template>
-                        <template x-if="notification.level === 'error'">
-                            <x-alert-icon::error />
-                        </template>
-                        <div class="notify-message" x-text="notification.message" />
+                    <div class="flex flex-1 items-center gap-4">
+                        <div class="notify-content">
+                            <template x-if="notification.level === 'info'">
+                                <x-alert-icon::info />
+                            </template>
+                            <template x-if="notification.level === 'success'">
+                                <x-alert-icon::success />
+                            </template>
+                            <template x-if="notification.level === 'warning'">
+                                <x-alert-icon::warning />
+                            </template>
+                            <template x-if="notification.level === 'error'">
+                                <x-alert-icon::error />
+                            </template>
+                            <div class="notify-message" x-text="notification.message" />
+                        </div>
                     </div>
 
-                    <div class="notify-buttons float-right">
+                    <div class="notify-buttons ml-auto">
                         <button
-                            x-show="notification.hasActionButton && notification.actionButton.link === null"
-                            @click="dismiss(notification.id)"
-                            class="action-button"
-                            x-bind="notification.actionButton.attributes"
+                                x-show="notification.hasActionButton && notification.actionButton.link === null"
+                                @click="dismiss(notification.id)"
+                                class="action-button"
+                                x-bind="notification.actionButton.attributes"
                         >
                             <span x-text="notification.actionButton.label"></span>
                         </button>
 
                         <a
-                            x-show="notification.hasActionButton && notification.actionButton.link !== null"
-                            :href="notification.actionButton.link"
-                            @click="dismiss(notification.id)"
-                            class="action-button"
-                            x-bind="notification.actionButton.attributes"
+                                x-show="notification.hasActionButton && notification.actionButton.link !== null"
+                                :href="notification.actionButton.link"
+                                @click="dismiss(notification.id)"
+                                class="action-button"
+                                x-bind="notification.actionButton.attributes"
                         >
                             <span x-text="notification.actionButton.label"></span>
                         </a>
