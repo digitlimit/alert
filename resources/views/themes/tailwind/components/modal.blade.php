@@ -64,13 +64,58 @@
                     <!-- Modal Header -->
                     <div class="modal-header" :class="'text-' + modal.level">
                         <h3 class="modal-title" x-show="modal.title" x-text="modal.title"></h3>
-                        <button class="modal-close" @click="dismiss(modal.id)">
-                            <svg class="modal-close-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M6 18L18 6M6 6l12 12"/>
+                        <div class="relative w-10 h-10" x-data="{
+                            radius: 9,
+                            circumference: 2 * Math.PI * 9,
+                            progress: 0,
+                            startTimer(duration, id) {
+                                if (!duration) return;
+
+                                let start = null;
+                                const step = (timestamp) => {
+                                    if (!start) start = timestamp;
+                                    const elapsed = timestamp - start;
+                                    progress = Math.min(elapsed / duration, 1);
+                                    this.progress = progress;
+
+                                    if (progress < 1) {
+                                        requestAnimationFrame(step);
+                                    } else {
+                                        $dispatch('close-modal', id);
+                                    }
+                                };
+                                requestAnimationFrame(step);
+                            }
+                        }" x-init="startTimer(modal.timeout, modal.id)"
+                             @close-modal.window="dismiss($event.detail)"
+                        >
+                            <!-- Circular Progress Border -->
+                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 24 24" fill="none">
+                                <circle
+                                        cx="12" cy="12" :r="radius"
+                                        stroke="#e5e7eb" stroke-width="2" fill="none"
+                                />
+                                <circle
+                                        cx="12" cy="12" :r="radius"
+                                        stroke="currentColor"
+                                        :stroke-dasharray="circumference"
+                                        :stroke-dashoffset="circumference - (progress * circumference)"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        fill="none"
+                                />
                             </svg>
-                        </button>
+
+                            <!-- Actual Close Button Icon -->
+                            <button @click="dismiss(modal.id)" class="absolute inset-0 flex items-center justify-center z-10 text-gray-800 focus:outline-none">
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </div>
+
                     </div>
 
                     <!-- Modal Body -->
