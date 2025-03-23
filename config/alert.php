@@ -29,10 +29,10 @@ return [
     ],
 
     'icons' => [
-        'success' => \Digitlimit\Alert\Component\Icons\Success::class,
-        'error' => \Digitlimit\Alert\Component\Icons\Error::class,
-        'warning' => \Digitlimit\Alert\Component\Icons\Warning::class,
-        'info' => \Digitlimit\Alert\Component\Icons\Info::class,
+        'success' => \Digitlimit\Alert\Icons\Success::class,
+        'error' => \Digitlimit\Alert\Icons\Error::class,
+        'warning' => \Digitlimit\Alert\Icons\Warning::class,
+        'info' => \Digitlimit\Alert\Icons\Info::class,
     ],
 
     /*

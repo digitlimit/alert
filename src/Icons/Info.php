@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitlimit\Alert\Component\Icons;
+namespace Digitlimit\Alert\Icons;
 
 use Closure;
 use Illuminate\Contracts\View\View;

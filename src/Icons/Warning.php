@@ -1,12 +1,12 @@
 <?php
 
-namespace Digitlimit\Alert\Component\Icons;
+namespace Digitlimit\Alert\Icons;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Error extends Component
+class Warning extends Component
 {
     /**
      * The alert icon is circled.
@@ -28,6 +28,6 @@ class Error extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('alert::icons.error');
+        return view('alert::icons.warning');
     }
 }

@@ -18,7 +18,7 @@ class AlertServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'alert');
 
         Blade::componentNamespace(
-            'Digitlimit\\Alert\\Component\\Icons',
+            'Digitlimit\\Alert\\\Icons',
             'alert-icon'
         );
 
