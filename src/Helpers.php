@@ -17,8 +17,6 @@ if (! function_exists('alert')) {
             $alert->title($title);
         }
 
-        $alert->flash();
-
         return $alert;
     }
 }
@@ -27,8 +25,6 @@ if (! function_exists('field')) {
     function field(string $name, string $message,): Field
     {
         $alert = app('alert')->field($name, $message);
-
-        $alert->flash();
 
         return $alert;
     }
@@ -43,8 +39,6 @@ if (! function_exists('modal')) {
             $alert->title($title);
         }
 
-        $alert->flash();
-
         return $alert;
     }
 }
@@ -58,8 +52,6 @@ if (! function_exists('toastr')) {
             $alert->title($title);
         }
 
-        $alert->flash();
-
         return $alert;
     }
 }
@@ -72,8 +64,6 @@ if (! function_exists('notify')) {
         if ($title) {
             $alert->title($title);
         }
-
-        $alert->flash();
 
         return $alert;
     }
