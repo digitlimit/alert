@@ -34,7 +34,7 @@ abstract class AbstractAlert implements AlertInterface
     public function id(string|int $id): self
     {
         if (!empty($this->id) && $this->id !== $id) {
-            $this->forget($this->getIdTag());
+            $this->forget();
         }
 
         $this->id = $id;

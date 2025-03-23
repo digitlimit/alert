@@ -22,11 +22,9 @@ if (! function_exists('alert')) {
 }
 
 if (! function_exists('field')) {
-    function field(string $name, string $message,): Field
+    function field(string $name, string $message): Field
     {
-        $alert = app('alert')->field($name, $message);
-
-        return $alert;
+        return app('alert')->field($name, $message);
     }
 }
 
