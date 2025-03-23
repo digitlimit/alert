@@ -171,17 +171,15 @@
                         <template x-for="button in modal.customButtons" :key="button.id">
                             <template x-if="button.link === null">
                                 <button
-                                        @click="dismiss(modal.id)"
-                                        x-bind="button.attributes"
+                                    x-bind="button.attributes"
                                 >
                                     <span x-text="button.label"></span>
                                 </button>
                             </template>
                             <template x-if="button.link !== null">
                                 <a
-                                        :href="button.link"
-                                        @click="dismiss(modal.id)"
-                                        x-bind="button.attributes"
+                                    :href="button.link"
+                                    x-bind="button.attributes"
                                 >
                                     <span x-text="button.label"></span>
                                 </a>
