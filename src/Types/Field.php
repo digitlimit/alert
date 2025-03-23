@@ -4,7 +4,6 @@ namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\HasMessage;
 use Digitlimit\Alert\Contracts\HasName;
-use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Field\Flashed;
@@ -17,13 +16,12 @@ use Illuminate\Support\Facades\Session;
 /**
  * Field alert class.
  */
-class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName, HasTitle, Levelable, Taggable
+class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName, Levelable, Taggable
 {
     use Traits\Levelable;
     use Traits\Taggable;
     use Traits\WithMessage;
     use Traits\WithName;
-    use Traits\WithTitle;
 
     /**
      * The default level of the alert.
@@ -79,7 +77,6 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
             'tag' => $this->getTag(),
             'named_tag' => $this->getNamedTag(),
             'level' => $this->getLevel(),
-            'title' => $this->getTitle(),
             'message' => $this->getMessage(),
         ]);
     }
@@ -95,10 +92,6 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
         $field->tag($alert['tag']);
         $field->level($alert['level']);
 
-        if ($alert['title']) {
-            $field->title($alert['title']);
-        }
-
         return $field;
     }
 
@@ -109,7 +102,7 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
     {
         return $this->tag . '.' . $this->getName();
     }
-    
+
     /**
      * Flash field instance to store.
      */

@@ -38,11 +38,12 @@ class Notify extends Component implements LivewireInterface
     #[On('refresh-alert-notify')]
     public function refresh(string $tag, Collection $alerts): void
     {
+        $this->alerts = $alerts;
+
         if ($this->tag !== $tag || $alerts->isEmpty()) {
             return;
         }
 
-        $this->alerts = $alerts;
         $this->dispatch('open-alert-notify');
     }
 
