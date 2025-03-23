@@ -5,6 +5,7 @@ namespace Digitlimit\Alert\Types;
 use Digitlimit\Alert\Contracts\Closable;
 use Digitlimit\Alert\Contracts\HasButton;
 use Digitlimit\Alert\Contracts\HasMessage;
+use Digitlimit\Alert\Contracts\HasTimeout;
 use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\HasView;
 use Digitlimit\Alert\Contracts\Levelable;
@@ -21,7 +22,7 @@ use Throwable;
 /**
  * Modal alert class.
  */
-class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton, HasMessage, HasTitle, HasView, Levelable, Scrollable, Sizable, Taggable
+class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton, HasMessage, HasTimeout, HasTitle, HasView, Levelable, Scrollable, Sizable, Taggable
 {
     use Traits\Closable;
     use Traits\Levelable;
@@ -33,6 +34,7 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
     use Traits\WithCancelButton;
     use Traits\WithMessage;
     use Traits\WithTitle;
+    use Traits\WithTimeout;
     use Traits\WithView;
 
     /**
@@ -66,6 +68,7 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
             'message' => $this->getMessage(),
             'tag' => $this->getTag(),
             'size' => $this->getSize(),
+            'timeout' => $this->getTimeout(),
             'scrollable' => $this->isScrollable(),
             'closable' => $this->isClosable(),
             'buttons' => $this->buttonsToArray(),

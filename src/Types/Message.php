@@ -6,6 +6,7 @@ use Digitlimit\Alert\Contracts\Closable;
 use Digitlimit\Alert\Contracts\HasMessage;
 use Digitlimit\Alert\Contracts\HasSticky;
 use Digitlimit\Alert\Contracts\HasTitle;
+use Digitlimit\Alert\Contracts\HasTimeout;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Message\Flashed;
@@ -16,7 +17,7 @@ use Digitlimit\Alert\Traits;
 /**
  * Message alert class.
  */
-class Message extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasSticky, HasTitle, Levelable, Taggable
+class Message extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasSticky, HasTimeout, HasTitle, Levelable, Taggable
 {
     use Traits\Closable;
     use Traits\Levelable;
@@ -24,6 +25,7 @@ class Message extends AbstractAlert implements AlertInterface, Closable, HasMess
     use Traits\WithMessage;
     use Traits\WithSticky;
     use Traits\WithTitle;
+    use Traits\WithTimeout;
 
     /**
      * The default level of the alert.
@@ -72,6 +74,7 @@ class Message extends AbstractAlert implements AlertInterface, Closable, HasMess
             'level' => $this->getLevel(),
             'message' => $this->getMessage(),
             'title' => $this->getTitle(),
+            'timeout' => $this->getTimeout(),
             'closable' => $this->isClosable(),
             'sticky' => $this->isSticky(),
         ]);
