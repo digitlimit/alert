@@ -47,7 +47,7 @@ class Alert
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $tag = $tag.'.'.$name;
+        $tag = $tag . '.' . $name;
 
         return Session::get(
             SessionKey::key($type, $tag)
@@ -160,6 +160,16 @@ class Alert
     }
 
     /**
+     * Create an alert from an array.
+     */
+    public static function fromArrays(array $alerts): Collection
+    {
+        return collect($alerts)->map(function ($alert) {
+            return self::fromArray($alert);
+        });
+    }
+
+    /**
      * Fetch all alerts from the session.
      */
     public static function has(string $type): bool
@@ -191,11 +201,9 @@ class Alert
     /**
      * Fetch all alerts from the session.
      */
-    public static function all(?string $type = null): array
+    public static function all(): array
     {
-        return $type
-            ? Session::get(SessionKey::typeKey($type), [])
-            : Session::get(SessionKey::mainKey(), []);
+        return Session::get(SessionKey::mainKey()) ?? [];
     }
 
     /**

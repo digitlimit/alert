@@ -6,5 +6,5 @@ use Illuminate\Support\Collection;
 
 interface LivewireInterface
 {
-    public function refresh(string $tag, Collection $alerts): void;
+    public function refresh(string $tag, array $alerts): void;
 }

@@ -1,11 +1,21 @@
-<div wire:ignore class="digitlimit-alert-message">
-    <div
+<div class="digitlimit-alert-message" :data-alerts='@json($alerts)'>
+    <div wire:ignore>
+        <div
             class="message-container"
             x-data="{
             messages: [],
             alerts: {{ $alerts }},
             addAlerts() {
+
+                const root = this.$el.closest('.digitlimit-alert-message');
+                const alerts = JSON.parse(root.getAttribute('data-alerts') || '[]');
+
+                if (alerts.length) {
+                    this.alerts = alerts;
+                }
+
                 this.alerts.forEach(message => {
+                    console.log('message', message);
                     this.messages.push(message);
                 });
             },
@@ -20,15 +30,15 @@
     >
         <template x-for="message in messages" :key="message.id">
             <div
-                    class="alert-message relative overflow-hidden"
-                    :class="message.level"
-                    x-transition.duration.300ms
-                    role="alert"
-                    x-init="
-            if (message.timeout) {
-                setTimeout(() => dismiss(message.id), message.timeout);
-            }
-        "
+                class="alert-message relative overflow-hidden"
+                :class="message.level"
+                x-transition.duration.300ms
+                role="alert"
+                x-init="
+                    if (message.timeout) {
+                        setTimeout(() => dismiss(message.id), message.timeout);
+                    }
+                "
             >
                 <!-- Smooth Progress Bar with Dynamic Color -->
                 <div
@@ -78,5 +88,6 @@
                 </button>
             </div>
         </template>
+    </div>
     </div>
 </div>

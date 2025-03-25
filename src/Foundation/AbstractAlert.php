@@ -6,11 +6,13 @@ use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * @property string $message
  */
-abstract class AbstractAlert implements AlertInterface
+abstract class AbstractAlert implements AlertInterface, Jsonable, Arrayable
 {
     /**
      * Alert unique ID.
@@ -119,5 +121,13 @@ abstract class AbstractAlert implements AlertInterface
         return [
             'id' => $this->getId(),
         ];
+    }
+
+    /**
+     * Convert alert to json.
+     */
+    public function toJson($options = 0): string
+    {
+        return json_encode($this->toArray());
     }
 }

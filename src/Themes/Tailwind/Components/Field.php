@@ -3,7 +3,6 @@
 namespace Digitlimit\Alert\Themes\Tailwind\Components;
 
 use Digitlimit\Alert\Alert;
-use Digitlimit\Alert\Types\Field as FieldMessage;
 use Digitlimit\Alert\Contracts\LivewireInterface;
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -11,6 +10,7 @@ use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Digitlimit\Alert\Helpers\ValidationError;
+use Digitlimit\Alert\Types\Field as FieldAlert;
 
 /**
  * Class Field
@@ -28,9 +28,9 @@ class Field extends Component implements LivewireInterface
     public ?string $name = null;
 
     /**
-     * The alert
+     * The alerts
      */
-    protected ?FieldMessage $alert = null;
+    protected ?FieldAlert $alert = null;
 
     /**
      * The alert tag.
@@ -38,9 +38,14 @@ class Field extends Component implements LivewireInterface
     public string $tag = Alert::DEFAULT_TAG;
 
     /**
-     * The alerts
+     * Set the alerts.
      */
-    protected Collection $alerts;
+    public function setAlert(string $tag, array $alert = []): void
+    {
+        $this->alert = !empty($alert)
+            ? Alert::fromArray($alert)
+            : Alert::getField($tag, $this->name);
+    }
 
     /**
      * Create a new component instance.
@@ -57,14 +62,19 @@ class Field extends Component implements LivewireInterface
             return;
         }
 
-        $this->alert = Alert::getField($this->name, $this->tag);
+        $this->setAlert($this->tag);
     }
 
     #[On('refresh-alert-field')]
-    public function refresh(string $tag, Collection $alerts): void
+    public function refresh(string $tag, array $alerts): void
     {
-        $this->alerts = $alerts;
+        $alert = $alerts[$this->name] ?? null;
 
+        if (!is_array($alert) || $tag !== $this->tag) {
+            return;
+        }
+
+        $this->setAlert($tag, $alert);
         $this->dispatch('open-alert-field');
     }
 
@@ -73,6 +83,13 @@ class Field extends Component implements LivewireInterface
      */
     public function render(): View
     {
+        $alert = null;
+
+        if ($this->alert) {
+            $alert = $this->alert->toJson();
+            $this->alert->forget();
+        }
+
         return view('alert::themes.tailwind.components.field', [
             'alert' => null //$this->getViewFieldError($this->name, $this->tag),
         ]);

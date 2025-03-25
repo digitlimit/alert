@@ -26,24 +26,40 @@ class Notify extends Component implements LivewireInterface
     protected Collection $alerts;
 
     /**
+     * Set the alerts.
+     */
+    public function setAlerts(string $tag, array $alerts = []): void
+    {
+        $alerts = !empty($alerts)
+            ? Alert::fromArrays($alerts)
+            : Alert::getNotify($tag);
+
+        $this->alerts = $alerts
+            ->filter(function ($alert) {
+                return $alert->getTag() === $this->tag;
+            })
+            ->values();
+    }
+
+
+    /**
      * Create a new component instance.
      *
      * @throws Exception
      */
     public function mount(): void
     {
-        $this->alerts = Alert::getNotify($this->tag);
+        $this->setAlerts($this->tag);
     }
 
     #[On('refresh-alert-notify')]
-    public function refresh(string $tag, Collection $alerts): void
+    public function refresh(string $tag, array $alerts): void
     {
-        $this->alerts = $alerts;
-
-        if ($this->tag !== $tag || $alerts->isEmpty()) {
+        if ($tag !== $this->tag) {
             return;
         }
 
+        $this->setAlerts($tag, array_values($alerts));
         $this->dispatch('open-alert-notify');
     }
 
@@ -53,13 +69,10 @@ class Notify extends Component implements LivewireInterface
     public function render(): View
     {
         $alerts = $this->alerts->map(function ($alert) {
-            return $alert->toArray();
-        })->values()->toJson();
-
-        $this->alerts->each(function ($alert) {
             $alert->forget();
-        });
-
+            return $alert->toArray();
+        })->toJson();
+        
         return view(
             'alert::themes.tailwind.components.notify',
             compact('alerts')
