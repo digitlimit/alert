@@ -40,6 +40,7 @@ class Message extends AbstractAlert implements AlertInterface, Closable, HasMess
     public function __construct(
         protected string $message
     ) {
+        $this->timeout(0);
         parent::__construct();
     }
 

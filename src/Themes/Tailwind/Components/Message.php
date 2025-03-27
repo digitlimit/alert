@@ -23,7 +23,7 @@ class Message extends Component implements LivewireInterface
     /**
      * The alerts
      */
-    protected Collection $alerts;
+    public array $alerts = [];
 
     /**
      * Set the alerts.
@@ -38,7 +38,11 @@ class Message extends Component implements LivewireInterface
             ->filter(function ($alert) {
                 return $alert->getTag() === $this->tag;
             })
-            ->values();
+            ->values()
+            ->map(function ($alert) {
+                $alert->forget();
+                return $alert->toArray();
+            })->toArray();
     }
 
     /**
@@ -67,14 +71,9 @@ class Message extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        $alerts = $this->alerts->map(function ($alert) {
-            $alert->forget();
-            return $alert->toArray();
-        })->toJson();
-
         return view(
             'alert::themes.tailwind.components.message',
-            compact('alerts')
+//            compact('alerts')
         );
     }
 }

@@ -4,6 +4,7 @@ namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\HasMessage;
 use Digitlimit\Alert\Contracts\HasName;
+use Digitlimit\Alert\Contracts\HasTimeout;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Field\Flashed;
@@ -16,12 +17,13 @@ use Illuminate\Support\Facades\Session;
 /**
  * Field alert class.
  */
-class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName, Levelable, Taggable
+class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName, Levelable, Taggable, HasTimeout
 {
     use Traits\Levelable;
     use Traits\Taggable;
     use Traits\WithMessage;
     use Traits\WithName;
+    use Traits\WithTimeout;
 
     /**
      * The default level of the alert.
@@ -35,6 +37,7 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
         protected string $name,
         protected string $message
     ) {
+        $this->timeout(0);
         parent::__construct();
     }
 

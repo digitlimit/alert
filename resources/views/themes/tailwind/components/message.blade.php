@@ -1,32 +1,12 @@
-<div class="digitlimit-alert-message" :data-alerts='@json($alerts)'>
-    <div wire:ignore>
-        <div
-            class="message-container"
-            x-data="{
-            messages: [],
-            alerts: {{ $alerts }},
-            addAlerts() {
-
-                const root = this.$el.closest('.digitlimit-alert-message');
-                const alerts = JSON.parse(root.getAttribute('data-alerts') || '[]');
-
-                if (alerts.length) {
-                    this.alerts = alerts;
-                }
-
-                this.alerts.forEach(message => {
-                    console.log('message', message);
-                    this.messages.push(message);
-                });
-            },
-            init() {
-                this.addAlerts();
-            },
+<div class="digitlimit-alert-message">
+    <div
+        class="message-container"
+        x-data="{
+            messages: @entangle('alerts'),
             dismiss(id) {
                 this.messages = this.messages.filter(n => n.id !== id);
             }
         }"
-            @open-alert-message.window="addAlerts()"
     >
         <template x-for="message in messages" :key="message.id">
             <div
@@ -42,16 +22,16 @@
             >
                 <!-- Smooth Progress Bar with Dynamic Color -->
                 <div
-                        x-show="message.timeout"
-                        class="absolute bottom-0 left-0 h-1"
-                        style="width: 0%"
-                        x-init="
+                    x-show="message.timeout"
+                    class="absolute bottom-0 left-0 h-1"
+                    style="width: 0%"
+                    x-init="
                 requestAnimationFrame(() => {
                     $el.style.width = '100%';
                     $el.style.transition = `width ${message.timeout}ms linear`;
                 })
             "
-                        :class="{
+                    :class="{
                 'bg-blue-300': message.level === 'info',
                 'bg-green-300': message.level === 'success',
                 'bg-yellow-300': message.level === 'warning',
@@ -74,11 +54,11 @@
 
                 <!-- Close Button -->
                 <button
-                        @click="dismiss(message.id)"
-                        type="button"
-                        class="close"
-                        :class="message.level"
-                        aria-label="Close"
+                    @click="dismiss(message.id)"
+                    type="button"
+                    class="close"
+                    :class="message.level"
+                    aria-label="Close"
                 >
                     <span class="sr-only-fix">Close</span>
                     <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -88,6 +68,5 @@
                 </button>
             </div>
         </template>
-    </div>
     </div>
 </div>

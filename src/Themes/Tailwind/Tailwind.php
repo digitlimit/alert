@@ -66,9 +66,14 @@ class Tailwind extends AbstractTheme implements ThemeInterface
                 $event = 'refresh-alert-' . $type;
 
                 foreach($alerts as $tag => $tagAlerts) {
+                    if (empty($tagAlerts)) {
+                        continue;
+                    }
+
                     $tagAlerts = collect($tagAlerts)->map(function ($alert) {
                         return $alert->toArray();
                     });
+
                     $component->dispatch($event, $tag, $tagAlerts);
                 }
             }
