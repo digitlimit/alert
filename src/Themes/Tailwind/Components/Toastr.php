@@ -8,12 +8,12 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
-use Livewire\Component;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 
 /**
  * Class Toastr
  */
-class Toastr extends Component implements LivewireInterface
+class Toastr extends AbstractComponent implements LivewireInterface
 {
     /**
      * The alert tag.
@@ -23,12 +23,12 @@ class Toastr extends Component implements LivewireInterface
     /**
      * The alerts
      */
-    protected Collection $alerts;
+    public array $alerts = [];
 
     /**
      * Set the alerts.
      */
-    public function setAlerts(string $tag, array $alerts = []): void
+    public function resolve(string $tag, array $alerts = []): void
     {
         $alerts = !empty($alerts)
             ? Alert::fromArrays($alerts)
@@ -38,7 +38,11 @@ class Toastr extends Component implements LivewireInterface
             ->filter(function ($alert) {
                 return $alert->getTag() === $this->tag;
             })
-            ->values();
+            ->values()
+            ->map(function ($alert) {
+                $alert->forget();
+                return $alert->toArray();
+            })->toArray();
     }
 
     /**
@@ -48,7 +52,7 @@ class Toastr extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $this->setAlerts($this->tag);
+        $this->resolve($this->tag);
     }
 
     #[On('refresh-alert-toastr')]
@@ -58,7 +62,7 @@ class Toastr extends Component implements LivewireInterface
             return;
         }
 
-        $this->setAlerts($tag, array_values($alerts));
+        $this->resolve($tag, array_values($alerts));
         $this->dispatch('open-alert-toastr');
     }
 
@@ -67,14 +71,6 @@ class Toastr extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        $alerts = $this->alerts->map(function ($alert) {
-            $alert->forget();
-            return $alert->toArray();
-        })->toJson();
-        
-        return view(
-            'alert::themes.tailwind.components.toastr',
-            compact('alerts')
-        );
+        return view('alert::themes.tailwind.components.toastr');
     }
 }

@@ -4,29 +4,11 @@
         :class="position"
         x-data="{
             position: 'top-right',
-            toasts: [],
-            alerts: {{ $alerts }},
-            addAlerts() {
-                this.alerts.forEach(toast => {
-                    toast.position = toast.position ?? 'top-right';
-                    toast.level = toast.level ?? 'info';
-                    toast.timeout = toast.timeout ?? 2000;
-
-                    this.toasts.push(toast);
-
-                    if (toast.timeout > 0) {
-                        setTimeout(() => { this.dismiss(toast.id); }, toast.timeout);
-                    }
-                });
-            },
-            init() {
-                this.addAlerts();
-            },
+            toasts: @entangle('alerts'),
             dismiss(id) {
                 this.toasts = this.toasts.filter(n => n.id !== id);
             }
         }"
-        @open-alert-toastr.window="addAlerts()"
     >
         <template x-for="toast in toasts" :key="toast.id">
             <div
@@ -38,7 +20,13 @@
                     x-transition:leave-end="transform -translate-y-2 opacity-0"
                     class="alert-toastr"
                     :class="toast.level"
-                    x-init="position = toast.position"
+                    x-init="
+                        position = toast.position
+
+                        if (toast.timeout) {
+                            setTimeout(() => dismiss(toast.id), toast.timeout);
+                        }
+                    "
             >
                 <div class="flex flex-col w-full">
                     <div class="flex items-center w-full px-1 my-2">

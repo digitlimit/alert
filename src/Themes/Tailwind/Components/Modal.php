@@ -8,12 +8,13 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
-use Livewire\Component;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
+use Illuminate\Support\Str;
 
 /**
  * Class Modal
  */
-class Modal extends Component implements LivewireInterface
+class Modal extends AbstractComponent implements LivewireInterface
 {
     /**
      * The alert tag.
@@ -23,12 +24,12 @@ class Modal extends Component implements LivewireInterface
     /**
      * The alerts
      */
-    protected Collection $alerts;
+    public array $alerts = [];
 
     /**
      * Set the alerts.
      */
-    public function setAlerts(string $tag, array $alerts = []): void
+    public function resolve(string $tag, array $alerts = []): void
     {
         $alerts = !empty($alerts)
             ? Alert::fromArrays($alerts)
@@ -38,7 +39,23 @@ class Modal extends Component implements LivewireInterface
             ->filter(function ($alert) {
                 return $alert->getTag() === $this->tag;
             })
-            ->values();
+            ->values()
+            ->map(function ($alert) {
+                $alert->forget();
+                $modal = $alert->toArray();
+
+                $modal['action_button'] = $alert->actionButton()?->toArray();
+                $modal['cancel_button'] = $alert->cancelButton()?->toArray();
+                $modal['custom_buttons'] = $alert->customButtons()
+                    ->map(fn ($button) => $button->toArray())
+                    ->toArray();
+
+                $modal['has_action_button'] = $modal['action_button'] !== null;
+                $modal['has_cancel_button'] = $modal['cancel_button'] !== null;
+                $modal['has_custom_buttons'] = count($modal['custom_buttons']);
+
+                return $modal;
+            })->toArray();
     }
 
     /**
@@ -48,7 +65,7 @@ class Modal extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $this->setAlerts($this->tag);
+        $this->resolve($this->tag);
     }
 
     #[On('refresh-alert-modal')]
@@ -58,7 +75,7 @@ class Modal extends Component implements LivewireInterface
             return;
         }
 
-        $this->setAlerts($tag, array_values($alerts));
+        $this->resolve($tag, array_values($alerts));
         $this->dispatch('open-alert-modal');
     }
 
@@ -67,14 +84,6 @@ class Modal extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        $alerts = $this->alerts->map(function ($alert) {
-            $alert->forget();
-            return $alert->toArray();
-        })->toJson();
-        
-        return view(
-            'alert::themes.tailwind.components.modal',
-            compact('alerts')
-        );
+        return view('alert::themes.tailwind.components.modal');
     }
 }

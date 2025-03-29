@@ -8,12 +8,13 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
-use Livewire\Component;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
+use Illuminate\Support\Str;
 
 /**
  * Class Notify
  */
-class Notify extends Component implements LivewireInterface
+class Notify extends AbstractComponent implements LivewireInterface
 {
     /**
      * The alert tag.
@@ -23,12 +24,12 @@ class Notify extends Component implements LivewireInterface
     /**
      * The alerts
      */
-    protected Collection $alerts;
+    public array $alerts = [];
 
     /**
      * Set the alerts.
      */
-    public function setAlerts(string $tag, array $alerts = []): void
+    public function resolve(string $tag, array $alerts = []): void
     {
         $alerts = !empty($alerts)
             ? Alert::fromArrays($alerts)
@@ -38,9 +39,24 @@ class Notify extends Component implements LivewireInterface
             ->filter(function ($alert) {
                 return $alert->getTag() === $this->tag;
             })
-            ->values();
-    }
+            ->values()
+            ->map(function ($alert) {
+                $alert->forget();
+                $notify = $alert->toArray();
 
+                $notify['action_button'] = $alert->actionButton()?->toArray();
+                $notify['cancel_button'] = $alert->cancelButton()?->toArray();
+                $notify['custom_buttons'] = $alert->customButtons()
+                    ->map(fn ($button) => $button->toArray())
+                    ->toArray();
+
+                $notify['has_action_button'] = $notify['action_button'] !== null;
+                $notify['has_cancel_button'] = $notify['cancel_button'] !== null;
+                $notify['has_custom_buttons'] = count($notify['custom_buttons']);
+
+                return $notify;
+            })->toArray();
+    }
 
     /**
      * Create a new component instance.
@@ -49,7 +65,7 @@ class Notify extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $this->setAlerts($this->tag);
+        $this->resolve($this->tag);
     }
 
     #[On('refresh-alert-notify')]
@@ -59,7 +75,7 @@ class Notify extends Component implements LivewireInterface
             return;
         }
 
-        $this->setAlerts($tag, array_values($alerts));
+        $this->resolve($tag, array_values($alerts));
         $this->dispatch('open-alert-notify');
     }
 
@@ -68,14 +84,6 @@ class Notify extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        $alerts = $this->alerts->map(function ($alert) {
-            $alert->forget();
-            return $alert->toArray();
-        })->toJson();
-        
-        return view(
-            'alert::themes.tailwind.components.notify',
-            compact('alerts')
-        );
+        return view('alert::themes.tailwind.components.notify');
     }
 }

@@ -1,122 +1,98 @@
 <div wire:ignore class="digitlimit-alert-notify">
     <div
-            class="notify-container"
-            x-data="{
-                    notifications: [],
-                    alerts: {{ $alerts }},
-                    addAlerts() {
-
-                        this.alerts.forEach(notify => {
-                        notify.autoClose = notify.timeout > 0;
-                        notify.buttons = Array.isArray(notify.buttons) ? notify.buttons : [];
-
-                        notify.buttons.forEach(button => {
-                            button.id = Math.random().toString(36);
-                        });
-
-                        notify.actionButton = notify.buttons.filter(button => button.name === 'action')[0] ?? null;
-                        notify.cancelButton = notify.buttons.filter(button => button.name === 'cancel')[0] ?? null;
-                        notify.customButtons = notify.buttons.filter(button => !['action', 'cancel'].includes(button.name));
-
-                        notify.hasActionButton = notify.actionButton !== null;
-                        notify.hasCancelButton = notify.cancelButton.length !== null;
-                        notify.hasCustomButtons = notify.customButtons.length;
-
-                        this.notifications.push(notify);
-
-                        if (notify.autoClose) {
-                            setTimeout(() => { this.dismiss(notify.id); }, notify.timeout);
-                        }
-                    });
-                },
-                init() {
-                    this.addAlerts();
-                },
-                dismiss(id) {
-                    this.notifications = this.notifications.filter(n => n.id !== id);
-                }
-            }"
-
-            @open-alert-notify.window="addAlerts()"
+        class="notify-container"
+        x-data="{
+            notifications: @entangle('alerts'),
+            dismiss(id) {
+                this.notifications = this.notifications.filter(n => n.id !== id);
+            }
+        }"
     >
-        <template x-for="notification in notifications" :key="notification.id">
+        <template x-for="notify in notifications" :key="notify.id">
             <div class="notifies" style="opacity: 1; transform: translateY(0px);">
-                <div class="notify">
-                    <template x-if="notification.autoClose">
-                        <div class="notify-progress" :style="'animation-duration: ' + notification.timeout + 'ms;'"></div>
+                <div
+                    class="notify"
+                    x-init="
+                        if (notify.timeout) {
+                            setTimeout(() => dismiss(notify.id), notify.timeout);
+                        }
+                    "
+                >
+                    <template x-if="notify.timeout">
+                        <div class="notify-progress" :style="'animation-duration: ' + notify.timeout + 'ms;'"></div>
                     </template>
 
                     <div class="flex flex-1 items-center gap-4">
                         <div class="notify-content">
-                            <template x-if="notification.level === 'info'">
+                            <template x-if="notify.level === 'info'">
                                 <x-alert-icon::info />
                             </template>
-                            <template x-if="notification.level === 'success'">
+                            <template x-if="notify.level === 'success'">
                                 <x-alert-icon::success />
                             </template>
-                            <template x-if="notification.level === 'warning'">
+                            <template x-if="notify.level === 'warning'">
                                 <x-alert-icon::warning />
                             </template>
-                            <template x-if="notification.level === 'error'">
+                            <template x-if="notify.level === 'error'">
                                 <x-alert-icon::error />
                             </template>
-                            <div class="notify-message" x-text="notification.message" />
+                            <div class="notify-message" x-text="notify.message" />
                         </div>
                     </div>
 
                     <div class="notify-buttons ml-auto">
                         <button
-                                x-show="notification.hasActionButton && notification.actionButton.link === null"
-                                @click="dismiss(notification.id)"
-                                class="action-button"
-                                x-bind="notification.actionButton.attributes"
+                            x-show="notify.has_action_button && notify.action_button.link === null"
+                            @click="dismiss(notify.id)"
+                            class="action-button"
+                            x-bind="notify.action_button.attributes"
                         >
-                            <span x-text="notification.actionButton.label"></span>
+                            <span x-text="notify.action_button.label"></span>
                         </button>
 
                         <a
-                                x-show="notification.hasActionButton && notification.actionButton.link !== null"
-                                :href="notification.actionButton.link"
-                                @click="dismiss(notification.id)"
-                                class="action-button"
-                                x-bind="notification.actionButton.attributes"
+                            x-show="notify.has_action_button && notify.action_button.link !== null"
+                            :href="notify.action_button.link"
+                            @click="dismiss(notify.id)"
+                            class="action-button"
+                            x-bind="notify.action_button.attributes"
                         >
-                            <span x-text="notification.actionButton.label"></span>
+                            <span x-text="notify.action_button.label"></span>
                         </a>
 
                         <button
-                                x-show="notification.hasCancelButton && notification.cancelButton.link === null"
-                                @click="dismiss(notification.id)"
-                                class="cancel-button"
-                                x-bind="notification.cancelButton.attributes"
+                            x-show="notify.has_cancel_button && notify.cancel_button.link === null"
+                            @click="dismiss(notify.id)"
+                            class="cancel-button"
+                            x-bind="notify.cancel_button.attributes"
                         >
-                            <span x-text="notification.cancelButton.label"></span>
+                            <span x-text="notify.cancel_button.label"></span>
                         </button>
 
                         <a
-                                x-show="notification.hasCancelButton && notification.cancelButton.link !== null"
-                                :href="notification.cancelButton.link"
-                                @click="dismiss(notification.id)"
-                                class="cancel-button"
-                                x-bind="notification.cancelButton.attributes"
+                            x-show="notify.has_cancel_button && notify.cancel_button.link !== null"
+                            :href="notify.cancel_button.link"
+                            @click="dismiss(notify.id)"
+                            class="cancel-button"
+                            x-bind="notify.cancel_button.attributes"
                         >
-                            <span x-text="notification.cancelButton.label"></span>
+                            <span x-text="notify.cancel_button.label"></span>
                         </a>
 
-                        <template x-for="button in notification.customButtons" :key="button.id">
+                        <template x-for="button in notify.custom_buttons" :key="button.id">
                             <template x-if="button.link === null">
                                 <button
-                                        @click="dismiss(notification.id)"
-                                        x-bind="button.attributes"
+                                    @click="dismiss(notify.id)"
+                                    x-bind="button.attributes"
                                 >
                                     <span x-text="button.label"></span>
                                 </button>
                             </template>
                             <template x-if="button.link !== null">
                                 <a
-                                        :href="button.link"
-                                        @click="dismiss(notification.id)"
-                                        x-bind="button.attributes"
+                                    :href="button.link"
+                                    @click="dismiss(notify.id)"
+                                    x-bind="button.attributes"
                                 >
                                     <span x-text="button.label"></span>
                                 </a>

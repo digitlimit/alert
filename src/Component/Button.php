@@ -8,16 +8,36 @@ namespace Digitlimit\Alert\Component;
 class Button
 {
     /**
+     * The button id.
+     */
+    protected string $id;
+
+    /**
      * Create a new button instance.
      *
      * @return void
      */
     public function __construct(
         protected string $name,
-        protected ?string $label = null,
+        protected string $label,
         protected ?string $link = null,
         protected array $attributes = []
-    ) {}
+    ) {
+        $this->id = uniqid();
+    }
+
+    public function id(string $id): self
+    {
+        $this->attributes['id'] = $id;
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
 
     /**
      * Set the button name.
@@ -121,6 +141,7 @@ class Button
     public function toArray(): array
     {
         return [
+            'id' => $this->getId(),
             'name' => $this->getName(),
             'label' => $this->getLabel(),
             'link' => $this->getLink(),
@@ -134,10 +155,21 @@ class Button
     public static function fill(array $button): self
     {
         return new static(
+            $button['id'],
             $button['name'],
             $button['label'],
             $button['link'],
             $button['attributes']
         );
+    }
+
+    /**
+     * Execute a callback and return the instance.
+     */
+    public function tap(callable $callback)
+    {
+        $callback($this);
+
+        return $this;
     }
 }

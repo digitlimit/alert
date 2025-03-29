@@ -1,65 +1,38 @@
-<div wire:ignore class="digitlimit-alert-modal">
+<div class="digitlimit-alert-modal">
     <div
-            class="modal-container"
-            x-data="{
-            modals: [],
-            alerts: {{ $alerts }},
-            addAlerts() {
-                this.alerts.forEach(modal => {
-                    modal.scrollable = modal.scrollable ?? false;
-                    modal.size = modal.size ?? 'md';
-                    modal.buttons = Array.isArray(modal.buttons) ? modal.buttons : [];
-
-                    modal.buttons.forEach(button => {
-                        button.id = Math.random().toString(36);
-                    });
-
-                    modal.actionButton = modal.buttons.find(button => button.name === 'action') ?? null;
-                    modal.cancelButton = modal.buttons.find(button => button.name === 'cancel') ?? null;
-                    modal.customButtons = modal.buttons.filter(button => !['action', 'cancel'].includes(button.name));
-
-                    modal.hasActionButton = modal.actionButton !== null;
-                    modal.hasCancelButton = modal.cancelButton !== null;
-                    modal.hasCustomButtons = modal.customButtons.length > 0;
-
-                    this.modals.push(modal);
-                });
-            },
-            init() {
-                this.addAlerts();
-            },
+        class="modal-container"
+        x-data="{
+            modals: @entangle('alerts'),
             dismiss(id) {
                 this.modals = this.modals.filter(n => n.id !== id);
             }
         }"
-            @open-alert-modal.window="addAlerts()"
-            x-cloak
     >
         <template x-for="modal in modals" :key="modal.id">
             <div class="alert-modal" x-cloak>
                 <!-- Background Overlay -->
                 <div
-                        class="modal-overlay"
-                        x-transition:enter="ease-out duration-300"
-                        x-transition:enter-start="opacity-0"
-                        x-transition:enter-end="opacity-100"
-                        x-transition:leave="ease-in duration-300"
-                        x-transition:leave-start="opacity-100"
-                        x-transition:leave-end="opacity-0"
-                        @click="dismiss(modal.id)"
+                    class="modal-overlay"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="ease-in duration-300"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    @click="dismiss(modal.id)"
                 ></div>
 
                 <!-- Modal Content -->
                 <div
-                        class="modal-content"
-                        :class="{ 'scrollable': modal.scrollable, [modal.size]: true }"
-                        x-trap="true"
-                        x-transition:enter="ease-out duration-300"
-                        x-transition:enter-start="opacity-0 -translate-y-2 sm:scale-95"
-                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                        x-transition:leave="ease-in duration-200"
-                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                        x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
+                    class="modal-content"
+                    :class="{ 'scrollable': modal.scrollable, [modal.size]: true }"
+                    x-trap="true"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 -translate-y-2 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
                 >
                     <!-- Modal Header -->
                     <div class="modal-header" :class="'text-' + modal.level">
@@ -131,44 +104,44 @@
                     <!-- Modal Footer Buttons -->
                     <div class="modal-footer">
                         <a
-                                x-show="modal.hasActionButton && modal.actionButton.link !== null"
-                                :href="modal.actionButton.link"
+                                x-show="modal.has_action_button && modal.action_button.link !== null"
+                                :href="modal.action_button.link"
                                 @click="dismiss(modal.id)"
                                 class="modal-action-button"
-                                x-bind="modal.actionButton.attributes"
+                                x-bind="modal.action_button.attributes"
                         >
-                            <span x-text="modal.actionButton.label"></span>
+                            <span x-text="modal.action_button.label"></span>
                         </a>
 
                         <button
-                                x-show="modal.hasActionButton && modal.actionButton.link === null"
-                                @click="dismiss(modal.id)"
-                                class="modal-action-button"
-                                x-bind="modal.actionButton.attributes"
+                            x-show="modal.has_action_button && modal.action_button.link === null"
+                            @click="dismiss(modal.id)"
+                            class="modal-action-button"
+                            x-bind="modal.action_button.attributes"
                         >
-                            <span x-text="modal.actionButton.label"></span>
+                            <span x-text="modal.action_button.label"></span>
                         </button>
 
                         <a
-                                x-show="modal.hasCancelButton && modal.cancelButton.link !== null"
-                                :href="modal.cancelButton.link"
-                                @click="dismiss(modal.id)"
-                                class="modal-cancel-button"
-                                x-bind="modal.cancelButton.attributes"
+                            x-show="modal.has_cancel_button && modal.cancel_button.link !== null"
+                            :href="modal.cancel_button.link"
+                            @click="dismiss(modal.id)"
+                            class="modal-cancel-button"
+                            x-bind="modal.cancel_button.attributes"
                         >
-                            <span x-text="modal.cancelButton.label"></span>
+                            <span x-text="modal.cancel_button.label"></span>
                         </a>
 
                         <button
-                                x-show="modal.hasCancelButton && modal.cancelButton.link === null"
+                                x-show="modal.has_cancel_button && modal.cancel_button.link === null"
                                 @click="dismiss(modal.id)"
                                 class="modal-cancel-button"
-                                x-bind="modal.cancelButton.attributes"
+                                x-bind="modal.cancel_button.attributes"
                         >
-                            <span x-text="modal.cancelButton.label"></span>
+                            <span x-text="modal.cancel_button.label"></span>
                         </button>
 
-                        <template x-for="button in modal.customButtons" :key="button.id">
+                        <template x-for="button in modal.custom_buttons" :key="button.id">
                             <template x-if="button.link === null">
                                 <button
                                     x-bind="button.attributes"

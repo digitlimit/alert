@@ -71,8 +71,8 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
             'timeout' => $this->getTimeout(),
             'scrollable' => $this->isScrollable(),
             'closable' => $this->isClosable(),
-            'buttons' => $this->buttonsToArray(),
             'view' => $this->getView(),
+            'buttons' => $this->buttonsToArray(),
         ]);
     }
 

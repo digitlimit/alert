@@ -26,17 +26,17 @@
                     class="absolute bottom-0 left-0 h-1"
                     style="width: 0%"
                     x-init="
-                requestAnimationFrame(() => {
-                    $el.style.width = '100%';
-                    $el.style.transition = `width ${message.timeout}ms linear`;
-                })
-            "
+                        requestAnimationFrame(() => {
+                            $el.style.width = '100%';
+                            $el.style.transition = `width ${message.timeout}ms linear`;
+                        })
+                    "
                     :class="{
-                'bg-blue-300': message.level === 'info',
-                'bg-green-300': message.level === 'success',
-                'bg-yellow-300': message.level === 'warning',
-                'bg-red-300': message.level === 'error'
-            }"
+                    'bg-blue-300': message.level === 'info',
+                    'bg-green-300': message.level === 'success',
+                    'bg-yellow-300': message.level === 'warning',
+                    'bg-red-300': message.level === 'error'
+                }"
                 ></div>
 
                 <!-- Icon -->

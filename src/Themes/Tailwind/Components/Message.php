@@ -8,12 +8,12 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
-use Livewire\Component;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 
 /**
  * Class Message
  */
-class Message extends Component implements LivewireInterface
+class Message extends AbstractComponent implements LivewireInterface
 {
     /**
      * The alert tag.
@@ -28,7 +28,7 @@ class Message extends Component implements LivewireInterface
     /**
      * Set the alerts.
      */
-    public function setAlerts(string $tag, array $alerts = []): void
+    public function resolve(string $tag, array $alerts = []): void
     {
         $alerts = !empty($alerts)
             ? Alert::fromArrays($alerts)
@@ -52,7 +52,7 @@ class Message extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $this->setAlerts($this->tag);
+        $this->resolve($this->tag);
     }
 
     #[On('refresh-alert-message')]
@@ -62,7 +62,7 @@ class Message extends Component implements LivewireInterface
             return;
         }
 
-        $this->setAlerts($tag, array_values($alerts));
+        $this->resolve($tag, array_values($alerts));
         $this->dispatch('open-alert-message');
     }
 
@@ -71,9 +71,6 @@ class Message extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        return view(
-            'alert::themes.tailwind.components.message',
-//            compact('alerts')
-        );
+        return view('alert::themes.tailwind.components.message');
     }
 }

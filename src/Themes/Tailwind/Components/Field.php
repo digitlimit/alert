@@ -8,14 +8,13 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
-use Livewire\Component;
-use Digitlimit\Alert\Helpers\ValidationError;
-use Digitlimit\Alert\Types\Field as FieldAlert;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
+use Illuminate\Support\Str;
 
 /**
  * Class Field
  */
-class Field extends Component implements LivewireInterface
+class Field extends AbstractComponent implements LivewireInterface
 {
     /**
      * The alias for named alert.
@@ -30,22 +29,12 @@ class Field extends Component implements LivewireInterface
     /**
      * The alerts
      */
-    protected ?FieldAlert $alert = null;
+    public array $alert = [];
 
     /**
      * The alert tag.
      */
     public string $tag = Alert::DEFAULT_TAG;
-
-    /**
-     * Set the alerts.
-     */
-    public function setAlert(string $tag, array $alert = []): void
-    {
-        $this->alert = !empty($alert)
-            ? Alert::fromArray($alert)
-            : Alert::getField($tag, $this->name);
-    }
 
     /**
      * Create a new component instance.
@@ -62,7 +51,7 @@ class Field extends Component implements LivewireInterface
             return;
         }
 
-        $this->setAlert($this->tag);
+        $this->resolve($this->tag);
     }
 
     #[On('refresh-alert-field')]
@@ -74,8 +63,25 @@ class Field extends Component implements LivewireInterface
             return;
         }
 
-        $this->setAlert($tag, $alert);
+        $this->resolve($tag, $alert);
         $this->dispatch('open-alert-field');
+    }
+
+    /**
+     * Set the alerts.
+     */
+    public function resolve(string $tag, array $alert = []): void
+    {
+        $alert = !empty($alert)
+            ? Alert::fromArray($alert)
+            : Alert::getField($tag, $this->name);
+
+        if (empty($alert)) {
+            return;
+        }
+
+        $alert->forget();
+        $this->alert = $alert->toArray();
     }
 
     /**
@@ -83,15 +89,6 @@ class Field extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        $alert = null;
-
-        if ($this->alert) {
-            $alert = $this->alert->toJson();
-            $this->alert->forget();
-        }
-
-        return view('alert::themes.tailwind.components.field', [
-            'alert' => null //$this->getViewFieldError($this->name, $this->tag),
-        ]);
+        return view('alert::themes.tailwind.components.field');
     }
 }
