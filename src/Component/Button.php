@@ -23,7 +23,7 @@ class Button
         protected ?string $link = null,
         protected array $attributes = []
     ) {
-        $this->id = uniqid();
+        $this->id = $attributes['id'] ?? uniqid();
     }
 
     public function id(string $id): self
@@ -155,7 +155,6 @@ class Button
     public static function fill(array $button): self
     {
         return new static(
-            $button['id'],
             $button['name'],
             $button['label'],
             $button['link'],
@@ -166,7 +165,7 @@ class Button
     /**
      * Execute a callback and return the instance.
      */
-    public function tap(callable $callback)
+    public function tap(callable $callback): self
     {
         $callback($this);
 
