@@ -57,9 +57,9 @@ class Field extends AbstractComponent implements LivewireInterface
     #[On('refresh-alert-field')]
     public function refresh(string $tag, array $alerts): void
     {
-        $alert = $alerts[$this->name] ?? null;
+        $alert = $alerts[$this->name] ?? [];
 
-        if (!is_array($alert) || $tag !== $this->tag) {
+        if ($tag !== $this->tag) {
             return;
         }
 
