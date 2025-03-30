@@ -94,6 +94,10 @@ class Message extends AbstractAlert implements AlertInterface, Closable, HasMess
         $message->closable($alert['closable'] ?? false);
         $message->sticky($alert['sticky'] ?? false);
 
+        if (isset($alert['timeout'])) {
+            $message->timeout($alert['timeout']);
+        }
+
         if ($alert['title']) {
             $message->title($alert['title']);
         }

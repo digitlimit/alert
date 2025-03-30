@@ -81,6 +81,7 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
             'named_tag' => $this->getNamedTag(),
             'level' => $this->getLevel(),
             'message' => $this->getMessage(),
+            'timeout' => $this->getTimeout(),
         ]);
     }
 
