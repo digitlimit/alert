@@ -113,7 +113,7 @@ it('can flash the modal alert to session and dispatch event', function () {
     $alert->flash();
 
     $sessionKey = SessionKey::key('modal', 'example.' . $alert->getId());
-    
+
     expect(Session::get($sessionKey))->toBeInstanceOf(Modal::class)
         ->and(Session::get($sessionKey)->getMessage())->toBe('Flashing modal');
 
