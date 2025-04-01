@@ -104,20 +104,20 @@ it('can fill a modal alert from an array', function () {
         ->and($alert->buttonsToArray())->toHaveCount(2);
 })->group('modal', 'fill');
 //
-//it('can flash the modal alert to session and dispatch event', function () {
-//    Event::fake();
-//
-//    $alert = new Modal('Flashing modal');
-//    $alert->tag('example');
-//
-//    $alert->flash();
-//
-//    $sessionKey = SessionKey::key('modal', 'example');
-//
-//    expect(Session::get($sessionKey))->toBeInstanceOf(Modal::class)
-//        ->and(Session::get($sessionKey)->getMessage())->toBe('Flashing modal');
-//
-//    Event::assertDispatched(Flashed::class, function ($event) use ($alert) {
-//        return $event->alert === $alert;
-//    });
-//})->group('modal', 'flash');
+it('can flash the modal alert to session and dispatch event', function () {
+    Event::fake();
+
+    $alert = new Modal('Flashing modal');
+    $alert->tag('example');
+
+    $alert->flash();
+
+    $sessionKey = SessionKey::key('modal', 'example.' . $alert->getId());
+    
+    expect(Session::get($sessionKey))->toBeInstanceOf(Modal::class)
+        ->and(Session::get($sessionKey)->getMessage())->toBe('Flashing modal');
+
+    Event::assertDispatched(Flashed::class, function ($event) use ($alert) {
+        return $event->alert === $alert;
+    });
+})->group('modal', 'flash');
