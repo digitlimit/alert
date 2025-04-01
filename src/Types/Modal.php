@@ -87,22 +87,15 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
         $modal = new static($alert['message']);
 
         $modal->id($alert['id']);
-        $modal->size($alert['size']);
-        $modal->level($alert['level']);
         $modal->scrollable($alert['scrollable'] ?? false);
         $modal->closable($alert['closable'] ?? false);
         $modal->buttons($alert['buttons'] ?? []);
 
-        if (isset($alert['tag']) && $alert['tag']) {
-            $modal->tag($alert['tag']);
-        }
-
-        if (isset($alert['title']) && $alert['title']) {
-            $modal->title($alert['title']);
-        }
-
-        if (isset($alert['view']) && $alert['view']) {
-            $modal->setView($alert['view']);
+        foreach (['tag', 'size', 'level', 'title', 'view'] as $property) {
+            if (!empty($alert[$property])) {
+                $method = $property === 'view' ? 'setView' : $property;
+                $modal->$method($alert[$property]);
+            }
         }
 
         return $modal;
