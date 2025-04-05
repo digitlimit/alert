@@ -6,7 +6,6 @@ use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
 use Exception;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
 use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 

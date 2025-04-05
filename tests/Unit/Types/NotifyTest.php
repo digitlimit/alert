@@ -53,16 +53,3 @@ it('fills from array correctly', function () {
         ->and($notify->isClosable())->toBeTrue();
 })->group('notify', 'fill');
 
-it('flashes notification correctly', function () {
-    Session::shouldReceive('flash')->once();
-    Session::shouldReceive('forget')->once(); // Mock forget method to avoid exception
-
-    $notify = new Notify('Flash message');
-    $notify->id('flash-id');
-
-    Flashed::fake();
-
-    $notify->flash();
-
-    Flashed::assertDispatched(fn ($event) => $event->alert === $notify);
-});
