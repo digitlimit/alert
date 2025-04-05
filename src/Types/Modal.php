@@ -5,6 +5,7 @@ namespace Digitlimit\Alert\Types;
 use Digitlimit\Alert\Contracts\Closable;
 use Digitlimit\Alert\Contracts\HasButton;
 use Digitlimit\Alert\Contracts\HasMessage;
+use Digitlimit\Alert\Contracts\HasTimeout;
 use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\HasView;
 use Digitlimit\Alert\Contracts\Levelable;
@@ -21,7 +22,7 @@ use Throwable;
 /**
  * Modal alert class.
  */
-class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton, HasMessage, HasTitle, HasView, Levelable, Scrollable, Sizable, Taggable
+class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton, HasMessage, HasTimeout, HasTitle, HasView, Levelable, Scrollable, Sizable, Taggable
 {
     use Traits\Closable;
     use Traits\Levelable;
@@ -33,6 +34,7 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
     use Traits\WithCancelButton;
     use Traits\WithMessage;
     use Traits\WithTitle;
+    use Traits\WithTimeout;
     use Traits\WithView;
 
     /**
@@ -66,10 +68,11 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
             'message' => $this->getMessage(),
             'tag' => $this->getTag(),
             'size' => $this->getSize(),
+            'timeout' => $this->getTimeout(),
             'scrollable' => $this->isScrollable(),
             'closable' => $this->isClosable(),
-            'buttons' => $this->buttonsToArray(),
             'view' => $this->getView(),
+            'buttons' => $this->buttonsToArray(),
         ]);
     }
 
@@ -84,22 +87,15 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
         $modal = new static($alert['message']);
 
         $modal->id($alert['id']);
-        $modal->size($alert['size']);
-        $modal->level($alert['level']);
         $modal->scrollable($alert['scrollable'] ?? false);
         $modal->closable($alert['closable'] ?? false);
         $modal->buttons($alert['buttons'] ?? []);
 
-        if (isset($alert['tag']) && $alert['tag']) {
-            $modal->tag($alert['tag']);
-        }
-
-        if (isset($alert['title']) && $alert['title']) {
-            $modal->title($alert['title']);
-        }
-
-        if (isset($alert['view']) && $alert['view']) {
-            $modal->setView($alert['view']);
+        foreach (['tag', 'size', 'level', 'title', 'view'] as $property) {
+            if (!empty($alert[$property])) {
+                $method = $property === 'view' ? 'setView' : $property;
+                $modal->$method($alert[$property]);
+            }
         }
 
         return $modal;

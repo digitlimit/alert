@@ -4,122 +4,77 @@ namespace Digitlimit\Alert\Themes\Tailwind\Components;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
-use Digitlimit\Alert\Helpers\Attribute;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
-use Livewire\Component;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 
 /**
  * Class Modal
  */
-class Modal extends Component implements LivewireInterface
+class Modal extends AbstractComponent implements LivewireInterface
 {
-    /**
-     * The default alert tag.
-     */
-    public string $defaultTag = Alert::DEFAULT_TAG;
-
     /**
      * The alert tag.
      */
-    public string $tag;
+    public string $tag = Alert::DEFAULT_TAG;
 
     /**
-     * The alert
+     * The alerts
      */
-    public array $data = [];
+    public array $alerts = [];
 
     /**
+     * Set the alerts.
+     */
+    public function resolve(string $tag, array $alerts = []): void
+    {
+        $alerts = !empty($alerts)
+            ? Alert::fromArrays($alerts)
+            : Alert::getModal($tag);
+
+        $this->alerts = $alerts
+            ->filter(function ($alert) {
+                return $alert->getTag() === $this->tag;
+            })
+            ->values()
+            ->map(function ($alert) {
+                $alert->forget();
+                $modal = $alert->toArray();
+
+                $modal['action_button'] = $alert->actionButton()?->toArray();
+                $modal['cancel_button'] = $alert->cancelButton()?->toArray();
+                $modal['custom_buttons'] = $alert->customButtons()
+                    ->map(fn ($button) => $button->toArray())
+                    ->toArray();
+
+                $modal['has_action_button'] = $modal['action_button'] !== null;
+                $modal['has_cancel_button'] = $modal['cancel_button'] !== null;
+                $modal['has_custom_buttons'] = count($modal['custom_buttons']);
+
+                return $modal;
+            })->toArray();
+    }
+
+    /**
+     * Create a new component instance.
+     *
      * @throws Exception
      */
     public function mount(): void
     {
-        $this->tag = $this->tag ?? $this->defaultTag;
-        $this->data = Alert::taggedModal($this->tag)?->toArray() ?? [];
-
-        if (empty($this->data)) {
-            $this->skipRender();
-        }
+        $this->resolve($this->tag);
     }
 
     #[On('refresh-alert-modal')]
-    public function refresh(string $tag, array $data): void
+    public function refresh(string $tag, array $alerts): void
     {
-        if ($this->tag !== $tag) {
+        if ($tag !== $this->tag) {
             return;
         }
 
-        $this->data = $data;
+        $this->resolve($tag, array_values($alerts));
         $this->dispatch('open-alert-modal');
-    }
-
-    /**
-     * Merge and convert array attributes to HTML string attributes.
-     */
-    public function actionAttributes(array $attributes = []): string
-    {
-//        $button = config('alert.tailwind.classes.buttons.primary');
-        $buttonAttributes = config('alert.tailwind.attributes.buttons.action');
-        $buttonAttributes['class'] = 'modal-action-button';
-
-        $newAttributes = array_merge(
-            $buttonAttributes,
-            $attributes
-        );
-
-        return Attribute::toString($newAttributes);
-    }
-
-    /**
-     * Merge and convert array attributes to HTML string attributes.
-     */
-    public function cancelAttributes(array $attributes = []): string
-    {
-//        $button = config('alert.tailwind.classes.buttons.secondary');
-        $buttonAttributes = config('alert.tailwind.attributes.buttons.cancel');
-        $buttonAttributes['class'] = 'modal-cancel-button';
-
-        $newAttributes = array_merge(
-            $buttonAttributes,
-            $attributes
-        );
-
-        return Attribute::toString($newAttributes);
-    }
-
-    /**
-     * Merge and convert array attributes to HTML string attributes.
-     */
-    public function actionLinkAttributes(array $attributes = []): string
-    {
-//        $button = config('alert.tailwind.classes.buttons.primary');
-        $linkAttributes = config('alert.tailwind.attributes.links.action');
-        $linkAttributes['class'] = 'modal-action-button';
-
-        $newAttributes = array_merge(
-            $linkAttributes,
-            $attributes
-        );
-
-        return Attribute::toString($newAttributes);
-    }
-
-    /**
-     * Merge and convert array attributes to HTML string attributes.
-     */
-    public function cancelLinkAttributes(array $attributes = []): string
-    {
-//        $button = config('alert.tailwind.classes.buttons.secondary');
-        $linkAttributes = config('alert.tailwind.attributes.links.cancel');
-        $linkAttributes['class'] = 'modal-cancel-button';;
-
-        $newAttributes = array_merge(
-            $linkAttributes,
-            $attributes
-        );
-
-        return Attribute::toString($newAttributes);
     }
 
     /**
@@ -129,5 +84,4 @@ class Modal extends Component implements LivewireInterface
     {
         return view('alert::themes.tailwind.components.modal');
     }
-
 }

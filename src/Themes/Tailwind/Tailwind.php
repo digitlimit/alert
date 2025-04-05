@@ -9,6 +9,7 @@ use Digitlimit\Alert\Contracts\ThemeInterface;
 use Digitlimit\Alert\Foundation\AbstractTheme;
 use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\SessionKey;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\Livewire;
 
@@ -59,44 +60,23 @@ class Tailwind extends AbstractTheme implements ThemeInterface
                 return false;
             }
 
-            foreach (Alert::all() as $alerts) {
+            $all = Alert::all();
 
-                if (empty($alerts)) {
-                    continue;
-                }
+            foreach ($all as $type => $alerts) {
+                $event = 'refresh-alert-' . $type;
 
-                foreach ($alerts as $tag => $alert) {
-
-                    // For single alert example message, modal
-                    if (! is_array($alert)) {
-                        self::dispatch($component, $alert);
-
+                foreach($alerts as $tag => $tagAlerts) {
+                    if (empty($tagAlerts)) {
                         continue;
                     }
-                    // For multiple alerts, usually from a field
-                    foreach ($alert as $field) {
-                        self::dispatch($component, $field);
-                    }
+
+                    $tagAlerts = collect($tagAlerts)->map(function ($alert) {
+                        return $alert->toArray();
+                    });
+
+                    $component->dispatch($event, $tag, $tagAlerts);
                 }
             }
-
-            return $component;
         });
-    }
-
-    /**
-     * Dispatch the alert to the component
-     */
-    protected static function dispatch(Component $component, AlertInterface|Taggable $alert): Component
-    {
-        $event = 'refresh-alert-'.$alert->key();
-
-        $component->dispatch(
-            $event,
-            $alert->getTag(),
-            $alert->toArray()
-        );
-
-        return $component;
     }
 }

@@ -3,12 +3,12 @@
 namespace Digitlimit\Alert;
 
 use Digitlimit\Alert\Contracts\HasName;
-use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Factory\AlertFactory;
 use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Helpers\Type;
 use Exception;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Traits\Macroable;
 
@@ -21,14 +21,19 @@ class Alert
      */
     const DEFAULT_TAG = 'default';
 
-    /**
-     * Fetch an alert based on the default tag.
-     *
-     * @throws Exception
-     */
-    public function default(string $type): ?Taggable
+    const MAIN_KEY = 'digitlimit.alert';
+
+    public static function key(string $type, string $tag): string
     {
-        return self::tagged($type, self::DEFAULT_TAG);
+        return self::mainKey()
+            .'.'.$type
+            .'.'.$tag;
+    }
+
+    public static function typeKey(string $type): string
+    {
+        return self::mainKey()
+            .'.'.$type;
     }
 
     /**
@@ -42,7 +47,7 @@ class Alert
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $tag = $tag.'.'.$name;
+        $tag = $tag . '.' . $name;
 
         return Session::get(
             SessionKey::key($type, $tag)
@@ -54,69 +59,17 @@ class Alert
      *
      * @throws Exception
      */
-    public static function tagged(string $type, string $tag): ?Taggable
+    public static function tagged(string $type, string $tag): Collection
     {
         if (! Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $tagged = Session::get(
+        $alerts = Session::get(
             SessionKey::key($type, $tag)
-        );
+        ) ?? [];
 
-        if (is_array($tagged)) {
-            return null;
-        }
-
-        return $tagged;
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function taggedField(string $tag): ?Taggable
-    {
-        return self::tagged('field', $tag);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function namedField(string $name, string $tag): ?AlertInterface
-    {
-        return self::named('field', $name, $tag);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function fieldBag(string $tag): ?Taggable
-    {
-        return self::tagged('bag', $tag);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function taggedMessage(string $tag): ?Taggable
-    {
-        return self::tagged('message', $tag);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function taggedModal(string $tag): ?Taggable
-    {
-        return self::tagged('modal', $tag);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function taggedNotify(string $tag): ?Taggable
-    {
-        return self::tagged('notify', $tag);
+        return collect($alerts);
     }
 
     /**
@@ -131,6 +84,61 @@ class Alert
         }
 
         return AlertFactory::make($type, ...$args);
+    }
+
+    public static function forget(string $type, string $tag = Alert::DEFAULT_TAG): void
+    {
+        Session::forget(SessionKey::key($type, $tag));
+    }
+
+    /**
+     * Fetch an alert based on the type and named.
+     *
+     * @throws Exception
+     */
+    public static function getField(string $name, string $tag = Alert::DEFAULT_TAG): ?HasName
+    {
+        return self::named('field', $name, $tag);
+    }
+
+    /**
+     * Fetch an alert based on the type and named.
+     *
+     * @throws Exception
+     */
+    public static function getMessage(string $tag = Alert::DEFAULT_TAG): Collection
+    {
+        return self::tagged('message', $tag);
+    }
+
+    /**
+     * Fetch an alert based on the type and named.
+     *
+     * @throws Exception
+     */
+    public static function getModal(string $tag = Alert::DEFAULT_TAG): Collection
+    {
+        return self::tagged('modal', $tag);
+    }
+
+    /**
+     * Fetch an alert based on the type and named.
+     *
+     * @throws Exception
+     */
+    public static function getToastr(string $tag = Alert::DEFAULT_TAG): Collection
+    {
+        return self::tagged('toastr', $tag);
+    }
+
+    /**
+     * Fetch an alert based on the type and named.
+     *
+     * @throws Exception
+     */
+    public static function getNotify(string $tag = Alert::DEFAULT_TAG): Collection
+    {
+        return self::tagged('notify', $tag);
     }
 
     /**
@@ -149,6 +157,16 @@ class Alert
         }
 
         return AlertFactory::makeFromArray($alert);
+    }
+
+    /**
+     * Create an alert from an array.
+     */
+    public static function fromArrays(array $alerts): Collection
+    {
+        return collect($alerts)->map(function ($alert) {
+            return self::fromArray($alert);
+        });
     }
 
     /**
@@ -183,11 +201,9 @@ class Alert
     /**
      * Fetch all alerts from the session.
      */
-    public static function all(?string $type = null): array
+    public static function all(): array
     {
-        return $type
-            ? Session::get(SessionKey::typeKey($type), [])
-            : Session::get(SessionKey::mainKey(), []);
+        return Session::get(SessionKey::mainKey()) ?? [];
     }
 
     /**

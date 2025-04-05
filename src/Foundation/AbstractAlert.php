@@ -6,11 +6,13 @@ use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * @property string $message
  */
-abstract class AbstractAlert implements AlertInterface
+abstract class AbstractAlert implements AlertInterface, Jsonable, Arrayable
 {
     /**
      * Alert unique ID.
@@ -33,7 +35,12 @@ abstract class AbstractAlert implements AlertInterface
      */
     public function id(string|int $id): self
     {
+        if (!empty($this->id) && $this->id !== $id) {
+            $this->forget();
+        }
+
         $this->id = $id;
+        $this->flash();
 
         return $this;
     }
@@ -43,6 +50,10 @@ abstract class AbstractAlert implements AlertInterface
      */
     public function autoSetId(): self
     {
+        if (! empty($this->id)) {
+            return $this;
+        }
+
         $this->id($this->key().'-'.Helper::randomString());
 
         return $this;
@@ -57,12 +68,27 @@ abstract class AbstractAlert implements AlertInterface
     }
 
     /**
+     * Fetch the alert tag.
+     */
+    public function getIdTag(): string
+    {
+        return $this->getTag() . '.' . $this->getId();
+    }
+
+    /**
      * Flash alert to store.
      * Its temporal store that is deleted once pulled/fetched.
      */
     public function flash(): void
     {
-        $sessionKey = SessionKey::key($this->key(), $this->getTag());
+        if (empty($this->id) || empty($this->message)) {
+            return;
+        }
+
+        $sessionKey = SessionKey::key(
+            $this->key(),
+            $this->getIdTag()
+        );
 
         if (empty($sessionKey)) {
             return;
@@ -76,11 +102,9 @@ abstract class AbstractAlert implements AlertInterface
      */
     public function forget(?string $tag = null): self
     {
-        if (empty($tag)) {
-            $tag = ! empty($this->tag)
-                ? $this->tag
-                : Alert::DEFAULT_TAG;
-        }
+        $tag = $tag
+            ? $tag . '.' . $this->getId()
+            : $this->getIdTag();
 
         $sessionKey = SessionKey::key($this->key(), $tag);
 
@@ -97,5 +121,13 @@ abstract class AbstractAlert implements AlertInterface
         return [
             'id' => $this->getId(),
         ];
+    }
+
+    /**
+     * Convert alert to json.
+     */
+    public function toJson($options = 0): string
+    {
+        return json_encode($this->toArray());
     }
 }

@@ -6,42 +6,33 @@ use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
 use Exception;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\MessageBag;
 use Livewire\Attributes\On;
-use Livewire\Component;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 
 /**
  * Class Field
  */
-class Field extends Component implements LivewireInterface
+class Field extends AbstractComponent implements LivewireInterface
 {
     /**
      * The alias for named alert.
      */
-    public string $for;
+    public ?string $for = null;
 
     /**
      * The alert name
      */
-    public string $name;
+    public ?string $name = null;
+
+    /**
+     * The alerts
+     */
+    public array $alert = [];
 
     /**
      * The alert tag.
      */
     public string $tag = Alert::DEFAULT_TAG;
-
-    /**
-     * The alert
-     */
-    public array $data = [];
-
-    /**
-     * Set data for the alert.
-     */
-    public function setUp(array $data): void
-    {
-        $this->data = $data;
-    }
 
     /**
      * Create a new component instance.
@@ -54,65 +45,41 @@ class Field extends Component implements LivewireInterface
             $this->name = $this->for;
         }
 
-        if (! empty($this->name) && ! empty($this->tag)) {
-            $data = Alert::namedField($this->name, $this->tag)?->toArray();
-
-            if (! empty($data)) {
-                $this->setUp($data);
-            }
+        if (empty($this->name)) {
+            return;
         }
+
+        $this->resolve($this->tag);
     }
 
     #[On('refresh-alert-field')]
-    public function refresh(string $tag, array $data): void
+    public function refresh(string $tag, array $alerts): void
     {
-        if (empty($data) || empty($this->name)) {
+        $alert = $alerts[$this->name] ?? [];
+
+        if ($tag !== $this->tag) {
             return;
         }
 
-        if ($this->tag !== $tag || $this->name !== $data['name']) {
-            return;
-        }
-
-        $this->setUp($data);
+        $this->resolve($tag, $alert);
         $this->dispatch('open-alert-field');
     }
 
     /**
-     * Get Laravel errors.
+     * Set the alerts.
      */
-    public function getViewErrors(): MessageBag
+    public function resolve(string $tag, array $alert = []): void
     {
-        $errors = session('errors');
+        $alert = !empty($alert)
+            ? Alert::fromArray($alert)
+            : Alert::getField($tag, $this->name);
 
-        return $errors instanceof MessageBag
-            ? $errors
-            : new MessageBag;
-    }
-
-    /**
-     * Get tagged view errors.
-     */
-    public function getTaggedViewErrors(string $tag): MessageBag
-    {
-        return $this->getViewErrors()->{$tag} ?? new MessageBag;
-    }
-
-    public function getViewFieldError(string $name, string $tag): ?string
-    {
-        $taggedErrors = $this->getTaggedViewErrors($tag);
-
-        if ($taggedErrors->has($name)) {
-            return $taggedErrors->first($name);
+        if (empty($alert)) {
+            return;
         }
 
-        $viewErrors = $this->getViewErrors();
-
-        if ($viewErrors->has($name)) {
-            return $viewErrors->first($name);
-        }
-
-        return null;
+        $alert->forget();
+        $this->alert = $alert->toArray();
     }
 
     /**
@@ -120,8 +87,6 @@ class Field extends Component implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::themes.tailwind.components.field', [
-            'error' => $this->getViewFieldError($this->name, $this->tag),
-        ]);
+        return view('alert::themes.tailwind.components.field');
     }
 }

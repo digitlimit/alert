@@ -3,6 +3,7 @@
 namespace Digitlimit\Alert;
 
 use Exception;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AlertServiceProvider extends ServiceProvider
@@ -15,6 +16,8 @@ class AlertServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'alert');
+
+        Blade::componentNamespace('Digitlimit\\Alert\\Icons', 'alert-icon');
 
         $this->registerMacros();
 
@@ -66,9 +69,8 @@ class AlertServiceProvider extends ServiceProvider
      */
     protected function registerMacros(): void
     {
-        Alert::macro('stickForget', function (?string $tag = null) {
+        Alert::macro('forget', function (string $tag = Alert::DEFAULT_TAG) {
             app(Alert::class)
-                ->sticky()
                 ->forget($tag);
         });
     }

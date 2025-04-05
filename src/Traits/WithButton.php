@@ -13,6 +13,59 @@ trait WithButton
     protected Collection $buttons;
 
     /**
+     * Get the action button.
+     */
+    public function actionButton(): ?Button
+    {
+        return $this->getButtons()
+            ->filter(fn($button) => $button->getName() === 'action')
+            ->first();
+    }
+
+    /**
+     * Get the cancel button.
+     */
+    public function cancelButton(): ?Button
+    {
+        return $this->getButtons()
+            ->filter(fn($button) => $button->getName() === 'cancel')
+            ->first();
+    }
+
+    /**
+     * Get the custom buttons.
+     */
+    public function customButtons(): Collection
+    {
+        return $this->getButtons()
+            ->filter(fn($button) => !in_array($button->getName(), ['action', 'cancel']));
+    }
+
+    /**
+     * Determine if the alert has buttons.
+     */
+    public function hasActionButton(): bool
+    {
+        return $this->actionButton() !== null;
+    }
+
+    /**
+     * Determine if the alert has buttons.
+     */
+    public function hasCancelButton(): bool
+    {
+        return $this->cancelButton() !== null;
+    }
+
+    /**
+     * Determine if the alert has custom buttons.
+     */
+    public function hasCustomButtons(): bool
+    {
+        return $this->customButtons()->count() > 0;
+    }
+
+    /**
      * Add a button to the alert.
      */
     public function button(
@@ -40,7 +93,7 @@ trait WithButton
         foreach ($buttons as $button) {
             $this->button(
                 $button['name'],
-                $button['label'] ?? null,
+                $button['label'],
                 $button['link'] ?? null,
                 $button['attributes'] ?? []
             );
@@ -69,5 +122,15 @@ trait WithButton
         return $this->getButtons()
             ->map(fn ($button) => $button->toArray())
             ->toArray();
+    }
+
+    /**
+     * Execute a callback and return the instance.
+     */
+    public function tap(callable $callback)
+    {
+        $callback($this);
+
+        return $this;
     }
 }

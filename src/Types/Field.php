@@ -4,7 +4,7 @@ namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\HasMessage;
 use Digitlimit\Alert\Contracts\HasName;
-use Digitlimit\Alert\Contracts\HasTitle;
+use Digitlimit\Alert\Contracts\HasTimeout;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Field\Flashed;
@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\Session;
 /**
  * Field alert class.
  */
-class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName, HasTitle, Levelable, Taggable
+class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName, Levelable, Taggable, HasTimeout
 {
     use Traits\Levelable;
     use Traits\Taggable;
     use Traits\WithMessage;
     use Traits\WithName;
-    use Traits\WithTitle;
+    use Traits\WithTimeout;
 
     /**
      * The default level of the alert.
@@ -37,6 +37,7 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
         protected string $name,
         protected string $message
     ) {
+        $this->timeout(0);
         parent::__construct();
     }
 
@@ -69,14 +70,6 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
     }
 
     /**
-     * Get the named tag for the field alert.
-     */
-    public function getNamedTag(): string
-    {
-        return $this->tag.'.'.$this->getName();
-    }
-
-    /**
      * Get the field alert as an array.
      */
     public function toArray(): array
@@ -87,8 +80,8 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
             'tag' => $this->getTag(),
             'named_tag' => $this->getNamedTag(),
             'level' => $this->getLevel(),
-            'title' => $this->getTitle(),
             'message' => $this->getMessage(),
+            'timeout' => $this->getTimeout(),
         ]);
     }
 
@@ -103,11 +96,15 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
         $field->tag($alert['tag']);
         $field->level($alert['level']);
 
-        if ($alert['title']) {
-            $field->title($alert['title']);
-        }
-
         return $field;
+    }
+
+    /**
+     * Get the named tag for the field alert.
+     */
+    public function getNamedTag(): string
+    {
+        return $this->tag . '.' . $this->getName();
     }
 
     /**

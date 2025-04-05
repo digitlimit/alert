@@ -3,6 +3,7 @@
 namespace Digitlimit\Alert\Types;
 
 use Digitlimit\Alert\Contracts\Closable;
+use Digitlimit\Alert\Contracts\HasButton;
 use Digitlimit\Alert\Contracts\HasMessage;
 use Digitlimit\Alert\Contracts\HasTimeout;
 use Digitlimit\Alert\Contracts\HasTitle;
@@ -12,13 +13,15 @@ use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Notify\Flashed;
 use Digitlimit\Alert\Foundation\AbstractAlert;
 use Digitlimit\Alert\Foundation\AlertInterface;
+use Digitlimit\Alert\Helpers\SessionKey;
 use Digitlimit\Alert\Traits;
 use Exception;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Notify alert class.
  */
-class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasTimeout, HasTitle, Levelable, Positionable, Taggable
+class Notify extends AbstractAlert implements AlertInterface, Closable, HasButton, HasMessage, HasTimeout, HasTitle, Levelable, Positionable, Taggable
 {
     use Traits\Closable;
     use Traits\Levelable;
@@ -27,6 +30,9 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessa
     use Traits\WithMessage;
     use Traits\WithTimeout;
     use Traits\WithTitle;
+    use Traits\WithActionButton;
+    use Traits\WithButton;
+    use Traits\WithCancelButton;
 
     protected string $defaultLevel = 'info';
 
@@ -72,9 +78,11 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessa
             'timeout' => $this->getTimeout(),
             'message' => $this->getMessage(),
             'tag' => $this->getTag(),
+            'id_tag' => $this->getIdTag(),
             'level' => $this->getLevel(),
             'position' => $this->getPosition(),
             'closable' => $this->isClosable(),
+            'buttons' => $this->buttonsToArray(),
         ]);
     }
 
@@ -97,8 +105,19 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessa
         $notify->position($alert['position']);
         $notify->timeout($alert['timeout']);
         $notify->closable($alert['closable']);
+        $notify->buttons($alert['buttons'] ?? []);
 
         return $notify;
+    }
+
+    /**
+     * Get the named tag for the field alert.
+     */
+    public function getIdTag(): string
+    {
+        return $this->tag
+            . '.'
+            . $this->getId();
     }
 
     /**
@@ -106,8 +125,16 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasMessa
      */
     public function flash(): void
     {
-        parent::flash();
+        if (empty($this->id) || empty($this->message)) {
+            return;
+        }
 
+        $sessionKey = SessionKey::key(
+            $this->key(),
+            $this->getIdTag()
+        );
+
+        Session::flash($sessionKey, $this);
         Flashed::dispatch($this);
     }
 }

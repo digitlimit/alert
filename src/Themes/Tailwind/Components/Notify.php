@@ -7,12 +7,12 @@ use Digitlimit\Alert\Contracts\LivewireInterface;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
-use Livewire\Component;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 
 /**
  * Class Notify
  */
-class Notify extends Component implements LivewireInterface
+class Notify extends AbstractComponent implements LivewireInterface
 {
     /**
      * The alert tag.
@@ -20,16 +20,40 @@ class Notify extends Component implements LivewireInterface
     public string $tag = Alert::DEFAULT_TAG;
 
     /**
-     * The alert
+     * The alerts
      */
-    public array $data = [];
+    public array $alerts = [];
 
     /**
-     * Set data for the alert.
+     * Set the alerts.
      */
-    public function setUp(array $data): void
+    public function resolve(string $tag, array $alerts = []): void
     {
-        $this->data = $data;
+        $alerts = !empty($alerts)
+            ? Alert::fromArrays($alerts)
+            : Alert::getNotify($tag);
+
+        $this->alerts = $alerts
+            ->filter(function ($alert) {
+                return $alert->getTag() === $this->tag;
+            })
+            ->values()
+            ->map(function ($alert) {
+                $alert->forget();
+                $notify = $alert->toArray();
+
+                $notify['action_button'] = $alert->actionButton()?->toArray();
+                $notify['cancel_button'] = $alert->cancelButton()?->toArray();
+                $notify['custom_buttons'] = $alert->customButtons()
+                    ->map(fn ($button) => $button->toArray())
+                    ->toArray();
+
+                $notify['has_action_button'] = $notify['action_button'] !== null;
+                $notify['has_cancel_button'] = $notify['cancel_button'] !== null;
+                $notify['has_custom_buttons'] = count($notify['custom_buttons']);
+
+                return $notify;
+            })->toArray();
     }
 
     /**
@@ -39,25 +63,17 @@ class Notify extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $data = Alert::taggedNotify($this->tag)?->toArray() ?? [];
-
-        if (empty($data)) {
-            $this->skipRender();
-
-            return;
-        }
-
-        $this->setUp($data);
+        $this->resolve($this->tag);
     }
 
     #[On('refresh-alert-notify')]
-    public function refresh(string $tag, array $data): void
+    public function refresh(string $tag, array $alerts): void
     {
-        if ($this->tag !== $tag || empty($data)) {
+        if ($tag !== $this->tag) {
             return;
         }
 
-        $this->setUp($data);
+        $this->resolve($tag, array_values($alerts));
         $this->dispatch('open-alert-notify');
     }
 

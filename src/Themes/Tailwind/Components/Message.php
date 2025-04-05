@@ -7,34 +7,41 @@ use Digitlimit\Alert\Contracts\LivewireInterface;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
-use Livewire\Component;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 
 /**
  * Class Message
  */
-class Message extends Component implements LivewireInterface
+class Message extends AbstractComponent implements LivewireInterface
 {
-    /**
-     * The default alert tag.
-     */
-    public string $defaultTag = Alert::DEFAULT_TAG;
-
     /**
      * The alert tag.
      */
-    public string $tag;
+    public string $tag = Alert::DEFAULT_TAG;
 
     /**
-     * The alert
+     * The alerts
      */
-    public array $data = [];
+    public array $alerts = [];
 
     /**
-     * Set data for the alert.
+     * Set the alerts.
      */
-    public function setUp(array $data): void
+    public function resolve(string $tag, array $alerts = []): void
     {
-        $this->data = $data;
+        $alerts = !empty($alerts)
+            ? Alert::fromArrays($alerts)
+            : Alert::getMessage($tag);
+
+        $this->alerts = $alerts
+            ->filter(function ($alert) {
+                return $alert->getTag() === $this->tag;
+            })
+            ->values()
+            ->map(function ($alert) {
+                $alert->forget();
+                return $alert->toArray();
+            })->toArray();
     }
 
     /**
@@ -44,26 +51,17 @@ class Message extends Component implements LivewireInterface
      */
     public function mount(): void
     {
-        $this->tag = $this->tag ?? $this->defaultTag;
-        $data = Alert::taggedModal($this->tag)?->toArray() ?? [];
-
-        if (empty($data)) {
-            $this->skipRender();
-
-            return;
-        }
-
-        $this->setUp($data);
+        $this->resolve($this->tag);
     }
 
     #[On('refresh-alert-message')]
-    public function refresh(string $tag, array $data): void
+    public function refresh(string $tag, array $alerts): void
     {
-        if ($this->tag !== $tag || empty($data)) {
+        if ($tag !== $this->tag) {
             return;
         }
 
-        $this->setUp($data);
+        $this->resolve($tag, array_values($alerts));
         $this->dispatch('open-alert-message');
     }
 

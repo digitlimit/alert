@@ -34,52 +34,52 @@
   @apply inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium text-blue-600 transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:underline;
 }
 
-.alert-notify-position {
+.alert-toastr-position {
   @apply fixed px-2 mt-3 overflow-x-hidden z-50;
 }
 
-.alert-notify-position.top-right {
+.alert-toastr-position.top-right {
   @apply top-0 right-0;
 }
 
-.alert-notify-position.top-left {
+.alert-toastr-position.top-left {
   @apply top-0 left-0;
 }
 
-.alert-notify-position.bottom-right {
+.alert-toastr-position.bottom-right {
   @apply bottom-0 right-0;
 }
 
-.alert-notify-position.bottom-left {
+.alert-toastr-position.bottom-left {
   @apply bottom-0 left-0;
 }
 
-.alert-notify-position.top-center {
+.alert-toastr-position.top-center {
   @apply top-0 left-1/2 transform -translate-x-1/2;
 }
 
-.alert-notify-position.bottom-center {
+.alert-toastr-position.bottom-center {
   @apply bottom-0 left-1/2 transform -translate-x-1/2;
 }
 
-.alert-notify-position.center {
+.alert-toastr-position.center {
   @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
 }
 
 .alert-field.success {
-  @apply p-3 text-green-800;
+  @apply pt-2 text-green-800;
 }
 
 .alert-field.error {
-  @apply p-3 text-red-800;
+  @apply pt-2 text-red-800;
 }
 
 .alert-field.warning {
-  @apply p-3 text-yellow-800;
+  @apply pt-2 text-yellow-800;
 }
 
 .alert-field.info {
-  @apply p-3 text-blue-800;
+  @apply pt-2 text-blue-800;
 }
 
 .alert-message {
@@ -146,52 +146,137 @@
   @apply sr-only;
 }
 
-.alert-notify {
+.alert-toastr {
   @apply bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 shadow-lg flex items-center;
 }
 
-.alert-notify.success {
+.alert-toastr.success {
   @apply from-green-400 to-green-500;
 }
 
-.alert-notify.error {
+.alert-toastr.error {
   @apply from-red-400 to-pink-500;
 }
 
-.alert-notify.warning {
+.alert-toastr.warning {
   @apply from-yellow-400 to-yellow-500;
 }
 
-.alert-notify.info {
+.alert-toastr.info {
   @apply from-blue-400 to-blue-500;
 }
 
-.alert-notify.top-right {
+.alert-toastr.top-right {
   @apply top-0 right-0;
 }
 
-.alert-notify.top-left {
+.alert-toastr.top-left {
   @apply top-0 left-0;
 }
 
-.alert-notify.bottom-right {
+.alert-toastr.bottom-right {
   @apply bottom-0 right-0;
 }
 
-.alert-notify.bottom-left {
+.alert-toastr.bottom-left {
   @apply bottom-0 left-0;
 }
 
-.alert-notify.top-center {
+.alert-toastr.top-center {
   @apply top-0 left-1/2 transform -translate-x-1/2;
 }
 
-.alert-notify.bottom-center {
+.alert-toastr.bottom-center {
   @apply bottom-0 left-1/2 transform -translate-x-1/2;
 }
 
-.alert-notify.center {
+.alert-toastr.center {
   @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
+
+@keyframes progress-bar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.alert-toastr .animate-width {
+  animation: progress-bar 5s linear forwards;
+}
+
+.notify-container {
+  @apply pointer-events-none fixed bottom-0 left-1/2 z-[100] flex w-full -translate-x-1/2 flex-col items-center space-y-4 transition-all will-change-transform -translate-y-10;
+}
+
+.notify-container .notifies {
+  @apply relative z-50 w-full max-w-[400px];
+}
+
+.notify-container .notify {
+  @apply py-2 bg-gray-800 pointer-events-auto relative flex min-h-12 w-full items-center justify-between gap-4 overflow-hidden rounded-xl pl-3 pr-2 shadow-2xl;
+}
+
+.notify-container .notify.top-right {
+  @apply top-0 right-0;
+}
+
+.notify-container .notify.top-left {
+  @apply top-0 left-0;
+}
+
+.notify-container .notify.bottom-right {
+  @apply bottom-0 right-0;
+}
+
+.notify-container .notify.bottom-left {
+  @apply bottom-0 left-0;
+}
+
+.notify-container .notify.top-center {
+  @apply top-0 left-1/2 transform -translate-x-1/2;
+}
+
+.notify-container .notify.bottom-center {
+  @apply bottom-0 left-1/2 transform -translate-x-1/2;
+}
+
+.notify-container .notify.center {
+  @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
+
+.notify-container .notify-content {
+  @apply relative flex flex-1 items-center gap-3;
+}
+
+.notify-container .notify-message {
+  @apply text-gray-300;
+}
+
+.notify-container .notify-buttons {
+  @apply flex items-center gap-3;
+}
+
+.notify-container .notify-buttons .cancel-button {
+  @apply cursor-default relative isolate inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap focus:outline-none disabled:opacity-50 px-4 min-h-8 border-transparent bg-gray-600 text-white hover:bg-gray-500;
+}
+
+.notify-container .notify-buttons .action-button {
+  @apply cursor-default relative isolate inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap focus:outline-none disabled:opacity-50 px-4 min-h-8 border-transparent bg-blue-500 text-white hover:bg-blue-400;
+}
+
+@keyframes progress-bar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+.notify-container .notify-progress {
+  @apply absolute inset-0 animate-width bg-gray-700;
+  animation: progress-bar 10s linear forwards;
 }
 
 .alert-modal {
