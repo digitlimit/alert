@@ -1,7 +1,9 @@
 <div wire:ignore class="digitlimit-alert-notify">
     <div
-        class="notify-container"
+        class="notify-container fixed px-2 mt-3 overflow-x-hidden z-50"
+        :class="position"
         x-data="{
+            position: 'top-right',
             notifications: @entangle('alerts'),
             dismiss(id) {
                 this.notifications = this.notifications.filter(n => n.id !== id);

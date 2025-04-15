@@ -1,24 +1,32 @@
+.alert-position,
 .alert-toastr-position {
   @apply fixed px-2 mt-3 overflow-x-hidden z-50;
 }
+.alert-position.top-right,
 .alert-toastr-position.top-right {
   @apply top-0 right-0;
 }
+.alert-position.top-left,
 .alert-toastr-position.top-left {
   @apply top-0 left-0;
 }
+.alert-position.bottom-right,
 .alert-toastr-position.bottom-right {
   @apply bottom-0 right-0;
 }
+.alert-position.bottom-left,
 .alert-toastr-position.bottom-left {
   @apply bottom-0 left-0;
 }
+.alert-position.top-center,
 .alert-toastr-position.top-center {
   @apply top-0 left-1/2 transform -translate-x-1/2;
 }
+.alert-position.bottom-center,
 .alert-toastr-position.bottom-center {
   @apply bottom-0 left-1/2 transform -translate-x-1/2;
 }
+.alert-position.center,
 .alert-toastr-position.center {
   @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
 }
