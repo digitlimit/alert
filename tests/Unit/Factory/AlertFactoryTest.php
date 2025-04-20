@@ -13,11 +13,11 @@ it('creates an alert using make()', function () {
 
 it('creates an alert using makeFromArray()', function () {
     $alert = AlertFactory::makeFromArray([
-        'id' => 1,
-        'title' => 'Test Alert',
-        'level' => 'info',
-        'tag' => 'default',
-        'type' => 'message',
+        'id'      => 1,
+        'title'   => 'Test Alert',
+        'level'   => 'info',
+        'tag'     => 'default',
+        'type'    => 'message',
         'message' => 'Hello World',
     ]);
 

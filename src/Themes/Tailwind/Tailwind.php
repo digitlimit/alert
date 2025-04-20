@@ -16,7 +16,7 @@ use function Livewire\store;
 class Tailwind extends AbstractTheme implements ThemeInterface
 {
     /**
-     *  Register the alert types
+     *  Register the alert types.
      */
     public static function types(): array
     {
@@ -24,7 +24,7 @@ class Tailwind extends AbstractTheme implements ThemeInterface
     }
 
     /**
-     * Register the alert components
+     * Register the alert components.
      */
     public static function registerComponents(): void
     {
@@ -36,12 +36,12 @@ class Tailwind extends AbstractTheme implements ThemeInterface
     }
 
     /**
-     * Dehydrate the alert to the component
+     * Dehydrate the alert to the component.
      */
     public static function dehydrate(): void
     {
         on('dehydrate', function (Component $component) {
-            if (! Livewire::isLivewireRequest()) {
+            if (!Livewire::isLivewireRequest()) {
                 return false;
             }
 

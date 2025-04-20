@@ -5,17 +5,17 @@ namespace Digitlimit\Alert\Themes\Tailwind\Utils;
 use Illuminate\Support\Facades\Session;
 
 /**
- * Class Css
+ * Class Css.
  */
 class Css
 {
     /**
-     * The classes
+     * The classes.
      */
     protected array $classes;
 
     /**
-     * The cache key
+     * The cache key.
      */
     protected string $cacheKey = 'digitlimit_alert_unique_tailwind_classes';
 
@@ -25,7 +25,7 @@ class Css
     }
 
     /**
-     * Set the classes
+     * Set the classes.
      */
     public function setClasses(array $classes): self
     {
@@ -35,7 +35,7 @@ class Css
     }
 
     /**
-     * Flush the cache
+     * Flush the cache.
      */
     public function forgetCache(): void
     {
@@ -43,7 +43,7 @@ class Css
     }
 
     /**
-     * Retrieve unique Tailwind classes with caching
+     * Retrieve unique Tailwind classes with caching.
      */
     public function uniqueClasses(): array
     {
@@ -58,7 +58,7 @@ class Css
     }
 
     /**
-     * Recursively extract unique Tailwind classes from the provided array
+     * Recursively extract unique Tailwind classes from the provided array.
      */
     protected function extractUniqueClasses(array $array): array
     {
@@ -74,7 +74,7 @@ class Css
     }
 
     /**
-     * Convert the classes to a string
+     * Convert the classes to a string.
      */
     public function toString(): string
     {
@@ -82,7 +82,7 @@ class Css
     }
 
     /**
-     * Convert the classes to a string
+     * Convert the classes to a string.
      */
     public function __toString(): string
     {

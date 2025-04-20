@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 
 /**
- * Class Toastr
+ * Class Toastr.
  */
 class ToastrClassic extends AbstractComponent implements LivewireInterface
 {
@@ -20,7 +20,7 @@ class ToastrClassic extends AbstractComponent implements LivewireInterface
     public string $tag = Alert::DEFAULT_TAG;
 
     /**
-     * The alerts
+     * The alerts.
      */
     public array $alerts = [];
 
@@ -29,7 +29,7 @@ class ToastrClassic extends AbstractComponent implements LivewireInterface
      */
     public function resolve(string $tag, array $alerts = []): void
     {
-        $alerts = ! empty($alerts)
+        $alerts = !empty($alerts)
             ? Alert::fromArrays($alerts)
             : Alert::getToastr($tag);
 

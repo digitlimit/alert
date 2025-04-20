@@ -30,9 +30,9 @@ return [
 
     'icons' => [
         'success' => \Digitlimit\Alert\Icons\Success::class,
-        'error' => \Digitlimit\Alert\Icons\Error::class,
+        'error'   => \Digitlimit\Alert\Icons\Error::class,
         'warning' => \Digitlimit\Alert\Icons\Warning::class,
-        'info' => \Digitlimit\Alert\Icons\Info::class,
+        'info'    => \Digitlimit\Alert\Icons\Info::class,
     ],
 
     /*
@@ -46,32 +46,32 @@ return [
     'tailwind' => [
         'types' => [
             'message' => [
-                'view' => 'alert-message',
-                'alert' => Types\Message::class,
+                'view'      => 'alert-message',
+                'alert'     => Types\Message::class,
                 'component' => Themes\Tailwind\Components\Message::class,
             ],
 
             'field' => [
-                'view' => 'alert-field',
-                'alert' => Types\Field::class,
+                'view'      => 'alert-field',
+                'alert'     => Types\Field::class,
                 'component' => Themes\Tailwind\Components\Field::class,
             ],
 
             'modal' => [
-                'view' => 'alert-modal',
-                'alert' => Types\Modal::class,
+                'view'      => 'alert-modal',
+                'alert'     => Types\Modal::class,
                 'component' => Themes\Tailwind\Components\Modal::class,
             ],
 
             'toastr' => [
-                'view' => 'alert-toastr',
-                'alert' => Types\Toastr::class,
+                'view'      => 'alert-toastr',
+                'alert'     => Types\Toastr::class,
                 'component' => Themes\Tailwind\Components\Toastr::class,
             ],
 
             'notify' => [
-                'view' => 'alert-notify',
-                'alert' => Types\Notify::class,
+                'view'      => 'alert-notify',
+                'alert'     => Types\Notify::class,
                 'component' => Themes\Tailwind\Components\Notify::class,
             ],
         ],
@@ -79,21 +79,21 @@ return [
         'attributes' => [
             'buttons' => [
                 'action' => [
-                    'type' => 'button',
+                    'type'   => 'button',
                     '@click' => 'show = false;',
                 ],
                 'cancel' => [
-                    'type' => 'button',
+                    'type'   => 'button',
                     '@click' => 'show = false;',
                 ],
             ],
             'links' => [
                 'action' => [
-                    'type' => 'button',
+                    'type'   => 'button',
                     '@click' => 'show = false;',
                 ],
                 'cancel' => [
-                    'type' => 'button',
+                    'type'   => 'button',
                     '@click' => 'show = false;',
                 ],
             ],

@@ -116,7 +116,7 @@ class Button
      */
     public function isLink(): bool
     {
-        return ! empty($this->link);
+        return !empty($this->link);
     }
 
     /**
@@ -141,10 +141,10 @@ class Button
     public function toArray(): array
     {
         return [
-            'id' => $this->getId(),
-            'name' => $this->getName(),
-            'label' => $this->getLabel(),
-            'link' => $this->getLink(),
+            'id'         => $this->getId(),
+            'name'       => $this->getName(),
+            'label'      => $this->getLabel(),
+            'link'       => $this->getLink(),
             'attributes' => $this->getAttributes(),
         ];
     }

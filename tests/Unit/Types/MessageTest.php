@@ -34,24 +34,24 @@ it('can convert the message alert to an array', function () {
     $array = $alert->toArray();
 
     expect($array)->toMatchArray([
-        'id' => $alert->getId(),
-        'type' => 'message',
-        'tag' => 'updates',
-        'level' => 'success',
-        'message' => 'New update available',
-        'title' => 'Update',
-        'timeout' => 10,
+        'id'       => $alert->getId(),
+        'type'     => 'message',
+        'tag'      => 'updates',
+        'level'    => 'success',
+        'message'  => 'New update available',
+        'title'    => 'Update',
+        'timeout'  => 10,
         'closable' => true,
     ]);
 })->group('message', 'toArray');
 
 it('can fill a message alert from array', function () {
     $data = [
-        'id' => 'alert-msg-1',
-        'tag' => 'dashboard',
-        'level' => 'warning',
-        'message' => 'Please verify your email',
-        'title' => 'Verification Needed',
+        'id'       => 'alert-msg-1',
+        'tag'      => 'dashboard',
+        'level'    => 'warning',
+        'message'  => 'Please verify your email',
+        'title'    => 'Verification Needed',
         'closable' => true,
     ];
 
@@ -63,7 +63,6 @@ it('can fill a message alert from array', function () {
         ->and($alert->getMessage())->toBe('Please verify your email')
         ->and($alert->getTitle())->toBe('Verification Needed')
         ->and($alert->isClosable())->toBeTrue();
-
 })->group('message', 'fill');
 
 it('can flash a normal message to session and dispatch event', function () {

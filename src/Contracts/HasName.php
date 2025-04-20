@@ -3,7 +3,7 @@
 namespace Digitlimit\Alert\Contracts;
 
 /**
- * Has name contract
+ * Has name contract.
  */
 interface HasName
 {

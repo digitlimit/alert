@@ -67,12 +67,12 @@ class ToastrClassic extends AbstractAlert implements AlertInterface, Closable, H
     public function toArray(): array
     {
         return array_merge(parent::toArray(), [
-            'type' => $this->key(),
-            'title' => $this->getTitle(),
-            'timeout' => $this->getTimeout(),
-            'message' => $this->getMessage(),
-            'tag' => $this->getTag(),
-            'level' => $this->getLevel(),
+            'type'     => $this->key(),
+            'title'    => $this->getTitle(),
+            'timeout'  => $this->getTimeout(),
+            'message'  => $this->getMessage(),
+            'tag'      => $this->getTag(),
+            'level'    => $this->getLevel(),
             'position' => $this->getPosition(),
             'closable' => $this->isClosable(),
         ]);

@@ -35,7 +35,7 @@ abstract class AbstractAlert implements AlertInterface, Arrayable, Jsonable
      */
     public function id(string|int $id): self
     {
-        if (! empty($this->id) && $this->id !== $id) {
+        if (!empty($this->id) && $this->id !== $id) {
             $this->forget();
         }
 
@@ -50,7 +50,7 @@ abstract class AbstractAlert implements AlertInterface, Arrayable, Jsonable
      */
     public function autoSetId(): self
     {
-        if (! empty($this->id)) {
+        if (!empty($this->id)) {
             return $this;
         }
 

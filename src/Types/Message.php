@@ -70,14 +70,14 @@ class Message extends AbstractAlert implements AlertInterface, Closable, HasMess
     public function toArray(): array
     {
         return array_merge(parent::toArray(), [
-            'type' => $this->key(),
-            'tag' => $this->getTag(),
-            'level' => $this->getLevel(),
-            'message' => $this->getMessage(),
-            'title' => $this->getTitle(),
-            'timeout' => $this->getTimeout(),
+            'type'     => $this->key(),
+            'tag'      => $this->getTag(),
+            'level'    => $this->getLevel(),
+            'message'  => $this->getMessage(),
+            'title'    => $this->getTitle(),
+            'timeout'  => $this->getTimeout(),
             'closable' => $this->isClosable(),
-            'sticky' => $this->isSticky(),
+            'sticky'   => $this->isSticky(),
         ]);
     }
 

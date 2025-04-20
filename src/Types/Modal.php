@@ -62,17 +62,17 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
     public function toArray(): array
     {
         return array_merge(parent::toArray(), [
-            'type' => $this->key(),
-            'level' => $this->getLevel(),
-            'title' => $this->getTitle(),
-            'message' => $this->getMessage(),
-            'tag' => $this->getTag(),
-            'size' => $this->getSize(),
-            'timeout' => $this->getTimeout(),
+            'type'       => $this->key(),
+            'level'      => $this->getLevel(),
+            'title'      => $this->getTitle(),
+            'message'    => $this->getMessage(),
+            'tag'        => $this->getTag(),
+            'size'       => $this->getSize(),
+            'timeout'    => $this->getTimeout(),
             'scrollable' => $this->isScrollable(),
-            'closable' => $this->isClosable(),
-            'view' => $this->getView(),
-            'buttons' => $this->buttonsToArray(),
+            'closable'   => $this->isClosable(),
+            'view'       => $this->getView(),
+            'buttons'    => $this->buttonsToArray(),
         ]);
     }
 
@@ -92,7 +92,7 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
         $modal->buttons($alert['buttons'] ?? []);
 
         foreach (['tag', 'size', 'level', 'title', 'view'] as $property) {
-            if (! empty($alert[$property])) {
+            if (!empty($alert[$property])) {
                 $method = $property === 'view' ? 'setView' : $property;
                 $modal->$method($alert[$property]);
             }

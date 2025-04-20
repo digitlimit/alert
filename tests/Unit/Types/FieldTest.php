@@ -28,24 +28,24 @@ it('can convert the field alert to array', function () {
     $array = $alert->toArray();
 
     expect($array)->toMatchArray([
-        'id' => $alert->getId(),
-        'type' => 'field',
-        'name' => 'email',
-        'tag' => 'user',
+        'id'        => $alert->getId(),
+        'type'      => 'field',
+        'name'      => 'email',
+        'tag'       => 'user',
         'named_tag' => 'user.email',
-        'level' => 'warning',
-        'message' => 'Invalid email',
-        'timeout' => 0,
+        'level'     => 'warning',
+        'message'   => 'Invalid email',
+        'timeout'   => 0,
     ]);
 })->group('field', 'toArray');
 
 it('can fill a field alert from array', function () {
     $data = [
-        'id' => 'alert-id',
-        'name' => 'password',
+        'id'      => 'alert-id',
+        'name'    => 'password',
         'message' => 'Password must be at least 6 characters',
-        'tag' => 'auth',
-        'level' => 'info',
+        'tag'     => 'auth',
+        'level'   => 'info',
     ];
 
     $alert = Field::fill($data);
