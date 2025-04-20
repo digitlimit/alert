@@ -5,14 +5,14 @@ namespace Digitlimit\Alert\Foundation;
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Helpers\Helper;
 use Digitlimit\Alert\Helpers\SessionKey;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Support\Facades\Session;
 
 /**
  * @property string $message
  */
-abstract class AbstractAlert implements AlertInterface, Jsonable, Arrayable
+abstract class AbstractAlert implements AlertInterface, Arrayable, Jsonable
 {
     /**
      * Alert unique ID.
@@ -35,7 +35,7 @@ abstract class AbstractAlert implements AlertInterface, Jsonable, Arrayable
      */
     public function id(string|int $id): self
     {
-        if (!empty($this->id) && $this->id !== $id) {
+        if (! empty($this->id) && $this->id !== $id) {
             $this->forget();
         }
 
@@ -72,7 +72,7 @@ abstract class AbstractAlert implements AlertInterface, Jsonable, Arrayable
      */
     public function getIdTag(): string
     {
-        return $this->getTag() . '.' . $this->getId();
+        return $this->getTag().'.'.$this->getId();
     }
 
     /**
@@ -103,7 +103,7 @@ abstract class AbstractAlert implements AlertInterface, Jsonable, Arrayable
     public function forget(?string $tag = null): self
     {
         $tag = $tag
-            ? $tag . '.' . $this->getId()
+            ? $tag.'.'.$this->getId()
             : $this->getIdTag();
 
         $sessionKey = SessionKey::key($this->key(), $tag);

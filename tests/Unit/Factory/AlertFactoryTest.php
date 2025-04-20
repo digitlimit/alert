@@ -11,7 +11,6 @@ it('creates an alert using make()', function () {
         ->toBe('Hello World');
 })->group('unit', 'factory', 'alert-factory');
 
-
 it('creates an alert using makeFromArray()', function () {
     $alert = AlertFactory::makeFromArray([
         'id' => 1,

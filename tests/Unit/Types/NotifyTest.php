@@ -1,8 +1,6 @@
 <?php
 
 use Digitlimit\Alert\Types\Notify;
-use Digitlimit\Alert\Events\Notify\Flashed;
-use Illuminate\Support\Facades\Session;
 
 it('sets default level if none is provided', function () {
     $notify = new Notify('Test message');
@@ -23,7 +21,7 @@ it('converts to array correctly', function () {
     $array = $notify->toArray();
 
     expect($array)->toHaveKeys([
-        'type', 'title', 'timeout', 'message', 'tag', 'id_tag', 'level', 'position', 'closable', 'buttons'
+        'type', 'title', 'timeout', 'message', 'tag', 'id_tag', 'level', 'position', 'closable', 'buttons',
     ])->and($array['message'])->toBe('Test message')
         ->and($array['title'])->toBe('Test Title')
         ->and($array['tag'])->toBe('test-tag');
@@ -52,4 +50,3 @@ it('fills from array correctly', function () {
         ->and($notify->getPosition())->toBe('top-right')
         ->and($notify->isClosable())->toBeTrue();
 })->group('notify', 'fill');
-

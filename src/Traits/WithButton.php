@@ -18,7 +18,7 @@ trait WithButton
     public function actionButton(): ?Button
     {
         return $this->getButtons()
-            ->filter(fn($button) => $button->getName() === 'action')
+            ->filter(fn ($button) => $button->getName() === 'action')
             ->first();
     }
 
@@ -28,7 +28,7 @@ trait WithButton
     public function cancelButton(): ?Button
     {
         return $this->getButtons()
-            ->filter(fn($button) => $button->getName() === 'cancel')
+            ->filter(fn ($button) => $button->getName() === 'cancel')
             ->first();
     }
 
@@ -38,7 +38,7 @@ trait WithButton
     public function customButtons(): Collection
     {
         return $this->getButtons()
-            ->filter(fn($button) => !in_array($button->getName(), ['action', 'cancel']));
+            ->filter(fn ($button) => ! in_array($button->getName(), ['action', 'cancel']));
     }
 
     /**

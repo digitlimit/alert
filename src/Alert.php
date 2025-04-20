@@ -47,7 +47,7 @@ class Alert
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $tag = $tag . '.' . $name;
+        $tag = $tag.'.'.$name;
 
         return Session::get(
             SessionKey::key($type, $tag)

@@ -5,8 +5,8 @@ namespace Digitlimit\Alert\Types;
 use Digitlimit\Alert\Contracts\Closable;
 use Digitlimit\Alert\Contracts\HasMessage;
 use Digitlimit\Alert\Contracts\HasSticky;
-use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\HasTimeout;
+use Digitlimit\Alert\Contracts\HasTitle;
 use Digitlimit\Alert\Contracts\Levelable;
 use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Events\Message\Flashed;
@@ -24,8 +24,8 @@ class Message extends AbstractAlert implements AlertInterface, Closable, HasMess
     use Traits\Taggable;
     use Traits\WithMessage;
     use Traits\WithSticky;
-    use Traits\WithTitle;
     use Traits\WithTimeout;
+    use Traits\WithTitle;
 
     /**
      * The default level of the alert.

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Session;
 /**
  * Field alert class.
  */
-class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName, Levelable, Taggable, HasTimeout
+class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName, HasTimeout, Levelable, Taggable
 {
     use Traits\Levelable;
     use Traits\Taggable;
@@ -104,7 +104,7 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
      */
     public function getNamedTag(): string
     {
-        return $this->tag . '.' . $this->getName();
+        return $this->tag.'.'.$this->getName();
     }
 
     /**

@@ -4,7 +4,7 @@ use Digitlimit\Alert\Icons\Success;
 use Illuminate\Support\Facades\View;
 
 it('is circled by default', function () {
-    $component = new Success();
+    $component = new Success;
 
     expect($component->isCircled())->toBeTrue();
 })->group('icons', 'success-icon');
@@ -15,7 +15,7 @@ it('renders the correct view', function () {
         ->with('alert::icons.success', [], [])
         ->andReturn('rendered-view');
 
-    $component = new Success();
+    $component = new Success;
 
     expect($component->render())->toBe('rendered-view');
 })->group('icons', 'success-icon', 'view');

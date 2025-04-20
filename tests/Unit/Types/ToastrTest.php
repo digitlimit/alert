@@ -1,7 +1,7 @@
 <?php
 
-use Digitlimit\Alert\Types\Toastr;
 use Digitlimit\Alert\Events\Toastr\Flashed;
+use Digitlimit\Alert\Types\Toastr;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
 

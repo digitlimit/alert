@@ -1,10 +1,10 @@
 <?php
 
-use Digitlimit\Alert\Types\Modal;
 use Digitlimit\Alert\Events\Modal\Flashed;
+use Digitlimit\Alert\Helpers\SessionKey;
+use Digitlimit\Alert\Types\Modal;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
-use Digitlimit\Alert\Helpers\SessionKey;
 
 beforeEach(function () {
     Session::flush();
@@ -38,39 +38,39 @@ it('can convert the modal alert to array', function () {
         ->setView('modals.confirm')
         ->buttons([
             ['name' => 'cancel', 'label' => 'Cancel'],
-            ['name' => 'confirm', 'label' => 'Yes, Confirm']
+            ['name' => 'confirm', 'label' => 'Yes, Confirm'],
         ]);
 
     $array = $alert->toArray();
 
     expect($array)->toMatchArray([
-        "id" => $alert->getId(),
-        "type" => "modal",
-        "level" => "info",
-        "title" => "Confirm Action",
-        "message" => "Modal Message",
-        "tag" => "confirm",
-        "size" => "medium",
-        "timeout" => 30,
-        "scrollable" => true,
-        "closable" => true,
-        "view" => "modals.confirm",
-        "buttons" => [
+        'id' => $alert->getId(),
+        'type' => 'modal',
+        'level' => 'info',
+        'title' => 'Confirm Action',
+        'message' => 'Modal Message',
+        'tag' => 'confirm',
+        'size' => 'medium',
+        'timeout' => 30,
+        'scrollable' => true,
+        'closable' => true,
+        'view' => 'modals.confirm',
+        'buttons' => [
             [
-                "id" => $alert->cancelButton()->getId(),
-                "name" => "cancel",
-                "label" => "Cancel",
-                "link" => null,
-                "attributes" => [],
+                'id' => $alert->cancelButton()->getId(),
+                'name' => 'cancel',
+                'label' => 'Cancel',
+                'link' => null,
+                'attributes' => [],
             ],
             [
-                "id" => $alert->customButtons()->first()->getId(),
-                "name" => "confirm",
-                "label" => "Yes, Confirm",
-                "link" => null,
-                "attributes" => []
-            ]
-        ]
+                'id' => $alert->customButtons()->first()->getId(),
+                'name' => 'confirm',
+                'label' => 'Yes, Confirm',
+                'link' => null,
+                'attributes' => [],
+            ],
+        ],
     ]);
 })->group('modal', 'toArray');
 
@@ -87,7 +87,7 @@ it('can fill a modal alert from an array', function () {
         'view' => 'modals.continue',
         'buttons' => [
             ['name' => 'no', 'label' => 'No'],
-            ['name' => 'yes', 'label' => 'Yes']
+            ['name' => 'yes', 'label' => 'Yes'],
         ],
     ];
 
@@ -112,7 +112,7 @@ it('can flash the modal alert to session and dispatch event', function () {
 
     $alert->flash();
 
-    $sessionKey = SessionKey::key('modal', 'example.' . $alert->getId());
+    $sessionKey = SessionKey::key('modal', 'example.'.$alert->getId());
 
     expect(Session::get($sessionKey))->toBeInstanceOf(Modal::class)
         ->and(Session::get($sessionKey)->getMessage())->toBe('Flashing modal');

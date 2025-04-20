@@ -1,10 +1,10 @@
 <?php
 
+use Digitlimit\Alert\Alert;
+use Digitlimit\Alert\Events\Message\Flashed;
 use Digitlimit\Alert\Types\Message;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
-use Digitlimit\Alert\Events\Message\Flashed;
-use Digitlimit\Alert\Alert;
 
 beforeEach(function () {
     Session::flush();
@@ -73,7 +73,7 @@ it('can flash a normal message to session and dispatch event', function () {
     $alert->tag('intro');
     $alert->flash();
 
-    $sessionKey = Alert::MAIN_KEY . '.message.default.' . $alert->getId();
+    $sessionKey = Alert::MAIN_KEY.'.message.default.'.$alert->getId();
 
     expect(Session::get($sessionKey))->toBeInstanceOf(Message::class)
         ->and(Session::get($sessionKey)->getMessage())->toBe('Welcome to the app');

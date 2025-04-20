@@ -1,10 +1,10 @@
 <?php
 
+use Digitlimit\Alert\Alert;
+use Digitlimit\Alert\Events\Field\Flashed;
 use Digitlimit\Alert\Types\Field;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
-use Digitlimit\Alert\Events\Field\Flashed;
-use Digitlimit\Alert\Alert;
 
 beforeEach(function () {
     Session::flush(); // Ensure clean session state
@@ -63,7 +63,7 @@ it('can flash the field alert to session', function () {
     $alert = new Field('username', 'Username is required');
     $alert->tag('register');
 
-    $sessionKey = Alert::MAIN_KEY . '.field.register.username';
+    $sessionKey = Alert::MAIN_KEY.'.field.register.username';
 
     $alert->flash();
 

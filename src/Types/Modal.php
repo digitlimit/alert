@@ -33,8 +33,8 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
     use Traits\WithButton;
     use Traits\WithCancelButton;
     use Traits\WithMessage;
-    use Traits\WithTitle;
     use Traits\WithTimeout;
+    use Traits\WithTitle;
     use Traits\WithView;
 
     /**
@@ -92,7 +92,7 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
         $modal->buttons($alert['buttons'] ?? []);
 
         foreach (['tag', 'size', 'level', 'title', 'view'] as $property) {
-            if (!empty($alert[$property])) {
+            if (! empty($alert[$property])) {
                 $method = $property === 'view' ? 'setView' : $property;
                 $modal->$method($alert[$property]);
             }

@@ -1,16 +1,17 @@
 <?php
 
+use Digitlimit\Alert\Foundation\AbstractAlert;
 use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\SessionKey;
 use Illuminate\Support\Facades\Session;
-use Digitlimit\Alert\Foundation\AbstractAlert;
 
 beforeEach(function () {
     Session::flush(); // Ensure clean session state before each test
 });
 
 it('can auto-set and retrieve ID', function () {
-    $alert = new class extends AbstractAlert {
+    $alert = new class extends AbstractAlert
+    {
         public string $message = 'Test Alert';
 
         public function key(): string
@@ -25,9 +26,10 @@ it('can auto-set and retrieve ID', function () {
 
         public static function fill(array $alert): AlertInterface
         {
-            $instance = new self();
+            $instance = new self;
             $instance->id($alert['id'] ?? 'default-id');
             $instance->message = $alert['message'] ?? 'Default message';
+
             return $instance;
         }
     };
@@ -37,7 +39,8 @@ it('can auto-set and retrieve ID', function () {
 })->group('alert', 'abstract-alert', 'auto-set-id');
 
 it('can manually set ID', function () {
-    $alert = new class extends AbstractAlert {
+    $alert = new class extends AbstractAlert
+    {
         public string $message = 'Test Alert';
 
         public function key(): string
@@ -52,9 +55,10 @@ it('can manually set ID', function () {
 
         public static function fill(array $alert): AlertInterface
         {
-            $instance = new self();
+            $instance = new self;
             $instance->id($alert['id'] ?? 'default-id');
             $instance->message = $alert['message'] ?? 'Default message';
+
             return $instance;
         }
     };
@@ -66,7 +70,8 @@ it('can manually set ID', function () {
 })->group('alert', 'abstract-alert', 'manual-set-id');
 
 it('flashes alert to session if id and message are set', function () {
-    $alert = new class extends AbstractAlert {
+    $alert = new class extends AbstractAlert
+    {
         public string $message = 'Hello session';
 
         public function key(): string
@@ -81,9 +86,10 @@ it('flashes alert to session if id and message are set', function () {
 
         public static function fill(array $alert): AlertInterface
         {
-            $instance = new self();
+            $instance = new self;
             $instance->id($alert['id'] ?? 'default-id');
             $instance->message = $alert['message'] ?? 'Default message';
+
             return $instance;
         }
     };
@@ -95,7 +101,8 @@ it('flashes alert to session if id and message are set', function () {
 })->group('alert', 'abstract-alert', 'flash-session');
 
 it('does not flash if message is empty', function () {
-    $alert = new class extends AbstractAlert {
+    $alert = new class extends AbstractAlert
+    {
         public function key(): string
         {
             return 'session_alert';
@@ -108,9 +115,10 @@ it('does not flash if message is empty', function () {
 
         public static function fill(array $alert): AlertInterface
         {
-            $instance = new self();
+            $instance = new self;
             $instance->id($alert['id'] ?? 'default-id');
             $instance->message = $alert['message'] ?? '';
+
             return $instance;
         }
     };
@@ -122,7 +130,8 @@ it('does not flash if message is empty', function () {
 })->group('alert', 'abstract-alert', 'no-flash-empty-message');
 
 it('can forget session key', function () {
-    $alert = new class extends AbstractAlert {
+    $alert = new class extends AbstractAlert
+    {
         public string $message = 'Forget me';
 
         public function key(): string
@@ -137,9 +146,10 @@ it('can forget session key', function () {
 
         public static function fill(array $alert): AlertInterface
         {
-            $instance = new self();
+            $instance = new self;
             $instance->id($alert['id'] ?? 'default-id');
             $instance->message = $alert['message'] ?? 'Default message';
+
             return $instance;
         }
     };
@@ -155,7 +165,8 @@ it('can forget session key', function () {
 })->group('alert', 'abstract-alert', 'forget-session');
 
 it('can convert to array and json', function () {
-    $alert = new class extends AbstractAlert {
+    $alert = new class extends AbstractAlert
+    {
         public string $message = 'Format test';
 
         public function key(): string
@@ -170,9 +181,10 @@ it('can convert to array and json', function () {
 
         public static function fill(array $alert): AlertInterface
         {
-            $instance = new self();
+            $instance = new self;
             $instance->id($alert['id'] ?? 'default-id');
             $instance->message = $alert['message'] ?? 'Default message';
+
             return $instance;
         }
     };

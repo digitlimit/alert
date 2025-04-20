@@ -27,12 +27,12 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasButto
     use Traits\Levelable;
     use Traits\Positionable;
     use Traits\Taggable;
-    use Traits\WithMessage;
-    use Traits\WithTimeout;
-    use Traits\WithTitle;
     use Traits\WithActionButton;
     use Traits\WithButton;
     use Traits\WithCancelButton;
+    use Traits\WithMessage;
+    use Traits\WithTimeout;
+    use Traits\WithTitle;
 
     protected string $defaultLevel = 'info';
 
@@ -116,8 +116,8 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasButto
     public function getIdTag(): string
     {
         return $this->tag
-            . '.'
-            . $this->getId();
+            .'.'
+            .$this->getId();
     }
 
     /**

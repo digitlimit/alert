@@ -4,12 +4,9 @@ namespace Digitlimit\Alert\Themes\Tailwind;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
-use Digitlimit\Alert\Contracts\Taggable;
 use Digitlimit\Alert\Contracts\ThemeInterface;
 use Digitlimit\Alert\Foundation\AbstractTheme;
-use Digitlimit\Alert\Foundation\AlertInterface;
 use Digitlimit\Alert\Helpers\SessionKey;
-use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\Livewire;
 
@@ -63,9 +60,9 @@ class Tailwind extends AbstractTheme implements ThemeInterface
             $all = Alert::all();
 
             foreach ($all as $type => $alerts) {
-                $event = 'refresh-alert-' . $type;
+                $event = 'refresh-alert-'.$type;
 
-                foreach($alerts as $tag => $tagAlerts) {
+                foreach ($alerts as $tag => $tagAlerts) {
                     if (empty($tagAlerts)) {
                         continue;
                     }

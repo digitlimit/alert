@@ -15,8 +15,6 @@ class Error extends Component
 
     /**
      * Check if the alert icon is circled.
-     *
-     * @return bool
      */
     public function isCircled(): bool
     {

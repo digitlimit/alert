@@ -4,10 +4,10 @@ namespace Digitlimit\Alert\Themes\Tailwind\Components;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
-use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 
 /**
  * Class Field
@@ -70,7 +70,7 @@ class Field extends AbstractComponent implements LivewireInterface
      */
     public function resolve(string $tag, array $alert = []): void
     {
-        $alert = !empty($alert)
+        $alert = ! empty($alert)
             ? Alert::fromArray($alert)
             : Alert::getField($tag, $this->name);
 

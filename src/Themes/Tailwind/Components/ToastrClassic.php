@@ -4,10 +4,10 @@ namespace Digitlimit\Alert\Themes\Tailwind\Components;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
-use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 
 /**
  * Class Toastr
@@ -29,7 +29,7 @@ class ToastrClassic extends AbstractComponent implements LivewireInterface
      */
     public function resolve(string $tag, array $alerts = []): void
     {
-        $alerts = !empty($alerts)
+        $alerts = ! empty($alerts)
             ? Alert::fromArrays($alerts)
             : Alert::getToastr($tag);
 
@@ -40,6 +40,7 @@ class ToastrClassic extends AbstractComponent implements LivewireInterface
             ->values()
             ->map(function ($alert) {
                 $alert->forget();
+
                 return $alert->toArray();
             })->toArray();
     }
