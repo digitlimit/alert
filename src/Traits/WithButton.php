@@ -38,7 +38,7 @@ trait WithButton
     public function customButtons(): Collection
     {
         return $this->getButtons()
-            ->filter(fn ($button) => ! in_array($button->getName(), ['action', 'cancel']));
+            ->filter(fn ($button) => !in_array($button->getName(), ['action', 'cancel']));
     }
 
     /**
@@ -77,7 +77,7 @@ trait WithButton
         $button = new Button($name, $label, $link, $attributes);
 
         if (empty($this->buttons)) {
-            $this->buttons = new Collection;
+            $this->buttons = new Collection();
         }
 
         $this->buttons->push($button);
@@ -108,7 +108,7 @@ trait WithButton
     public function getButtons(): Collection
     {
         if (empty($this->buttons)) {
-            return new Collection;
+            return new Collection();
         }
 
         return $this->buttons;

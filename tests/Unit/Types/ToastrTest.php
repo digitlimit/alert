@@ -26,12 +26,12 @@ it('converts a toastr alert to array correctly', function () {
     $array = $toastr->toArray();
 
     expect($array)->toMatchArray([
-        'type' => 'toastr',
-        'title' => 'Test Title',
-        'timeout' => 3000,
-        'message' => 'Test message',
-        'tag' => 'test-tag',
-        'level' => 'success',
+        'type'     => 'toastr',
+        'title'    => 'Test Title',
+        'timeout'  => 3000,
+        'message'  => 'Test message',
+        'tag'      => 'test-tag',
+        'level'    => 'success',
         'position' => 'top-right',
         'closable' => true,
     ]);
@@ -39,12 +39,12 @@ it('converts a toastr alert to array correctly', function () {
 
 it('fills a toastr alert from an array', function () {
     $alertArray = [
-        'id' => '123',
-        'message' => 'Filled message',
-        'title' => 'Filled Title',
-        'timeout' => 5000,
-        'tag' => 'filled-tag',
-        'level' => 'error',
+        'id'       => '123',
+        'message'  => 'Filled message',
+        'title'    => 'Filled Title',
+        'timeout'  => 5000,
+        'tag'      => 'filled-tag',
+        'level'    => 'error',
         'position' => 'bottom-left',
         'closable' => false,
     ];

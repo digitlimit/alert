@@ -57,7 +57,7 @@ class Type
      */
     public static function classname(string $type): string
     {
-        if (! self::exists($type)) {
+        if (!self::exists($type)) {
             throw new Exception("The alert type '$type' does not exist in config");
         }
 

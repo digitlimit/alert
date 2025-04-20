@@ -4,7 +4,7 @@ use Digitlimit\Alert\Icons\Warning;
 use Illuminate\Support\Facades\View;
 
 it('is circled by default', function () {
-    $component = new Warning;
+    $component = new Warning();
 
     expect($component->isCircled())->toBeTrue();
 })->group('icons', 'warning-icon');
@@ -15,7 +15,7 @@ it('renders the correct view', function () {
         ->with('alert::icons.warning', [], [])
         ->andReturn('rendered-view');
 
-    $component = new Warning;
+    $component = new Warning();
 
     expect($component->render())->toBe('rendered-view');
 })->group('icons', 'warning-icon', 'view');

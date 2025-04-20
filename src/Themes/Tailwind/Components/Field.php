@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 
 /**
- * Class Field
+ * Class Field.
  */
 class Field extends AbstractComponent implements LivewireInterface
 {
@@ -20,12 +20,12 @@ class Field extends AbstractComponent implements LivewireInterface
     public ?string $for = null;
 
     /**
-     * The alert name
+     * The alert name.
      */
     public ?string $name = null;
 
     /**
-     * The alerts
+     * The alerts.
      */
     public array $alert = [];
 
@@ -41,7 +41,7 @@ class Field extends AbstractComponent implements LivewireInterface
      */
     public function mount(): void
     {
-        if (! empty($this->for)) {
+        if (!empty($this->for)) {
             $this->name = $this->for;
         }
 
@@ -70,7 +70,7 @@ class Field extends AbstractComponent implements LivewireInterface
      */
     public function resolve(string $tag, array $alert = []): void
     {
-        $alert = ! empty($alert)
+        $alert = !empty($alert)
             ? Alert::fromArray($alert)
             : Alert::getField($tag, $this->name);
 

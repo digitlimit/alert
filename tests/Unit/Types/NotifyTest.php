@@ -29,15 +29,15 @@ it('converts to array correctly', function () {
 
 it('fills from array correctly', function () {
     $alertData = [
-        'id' => '123',
-        'message' => 'Filled message',
-        'title' => 'Filled Title',
-        'timeout' => 5000,
-        'tag' => 'filled-tag',
-        'level' => 'warning',
+        'id'       => '123',
+        'message'  => 'Filled message',
+        'title'    => 'Filled Title',
+        'timeout'  => 5000,
+        'tag'      => 'filled-tag',
+        'level'    => 'warning',
         'position' => 'top-right',
         'closable' => true,
-        'buttons' => [],
+        'buttons'  => [],
     ];
 
     $notify = Notify::fill($alertData);

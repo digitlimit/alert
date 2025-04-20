@@ -73,16 +73,16 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasButto
     public function toArray(): array
     {
         return array_merge(parent::toArray(), [
-            'type' => $this->key(),
-            'title' => $this->getTitle(),
-            'timeout' => $this->getTimeout(),
-            'message' => $this->getMessage(),
-            'tag' => $this->getTag(),
-            'id_tag' => $this->getIdTag(),
-            'level' => $this->getLevel(),
+            'type'     => $this->key(),
+            'title'    => $this->getTitle(),
+            'timeout'  => $this->getTimeout(),
+            'message'  => $this->getMessage(),
+            'tag'      => $this->getTag(),
+            'id_tag'   => $this->getIdTag(),
+            'level'    => $this->getLevel(),
             'position' => $this->getPosition(),
             'closable' => $this->isClosable(),
-            'buttons' => $this->buttonsToArray(),
+            'buttons'  => $this->buttonsToArray(),
         ]);
     }
 

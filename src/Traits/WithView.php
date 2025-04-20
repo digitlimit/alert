@@ -62,6 +62,6 @@ trait WithView
      */
     public function hasView(): bool
     {
-        return ! is_null($this->view);
+        return !is_null($this->view);
     }
 }

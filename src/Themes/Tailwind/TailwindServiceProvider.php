@@ -63,7 +63,7 @@ class TailwindServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register directives
+     * Register directives.
      */
     public function registerDirectives(): void
     {
