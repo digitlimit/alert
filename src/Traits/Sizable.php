@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 trait Sizable
 {
     /**
-     * The size of the alert
+     * The size of the alert.
      */
     protected string $size = 'medium';
 
@@ -66,7 +66,7 @@ trait Sizable
     }
 
     /**
-     * Set modal size
+     * Set modal size.
      *
      * @throws Exception
      */
@@ -75,7 +75,7 @@ trait Sizable
         $method = Str::camel($size);
 
         // check if function exists
-        if (! method_exists($this, $method)) {
+        if (!method_exists($this, $method)) {
             throw new Exception("Size {$method} is not supported.");
         }
 
@@ -83,7 +83,7 @@ trait Sizable
     }
 
     /**
-     * Get the size of the alert
+     * Get the size of the alert.
      */
     public function getSize(): string
     {

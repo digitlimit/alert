@@ -33,8 +33,8 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
     use Traits\WithButton;
     use Traits\WithCancelButton;
     use Traits\WithMessage;
-    use Traits\WithTitle;
     use Traits\WithTimeout;
+    use Traits\WithTitle;
     use Traits\WithView;
 
     /**
@@ -62,17 +62,17 @@ class Modal extends AbstractAlert implements AlertInterface, Closable, HasButton
     public function toArray(): array
     {
         return array_merge(parent::toArray(), [
-            'type' => $this->key(),
-            'level' => $this->getLevel(),
-            'title' => $this->getTitle(),
-            'message' => $this->getMessage(),
-            'tag' => $this->getTag(),
-            'size' => $this->getSize(),
-            'timeout' => $this->getTimeout(),
+            'type'       => $this->key(),
+            'level'      => $this->getLevel(),
+            'title'      => $this->getTitle(),
+            'message'    => $this->getMessage(),
+            'tag'        => $this->getTag(),
+            'size'       => $this->getSize(),
+            'timeout'    => $this->getTimeout(),
             'scrollable' => $this->isScrollable(),
-            'closable' => $this->isClosable(),
-            'view' => $this->getView(),
-            'buttons' => $this->buttonsToArray(),
+            'closable'   => $this->isClosable(),
+            'view'       => $this->getView(),
+            'buttons'    => $this->buttonsToArray(),
         ]);
     }
 

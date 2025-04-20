@@ -10,9 +10,9 @@ use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 
 /**
- * Class Modal.
+ * Class Toastr.
  */
-class Modal extends AbstractComponent implements LivewireInterface
+class ToastrClassic extends AbstractComponent implements LivewireInterface
 {
     /**
      * The alert tag.
@@ -31,7 +31,7 @@ class Modal extends AbstractComponent implements LivewireInterface
     {
         $alerts = !empty($alerts)
             ? Alert::fromArrays($alerts)
-            : Alert::getModal($tag);
+            : Alert::getToastr($tag);
 
         $this->alerts = $alerts
             ->filter(function ($alert) {
@@ -40,19 +40,8 @@ class Modal extends AbstractComponent implements LivewireInterface
             ->values()
             ->map(function ($alert) {
                 $alert->forget();
-                $modal = $alert->toArray();
 
-                $modal['action_button'] = $alert->actionButton()?->toArray();
-                $modal['cancel_button'] = $alert->cancelButton()?->toArray();
-                $modal['custom_buttons'] = $alert->customButtons()
-                    ->map(fn ($button) => $button->toArray())
-                    ->toArray();
-
-                $modal['has_action_button'] = $modal['action_button'] !== null;
-                $modal['has_cancel_button'] = $modal['cancel_button'] !== null;
-                $modal['has_custom_buttons'] = count($modal['custom_buttons']);
-
-                return $modal;
+                return $alert->toArray();
             })->toArray();
     }
 
@@ -66,7 +55,7 @@ class Modal extends AbstractComponent implements LivewireInterface
         $this->resolve($this->tag);
     }
 
-    #[On('refresh-alert-modal')]
+    #[On('refresh-alert-toastr')]
     public function refresh(string $tag, array $alerts): void
     {
         if ($tag !== $this->tag) {
@@ -74,7 +63,7 @@ class Modal extends AbstractComponent implements LivewireInterface
         }
 
         $this->resolve($tag, array_values($alerts));
-        $this->dispatch('open-alert-modal');
+        $this->dispatch('open-alert-toastr');
     }
 
     /**
@@ -82,6 +71,6 @@ class Modal extends AbstractComponent implements LivewireInterface
      */
     public function render(): View
     {
-        return view('alert::themes.tailwind.components.modal');
+        return view('alert::themes.tailwind.components.toastr');
     }
 }

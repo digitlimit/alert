@@ -35,14 +35,14 @@ interface Sizable
     public function fullscreen(): self;
 
     /**
-     * Set modal size
+     * Set modal size.
      *
      * @throws Exception
      */
     public function size(string $size): self;
 
     /**
-     * Get the size of the alert
+     * Get the size of the alert.
      */
     public function getSize(): string;
 }

@@ -1,10 +1,10 @@
 <?php
 
+use Digitlimit\Alert\Alert;
+use Digitlimit\Alert\Events\Field\Flashed;
 use Digitlimit\Alert\Types\Field;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
-use Digitlimit\Alert\Events\Field\Flashed;
-use Digitlimit\Alert\Alert;
 
 beforeEach(function () {
     Session::flush(); // Ensure clean session state
@@ -28,24 +28,24 @@ it('can convert the field alert to array', function () {
     $array = $alert->toArray();
 
     expect($array)->toMatchArray([
-        'id' => $alert->getId(),
-        'type' => 'field',
-        'name' => 'email',
-        'tag' => 'user',
+        'id'        => $alert->getId(),
+        'type'      => 'field',
+        'name'      => 'email',
+        'tag'       => 'user',
         'named_tag' => 'user.email',
-        'level' => 'warning',
-        'message' => 'Invalid email',
-        'timeout' => 0,
+        'level'     => 'warning',
+        'message'   => 'Invalid email',
+        'timeout'   => 0,
     ]);
 })->group('field', 'toArray');
 
 it('can fill a field alert from array', function () {
     $data = [
-        'id' => 'alert-id',
-        'name' => 'password',
+        'id'      => 'alert-id',
+        'name'    => 'password',
         'message' => 'Password must be at least 6 characters',
-        'tag' => 'auth',
-        'level' => 'info',
+        'tag'     => 'auth',
+        'level'   => 'info',
     ];
 
     $alert = Field::fill($data);
@@ -63,7 +63,7 @@ it('can flash the field alert to session', function () {
     $alert = new Field('username', 'Username is required');
     $alert->tag('register');
 
-    $sessionKey = Alert::MAIN_KEY . '.field.register.username';
+    $sessionKey = Alert::MAIN_KEY.'.field.register.username';
 
     $alert->flash();
 

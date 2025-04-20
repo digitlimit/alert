@@ -8,5 +8,4 @@ interface ThemeInterface
      * Alert types.
      */
     public static function types(): array;
-
 }

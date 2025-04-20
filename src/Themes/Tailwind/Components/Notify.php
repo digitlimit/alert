@@ -4,13 +4,13 @@ namespace Digitlimit\Alert\Themes\Tailwind\Components;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
-use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 
 /**
- * Class Notify
+ * Class Notify.
  */
 class Notify extends AbstractComponent implements LivewireInterface
 {
@@ -20,7 +20,7 @@ class Notify extends AbstractComponent implements LivewireInterface
     public string $tag = Alert::DEFAULT_TAG;
 
     /**
-     * The alerts
+     * The alerts.
      */
     public array $alerts = [];
 

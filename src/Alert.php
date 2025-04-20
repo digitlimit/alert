@@ -43,11 +43,11 @@ class Alert
      */
     public static function named(string $type, string $name, string $tag): ?HasName
     {
-        if (! Type::exists($type)) {
+        if (!Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
-        $tag = $tag . '.' . $name;
+        $tag = $tag.'.'.$name;
 
         return Session::get(
             SessionKey::key($type, $tag)
@@ -61,7 +61,7 @@ class Alert
      */
     public static function tagged(string $type, string $tag): Collection
     {
-        if (! Type::exists($type)) {
+        if (!Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
@@ -79,7 +79,7 @@ class Alert
      */
     public static function from(string $type, ...$args): AlertInterface
     {
-        if (! Type::exists($type)) {
+        if (!Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
@@ -152,7 +152,7 @@ class Alert
 
         $type = $alert['type'] ?? null;
 
-        if (! $type || ! Type::exists($type)) {
+        if (!$type || !Type::exists($type)) {
             throw new Exception("Invalid alert type '$type'. Check the alert config");
         }
 
@@ -176,7 +176,7 @@ class Alert
     {
         $types = Session::get(SessionKey::typeKey($type)) ?? [];
 
-        return ! empty($types);
+        return !empty($types);
     }
 
     /**

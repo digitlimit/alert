@@ -41,10 +41,10 @@ it('can convert the button to an array', function () {
     $button = new Button('submit', 'Submit Form', '/submit', ['class' => 'btn-submit']);
 
     $expected = [
-        'id' => $button->getId(),
-        'name' => 'submit',
-        'label' => 'Submit Form',
-        'link' => '/submit',
+        'id'         => $button->getId(),
+        'name'       => 'submit',
+        'label'      => 'Submit Form',
+        'link'       => '/submit',
         'attributes' => ['class' => 'btn-submit'],
     ];
 
@@ -53,9 +53,9 @@ it('can convert the button to an array', function () {
 
 it('can fill a button from an array', function () {
     $data = [
-        'name' => 'delete',
-        'label' => 'Delete Item',
-        'link' => '/delete',
+        'name'       => 'delete',
+        'label'      => 'Delete Item',
+        'link'       => '/delete',
         'attributes' => ['id' => 'btn-123', 'class' => 'btn-danger'],
     ];
 

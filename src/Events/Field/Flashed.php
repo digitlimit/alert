@@ -11,14 +11,17 @@ use Illuminate\Queue\SerializesModels;
 
 class Flashed
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * Create a new event instance.
      */
     public function __construct(
         public Field $alert
-    ) {}
+    ) {
+    }
 
     /**
      * Get the channels the event should broadcast on.

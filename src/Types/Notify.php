@@ -27,12 +27,12 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasButto
     use Traits\Levelable;
     use Traits\Positionable;
     use Traits\Taggable;
-    use Traits\WithMessage;
-    use Traits\WithTimeout;
-    use Traits\WithTitle;
     use Traits\WithActionButton;
     use Traits\WithButton;
     use Traits\WithCancelButton;
+    use Traits\WithMessage;
+    use Traits\WithTimeout;
+    use Traits\WithTitle;
 
     protected string $defaultLevel = 'info';
 
@@ -73,16 +73,16 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasButto
     public function toArray(): array
     {
         return array_merge(parent::toArray(), [
-            'type' => $this->key(),
-            'title' => $this->getTitle(),
-            'timeout' => $this->getTimeout(),
-            'message' => $this->getMessage(),
-            'tag' => $this->getTag(),
-            'id_tag' => $this->getIdTag(),
-            'level' => $this->getLevel(),
+            'type'     => $this->key(),
+            'title'    => $this->getTitle(),
+            'timeout'  => $this->getTimeout(),
+            'message'  => $this->getMessage(),
+            'tag'      => $this->getTag(),
+            'id_tag'   => $this->getIdTag(),
+            'level'    => $this->getLevel(),
             'position' => $this->getPosition(),
             'closable' => $this->isClosable(),
-            'buttons' => $this->buttonsToArray(),
+            'buttons'  => $this->buttonsToArray(),
         ]);
     }
 
@@ -116,8 +116,8 @@ class Notify extends AbstractAlert implements AlertInterface, Closable, HasButto
     public function getIdTag(): string
     {
         return $this->tag
-            . '.'
-            . $this->getId();
+            .'.'
+            .$this->getId();
     }
 
     /**

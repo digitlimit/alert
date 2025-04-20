@@ -18,7 +18,7 @@ use Exception;
 /**
  * Toastr alert class.
  */
-class Toastr extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasTimeout, HasTitle, Levelable, Positionable, Taggable
+class ToastrClassic extends AbstractAlert implements AlertInterface, Closable, HasMessage, HasTimeout, HasTitle, Levelable, Positionable, Taggable
 {
     use Traits\Closable;
     use Traits\Levelable;

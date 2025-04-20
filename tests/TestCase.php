@@ -6,8 +6,8 @@ use Digitlimit\Alert\AlertServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 use Illuminate\Support\Facades\Facade;
-use Orchestra\Testbench\TestCase as BaseTestCase;
 use Livewire;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
@@ -24,7 +24,8 @@ class TestCase extends BaseTestCase
     /**
      * Override application aliases.
      *
-     * @param  Application  $app
+     * @param Application $app
+     *
      * @return array<string, class-string<Facade>>
      */
     protected function getPackageAliases($app): array

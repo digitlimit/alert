@@ -6,5 +6,4 @@ use Livewire\Component;
 
 abstract class AbstractComponent extends Component
 {
-
 }

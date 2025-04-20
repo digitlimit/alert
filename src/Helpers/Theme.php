@@ -31,7 +31,7 @@ class Theme
 
         $theme = $themes[$name] ?? null;
 
-        if (! $theme) {
+        if (!$theme) {
             throw new Exception("Theme {$name} not found");
         }
 

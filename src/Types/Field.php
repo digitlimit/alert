@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Session;
 /**
  * Field alert class.
  */
-class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName, Levelable, Taggable, HasTimeout
+class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName, HasTimeout, Levelable, Taggable
 {
     use Traits\Levelable;
     use Traits\Taggable;
@@ -75,13 +75,13 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
     public function toArray(): array
     {
         return array_merge(parent::toArray(), [
-            'type' => $this->key(),
-            'name' => $this->getName(),
-            'tag' => $this->getTag(),
+            'type'      => $this->key(),
+            'name'      => $this->getName(),
+            'tag'       => $this->getTag(),
             'named_tag' => $this->getNamedTag(),
-            'level' => $this->getLevel(),
-            'message' => $this->getMessage(),
-            'timeout' => $this->getTimeout(),
+            'level'     => $this->getLevel(),
+            'message'   => $this->getMessage(),
+            'timeout'   => $this->getTimeout(),
         ]);
     }
 
@@ -104,7 +104,7 @@ class Field extends AbstractAlert implements AlertInterface, HasMessage, HasName
      */
     public function getNamedTag(): string
     {
-        return $this->tag . '.' . $this->getName();
+        return $this->tag.'.'.$this->getName();
     }
 
     /**

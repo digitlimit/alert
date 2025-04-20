@@ -10,7 +10,6 @@ it('can get the correct theme name', function () {
     expect($theme)
         ->toEqual('tailwind')
         ->and(Theme::name())->toEqual('tailwind');
-
 })->group('theme', 'helpers', 'theme-name');
 
 it('can get all themes', function () {
@@ -21,7 +20,6 @@ it('can get all themes', function () {
         ->not()->toBeEmpty()
         ->toBeArray()
         ->toEqual(Theme::all());
-
 })->group('theme', 'helpers', 'theme-all');
 
 it('can throw exception if theme is not found', function () {
@@ -43,5 +41,4 @@ it('can get the correct theme instance', function () {
         ->toEqual('tailwind')
         ->and(Theme::theme())
         ->toBeInstanceOf(ThemeInterface::class);
-
 })->group('theme', 'helpers', 'theme-instance');

@@ -15,7 +15,7 @@ class ValidationError
 
         return $errors instanceof MessageBag
             ? $errors
-            : new MessageBag;
+            : new MessageBag();
     }
 
     /**
@@ -23,7 +23,7 @@ class ValidationError
      */
     public function taggedErrors(string $tag): MessageBag
     {
-        return $this->errors()->{$tag} ?? new MessageBag;
+        return $this->errors()->{$tag} ?? new MessageBag();
     }
 
     /**

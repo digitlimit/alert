@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Factories\UserFactory;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         // UserFactory::new()->times(10)->create();
 
         UserFactory::new()->create([
-            'name' => 'Test User',
+            'name'  => 'Test User',
             'email' => 'test@example.com',
         ]);
     }

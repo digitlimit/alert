@@ -4,13 +4,13 @@ namespace Digitlimit\Alert\Themes\Tailwind\Components;
 
 use Digitlimit\Alert\Alert;
 use Digitlimit\Alert\Contracts\LivewireInterface;
+use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
-use Digitlimit\Alert\Themes\Tailwind\AbstractComponent;
 
 /**
- * Class Field
+ * Class Field.
  */
 class Field extends AbstractComponent implements LivewireInterface
 {
@@ -20,12 +20,12 @@ class Field extends AbstractComponent implements LivewireInterface
     public ?string $for = null;
 
     /**
-     * The alert name
+     * The alert name.
      */
     public ?string $name = null;
 
     /**
-     * The alerts
+     * The alerts.
      */
     public array $alert = [];
 
@@ -41,7 +41,7 @@ class Field extends AbstractComponent implements LivewireInterface
      */
     public function mount(): void
     {
-        if (! empty($this->for)) {
+        if (!empty($this->for)) {
             $this->name = $this->for;
         }
 

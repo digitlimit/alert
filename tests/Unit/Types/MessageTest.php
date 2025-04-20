@@ -1,10 +1,10 @@
 <?php
 
+use Digitlimit\Alert\Alert;
+use Digitlimit\Alert\Events\Message\Flashed;
 use Digitlimit\Alert\Types\Message;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
-use Digitlimit\Alert\Events\Message\Flashed;
-use Digitlimit\Alert\Alert;
 
 beforeEach(function () {
     Session::flush();
@@ -34,24 +34,24 @@ it('can convert the message alert to an array', function () {
     $array = $alert->toArray();
 
     expect($array)->toMatchArray([
-        'id' => $alert->getId(),
-        'type' => 'message',
-        'tag' => 'updates',
-        'level' => 'success',
-        'message' => 'New update available',
-        'title' => 'Update',
-        'timeout' => 10,
+        'id'       => $alert->getId(),
+        'type'     => 'message',
+        'tag'      => 'updates',
+        'level'    => 'success',
+        'message'  => 'New update available',
+        'title'    => 'Update',
+        'timeout'  => 10,
         'closable' => true,
     ]);
 })->group('message', 'toArray');
 
 it('can fill a message alert from array', function () {
     $data = [
-        'id' => 'alert-msg-1',
-        'tag' => 'dashboard',
-        'level' => 'warning',
-        'message' => 'Please verify your email',
-        'title' => 'Verification Needed',
+        'id'       => 'alert-msg-1',
+        'tag'      => 'dashboard',
+        'level'    => 'warning',
+        'message'  => 'Please verify your email',
+        'title'    => 'Verification Needed',
         'closable' => true,
     ];
 
@@ -63,7 +63,6 @@ it('can fill a message alert from array', function () {
         ->and($alert->getMessage())->toBe('Please verify your email')
         ->and($alert->getTitle())->toBe('Verification Needed')
         ->and($alert->isClosable())->toBeTrue();
-
 })->group('message', 'fill');
 
 it('can flash a normal message to session and dispatch event', function () {
@@ -73,7 +72,7 @@ it('can flash a normal message to session and dispatch event', function () {
     $alert->tag('intro');
     $alert->flash();
 
-    $sessionKey = Alert::MAIN_KEY . '.message.default.' . $alert->getId();
+    $sessionKey = Alert::MAIN_KEY.'.message.default.'.$alert->getId();
 
     expect(Session::get($sessionKey))->toBeInstanceOf(Message::class)
         ->and(Session::get($sessionKey)->getMessage())->toBe('Welcome to the app');
