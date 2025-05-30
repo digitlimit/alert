@@ -3,7 +3,6 @@
 composer.phar
 composer.lock
 .DS_Store
-.idea/php.xml
-.idea/workspace.xml
+.idea
 .phpunit.cache
 workbench
