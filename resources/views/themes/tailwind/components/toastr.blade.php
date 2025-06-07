@@ -1,8 +1,8 @@
 <div wire:ignore class="digitlimit-alert-toastr">
     <div
-            class="fixed z-50 p-4"
-            :class="position"
-            x-data="{
+        class="fixed z-50 p-4"
+        :class="position"
+        x-data="{
             position: 'top-right',
             toasts: @entangle('alerts'),
             dismiss(id) {
@@ -12,14 +12,14 @@
     >
         <template x-for="toast in toasts" :key="toast.id">
             <div
-                    x-transition:enter="transition ease-in duration-200"
-                    x-transition:enter-start="transform opacity-0 translate-y-2"
-                    x-transition:enter-end="transform opacity-100"
-                    x-transition:leave="transition ease-out duration-500"
-                    x-transition:leave-start="transform translate-x-0 opacity-100"
-                    x-transition:leave-end="transform -translate-y-2 opacity-0"
-                    class="bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 shadow-lg flex items-center"
-                    :class="{
+                x-transition:enter="transition ease-in duration-200"
+                x-transition:enter-start="transform opacity-0 translate-y-2"
+                x-transition:enter-end="transform opacity-100"
+                x-transition:leave="transition ease-out duration-500"
+                x-transition:leave-start="transform translate-x-0 opacity-100"
+                x-transition:leave-end="transform -translate-y-2 opacity-0"
+                class="bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 shadow-lg flex items-center"
+                :class="{
                     'from-green-400 to-green-500': toast.level === 'success',
                     'from-red-400 to-pink-500': toast.level === 'error',
                     'from-yellow-400 to-yellow-500': toast.level === 'warning',
@@ -32,7 +32,7 @@
                     'bottom-0 left-1/2 transform -translate-x-1/2': toast.position === 'bottom-center',
                     'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2': toast.position === 'center'
                 }"
-                    x-init="
+                x-init="
                     position = toast.position
 
                     if (toast.timeout) {
@@ -68,15 +68,15 @@
                         </div>
                     </div>
                     <progress
-                            x-data="{ value : 0 }"
-                            x-init="
+                        x-data="{ value : 0 }"
+                        x-init="
                             setInterval(() => {
                                 if(value == 100) clearInterval(); else value+=1
                             }, toast.timeout / 100)
                         "
-                            max="100"
-                            :value="value"
-                            class="w-full h-1 p-0"
+                        max="100"
+                        :value="value"
+                        class="w-full h-1 p-0"
                     ></progress>
                 </div>
             </div>
