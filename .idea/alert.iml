@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Digitlimit\Alert\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Digitlimit\Alert\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/workbench/app" isTestSource="true" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/workbench/database/factories" isTestSource="true" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/workbench/database/seeders" isTestSource="true" packagePrefix="Database\Seeders\" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

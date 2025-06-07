@@ -1,8 +1,8 @@
 <div wire:ignore class="digitlimit-alert-toastr">
     <div
-        class="alert-toastr-position"
-        :class="position"
-        x-data="{
+            class="fixed z-50 p-4"
+            :class="position"
+            x-data="{
             position: 'top-right',
             toasts: @entangle('alerts'),
             dismiss(id) {
@@ -18,15 +18,27 @@
                     x-transition:leave="transition ease-out duration-500"
                     x-transition:leave-start="transform translate-x-0 opacity-100"
                     x-transition:leave-end="transform -translate-y-2 opacity-0"
-                    class="alert-toastr"
-                    :class="toast.level"
+                    class="bg-gray-900 bg-gradient-to-r text-white rounded-t mb-3 shadow-lg flex items-center"
+                    :class="{
+                    'from-green-400 to-green-500': toast.level === 'success',
+                    'from-red-400 to-pink-500': toast.level === 'error',
+                    'from-yellow-400 to-yellow-500': toast.level === 'warning',
+                    'from-blue-400 to-blue-500': toast.level === 'info',
+                    'top-0 right-0': toast.position === 'top-right',
+                    'top-0 left-0': toast.position === 'top-left',
+                    'bottom-0 right-0': toast.position === 'bottom-right',
+                    'bottom-0 left-0': toast.position === 'bottom-left',
+                    'top-0 left-1/2 transform -translate-x-1/2': toast.position === 'top-center',
+                    'bottom-0 left-1/2 transform -translate-x-1/2': toast.position === 'bottom-center',
+                    'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2': toast.position === 'center'
+                }"
                     x-init="
-                        position = toast.position
+                    position = toast.position
 
-                        if (toast.timeout) {
-                            setTimeout(() => dismiss(toast.id), toast.timeout);
-                        }
-                    "
+                    if (toast.timeout) {
+                        setTimeout(() => dismiss(toast.id), toast.timeout);
+                    }
+                "
             >
                 <div class="flex flex-col w-full">
                     <div class="flex items-center w-full px-1 my-2">
@@ -64,8 +76,8 @@
                         "
                             max="100"
                             :value="value"
-                            class="w-full h-1 p-0">
-                    </progress>
+                            class="w-full h-1 p-0"
+                    ></progress>
                 </div>
             </div>
         </template>
