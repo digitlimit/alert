@@ -52,16 +52,24 @@ class AlertServiceProvider extends ServiceProvider
     protected function bootForConsole(): void
     {
         $this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/digitlimit/alert'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/digitlimit/alert'),
         ], 'alert.views');
+
+        $this->publishes([
+            __DIR__.'/../resources/css/themes' => resource_path('css/alert'),
+        ], 'alert.css');
+
+        $this->publishes([
+            __DIR__.'/../resources/scss/themes' => resource_path('scss/alert'),
+        ], 'alert.scss');
 
         $this->publishes([
             __DIR__.'/../config/alert.php' => config_path('alert.php'),
         ], 'alert.config');
 
         $this->publishes([
-            __DIR__.'/../public' => public_path('vendor/alert'),
-        ], 'alert.assets');
+            __DIR__.'/../resources/css/themes/tailwind/alert.css' => public_path('vendor/alert/alert.css'),
+        ], ['alert', 'alert.assets']);
     }
 
     /**
